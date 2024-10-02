@@ -45,15 +45,16 @@ format:
 - [(C3-P1) Exercise 3.1.1a](./w02/exercise3-1-1a.html)
 - [(C3-P1) Exercise 3.1.1c](./w02/exercise3-1-1c.html)
 - [(C3-P2) Exercise 3.1.2a](./w02/exercise3-1-2a.html)
-- [(C3-P2) Exercise 3.1.2b](./w02/exercise3-1-2b.html)
-- [(C3-P3) Exercise 3.1.6](#)
+- [(C3-P2) Exercise 3.1.2c](./w02/exercise3-1-2c.html)
+- [(C3-P3) Exercise 3.1.6](./w02/exercise3-1-6.html)
 
 ## Week 3
 - [(C0-P2)](#) 
 - [(C3-P4) Exercise 3.2.2](#)
 - [(C3-P5) Exercise 3.2.5](#)
 - [(C3-P6) Exercise 3.2.6](#) 
-- [(C3-P8) Exercise 3.3.2ac](#)
+- [(C3-P7) Computer Problem 3.1.3](#)
+- [(C3-P8) Exercise 3.3.1ac](#)
 - [(C3-P9) Exercise 3.3.2ac](#)
 - [(C3-P10) Exercise 3.3.3](#)
 
