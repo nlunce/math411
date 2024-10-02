@@ -1,0 +1,65 @@
+---
+title: "Interpolation Error Formula"  
+author: "Nathan Lunceford"  
+format:  
+  html:  
+    self-contained: true  
+    page-layout: full  
+    title-block-banner: true  
+    toc: true  
+    toc-depth: 3  
+    toc-location: body  
+    number-sections: false  
+    html-math-method: katex  
+    code-fold: true  
+    code-summary: "Show the code"  
+    code-overflow: wrap  
+    code-copy: hover  
+    code-tools:  
+        source: false  
+        toggle: true  
+        caption: See code  
+---
+
+## Interpolation Error Formula
+
+The **Interpolation Error Formula** helps estimate how much error exists between an interpolating polynomial $P(x)$ and the true function $f(x)$ that we are approximating. This formula is important in numerical analysis when constructing polynomials to approximate functions based on given data points.
+
+### The Error Formula
+
+If we are given $n$ distinct data points $(x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)$, the interpolation error at a point $x$ between the data points is given by:
+
+$$
+f(x) - P(x) = \frac{(x - x_1)(x - x_2) \cdots (x - x_n)}{n!} f^{(n)}(c)
+$$
+
+Here:  
+
+- $f(x)$ is the true function we are approximating.  
+- $P(x)$ is the interpolating polynomial of degree $n - 1$ that passes through all the given data points.  
+- $f^{(n)}(c)$ is the $n$-th derivative of $f$, evaluated at some unknown point $c$, which lies between the smallest and largest $x$-values.  
+- $(x - x_1)(x - x_2) \cdots (x - x_n)$ is the product of terms $(x - x_i)$, which depend on how far the point $x$ is from the given data points.
+- $n!$ is the factorial of $n$, the number of data points.
+
+### Key Insights
+
+1. **Factorial Growth**: The denominator includes a factor of $n!$, which grows quickly as the number of points increases. This reduces the impact of the higher-order term, especially for larger $n$.
+
+2. **Derivative Behavior**: The $n$-th derivative $f^{(n)}(c)$ plays a crucial role in determining the size of the error. If the $n$-th derivative of the function is small, the error will be smaller.
+
+3. **Closeness to Data Points**: The term $(x - x_1)(x - x_2) \cdots (x - x_n)$ increases when $x$ is far from the given data points. Thus, the error tends to be smaller when $x$ is near the center of the interpolation points and larger when it is near the boundaries.
+
+### Example of Error Bound
+
+For example, consider the function $f(x) = \sin(x)$ and the interpolating polynomial $P(x)$ constructed using data points at $0, \frac{\pi}{6}, \frac{\pi}{3}, \frac{\pi}{2}$. The error at $x = 1$ can be calculated using the formula:
+
+$$
+\sin(1) - P(1) \leq \frac{(1 - 0)(1 - \frac{\pi}{6})(1 - \frac{\pi}{3})(1 - \frac{\pi}{2})}{4!} \cdot |f^{(4)}(c)|
+$$
+
+Since $|f^{(4)}(c)| \leq 1$ (for $\sin(x)$, the fourth derivative does not exceed 1), we can calculate the upper bound for the error.
+
+### Conclusion
+
+The **Interpolation Error Formula** is a powerful tool for estimating how close an interpolating polynomial $P(x)$ is to the true function $f(x)$. While it is often difficult to calculate the exact error, the formula helps provide an upper bound on the error, especially useful for functions with known derivatives. The error tends to be smaller in the middle of the interpolation interval and larger near the edges, which is a key factor in numerical interpolation.
+

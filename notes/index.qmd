@@ -33,6 +33,8 @@ format:
 - [Newton’s Divided Differences](./w02/newtons-divided-differences.html)
 
 ## Week 3
+- [Interpolation Error Formula](./w03/interpolation-error-formula.html)
+- [Chebyshev Interpolation](./w03/chebyshev-interpolation.html)
 
 ## Week 4
 

@@ -1,0 +1,91 @@
+---
+title: "Chebyshev Interpolation"
+subtitle: "MATH411"
+author: "Nathan Lunceford"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code 
+---
+
+## Introduction
+
+**Chebyshev Interpolation** is a method of polynomial interpolation where the interpolation nodes (or base points) are chosen as the roots of Chebyshev polynomials. The idea is to minimize the interpolation error over the interval $[-1, 1]$. This method is particularly effective for reducing oscillations in polynomial approximations (the **Runge phenomenon**) that tend to occur near the edges of the interpolation interval with evenly spaced nodes.
+
+### The Chebyshev Interpolation Nodes
+
+The Chebyshev nodes $x_i$ are the roots of the Chebyshev polynomial $T_n(x)$ of degree $n$, and they are given by:
+
+$$
+x_i = \cos\left(\frac{(2i - 1)\pi}{2n}\right) \quad \text{for} \ i = 1, 2, ..., n
+$$
+
+These nodes are spread out more densely near the ends of the interval $[-1, 1]$, which helps control the oscillations that occur near the edges of the interval in standard polynomial interpolation.
+
+### Chebyshev's Theorem
+
+The Chebyshev nodes minimize the maximum error in polynomial interpolation. The error bound for an interpolating polynomial $P_n(x)$ through $n$ points is given by the formula:
+
+$$
+|f(x) - P_n(x)| \leq \frac{(x - x_1)(x - x_2) \cdots (x - x_n)}{n!} \cdot f^{(n)}(c)
+$$
+
+For Chebyshev interpolation on $[-1, 1]$, the term $(x - x_1)(x - x_2) \cdots (x - x_n)$ is bounded by $\frac{1}{2^{n-1}}$, which leads to a significantly smaller error compared to using evenly spaced points.
+
+### Properties of Chebyshev Polynomials
+
+The **Chebyshev polynomials** $T_n(x)$ are defined as:
+
+$$
+T_n(x) = \cos(n \cdot \arccos(x))
+$$
+
+These polynomials have several important properties:
+
+- **Degree**: $T_n(x)$ is a polynomial of degree $n$.
+- **Zeros**: The zeros of $T_n(x)$ are the Chebyshev nodes, which are used as interpolation points.
+- **Extremes**: The polynomials alternate between $-1$ and $1$ on the interval $[-1, 1]$.
+- **Recursion Relation**: The Chebyshev polynomials follow the recursion relation:
+  
+  $$
+  T_{n+1}(x) = 2x T_n(x) - T_{n-1}(x)
+  $$
+
+  This recurrence is useful for efficient computation of the polynomials.
+
+### Example
+
+Let's consider using Chebyshev interpolation to approximate the function $f(x) = e^x$ on the interval $[-1, 1]$. For a degree 5 Chebyshev interpolating polynomial $Q_5(x)$, the interpolation error can be bounded as:
+
+$$
+|e^x - Q_5(x)| \leq \frac{e}{120} \cdot \frac{1}{16} \approx 0.001415
+$$
+
+This means the approximation will be accurate to approximately 3 digits after the decimal point.
+
+### Runge Phenomenon and Chebyshev Interpolation
+
+The **Runge phenomenon** occurs when high-degree polynomials, especially with evenly spaced points, oscillate excessively near the edges of the interpolation interval. Chebyshev interpolation helps eliminate this issue by placing more points near the ends of the interval, reducing the oscillations and yielding a more stable interpolation.
+
+### Applications
+
+Chebyshev interpolation is commonly used in:
+
+- **Numerical approximation**: Approximating functions in computational tasks.
+- **Signal processing**: Representing and compressing data.
+- **Root-finding algorithms**: Approximating roots of equations.
+- **Spectral methods**: In solving differential equations.
