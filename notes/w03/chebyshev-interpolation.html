@@ -3139,74 +3139,201 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction">Introduction</a>
+  <li><a href="#chebyshev-interpolation" id="toc-chebyshev-interpolation">Chebyshev Interpolation</a>
   <ul>
-  <li><a href="#the-chebyshev-interpolation-nodes" id="toc-the-chebyshev-interpolation-nodes">The Chebyshev Interpolation Nodes</a></li>
-  <li><a href="#chebyshevs-theorem" id="toc-chebyshevs-theorem">Chebyshev’s Theorem</a></li>
-  <li><a href="#properties-of-chebyshev-polynomials" id="toc-properties-of-chebyshev-polynomials">Properties of Chebyshev Polynomials</a></li>
+  <li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+  <li><a href="#chebyshev-polynomials" id="toc-chebyshev-polynomials">Chebyshev Polynomials</a>
+  <ul>
+  <li><a href="#definition" id="toc-definition">Definition</a></li>
+  <li><a href="#properties" id="toc-properties">Properties</a></li>
+  </ul></li>
+  <li><a href="#chebyshev-nodes" id="toc-chebyshev-nodes">Chebyshev Nodes</a>
+  <ul>
+  <li><a href="#definition-1" id="toc-definition-1">Definition</a></li>
+  <li><a href="#mapping-to-arbitrary-intervals" id="toc-mapping-to-arbitrary-intervals">Mapping to Arbitrary Intervals</a></li>
+  <li><a href="#importance" id="toc-importance">Importance</a></li>
+  </ul></li>
+  <li><a href="#interpolation-process" id="toc-interpolation-process">Interpolation Process</a>
+  <ul>
+  <li><a href="#barycentric-interpolation-formula" id="toc-barycentric-interpolation-formula">Barycentric Interpolation Formula</a></li>
+  </ul></li>
+  <li><a href="#advantages-of-chebyshev-interpolation" id="toc-advantages-of-chebyshev-interpolation">Advantages of Chebyshev Interpolation</a></li>
+  <li><a href="#error-analysis" id="toc-error-analysis">Error Analysis</a>
+  <ul>
+  <li><a href="#interpolation-error-formula" id="toc-interpolation-error-formula">Interpolation Error Formula</a></li>
+  <li><a href="#worst-case-error-estimate" id="toc-worst-case-error-estimate">Worst-Case Error Estimate</a></li>
+  <li><a href="#implications" id="toc-implications">Implications</a></li>
+  </ul></li>
   <li><a href="#example" id="toc-example">Example</a></li>
-  <li><a href="#runge-phenomenon-and-chebyshev-interpolation" id="toc-runge-phenomenon-and-chebyshev-interpolation">Runge Phenomenon and Chebyshev Interpolation</a></li>
   <li><a href="#applications" id="toc-applications">Applications</a></li>
+  <li><a href="#conclusion" id="toc-conclusion">Conclusion</a></li>
+  <li><a href="#references" id="toc-references">References</a></li>
   </ul></li>
   </ul>
 </nav>
+<section id="chebyshev-interpolation" class="level1">
+<h1>Chebyshev Interpolation</h1>
+<p>Chebyshev Interpolation is a powerful technique in numerical analysis used to approximate functions with polynomials, particularly minimizing errors and avoiding issues like Runge’s phenomenon. This note provides an overview of Chebyshev Interpolation, including its definition, properties, advantages, and practical implementation.</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p><strong>Chebyshev Interpolation</strong> is a method of polynomial interpolation where the interpolation nodes (or base points) are chosen as the roots of Chebyshev polynomials. The idea is to minimize the interpolation error over the interval <span class="math inline">[-1, 1]</span>. This method is particularly effective for reducing oscillations in polynomial approximations (the <strong>Runge phenomenon</strong>) that tend to occur near the edges of the interpolation interval with evenly spaced nodes.</p>
-<section id="the-chebyshev-interpolation-nodes" class="level3">
-<h3 class="anchored" data-anchor-id="the-chebyshev-interpolation-nodes">The Chebyshev Interpolation Nodes</h3>
-<p>The Chebyshev nodes <span class="math inline">x_i</span> are the roots of the Chebyshev polynomial <span class="math inline">T_n(x)</span> of degree <span class="math inline">n</span>, and they are given by:</p>
-<p><span class="math display">
-x_i = \cos\left(\frac{(2i - 1)\pi}{2n}\right) \quad \text{for} \ i = 1, 2, ..., n
-</span></p>
-<p>These nodes are spread out more densely near the ends of the interval <span class="math inline">[-1, 1]</span>, which helps control the oscillations that occur near the edges of the interval in standard polynomial interpolation.</p>
+<p>Interpolation involves approximating a function <span class="math inline">f(x)</span> using a polynomial <span class="math inline">P_n(x)</span> that passes through a set of points (nodes). While polynomial interpolation is straightforward, selecting appropriate nodes is crucial to ensure accuracy and stability. Chebyshev Interpolation leverages Chebyshev nodes to construct interpolating polynomials that minimize the maximum error across the interpolation interval.</p>
+<hr>
 </section>
-<section id="chebyshevs-theorem" class="level3">
-<h3 class="anchored" data-anchor-id="chebyshevs-theorem">Chebyshev’s Theorem</h3>
-<p>The Chebyshev nodes minimize the maximum error in polynomial interpolation. The error bound for an interpolating polynomial <span class="math inline">P_n(x)</span> through <span class="math inline">n</span> points is given by the formula:</p>
+<section id="chebyshev-polynomials" class="level2">
+<h2 class="anchored" data-anchor-id="chebyshev-polynomials">Chebyshev Polynomials</h2>
+<p>Chebyshev polynomials are a sequence of orthogonal polynomials that arise in various approximation and interpolation problems. They are defined recursively and have properties that make them ideal for minimizing interpolation errors.</p>
+<section id="definition" class="level3">
+<h3 class="anchored" data-anchor-id="definition">Definition</h3>
+<p>The Chebyshev polynomials of the first kind, <span class="math inline">T_n(x)</span>, are defined by:</p>
 <p><span class="math display">
-|f(x) - P_n(x)| \leq \frac{(x - x_1)(x - x_2) \cdots (x - x_n)}{n!} \cdot f^{(n)}(c)
+T_n(x) = \cos(n \arccos x), \quad \text{for } x \in [-1, 1]
 </span></p>
-<p>For Chebyshev interpolation on <span class="math inline">[-1, 1]</span>, the term <span class="math inline">(x - x_1)(x - x_2) \cdots (x - x_n)</span> is bounded by <span class="math inline">\frac{1}{2^{n-1}}</span>, which leads to a significantly smaller error compared to using evenly spaced points.</p>
 </section>
-<section id="properties-of-chebyshev-polynomials" class="level3">
-<h3 class="anchored" data-anchor-id="properties-of-chebyshev-polynomials">Properties of Chebyshev Polynomials</h3>
-<p>The <strong>Chebyshev polynomials</strong> <span class="math inline">T_n(x)</span> are defined as:</p>
-<p><span class="math display">
-T_n(x) = \cos(n \cdot \arccos(x))
-</span></p>
-<p>These polynomials have several important properties:</p>
+<section id="properties" class="level3">
+<h3 class="anchored" data-anchor-id="properties">Properties</h3>
 <ul>
-<li><p><strong>Degree</strong>: <span class="math inline">T_n(x)</span> is a polynomial of degree <span class="math inline">n</span>.</p></li>
-<li><p><strong>Zeros</strong>: The zeros of <span class="math inline">T_n(x)</span> are the Chebyshev nodes, which are used as interpolation points.</p></li>
-<li><p><strong>Extremes</strong>: The polynomials alternate between <span class="math inline">-1</span> and <span class="math inline">1</span> on the interval <span class="math inline">[-1, 1]</span>.</p></li>
-<li><p><strong>Recursion Relation</strong>: The Chebyshev polynomials follow the recursion relation:</p>
+<li><p><strong>Orthogonality</strong>: Chebyshev polynomials are orthogonal with respect to the weight <span class="math inline">w(x) = \frac{1}{\sqrt{1 - x^2}}</span> on the interval <span class="math inline">[-1, 1]</span>.</p></li>
+<li><p><strong>Extremal Property</strong>: Among all polynomials of degree <span class="math inline">n</span> with leading coefficient <span class="math inline">2^{n-1}</span>, <span class="math inline">T_n(x)</span> has the smallest maximum deviation from zero on <span class="math inline">[-1, 1]</span>.</p></li>
+<li><p><strong>Roots and Extremes</strong>: The roots of <span class="math inline">T_n(x)</span> are given by:</p>
 <p><span class="math display">
-T_{n+1}(x) = 2x T_n(x) - T_{n-1}(x)
+x_k = \cos\left( \frac{2k - 1}{2n} \pi \right), \quad k = 1, 2, \dots, n
 </span></p>
-<p>This recurrence is useful for efficient computation of the polynomials.</p></li>
+<p>The extrema (maximum and minimum points) of <span class="math inline">T_n(x)</span> occur at:</p>
+<p><span class="math display">
+x_k = \cos\left( \frac{k}{n} \pi \right), \quad k = 0, 1, \dots, n
+</span></p></li>
 </ul>
+<hr>
 </section>
-<section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
-<p>Let’s consider using Chebyshev interpolation to approximate the function <span class="math inline">f(x) = e^x</span> on the interval <span class="math inline">[-1, 1]</span>. For a degree 5 Chebyshev interpolating polynomial <span class="math inline">Q_5(x)</span>, the interpolation error can be bounded as:</p>
+</section>
+<section id="chebyshev-nodes" class="level2">
+<h2 class="anchored" data-anchor-id="chebyshev-nodes">Chebyshev Nodes</h2>
+<p>Chebyshev nodes are specific points in the interval <span class="math inline">[-1, 1]</span> used as interpolation nodes to minimize the interpolation error.</p>
+<section id="definition-1" class="level3">
+<h3 class="anchored" data-anchor-id="definition-1">Definition</h3>
+<p>For <span class="math inline">n+1</span> Chebyshev nodes, the <span class="math inline">k</span>-th node <span class="math inline">x_k</span> is given by:</p>
 <p><span class="math display">
-|e^x - Q_5(x)| \leq \frac{e}{120} \cdot \frac{1}{16} \approx 0.001415
+x_k = \cos\left( \frac{2k + 1}{2n + 2} \pi \right), \quad k = 0, 1, 2, \dots, n
 </span></p>
-<p>This means the approximation will be accurate to approximately 3 digits after the decimal point.</p>
+<p>Alternatively, they can be expressed as:</p>
+<p><span class="math display">
+x_k = \cos\left( \frac{(2k + 1)\pi}{2(n + 1)} \right), \quad k = 0, 1, 2, \dots, n
+</span></p>
 </section>
-<section id="runge-phenomenon-and-chebyshev-interpolation" class="level3">
-<h3 class="anchored" data-anchor-id="runge-phenomenon-and-chebyshev-interpolation">Runge Phenomenon and Chebyshev Interpolation</h3>
-<p>The <strong>Runge phenomenon</strong> occurs when high-degree polynomials, especially with evenly spaced points, oscillate excessively near the edges of the interpolation interval. Chebyshev interpolation helps eliminate this issue by placing more points near the ends of the interval, reducing the oscillations and yielding a more stable interpolation.</p>
+<section id="mapping-to-arbitrary-intervals" class="level3">
+<h3 class="anchored" data-anchor-id="mapping-to-arbitrary-intervals">Mapping to Arbitrary Intervals</h3>
+<p>For an interval <span class="math inline">[a, b]</span>, Chebyshev nodes are mapped as:</p>
+<p><span class="math display">
+x_k = \frac{a + b}{2} + \frac{b - a}{2} \cos\left( \frac{(2k + 1)\pi}{2(n + 1)} \right), \quad k = 0, 1, 2, \dots, n
+</span></p>
 </section>
-<section id="applications" class="level3">
-<h3 class="anchored" data-anchor-id="applications">Applications</h3>
-<p>Chebyshev interpolation is commonly used in:</p>
+<section id="importance" class="level3">
+<h3 class="anchored" data-anchor-id="importance">Importance</h3>
+<p>Using Chebyshev nodes instead of equally spaced nodes helps in minimizing the oscillatory behavior (Runge’s phenomenon) and ensures better convergence properties of the interpolating polynomial.</p>
+<hr>
+</section>
+</section>
+<section id="interpolation-process" class="level2">
+<h2 class="anchored" data-anchor-id="interpolation-process">Interpolation Process</h2>
+<p>The Chebyshev Interpolation process involves the following steps:</p>
+<ol type="1">
+<li><p><strong>Select Chebyshev Nodes</strong>: Determine the <span class="math inline">n+1</span> Chebyshev nodes <span class="math inline">x_0, x_1, \dots, x_n</span> in the interval <span class="math inline">[-1, 1]</span>.</p></li>
+<li><p><strong>Evaluate the Function</strong>: Compute the function values <span class="math inline">f(x_0), f(x_1), \dots, f(x_n)</span>.</p></li>
+<li><p><strong>Construct the Interpolating Polynomial</strong>: Use methods such as the Chebyshev series expansion or the barycentric interpolation formula to construct the interpolating polynomial <span class="math inline">Q_n(x)</span>.</p></li>
+<li><p><strong>Approximate the Function</strong>: Use <span class="math inline">Q_n(x)</span> to approximate <span class="math inline">f(x)</span> within the interval.</p></li>
+</ol>
+<section id="barycentric-interpolation-formula" class="level3">
+<h3 class="anchored" data-anchor-id="barycentric-interpolation-formula">Barycentric Interpolation Formula</h3>
+<p>One efficient method to compute the interpolating polynomial is the barycentric interpolation formula:</p>
+<p><span class="math display">
+Q_n(x) = \frac{\sum_{k=0}^n \frac{w_k f(x_k)}{x - x_k}}{\sum_{k=0}^n \frac{w_k}{x - x_k}}
+</span></p>
+<p>where <span class="math inline">w_k</span> are the barycentric weights defined as:</p>
+<p><span class="math display">
+w_k = (-1)^k \sin\left( \frac{(2k + 1)\pi}{2n + 2} \right)
+</span></p>
+<hr>
+</section>
+</section>
+<section id="advantages-of-chebyshev-interpolation" class="level2">
+<h2 class="anchored" data-anchor-id="advantages-of-chebyshev-interpolation">Advantages of Chebyshev Interpolation</h2>
 <ul>
-<li><strong>Numerical approximation</strong>: Approximating functions in computational tasks.</li>
-<li><strong>Signal processing</strong>: Representing and compressing data.</li>
-<li><strong>Root-finding algorithms</strong>: Approximating roots of equations.</li>
-<li><strong>Spectral methods</strong>: In solving differential equations.</li>
+<li><p><strong>Minimized Error</strong>: Chebyshev nodes minimize the maximum error (uniform convergence) of the interpolating polynomial.</p></li>
+<li><p><strong>Reduced Oscillations</strong>: Avoids Runge’s phenomenon, where high-degree polynomial interpolations at equally spaced nodes exhibit large oscillations near the interval endpoints.</p></li>
+<li><p><strong>Efficient Computation</strong>: The barycentric interpolation formula allows for efficient and stable computation of interpolating polynomials.</p></li>
+<li><p><strong>Orthogonality</strong>: Leveraging the orthogonality of Chebyshev polynomials aids in various approximation and numerical integration techniques.</p></li>
+</ul>
+<hr>
+</section>
+<section id="error-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="error-analysis">Error Analysis</h2>
+<p>Understanding the error associated with Chebyshev Interpolation is crucial for assessing the approximation’s reliability.</p>
+<section id="interpolation-error-formula" class="level3">
+<h3 class="anchored" data-anchor-id="interpolation-error-formula">Interpolation Error Formula</h3>
+<p>For a function <span class="math inline">f(x)</span> sufficiently smooth on <span class="math inline">[-1, 1]</span>, the error of the Chebyshev interpolating polynomial <span class="math inline">Q_n(x)</span> of degree <span class="math inline">n</span> is given by:</p>
+<p><span class="math display">
+|f(x) - Q_n(x)| \leq \frac{M}{(n+1)!} \cdot \frac{1}{2^{n+1}}
+</span></p>
+<p>where: - <span class="math inline">M</span> is an upper bound on the <span class="math inline">(n+1)</span>-th derivative of <span class="math inline">f(x)</span> on <span class="math inline">[-1, 1]</span>.</p>
+</section>
+<section id="worst-case-error-estimate" class="level3">
+<h3 class="anchored" data-anchor-id="worst-case-error-estimate">Worst-Case Error Estimate</h3>
+<p>For example, if <span class="math inline">f(x) = e^x</span>, all derivatives are <span class="math inline">f^{(k)}(x) = e^x</span>. On <span class="math inline">[-1, 1]</span>, <span class="math inline">e^x \leq e</span>, so <span class="math inline">M = e</span>.</p>
+<p>For a fifth-degree polynomial (<span class="math inline">n = 5</span>):</p>
+<p><span class="math display">
+|e^x - Q_5(x)| \leq \frac{e}{6!} \cdot \frac{1}{2^5} = \frac{e}{720 \times 32} \approx 0.000118
+</span></p>
+</section>
+<section id="implications" class="level3">
+<h3 class="anchored" data-anchor-id="implications">Implications</h3>
+<p>An error bound of approximately <span class="math inline">1.18 \times 10^{-4}</span> implies that at least three decimal digits of the approximation <span class="math inline">Q_5(x)</span> are accurate across the interval <span class="math inline">[-1, 1]</span>.</p>
+<hr>
+</section>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p><strong>Problem:</strong> Approximate <span class="math inline">f(x) = e^x</span> on <span class="math inline">[-1, 1]</span> using a fifth-degree Chebyshev interpolating polynomial <span class="math inline">Q_5(x)</span>. Estimate the worst-case error and determine the number of correct decimal digits in the approximation.</p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li><p><strong>Determine <span class="math inline">M</span>:</strong></p>
+<ul>
+<li><span class="math inline">f^{(6)}(x) = e^x</span>, so <span class="math inline">M = e</span>.</li>
+</ul></li>
+<li><p><strong>Compute the Error Bound:</strong> <span class="math display">
+|e^x - Q_5(x)| \leq \frac{e}{6!} \cdot \frac{1}{2^5} = \frac{2.71828}{720 \times 32} \approx 0.000118
+</span></p></li>
+<li><p><strong>Interpret the Error:</strong></p>
+<ul>
+<li>The approximation <span class="math inline">Q_5(x)</span> deviates from <span class="math inline">e^x</span> by less than <span class="math inline">1.18 \times 10^{-4}</span>.</li>
+<li><strong>At least three decimal digits</strong> of <span class="math inline">Q_5(x)</span> are accurate.</li>
+</ul></li>
+</ol>
+<p><strong>Conclusion:</strong> The fifth-degree Chebyshev interpolating polynomial <span class="math inline">Q_5(x)</span> approximates <span class="math inline">e^x</span> with an error less than <span class="math inline">0.00012</span>, ensuring at least three correct decimal digits across <span class="math inline">[-1, 1]</span>.</p>
+<hr>
+</section>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<p>Chebyshev Interpolation is widely used in various fields due to its robustness and efficiency:</p>
+<ul>
+<li><p><strong>Numerical Integration:</strong> Chebyshev polynomials are used in Gaussian quadrature methods for approximating integrals.</p></li>
+<li><p><strong>Approximation Theory:</strong> Provides optimal polynomial approximations for continuous functions.</p></li>
+<li><p><strong>Signal Processing:</strong> Used in filter design and spectral analysis.</p></li>
+<li><p><strong>Computer Graphics:</strong> Facilitates curve and surface modeling with minimal errors.</p></li>
+<li><p><strong>Scientific Computing:</strong> Enhances the accuracy of simulations and numerical solutions to differential equations.</p></li>
+</ul>
+<hr>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Chebyshev Interpolation offers a reliable method for polynomial approximation, leveraging Chebyshev nodes to minimize interpolation errors and avoid common pitfalls like Runge’s phenomenon. Its mathematical foundations, combined with practical computational techniques, make it an essential tool in numerical analysis and various applied disciplines.</p>
+<hr>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>Trefethen, L. N. (2000). <em>Approximation Theory and Approximation Practice</em>. SIAM.</li>
+<li>Press, W. H., Teukolsky, S. A., Vetterling, W. T., &amp; Flannery, B. P. (2007). <em>Numerical Recipes: The Art of Scientific Computing</em>. Cambridge University Press.</li>
+<li>Olver, F. W. J., &amp; Townsend, C. T. (2013). <em>A First Course in Chebyshev and Fourier Spectral Methods</em>. Cambridge University Press.</li>
 </ul>
 </section>
 </section>

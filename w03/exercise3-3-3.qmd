@@ -33,42 +33,43 @@ format:
 We need to compute the worst-case error for the interpolation of $f(x) = e^x$ using a Chebyshev interpolating polynomial $Q_5(x)$. We will use the interpolation error formula:
 
 $$
-|f(x) - P(x)| = \frac{(x - x_1)(x - x_2) \cdots (x - x_n)}{n!} \cdot f^{(n)}(c)
+|f(x) - P(x)| \leq \frac{M}{(n+1)!} \cdot \max_{x \in [-1,1]} |(x - x_1)(x - x_2) \cdots (x - x_n)|
 $$
 
-Where $f^{(n)}(c)$ is the $n$-th derivative of $f(x)$ evaluated at some point $c$ in the interval $[-1, 1]$.
+Where $M$ is an upper bound on the $6$th derivative of $f(x) = e^x$ over $[-1, 1]$, and $x_1, x_2, \dots, x_n$ are the Chebyshev nodes.
 
 ### Steps:
 
-1. **Chebyshev Nodes Bound:**
-   For Chebyshev interpolation on the interval $[-1, 1]$, the product $(x - x_1)(x - x_2) \cdots (x - x_n)$ is bounded by $\frac{1}{2^{n-1}}$. For $n = 5$, this becomes:
+1. **Chebyshev Node Bound:**
+   For Chebyshev interpolation on the interval $[-1, 1]$, the product $(x - x_1)(x - x_2) \cdots (x - x_n)$ is bounded by $\frac{1}{2^n}$. For $n = 5$, this becomes:
 
    $$
-   \frac{1}{2^4} = \frac{1}{16}
+   \frac{1}{2^5} = \frac{1}{32}
    $$
 
-2. **Fifth Derivative of $e^x$:**
-   The 5th derivative of $f(x) = e^x$ is $f^{(5)}(x) = e^x$, and the maximum value of this derivative on the interval $[-1, 1]$ is at $x = 1$, where $f^{(5)}(1) = e \approx 2.718$.
+2. **Sixth Derivative of $e^x$:**
+   The 6th derivative of $f(x) = e^x$ is $f^{(6)}(x) = e^x$, and the maximum value of this derivative on the interval $[-1, 1]$ is at $x = 1$, where $f^{(6)}(1) = e \approx 2.718$.
 
 3. **Factorial Term:**
-   The term $5! = 120$.
+   The term $6! = 720$.
 
 4. **Error Bound Formula:**
    Now, we plug these values into the error bound formula:
 
    $$
-   |e^x - Q_5(x)| \leq \frac{e}{120} \cdot \frac{1}{16}
+   |e^x - Q_5(x)| \leq \frac{e}{6!} \cdot \frac{1}{32}
    $$
 
    Substituting $e \approx 2.718$, we get:
 
    $$
-   |e^x - Q_5(x)| \leq \frac{2.718}{1920} \approx 0.001415
+   |e^x - Q_5(x)| \leq \frac{2.718}{720 \times 32} \approx \frac{2.718}{23,040} \approx 0.000118
    $$
 
    This is the worst-case error estimate for the approximation of $e^x$ on the interval $[-1, 1]$.
 
 5. **Correct Decimal Places:**
-   Since the error bound is approximately $0.001415$, this means we can expect approximately 3 correct digits after the decimal point. The digits before the decimal point are likely to be correct, but the fourth digit could be affected by the error.
+   Since the error bound is approximately $0.000118$, this means we can expect approximately 3 correct digits after the decimal point. The error affects the fourth decimal place, but the first three digits are expected to be correct.
 
    Therefore, the approximation $Q_5(x)$ will be accurate to **3 digits** after the decimal point when approximating $e^x$ on the interval $[-1, 1]$.
+

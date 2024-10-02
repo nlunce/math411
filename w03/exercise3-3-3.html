@@ -3154,29 +3154,29 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="solution">Solution</h3>
 <p>We need to compute the worst-case error for the interpolation of <span class="math inline">f(x) = e^x</span> using a Chebyshev interpolating polynomial <span class="math inline">Q_5(x)</span>. We will use the interpolation error formula:</p>
 <p><span class="math display">
-|f(x) - P(x)| = \frac{(x - x_1)(x - x_2) \cdots (x - x_n)}{n!} \cdot f^{(n)}(c)
+|f(x) - P(x)| \leq \frac{M}{(n+1)!} \cdot \max_{x \in [-1,1]} |(x - x_1)(x - x_2) \cdots (x - x_n)|
 </span></p>
-<p>Where <span class="math inline">f^{(n)}(c)</span> is the <span class="math inline">n</span>-th derivative of <span class="math inline">f(x)</span> evaluated at some point <span class="math inline">c</span> in the interval <span class="math inline">[-1, 1]</span>.</p>
+<p>Where <span class="math inline">M</span> is an upper bound on the <span class="math inline">6</span>th derivative of <span class="math inline">f(x) = e^x</span> over <span class="math inline">[-1, 1]</span>, and <span class="math inline">x_1, x_2, \dots, x_n</span> are the Chebyshev nodes.</p>
 </section>
 <section id="steps" class="level3">
 <h3 class="anchored" data-anchor-id="steps">Steps:</h3>
 <ol type="1">
-<li><p><strong>Chebyshev Nodes Bound:</strong> For Chebyshev interpolation on the interval <span class="math inline">[-1, 1]</span>, the product <span class="math inline">(x - x_1)(x - x_2) \cdots (x - x_n)</span> is bounded by <span class="math inline">\frac{1}{2^{n-1}}</span>. For <span class="math inline">n = 5</span>, this becomes:</p>
+<li><p><strong>Chebyshev Node Bound:</strong> For Chebyshev interpolation on the interval <span class="math inline">[-1, 1]</span>, the product <span class="math inline">(x - x_1)(x - x_2) \cdots (x - x_n)</span> is bounded by <span class="math inline">\frac{1}{2^n}</span>. For <span class="math inline">n = 5</span>, this becomes:</p>
 <p><span class="math display">
-\frac{1}{2^4} = \frac{1}{16}
+\frac{1}{2^5} = \frac{1}{32}
 </span></p></li>
-<li><p><strong>Fifth Derivative of <span class="math inline">e^x</span>:</strong> The 5th derivative of <span class="math inline">f(x) = e^x</span> is <span class="math inline">f^{(5)}(x) = e^x</span>, and the maximum value of this derivative on the interval <span class="math inline">[-1, 1]</span> is at <span class="math inline">x = 1</span>, where <span class="math inline">f^{(5)}(1) = e \approx 2.718</span>.</p></li>
-<li><p><strong>Factorial Term:</strong> The term <span class="math inline">5! = 120</span>.</p></li>
+<li><p><strong>Sixth Derivative of <span class="math inline">e^x</span>:</strong> The 6th derivative of <span class="math inline">f(x) = e^x</span> is <span class="math inline">f^{(6)}(x) = e^x</span>, and the maximum value of this derivative on the interval <span class="math inline">[-1, 1]</span> is at <span class="math inline">x = 1</span>, where <span class="math inline">f^{(6)}(1) = e \approx 2.718</span>.</p></li>
+<li><p><strong>Factorial Term:</strong> The term <span class="math inline">6! = 720</span>.</p></li>
 <li><p><strong>Error Bound Formula:</strong> Now, we plug these values into the error bound formula:</p>
 <p><span class="math display">
-|e^x - Q_5(x)| \leq \frac{e}{120} \cdot \frac{1}{16}
+|e^x - Q_5(x)| \leq \frac{e}{6!} \cdot \frac{1}{32}
 </span></p>
 <p>Substituting <span class="math inline">e \approx 2.718</span>, we get:</p>
 <p><span class="math display">
-|e^x - Q_5(x)| \leq \frac{2.718}{1920} \approx 0.001415
+|e^x - Q_5(x)| \leq \frac{2.718}{720 \times 32} \approx \frac{2.718}{23,040} \approx 0.000118
 </span></p>
 <p>This is the worst-case error estimate for the approximation of <span class="math inline">e^x</span> on the interval <span class="math inline">[-1, 1]</span>.</p></li>
-<li><p><strong>Correct Decimal Places:</strong> Since the error bound is approximately <span class="math inline">0.001415</span>, this means we can expect approximately 3 correct digits after the decimal point. The digits before the decimal point are likely to be correct, but the fourth digit could be affected by the error.</p>
+<li><p><strong>Correct Decimal Places:</strong> Since the error bound is approximately <span class="math inline">0.000118</span>, this means we can expect approximately 3 correct digits after the decimal point. The error affects the fourth decimal place, but the first three digits are expected to be correct.</p>
 <p>Therefore, the approximation <span class="math inline">Q_5(x)</span> will be accurate to <strong>3 digits</strong> after the decimal point when approximating <span class="math inline">e^x</span> on the interval <span class="math inline">[-1, 1]</span>.</p></li>
 </ol>
 </section>
