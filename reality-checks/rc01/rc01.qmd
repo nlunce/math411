@@ -145,7 +145,7 @@ plt.show()
 
 # 3. Reproduce Figure 1.15.
 
-Reproduce Figure 1.15. Use the following Matlab commands to plot a red triangle with vertices $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
+Reproduce Figure 1.15. Plot a red triangle with vertices  $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
 
 ## Create Helper Functions
 
