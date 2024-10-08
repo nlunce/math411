@@ -143,4 +143,104 @@ plt.grid(True)
 plt.show()
 ```
 
-# Reproduce Figure 1.15. Use the following Matlab commands to plot a red triangle with vertices $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
+# 3. Reproduce Figure 1.15.
+
+Reproduce Figure 1.15. Use the following Matlab commands to plot a red triangle with vertices $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
+
+## Create Helper Functions
+
+```{python}
+#| label: Helper-Functions
+#| code-summary: Show code
+# Function to calculate the points of the triangle based on x, y, and angles
+def get_points(x, y, theta, gama):
+    L1_point = (x, y)
+    
+    L2_x = x + (L3 * np.cos(theta))
+    L2_y = y + (L3 * np.sin(theta))
+    L2_point = (np.round(L2_x), np.round(L2_y))
+    
+    L3_x = x + (L2 * np.cos(theta + gama))
+    L3_y = y + (L2 * np.sin(theta + gama))
+    L3_point = (np.round(L3_x), np.round(L3_y))
+    
+    return [L1_point, L2_point, L3_point]
+
+# Function to generate the anchor points
+def get_anchor_points(x1, x2, y2):
+    return [(0, 0), (x1, 0), (x2, y2)]
+
+# Function to plot the triangle on a given axis
+def plot_triangle(ax, points, anchor_points):
+    # Ensure points and anchor_points are numpy arrays
+    points = np.array(points)
+    anchor_points = np.array(anchor_points)
+    
+    # Extract the x and y coordinates for the triangle vertices
+    x_coords = points[:, 0]
+    y_coords = points[:, 1]
+    
+    # Close the triangle by repeating the first point at the end
+    x_closed = np.append(x_coords, x_coords[0])
+    y_closed = np.append(y_coords, y_coords[0])
+    
+    # Plot the triangle with thicker lines
+    ax.plot(x_closed, y_closed, 'r-', linewidth=3.5)
+    
+    # Plot red dots at the triangle vertices
+    ax.plot(x_coords, y_coords, 'bo', markersize=8)
+    
+    # Plot lines from base points to corresponding triangle vertices
+    for i, anchor in enumerate(anchor_points):
+        ax.plot([anchor[0], points[i, 0]], [anchor[1], points[i, 1]], 'b-', linewidth=1.5)
+    
+    # Plot small blue circles at the strut anchor points
+    ax.plot(anchor_points[:, 0], anchor_points[:, 1], 'bo', markersize=8)
+    
+    # Set labels 
+    ax.set_xlabel("x")
+    ax.set_ylabel("y")
+    
+    # Set the domain and range for both axes
+    ax.set_xlim(-0.25, 4.25)
+    ax.set_ylim(-0.25, 4.25)
+    
+    # Add grid for better visualization
+    ax.grid(True)
+
+```
+
+## Create Plot
+```{python}
+#| label: Recreate-1.15
+#| code-summary: Show code
+
+theta = np.pi / 4
+theta_negative = -np.pi / 4
+gama = np.pi / 2
+
+# First triangle points
+_, x, y = f(theta_negative)  
+points1 = get_points(x, y, theta_negative, gama)
+anchor_points = get_anchor_points(4, 0, 4)
+
+# Second triangle points
+_, x, y = f(theta) 
+points2 = get_points(x, y, theta, gama)
+
+# Create subplots for side-by-side triangles
+fig, axes = plt.subplots(1, 2, figsize=(11, 5))
+
+# Plot the first triangle on the first axis
+plot_triangle(axes[0], points1, anchor_points)
+
+# Plot the second triangle on the second axis
+plot_triangle(axes[1], points2, anchor_points)
+
+# Adjust layout to avoid overlap
+plt.tight_layout()
+
+# Display the concatenated plots
+plt.show()
+
+```
