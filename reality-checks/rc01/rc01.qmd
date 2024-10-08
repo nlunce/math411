@@ -1,0 +1,144 @@
+---
+title: "Reality Check 1"
+subtitle: "MATH411"
+author: "Nathan Lunceford"
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    title-block-banner: true
+    toc: true
+    toc-depth: 3
+    toc-location: body
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: "Show the code"
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+        source: false
+        toggle: true
+        caption: See code
+    
+---
+
+```{python}
+#| label: libraries
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+
+# 1. Write a Python function for $f(\theta)$
+
+Write a Matlab function file for $f(\theta)$. The parameters $L_1, L_2, L_3, \gamma, x_1, x_2, y_2$ are fixed constants, and the strut lengths $p_1, p_2, p_3$ will be known for a given pose. To test your code, set the parameters $L_1 = 2$, $L_2 = L_3 = \sqrt{2}$, $\gamma = \pi/2$, and $p_1 = p_2 = p_3 = \sqrt{5}$. Then, substituting $\theta = -\pi/4$ or $\theta = \pi/4$, should make $f(\theta) = 0$.
+
+## Create function for $f(\theta)$
+
+```{python}
+#| label: Function
+#| code-summary: Show code
+
+def f(theta):
+    """
+    Calculates a value based on the given angle theta.
+
+    Parameters:
+    theta (float): The angle in radians.
+
+    Returns:
+    float: The calculated result.
+
+    Raises:
+    ZeroDivisionError: If the denominator D is zero.
+    """
+    # Calculate intermediate values A2, B2, A3, B3
+    A2 = (L3 * np.cos(theta)) - X1
+    B2 = L3 * np.sin(theta)
+    
+    A3 = L2 * ((np.cos(theta) * np.cos(GAMA)) - (np.sin(theta) * np.sin(GAMA))) - X2
+    B3 = L2 * ((np.cos(theta) * np.sin(GAMA)) - (np.sin(theta) * np.cos(GAMA))) - Y2
+    
+    # Calculate N1, N2, and D
+    N1 = (B3 * ((P2 ** 2) - (P1 ** 2) - (A2 ** 2) - (B2 ** 2))) - (B2 * ((P3 ** 2) - (P1 ** 2) - (A3 ** 2) - (B3 ** 2)))
+    N2 = ((-1 * A3) * ((P2 ** 2) - (P1 ** 2) - (A2 ** 2) - (B2 ** 2))) + (A2 * ((P3 ** 2) - (P1 ** 2) - (A3 ** 2) - (B3 ** 2)))
+    
+    D = 2 * ((A2 * B3) - (B2 * A3))
+    
+    # Check for division by zero
+    if D == 0:
+        raise ZeroDivisionError("D cannot be zero, division by zero error.")
+    
+    x = N1 / D
+    y = N2 / D
+
+    # Continue with calculations involving D (if applicable)
+    result = (N1 ** 2) + (N2 ** 2) - ((P1 ** 2) * (D ** 2))
+    
+    return result, x, y
+
+
+```
+
+## Test function $f(\theta)$
+
+```{python}
+#| label: Test
+#| code-summary: Show code
+# Test the function with correct parameters
+
+# Constants
+L1 = 2
+L2 = np.sqrt(2)
+L3 = np.sqrt(2)
+GAMA = np.pi / 2
+P1 = np.sqrt(5)
+P2 = np.sqrt(5)
+P3 = np.sqrt(5)
+X0 = 0
+Y0 = 0
+X1 = 4
+Y1 = 0
+X2 = 0
+Y2 = 4
+
+theta = np.pi / 4
+
+result, x, y = f(theta)
+print(f'f(θ) = {result}\nx = {x}\ny = {y}')
+```
+
+# 2. Plot $f(\theta)$ on $[-π, π]$
+
+## Create Plot
+
+```{python}
+#| label: Plot
+#| code-summary: Show code
+
+# Generate theta values and compute f(theta)
+# Plotting f(theta) on [-pi, pi]
+theta_values = np.linspace(-np.pi, np.pi, 1000)
+results = []
+for theta in theta_values:
+    try:
+        res, _, _ = f(theta)
+        results.append(res)
+    except ZeroDivisionError:
+        results.append(np.nan)
+
+
+plt.figure(figsize=(10, 6))
+plt.plot(theta_values, results, label=r'$f(\theta)$')  # Default linewidth
+plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  # Default linewidth
+plt.axvline(-np.pi/4, color='red', linestyle=':', linewidth=2, label=r'$\theta = -\pi/4$')  # Increased linewidth
+plt.axvline(np.pi/4, color='red', linestyle=':', linewidth=2, label=r'$\theta = \pi/4$')  # Increased linewidth
+plt.xlabel(r'$\theta$', fontsize=14)
+plt.ylabel(r'$f(\theta)$', fontsize=14)
+plt.title(r'Function of $f(\theta)$ for Stewart Platform', fontsize=16)
+plt.legend(fontsize=12)
+plt.grid(True)
+plt.show()
+```
