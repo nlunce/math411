@@ -23,7 +23,8 @@ format:
 ---
 
 [Suggested Homework](./math411-suggested-homework.html)  
-[Notes](./notes/index.html)
+[Reality Checks](./reality-checks/index.html)  
+[Notes](./notes/index.html)  
 
 
 ## Week 1  

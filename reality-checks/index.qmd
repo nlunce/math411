@@ -1,5 +1,6 @@
 ---
-title: "Notes"
+title: "Reality Checks"
+subtitle: "MATH411"
 author: "Nathan Lunceford"
 format:
   html:
@@ -23,5 +24,11 @@ format:
 ---
 
 # Reality Check 1
+---
+
 - [Stewart Platform Kinematics](./rc01/rc01.html)
+
+# Reality Check 2
+---
+
 
