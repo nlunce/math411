@@ -107,7 +107,7 @@ Y2 = 4
 theta = np.pi / 4
 
 result, x, y = f(theta)
-print(f'f(θ) = {result}\nx = {x}\ny = {y}')
+print(f'f(π/4) = {result}\nx = {x}\ny = {y}')
 ```
 
 # 2. Plot $f(\theta)$ on $[-π, π]$
