@@ -281,6 +281,7 @@ plt.grid(True)
 plt.show()
 
 #%%
+
 # Function to find roots using fsolve
 def find_roots(constants, initial_guesses):
     """
@@ -312,21 +313,33 @@ initial_guesses = [-1, -np.pi / 3, np.pi / 3, .5, 2]  # Customize this list
 roots = find_roots(constants, initial_guesses)
 print(f"The roots of f(theta)in the interval are : {roots}")
 
+# Function to calculate the length of the struts
+def calculate_strut_lengths(points, anchor_points):
+    lengths = []
+    for i in range(3):
+        length = np.sqrt((points[i][0] - anchor_points[i][0])**2 + (points[i][1] - anchor_points[i][1])**2)
+        lengths.append(length)
+    return lengths
+
 # %%
-# Example anchor points and plotting in a 2x2 grid
 fig, axes = plt.subplots(2, 2, figsize=(10, 10))
 axes = axes.flatten()
 
 anchor_points = get_anchor_points(constants)
 
 # Loop through up to four roots
-for i, theta in enumerate(roots):  # Limit to the first four roots
+for i, theta in enumerate(roots[:4]):  # Limit to the first four roots
     x, y = get_x_y(theta, constants)
     points = get_points(x, y, theta, constants)
     
     # Plot the triangle in the corresponding subplot with custom limits
     plot_triangle(axes[i], points, anchor_points, x_limits=(-2.5, 7.5), y_limits=(-2, 7), x_step=2.5, y_step=2)
-    axes[i].set_title(f"Root: {theta}")
+    axes[i].set_title(rf"$\theta$ = {theta}")
+
+    # Calculate and verify strut lengths
+    lengths = calculate_strut_lengths(points, anchor_points)
+    print(f"For root {np.round(theta, 3)}, strut lengths are: {np.round(lengths)}")
+    print(f"Expected: p1={constants.p1}, p2={constants.p2}, p3={constants.p3}\n")
 
 # Turn off any unused subplots if fewer than four roots
 for j in range(len(roots), 4):
@@ -335,4 +348,67 @@ for j in range(len(roots), 4):
 # Adjust layout
 plt.tight_layout()
 plt.show()
+# %%
+constants = Constants(
+    l1=3, 
+    l2=3 * np.sqrt(2), 
+    l3=3, 
+    gamma=np.pi / 4, 
+    x1=5, 
+    x2=0, 
+    y2=6,  
+    p1=5, 
+    p2=7, 
+    p3=3
+)
+
+theta_values = np.linspace(-np.pi, np.pi, 400)
+
+plt.figure(figsize=(10, 6))
+plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$')  
+plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  
+plt.xlabel(r'$\theta$', fontsize=14)
+plt.ylabel(r'$f(\theta)$', fontsize=14)
+plt.title(r'Function of $\theta$ for Stewart Platform', fontsize=16)
+plt.legend(fontsize=12)
+plt.grid(True)
+plt.show()
+
+#%%
+
+# Provide initial guesses for fsolve to find the roots
+initial_guesses = [-.7, -.4, .01, .4, .9, 2.5 ]  # Customize this list
+
+# Find and print the roots using the custom initial guesses
+roots = find_roots(constants, initial_guesses)
+print(f"The roots of f(θ) in the interval are : {roots}")
+
+# Set up the 2x3 grid for plotting the six poses
+fig, axes = plt.subplots(2, 3, figsize=(15, 10))  # Create a 2x3 grid
+axes = axes.flatten()  # Flatten the 2D array of axes for easier access
+
+# Get the anchor points
+anchor_points = get_anchor_points(constants)
+
+# Loop through the six roots and plot each pose
+for i, theta in enumerate(roots[:6]):  # Limit to the first six roots
+    x, y = get_x_y(theta, constants)
+    points = get_points(x, y, theta, constants)
+    # Plot the triangle in the corresponding subplot with custom limits
+    plot_triangle(axes[i], points, anchor_points, x_limits=(-5.5, 5.5), y_limits=(-.5, 10), )
+    axes[i].set_title(rf"$\theta$ = {theta}")
+
+    # Calculate and verify strut lengths
+    lengths = calculate_strut_lengths(points, anchor_points)
+    print(f"For root {np.round(theta, 3)}, strut lengths are: {np.round(lengths)}")
+    print(f"Expected: p1={constants.p1}, p2={constants.p2}, p3={constants.p3}\n")
+
+# Turn off any unused subplots (though in this case, we should have exactly 6)
+for j in range(len(roots), 6):
+    axes[j].axis('off')
+
+# Adjust layout
+plt.tight_layout()
+plt.show()
+
 # %%
