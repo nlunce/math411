@@ -130,7 +130,7 @@ plt.axvline(-np.pi/4, color='red', linestyle=':', linewidth=2, label=r'$\theta =
 plt.axvline(np.pi/4, color='red', linestyle=':', linewidth=2, label=r'$\theta = \pi/4$')
 plt.xlabel(r'$\theta$', fontsize=14)
 plt.ylabel(r'$f(\theta)$', fontsize=14)
-plt.title(r'Function of $f(\theta)$ for Stewart Platform', fontsize=16)
+plt.title(r'Function of $\theta$ for Stewart Platform', fontsize=16)
 plt.legend(fontsize=12)
 plt.grid(True)
 plt.show()
@@ -348,7 +348,7 @@ plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$')  # Defa
 plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  # Default linewidth
 plt.xlabel(r'$\theta$', fontsize=14)
 plt.ylabel(r'$f(\theta)$', fontsize=14)
-plt.title(r'Function of $f(\theta)$ for Stewart Platform', fontsize=16)
+plt.title(r'Function of $\theta$ for Stewart Platform', fontsize=16)
 plt.legend(fontsize=12)
 plt.grid(True)
 plt.show()
@@ -408,7 +408,7 @@ for i, theta in enumerate(roots):  # Limit to the first four roots
     
     # Plot the triangle in the corresponding subplot with custom limits
     plot_triangle(axes[i], points, anchor_points, x_limits=(-2.5, 7.5), y_limits=(-2, 7), x_step=2.5, y_step=2)
-    axes[i].set_title(f"Root: {theta}")
+    axes[i].set_title(rf"$\theta$ = {theta}")
 
 # Turn off any unused subplots if fewer than four roots
 for j in range(len(roots), 4):
