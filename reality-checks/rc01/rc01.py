@@ -412,3 +412,418 @@ plt.tight_layout()
 plt.show()
 
 # %%
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+# Function to find roots for a given p2
+def find_roots_for_p2(p2_value, constants, initial_guesses, ax):
+    """
+    Adjusts p2 in the constants object, finds the roots, and returns the number of unique roots.
+    Also plots f(theta) for the current p2 value in the provided subplot axis.
+    """
+    # Update p2 in constants
+    constants.p2 = p2_value
+    
+    # Generate theta values and compute f(theta)
+    theta_values = np.linspace(-np.pi, np.pi, 400)
+    f_values = [f(theta, constants) for theta in theta_values]
+    
+    # Plot f(theta) for the current p2 in the subplot ax
+    ax.plot(theta_values, f_values, label=fr'$f(\theta), p_2 = {p2_value:.3f}$')
+    ax.axhline(0, color='black', linestyle='--', linewidth=0.8)
+    ax.set_xlabel(r'$\theta$', fontsize=14)
+    ax.set_ylabel(r'$f(\theta)$', fontsize=14)
+    ax.set_title(fr'$p_2 = {p2_value:.3f}$')
+    ax.legend(fontsize=12)
+    ax.grid(True)
+    
+    # Find the roots for the given p2 value
+    roots = []
+    for guess in initial_guesses:
+        root = fsolve(f, guess, args=(constants))[0]
+        roots.append(root)
+    
+    # Round and find unique roots
+    roots = np.round(roots, decimals=6)
+    unique_roots = np.unique(roots)
+    
+    # Print the number of roots and the roots themselves
+    print(f"p2 = {p2_value:.3f}: Found {len(unique_roots)} unique roots: {unique_roots}")
+    
+    return unique_roots
+
+# Function to iterate over possible p2 values and plot them horizontally
+def find_p2_with_two_roots(constants, initial_guesses, p2_start=0):
+    """
+    Iterates over possible p2 values starting at p2_start, plots f(theta), and prints the number of roots.
+    Creates a horizontal subplot for each plot.
+    
+    Parameters:
+    - constants: The Constants object.
+    - initial_guesses: List of initial guesses for root finding.
+    - p2_start: Starting value of p2.
+    """
+    # Set up the figure with 5x1 horizontal subplots
+    fig, axes = plt.subplots(1, 5, figsize=(25, 5))  # 1 row, 5 columns
+    
+    p2 = p2_start
+    plot_count = 0
+    
+    while True:
+        # Plot in the current subplot axis
+        unique_roots = find_roots_for_p2(p2, constants, initial_guesses, axes[plot_count])
+        
+        if len(unique_roots) == 2:
+            print(f"Found p2={p2} with two distinct roots: {unique_roots}")
+            plt.tight_layout()
+            plt.show()
+            return p2, unique_roots
+        
+        # Increment p2 and move to the next plot
+        p2 += 1
+        plot_count += 1
+        
+        # If we exceed the number of subplots (5), show the current figure and reset
+        if plot_count >= 5:
+            plt.tight_layout()
+            plt.show()
+            fig, axes = plt.subplots(1, 5, figsize=(25, 5))  # New set of 5 subplots
+            plot_count = 0
+
+# Example constants (with p2 placeholder)
+constants = Constants(
+    l1=3, 
+    l2=3 * np.sqrt(2), 
+    l3=3, 
+    gamma=np.pi / 4, 
+    x1=5, 
+    x2=0, 
+    y2=6,  
+    p1=5, 
+    p2=None,  # To be found
+    p3=3
+)
+
+# Initial guesses for root finding
+initial_guesses = [-np.pi/2, 0, np.pi/2]
+
+# Start p2 at 0 and increment by 1 each time, looking for exactly 2 roots
+find_p2_with_two_roots(constants, initial_guesses, p2_start=0)
+
+
+# %%
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+# Set a threshold for considering a valid root (how close to zero we want f(theta) to be)
+ROOT_THRESHOLD = 1e-6
+
+# Function to find roots for a given p2, and check if they are valid
+def find_roots_for_p2(p2_value, constants, initial_guesses):
+    """
+    Adjusts p2 in the constants object, finds the roots, and returns the number of unique roots.
+    Also plots f(theta) for the current p2 value.
+    """
+    # Update p2 in constants
+    constants.p2 = p2_value
+    
+    # Generate theta values and compute f(theta)
+    theta_values = np.linspace(-np.pi, np.pi, 400)
+    f_values = [f(theta, constants) for theta in theta_values]
+    
+    # Create a new figure for each plot
+    plt.figure(figsize=(10, 6))
+    
+    # Plot f(theta) for the current p2 value
+    plt.plot(theta_values, f_values, label=fr'$f(\theta), p_2 = {p2_value:.3f}$')
+    plt.axhline(0, color='black', linestyle='--', linewidth=0.8)
+    plt.xlabel(r'$\theta$', fontsize=14)
+    plt.ylabel(r'$f(\theta)$', fontsize=14)
+    plt.title(fr'$p_2 = {p2_value:.3f}$')
+    plt.legend(fontsize=12)
+    plt.grid(True)
+    
+    # Show the plot explicitly
+    plt.show()
+
+    # Close the plot to free memory after rendering
+    plt.close()
+    
+    # Find the roots for the given p2 value
+    roots = []
+    for guess in initial_guesses:
+        root = fsolve(f, guess, args=(constants))[0]
+        
+        # Check if the found root is valid (i.e., f(root) is close to zero)
+        if abs(f(root, constants)) < ROOT_THRESHOLD:
+            roots.append(root)
+    
+    # Convert to numpy array and round the roots to avoid precision issues
+    roots = np.round(np.array(roots), decimals=6)
+    unique_roots = np.unique(roots)
+    
+    # Print the number of valid roots and the roots themselves
+    print(f"p2 = {p2_value:.3f}: Found {len(unique_roots)} valid roots: {unique_roots}")
+    
+    return unique_roots
+
+# Function to iterate over possible p2 values and plot them
+def find_p2_with_two_roots(constants, initial_guesses, p2_start=0):
+    """
+    Iterates over possible p2 values starting at p2_start, plots f(theta), and prints the number of roots.
+    
+    Parameters:
+    - constants: The Constants object.
+    - initial_guesses: List of initial guesses for root finding.
+    - p2_start: Starting value of p2.
+    """
+    p2 = p2_start
+    while True:
+        # Plot for the current p2 value and check the roots
+        unique_roots = find_roots_for_p2(p2, constants, initial_guesses)
+        
+        if len(unique_roots) == 2:  # Check if there are exactly 2 unique roots
+            print(f"Found p2={p2} with two distinct roots: {unique_roots}")
+            return p2, unique_roots
+        
+        # Increment p2 and plot the next iteration
+        p2 += 1
+
+# Example constants (with p2 placeholder)
+constants = Constants(
+    l1=3, 
+    l2=3 * np.sqrt(2), 
+    l3=3, 
+    gamma=np.pi / 4, 
+    x1=5, 
+    x2=0, 
+    y2=6,  
+    p1=5, 
+    p2=None,  # To be found
+    p3=3
+)
+
+# Initial guesses for root finding
+initial_guesses = [-np.pi/2, 0, np.pi/2]
+
+# Start p2 at 0 and increment by 1 each time, looking for exactly 2 roots
+find_p2_with_two_roots(constants, initial_guesses, p2_start=0)
+# %%
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+# Set a threshold for considering a valid root (how close to zero we want f(theta) to be)
+ROOT_THRESHOLD = 1e-6
+
+# Function to find roots for a given p2, and check if they are valid
+def find_roots_for_p2(p2_value, constants, initial_guesses, ax=None):
+    """
+    Adjusts p2 in the constants object, finds the roots, and returns the number of unique roots.
+    Also plots f(theta) for the current p2 value on the provided axis.
+    """
+    # Update p2 in constants
+    constants.p2 = p2_value
+    
+    # Generate theta values and compute f(theta)
+    theta_values = np.linspace(-np.pi, np.pi, 400)
+    f_values = [f(theta, constants) for theta in theta_values]
+    
+    # Plot f(theta) for the current p2 value on the provided axis
+    ax.plot(theta_values, f_values, label=fr'$f(\theta), p_2 = {p2_value:.3f}$')
+    ax.axhline(0, color='black', linestyle='--', linewidth=0.8)
+    ax.set_xlabel(r'$\theta$', fontsize=14)
+    ax.set_ylabel(r'$f(\theta)$', fontsize=14)
+    ax.set_title(fr'$p_2 = {p2_value:.3f}$')
+    ax.legend(fontsize=10)
+    ax.grid(True)
+    
+    # Find the roots for the given p2 value
+    roots = []
+    for guess in initial_guesses:
+        root = fsolve(f, guess, args=(constants))[0]
+        
+        # Check if the found root is valid (i.e., f(root) is close to zero)
+        if abs(f(root, constants)) < ROOT_THRESHOLD:
+            roots.append(root)
+    
+    # Convert to numpy array and round the roots to avoid precision issues
+    roots = np.round(np.array(roots), decimals=6)
+    unique_roots = np.unique(roots)
+    
+    # Print the number of valid roots and the roots themselves
+    print(f"p2 = {p2_value:.3f}: Found {len(unique_roots)} valid roots: {unique_roots}")
+    
+    return unique_roots
+
+# Function to iterate over possible p2 values and append plots horizontally
+def find_p2_with_two_roots(constants, initial_guesses, p2_start=0):
+    """
+    Iterates over possible p2 values starting at p2_start, plots f(theta), and prints the number of roots.
+    The plots are appended horizontally.
+    
+    Parameters:
+    - constants: The Constants object.
+    - initial_guesses: List of initial guesses for root finding.
+    - p2_start: Starting value of p2.
+    """
+    p2 = p2_start
+    
+    # Create a dynamic figure that will append horizontally
+    fig, axes = plt.subplots(1, 5, figsize=(25, 6))  # Create a figure with 5 subplots initially
+    fig.subplots_adjust(hspace=0.3, wspace=0.3)  # Adjust the space between subplots
+    
+    plot_count = 0  # Track the number of plots
+    while plot_count < 5:
+        # Plot for the current p2 value and check the roots
+        unique_roots = find_roots_for_p2(p2, constants, initial_guesses, ax=axes[plot_count])
+        
+        if len(unique_roots) == 2:  # Check if there are exactly 2 unique roots
+            print(f"Found p2={p2} with two distinct roots: {unique_roots}")
+            plt.tight_layout()
+            plt.show()
+            return p2, unique_roots
+        
+        # Increment p2 and plot the next iteration
+        p2 += 1
+        plot_count += 1
+    
+    # Show the final figure with all appended plots
+    plt.tight_layout()
+    plt.show()
+
+# Example constants (with p2 placeholder)
+constants = Constants(
+    l1=3, 
+    l2=3 * np.sqrt(2), 
+    l3=3, 
+    gamma=np.pi / 4, 
+    x1=5, 
+    x2=0, 
+    y2=6,  
+    p1=5, 
+    p2=None,  # To be found
+    p3=3
+)
+
+# Initial guesses for root finding
+initial_guesses = [-np.pi/2, 0, np.pi/2]
+
+# Start p2 at 0 and increment by 1 each time, looking for exactly 2 roots
+find_p2_with_two_roots(constants, initial_guesses, p2_start=0)
+
+# %%
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+# Set a threshold for considering a valid root (how close to zero we want f(theta) to be)
+ROOT_THRESHOLD = 1e-6
+
+# Function to find roots for a given p2, and check if they are valid
+def find_roots_for_p2(p2_value, constants, initial_guesses, ax=None):
+    """
+    Adjusts p2 in the constants object, finds the roots, and returns the number of unique roots.
+    Also plots f(theta) for the current p2 value on the provided axis.
+    """
+    # Update p2 in constants
+    constants.p2 = p2_value
+    
+    # Generate theta values and compute f(theta)
+    theta_values = np.linspace(-np.pi, np.pi, 400)
+    f_values = [f(theta, constants) for theta in theta_values]
+    
+    # Plot f(theta) for the current p2 value on the provided axis
+    ax.plot(theta_values, f_values, label=fr'$f(\theta), p_2 = {p2_value:.3f}$')
+    ax.axhline(0, color='black', linestyle='--', linewidth=0.8)
+    ax.set_xlabel(r'$\theta$', fontsize=14)
+    ax.set_ylabel(r'$f(\theta)$', fontsize=14)
+    ax.set_title(fr'$p_2 = {p2_value:.3f}$')
+    ax.legend(fontsize=10)
+    ax.grid(True)
+    
+    # Find the roots for the given p2 value
+    roots = []
+    for guess in initial_guesses:
+        root = fsolve(f, guess, args=(constants))[0]
+        
+        # Check if the found root is valid (i.e., f(root) is close to zero)
+        if abs(f(root, constants)) < ROOT_THRESHOLD:
+            roots.append(root)
+    
+    # Convert to numpy array and round the roots to avoid precision issues
+    roots = np.round(np.array(roots), decimals=6)
+    unique_roots = np.unique(roots)
+    
+    # Print the number of valid roots and the roots themselves
+    print(f"p2 = {p2_value:.3f}: Found {len(unique_roots)} valid roots: {unique_roots}")
+    
+    return unique_roots
+
+# Function to iterate over possible p2 values and append plots in a grid (wrap after 3)
+def find_p2_with_two_roots(constants, initial_guesses, p2_start=-1):
+    """
+    Iterates over possible p2 values starting at p2_start, plots f(theta), and prints the number of roots.
+    The plots wrap after 3 per row.
+    
+    Parameters:
+    - constants: The Constants object.
+    - initial_guesses: List of initial guesses for root finding.
+    - p2_start: Starting value of p2.
+    """
+    p2 = p2_start
+    plot_count = 0
+    max_plots_per_row = 3  # Wrap after 3 plots per row
+    total_plots = 6  # You can change this to adjust the number of total plots
+    
+    # Calculate the number of rows needed (wrap after 3)
+    num_rows = (total_plots + max_plots_per_row - 1) // max_plots_per_row
+    
+    # Create a figure with a 3xN grid
+    fig, axes = plt.subplots(num_rows, max_plots_per_row, figsize=(15, num_rows * 5))
+    axes = axes.flatten()  # Flatten the 2D array of axes for easier access
+    fig.subplots_adjust(hspace=0.3, wspace=0.3)  # Adjust the space between subplots
+    
+    # Iterate to plot p2 and find roots
+    while plot_count < total_plots:
+        # Plot for the current p2 value and check the roots
+        unique_roots = find_roots_for_p2(p2, constants, initial_guesses, ax=axes[plot_count])
+        
+        if len(unique_roots) == 2:  # Check if there are exactly 2 unique roots
+            print(f"Found p2={p2} with two distinct roots: {unique_roots}")
+            plt.tight_layout()
+            plt.show()
+            return p2, unique_roots
+        
+        # Increment p2 and plot the next iteration
+        p2 += 1
+        plot_count += 1
+    
+    # Show the final figure with all appended plots
+    plt.tight_layout()
+    plt.show()
+
+# Example constants (with p2 placeholder)
+constants = Constants(
+    l1=3, 
+    l2=3 * np.sqrt(2), 
+    l3=3, 
+    gamma=np.pi / 4, 
+    x1=5, 
+    x2=0, 
+    y2=6,  
+    p1=5, 
+    p2=None,  # To be found
+    p3=3
+)
+
+# Initial guesses for root finding
+initial_guesses = [-np.pi/2, 0, np.pi/2]
+
+# Start p2 at 0 and increment by 1 each time, looking for exactly 2 roots
+find_p2_with_two_roots(constants, initial_guesses, p2_start=0)
+
+
+# %%
