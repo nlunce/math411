@@ -46,11 +46,11 @@ class Constants:
 ```
 
 
-# 1. PROBLEM 1
+# PROBLEM 1
 
 Write a Matlab function file for $f(\theta)$. The parameters $L_1, L_2, L_3, \gamma, x_1, x_2, y_2$ are fixed constants, and the strut lengths $p_1, p_2, p_3$ will be known for a given pose. To test your code, set the parameters $L_1 = 2$, $L_2 = L_3 = \sqrt{2}$, $\gamma = \pi/2$, and $p_1 = p_2 = p_3 = \sqrt{5}$. Then, substituting $\theta = -\pi/4$ or $\theta = \pi/4$, should make $f(\theta) = 0$.
 
-## Create function for $f(\theta)$
+#### Create function for $f(\theta)$
 
 ```{python}
 #| label: Function
@@ -84,7 +84,7 @@ def f(theta, constants):
     return n1**2 + n2**2 - p1**2 * d**2
 ```
 
-## Test function $f(\theta)$
+#### Test function $f(\theta)$
 
 ```{python}
 #| label: Test
@@ -113,7 +113,7 @@ print(f'f(θ=π/4) = {result}')
 
 # PROBLEM 2
 
-## Create Plot
+#### Create Plot
 
 ```{python}
 #| label: Plot
@@ -140,7 +140,7 @@ plt.show()
 
 Reproduce Figure 1.15. Plot a red triangle with vertices  $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
 
-## Create Helper Functions
+#### Create Helper Functions
 
 ```{python}
 #| label: Helper-Functions
@@ -286,7 +286,7 @@ def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_ste
 
 ```
 
-## Create Plot
+#### Create Plot
 ```{python}
 #| label: Recreate-1.15
 #| code-summary: Show code
@@ -324,9 +324,9 @@ plt.show()
 Solve the forward kinematics problem for the planar Stewart platform specified by
 $x_1 = 5$, $(x_2, y_2) = (0,6)$, $L_1 = L_3 = 3$, $L_2 = 3\sqrt{2}$, $\gamma = \pi / 4$, $p_1 = p_2 = 5$, $p_3 = 3$. Begin by plotting $f(\theta)$. Use an equation solver of your choice to find all four poses (roots of $f(\theta)$), and plot them. Check your answers by verifying that $p_1, p_2, p_3$ are the lengths of the struts in your plot.
 
-## A)
+#### 4A)
 ```{python}
-#| label: Number-4
+#| label: 4a
 #| code-summary: Show code
 constants = Constants(
     l1=3, 
@@ -355,10 +355,10 @@ plt.show()
 
 ```
 
-## B)
+#### 4B)
 
 ```{python}
-#| label: Roots
+#| label: 4b
 #| code-summary: Show code
 # Function to find roots using fsolve
 def find_roots(constants, initial_guesses):
