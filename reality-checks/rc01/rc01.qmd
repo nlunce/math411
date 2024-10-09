@@ -26,11 +26,13 @@ format:
 ```{python}
 #| label: libraries
 #| include: false
+# Import necessary libraries and set up the class for constants
 import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from scipy.optimize import fsolve
 
+# Define a data class to hold all the constants needed for the function f(θ)
 @dataclass
 class Constants:
     l1: float
@@ -56,7 +58,7 @@ class Constants:
 ```{python}
 #| label: Function
 #| code-summary: Show code
-# Define the function for f(θ)
+# Define the function f(θ) that calculates based on given constants and angle θ
 def f(theta, constants):
     """
     Calculates a value based on the given angle theta and constants object.
@@ -90,8 +92,7 @@ def f(theta, constants):
 ```{python}
 #| label: Test
 #| code-summary: Show code
-# Test the function with correct parameters
-# Constants for testing
+# Define constants and evaluate f(θ) at a specific angle θ = π/4 for testing purposes
 constants = Constants(
     l1=2, 
     l2=np.sqrt(2),
@@ -106,8 +107,7 @@ constants = Constants(
 )
 
 theta = np.pi / 4
-
-# Evaluate the function
+# Evaluate 
 result = f(theta, constants)
 print(f'f(θ=π/4) = {result}')
 ```
@@ -120,11 +120,11 @@ print(f'f(θ=π/4) = {result}')
 ```{python}
 #| label: Plot
 #| code-summary: Show code
-# Generate theta values and compute f(theta) for plotting
+# Generate a range of theta values and compute f(θ) for each value to visualize the function
 theta_values = np.linspace(-np.pi, np.pi, 400)
 results = [f(theta, constants) for theta in theta_values]
 
-# Plotting f(theta)
+# Plot f(θ) over the range of theta values
 plt.figure(figsize=(10, 6))
 plt.plot(theta_values, results, label=r'$f(\theta)$', linewidth=2)
 plt.axhline(0, color='black', linestyle='--', linewidth=0.8)
@@ -148,7 +148,7 @@ plt.show()
 ```{python}
 #| label: Helper-Functions
 #| code-summary: Show code
-# Create Helper Functions
+# Define helper functions for calculating x, y coordinates and plotting the Stewart platform triangle
 def get_x_y(theta, constants):
     """
     Returns the coordinates x and y for the given angle theta and constants object.
@@ -182,21 +182,21 @@ def get_x_y(theta, constants):
 
 def get_points(x, y, theta, constants):
     """
-    Returns the points of the triangle based on x, y, and theta using the constants object.
+    Calculate the three points (vertices) of the triangle in the Stewart platform based on x, y, and θ.
 
     Parameters:
     x (float): The x-coordinate.
     y (float): The y-coordinate.
     theta (float): The angle in radians.
-    constants (Constants): An object containing the necessary constants.
+    constants (Constants): Object containing the necessary constants.
 
     Returns:
-    list: A list containing the points (l1_point, l2_point, l3_point) of the triangle.
+    list: A list containing the three vertices (l1_point, l2_point, l3_point) of the triangle.
     """
     l1, l2, l3 = constants.l1, constants.l2, constants.l3
     gamma = constants.gamma
 
-    # Base point of the triangle (first vertex)
+    # First vertex (base point)
     l1_point = (x, y)
     
     # Second vertex of the triangle
@@ -213,13 +213,13 @@ def get_points(x, y, theta, constants):
 
 def get_anchor_points(constants):
     """
-    Returns the anchor points for the strut anchor points using the constants object.
+    Get the anchor points for the Stewart platform based on the constants.
 
     Parameters:
-    constants (Constants): An object containing the necessary constants (x1, x2, y2).
+    constants (Constants): Object containing the necessary constants.
 
     Returns:
-    list: A list containing tuples with the coordinates of the anchor points.
+    list: A list of tuples representing the anchor points.
     """
     x1, x2, y2 = constants.x1, constants.x2, constants.y2
     
@@ -273,11 +273,9 @@ def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_ste
     # Set x-axis limits if provided
     if x_limits is not None:
         ax.set_xlim(x_limits)
-    
     # Set y-axis limits if provided
     if y_limits is not None:
         ax.set_ylim(y_limits)
-    
     # Set grid step increments if limits are provided
     if x_step is not None and x_limits is not None:
         ax.set_xticks(np.arange(x_limits[0], x_limits[1] + x_step, x_step))  # Adjust x-axis ticks
@@ -294,32 +292,27 @@ def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_ste
 ```{python}
 #| label: Recreate-1.15
 #| code-summary: Show code
-# Create Plot
+# Create a plot to visualize the Stewart platform configurations for two different angles
 theta = np.pi / 4
 theta_negative = -np.pi / 4
 
-# First triangle points
-x, y = get_x_y(theta_negative, constants)  # Use constants object here
-points1 = get_points(x, y, theta_negative, constants)  # Use constants object
-anchor_points = get_anchor_points(constants)  # Use constants object for anchor points
+# Calculate the coordinates and points for the triangles
+x, y = get_x_y(theta_negative, constants)  
+points1 = get_points(x, y, theta_negative, constants) 
+anchor_points = get_anchor_points(constants)
 
-# Second triangle points
-x, y = get_x_y(theta, constants)  # Use constants object here
-points2 = get_points(x, y, theta, constants)  # Use constants object
+x, y = get_x_y(theta, constants)  
+points2 = get_points(x, y, theta, constants)  
 
-# Create subplots for side-by-side triangles
+# Create side-by-side subplots to visualize the two triangles
 fig, axes = plt.subplots(1, 2, figsize=(11, 5))
 
-# Plot the first triangle on the first axis with custom axis limits
+# Plot the triangles on each subplot
 plot_triangle(axes[0], points1, anchor_points, x_limits=(-0.25, 4.25), y_limits=(-0.25, 4.25))
-
-# Plot the second triangle on the second axis with custom axis limits
 plot_triangle(axes[1], points2, anchor_points, x_limits=(-0.25, 4.25), y_limits=(-0.25, 4.25))
 
-# Adjust layout to avoid overlap
 plt.tight_layout()
 
-# Display the concatenated plots
 plt.show()
 ```
 
@@ -335,6 +328,7 @@ plt.show()
 #| label: 4-a
 #| code-summary: Show code
 
+# Create new constants object
 constants = Constants(
     l1=3, 
     l2=3 * np.sqrt(2), 
@@ -348,8 +342,10 @@ constants = Constants(
     p3=3
 )
 
+# Generate an array of θ values between -π and π
 theta_values = np.linspace(-np.pi, np.pi, 400)
 
+# Plot the function f(θ) over the range of θ values using the given constants
 plt.figure(figsize=(10, 6))
 plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$') 
 plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  
@@ -368,10 +364,10 @@ plt.show()
 ```{python}
 #| label: 4-b
 #| code-summary: Show code
-# Function to find roots using fsolve
+# Function to find roots of f(θ) using fsolve
 def find_roots(constants, initial_guesses):
     """
-    Finds roots of f(theta) using different initial guesses.
+    Finds roots of f(θ) using different initial guesses and the fsolve method.
     
     Parameters:
     constants (Constants): Object containing the necessary constants.
@@ -380,41 +376,47 @@ def find_roots(constants, initial_guesses):
     Returns:
     list: A list of unique roots.
     """
-    # Use fsolve to find the roots based on the provided initial guesses
+
+    # Create an empty list to store the roots found    
     roots = []
+    # Iterate over each initial guess and find the root using fsolve
     for guess in initial_guesses:
-        root = fsolve(f, guess, args=(constants), xtol=1e-12)[0]
-        roots.append(root)
+        root = fsolve(f, guess, args=(constants), xtol=1e-12)[0] # Find root for each guess
+        roots.append(root) # Append the found root to the list
     
+    # Return only unique roots to avoid duplicates
     unique_roots = np.unique(roots)
     return unique_roots
 
-# Provide initial guesses for fsolve to find the roots
-initial_guesses = [- 1, np.pi / 3, .5, 2]  # Customize this list
+# Define initial guesses for fsolve to start the root-finding process
+initial_guesses = [- 1, np.pi / 3, .5, 2] 
 
-# Find and print the roots using the custom initial guesses
+# Find and print the roots using the initial guesses
 roots = find_roots(constants, initial_guesses)
 print(f"The roots of f(θ) in the interval are : {roots}")
 
 # Function to calculate the length of the struts
 def calculate_strut_lengths(points, anchor_points):
     lengths = []
+    # Loop through the 3 points and calculate the Euclidean distance to each corresponding anchor point
     for i in range(3):
         length = np.sqrt((points[i][0] - anchor_points[i][0])**2 + (points[i][1] - anchor_points[i][1])**2)
-        lengths.append(length)
+        lengths.append(length) # Append each calculated length to the list
     return lengths
 ```
 
 ```{python}
 #| label: Plots2
 #| code-summary: Show code
+# Create a 2x2 grid of subplots to visualize the four roots and their corresponding triangles
 fig, axes = plt.subplots(2, 2, figsize=(10, 10))
-axes = axes.flatten()
+axes = axes.flatten() # Flatten the 2D array of subplots into a 1D array for easier access
 
+# Get the anchor points for the Stewart platform
 anchor_points = get_anchor_points(constants)
 
-# Loop through up to four roots
-for i, theta in enumerate(roots[:4]):  # Limit to the first four roots
+# Loop through up to four roots and plot the corresponding triangles
+for i, theta in enumerate(roots[:4]):  
     x, y = get_x_y(theta, constants)
     points = get_points(x, y, theta, constants)
     
@@ -447,7 +449,7 @@ plt.show()
 ```{python}
 #| label: 5AAAA
 #| code-summary: Show code
-
+# Update the constants to reflect the new strut length p2 = 7
 constants = Constants(
     l1=3, 
     l2=3 * np.sqrt(2), 
@@ -461,8 +463,10 @@ constants = Constants(
     p3=3
 )
 
+# Generate the θ values again to visualize the updated f(θ)
 theta_values = np.linspace(-np.pi, np.pi, 400)
 
+# Plot f(θ) for the new strut length
 plt.figure(figsize=(10, 6))
 plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$')  
 plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  
@@ -482,11 +486,10 @@ plt.show()
 ```{python}
 #| label: 5BBBB
 #| code-summary: Show code
-
-# Provide initial guesses for fsolve to find the roots
+# Provide new initial guesses to find six distinct roots for this configuration
 initial_guesses = [-.7, -.4, .01, .4, .9, 2.5 ]  # Customize this list
 
-# Find and print the roots using the custom initial guesses
+# Find and print the roots using the initial guesses
 roots = find_roots(constants, initial_guesses)
 print(f"The roots of f(θ) in the interval are : {roots}")
 
@@ -498,7 +501,7 @@ axes = axes.flatten()  # Flatten the 2D array of axes for easier access
 anchor_points = get_anchor_points(constants)
 
 # Loop through the six roots and plot each pose
-for i, theta in enumerate(roots[:6]):  # Limit to the first six roots
+for i, theta in enumerate(roots[:6]):  
     x, y = get_x_y(theta, constants)
     points = get_points(x, y, theta, constants)
     # Plot the triangle in the corresponding subplot with custom limits
@@ -519,3 +522,9 @@ plt.tight_layout()
 plt.show()
 
 ```
+
+# PROBLEM 6
+---
+
+# PROBLEM 7
+---
