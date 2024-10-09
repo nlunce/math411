@@ -33,6 +33,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from dataclasses import dataclass
 from scipy.optimize import fsolve
+from scipy.optimize import brentq
 
 # Define a data class to hold all the constants needed for the function f(θ)
 @dataclass
@@ -642,7 +643,158 @@ find_p2_with_two_roots(constants, initial_guesses, p2_start=-1, total_plots=6)
 # PROBLEM 7
 ---
 
+####  Calculate the intervals in $p_2$, with the rest of the parameters as in Step 4, for which there are 0, 2, 4, and 6 poses, respectively.
 
+```{python}
+#| label: prob7
+#| code-summary: Show code
+
+def count_roots(constants, theta_min=-np.pi, theta_max=np.pi, num_points=1000):
+    """
+    Counts the number of roots of f(theta) = 0 within the interval [theta_min, theta_max].
+
+    Parameters:
+    constants (Constants): The constants defining the Stewart platform.
+    theta_min (float): The minimum theta value.
+    theta_max (float): The maximum theta value.
+    num_points (int): Number of points to sample in the interval.
+
+    Returns:
+    int: Number of unique roots found.
+    list: List of roots.
+    """
+    theta_vals = np.linspace(theta_min, theta_max, num_points)
+    
+    # Compute f(theta) for each scalar theta using a list comprehension
+    f_vals = np.array([f(theta, constants) for theta in theta_vals])
+    
+    roots = []
+    
+    for i in range(len(theta_vals)-1):
+        if np.sign(f_vals[i]) != np.sign(f_vals[i+1]):
+            try:
+                root = brentq(f, theta_vals[i], theta_vals[i+1], args=(constants,))
+                # Adjust root to be within [theta_min, theta_max]
+                if theta_min <= root <= theta_max:
+                    roots.append(root)
+            except ValueError:
+                # brentq failed to find a root in this interval
+                pass
+    
+    # Remove duplicate roots within a tolerance
+    roots = np.array(roots)
+    unique_roots = []
+    for r in roots:
+        if not any(np.isclose(r, ur, atol=1e-5) for ur in unique_roots):
+            unique_roots.append(r)
+    
+    return len(unique_roots), unique_roots
+
+#### 3. Define the Function to Find \( p_2 \) Intervals
+
+def find_p2_intervals(constants, p2_min, p2_max, p2_step):
+    """
+    Iterates over p2 values and records the number of roots for each.
+
+    Parameters:
+    constants (Constants): The constants defining the Stewart platform.
+    p2_min (float): Minimum p2 value.
+    p2_max (float): Maximum p2 value.
+    p2_step (float): Step size for p2.
+
+    Returns:
+    dict: Dictionary with number of roots as keys and list of p2 values as values.
+    """
+    p2_values = np.arange(p2_min, p2_max + p2_step, p2_step)
+    root_counts = {0: [], 2: [], 4: [], 6: []}
+    
+    for p2 in p2_values:
+        constants.p2 = p2
+        num_roots, roots = count_roots(constants)
+        
+        if num_roots in root_counts:
+            root_counts[num_roots].append(p2)
+        # Optionally, handle cases with roots not in {0,2,4,6}
+        # else:
+        #     pass
+    
+    return root_counts
+
+#### 4. Implement Problem 7
+
+# Define the constants as per Problem 4
+constants = Constants(
+    l1=3, 
+    l2=3 * np.sqrt(2), 
+    l3=3, 
+    gamma=np.pi / 4, 
+    x1=5, 
+    x2=0, 
+    y2=6,  
+    p1=5, 
+    p2=5,  # Initial p2; will be varied
+    p3=3
+)
+
+# Define the range and step for p2
+p2_min = 0.0
+p2_max = 12.98
+p2_step = 0.01
+
+# Find the intervals
+root_counts = find_p2_intervals(constants, p2_min, p2_max, p2_step)
+
+# Plot the number of roots vs p2
+plt.figure(figsize=(12, 6))
+colors = {0: 'blue', 2: 'green', 4: 'orange', 6: 'red'}
+
+for num_roots, p2_list in root_counts.items():
+    plt.scatter(p2_list, [num_roots]*len(p2_list), label=f'{num_roots} roots', s=10, color=colors.get(num_roots, 'grey'))
+
+plt.xlabel('$p_2$', fontsize=14)
+plt.ylabel('Number of Poses (Roots)', fontsize=14)
+plt.title('Number of Poses vs $p_2$', fontsize=16)
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Determine the intervals
+# Initialize a dictionary to store intervals for each number of roots
+intervals_dict = {0: [], 2: [], 4: [], 6: []}
+
+# Define a small tolerance to handle floating point precision
+tol = 1e-6
+
+for num_roots, p2_list in root_counts.items():
+    if p2_list:
+        p2_sorted = np.sort(p2_list)
+        # Find continuous intervals
+        diffs = np.diff(p2_sorted)
+        # Adjust the splitting condition to group consecutive p2 values
+        split_indices = np.where(diffs > (p2_step + tol))[0] + 1
+        intervals = np.split(p2_sorted, split_indices)
+        
+        # Append each interval to the corresponding list in intervals_dict
+        for interval in intervals:
+            p2_start = interval[0]
+            p2_end = interval[-1]
+            intervals_dict[num_roots].append((p2_start, p2_end))
+
+# After all intervals are collected, print only the first and last interval for each number of poses
+for num_roots, intervals in intervals_dict.items():
+    if intervals:
+        print(f"\nIntervals with {num_roots} poses:")
+        if len(intervals) == 1:
+            # Only one interval exists
+            p2_start, p2_end = intervals[0]
+            print(f"  p2 from {p2_start:.2f} to {p2_end:.2f}")
+        else:
+            # Multiple intervals exist; print only the first and last intervals
+            first_interval = intervals[0]
+            last_interval = intervals[-1]
+            print(f"  p2 from {first_interval[0]:.2f} to {first_interval[1]:.2f}")
+            print(f"  p2 from {last_interval[0]:.2f} to {last_interval[1]:.2f}")
+```
 
 
 
