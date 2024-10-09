@@ -787,13 +787,34 @@ for num_roots, intervals in intervals_dict.items():
         if len(intervals) == 1:
             # Only one interval exists
             p2_start, p2_end = intervals[0]
-            print(f"  p2 from {p2_start:.2f} to {p2_end:.2f}")
+            # Check if the interval ends at p2_max to represent infinity
+            if np.isclose(p2_end, p2_max, atol=tol):
+                p2_end_str = "infinity"
+            else:
+                p2_end_str = f"{p2_end:.2f}"
+            print(f"  p2 from {p2_start:.2f} to {p2_end_str}")
         else:
             # Multiple intervals exist; print only the first and last intervals
             first_interval = intervals[0]
             last_interval = intervals[-1]
-            print(f"  p2 from {first_interval[0]:.2f} to {first_interval[1]:.2f}")
-            print(f"  p2 from {last_interval[0]:.2f} to {last_interval[1]:.2f}")
+            
+            # First interval
+            p2_start, p2_end = first_interval
+            if np.isclose(p2_end, p2_max, atol=tol):
+                p2_end_str = "infinity"
+            else:
+                p2_end_str = f"{p2_end:.2f}"
+            print(f"  p2 from {p2_start:.2f} to {p2_end_str}")
+            
+            # Last interval
+            p2_start, p2_end = last_interval
+            if np.isclose(p2_end, p2_max, atol=tol):
+                p2_end_str = "infinity"
+            else:
+                p2_end_str = f"{p2_end:.2f}"
+            print(f"  p2 from {p2_start:.2f} to {p2_end_str}")
+    else:
+        print(f"\nNo intervals found with {num_roots} poses.")
 ```
 
 

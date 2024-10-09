@@ -4030,13 +4030,34 @@ Found p2=4 with two distinct roots: [1.331642 1.777514]</code></pre>
 <span id="cb17-136"><a href="#cb17-136" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">len</span>(intervals) <span class="op">==</span> <span class="dv">1</span>:</span>
 <span id="cb17-137"><a href="#cb17-137" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Only one interval exists</span></span>
 <span id="cb17-138"><a href="#cb17-138" aria-hidden="true" tabindex="-1"></a>            p2_start, p2_end <span class="op">=</span> intervals[<span class="dv">0</span>]</span>
-<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;  p2 from </span><span class="sc">{</span>p2_start<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>p2_end<span class="sc">:.2f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Multiple intervals exist; print only the first and last intervals</span></span>
-<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>            first_interval <span class="op">=</span> intervals[<span class="dv">0</span>]</span>
-<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>            last_interval <span class="op">=</span> intervals[<span class="op">-</span><span class="dv">1</span>]</span>
-<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;  p2 from </span><span class="sc">{</span>first_interval[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>first_interval[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;  p2 from </span><span class="sc">{</span>last_interval[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>last_interval[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-139"><a href="#cb17-139" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Check if the interval ends at p2_max to represent infinity</span></span>
+<span id="cb17-140"><a href="#cb17-140" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> np.isclose(p2_end, p2_max, atol<span class="op">=</span>tol):</span>
+<span id="cb17-141"><a href="#cb17-141" aria-hidden="true" tabindex="-1"></a>                p2_end_str <span class="op">=</span> <span class="st">&quot;infinity&quot;</span></span>
+<span id="cb17-142"><a href="#cb17-142" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb17-143"><a href="#cb17-143" aria-hidden="true" tabindex="-1"></a>                p2_end_str <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>p2_end<span class="sc">:.2f}</span><span class="ss">&quot;</span></span>
+<span id="cb17-144"><a href="#cb17-144" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;  p2 from </span><span class="sc">{</span>p2_start<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>p2_end_str<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb17-145"><a href="#cb17-145" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb17-146"><a href="#cb17-146" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Multiple intervals exist; print only the first and last intervals</span></span>
+<span id="cb17-147"><a href="#cb17-147" aria-hidden="true" tabindex="-1"></a>            first_interval <span class="op">=</span> intervals[<span class="dv">0</span>]</span>
+<span id="cb17-148"><a href="#cb17-148" aria-hidden="true" tabindex="-1"></a>            last_interval <span class="op">=</span> intervals[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb17-149"><a href="#cb17-149" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb17-150"><a href="#cb17-150" aria-hidden="true" tabindex="-1"></a>            <span class="co"># First interval</span></span>
+<span id="cb17-151"><a href="#cb17-151" aria-hidden="true" tabindex="-1"></a>            p2_start, p2_end <span class="op">=</span> first_interval</span>
+<span id="cb17-152"><a href="#cb17-152" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> np.isclose(p2_end, p2_max, atol<span class="op">=</span>tol):</span>
+<span id="cb17-153"><a href="#cb17-153" aria-hidden="true" tabindex="-1"></a>                p2_end_str <span class="op">=</span> <span class="st">&quot;infinity&quot;</span></span>
+<span id="cb17-154"><a href="#cb17-154" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb17-155"><a href="#cb17-155" aria-hidden="true" tabindex="-1"></a>                p2_end_str <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>p2_end<span class="sc">:.2f}</span><span class="ss">&quot;</span></span>
+<span id="cb17-156"><a href="#cb17-156" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;  p2 from </span><span class="sc">{</span>p2_start<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>p2_end_str<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb17-157"><a href="#cb17-157" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb17-158"><a href="#cb17-158" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Last interval</span></span>
+<span id="cb17-159"><a href="#cb17-159" aria-hidden="true" tabindex="-1"></a>            p2_start, p2_end <span class="op">=</span> last_interval</span>
+<span id="cb17-160"><a href="#cb17-160" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> np.isclose(p2_end, p2_max, atol<span class="op">=</span>tol):</span>
+<span id="cb17-161"><a href="#cb17-161" aria-hidden="true" tabindex="-1"></a>                p2_end_str <span class="op">=</span> <span class="st">&quot;infinity&quot;</span></span>
+<span id="cb17-162"><a href="#cb17-162" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb17-163"><a href="#cb17-163" aria-hidden="true" tabindex="-1"></a>                p2_end_str <span class="op">=</span> <span class="ss">f&quot;</span><span class="sc">{</span>p2_end<span class="sc">:.2f}</span><span class="ss">&quot;</span></span>
+<span id="cb17-164"><a href="#cb17-164" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f&quot;  p2 from </span><span class="sc">{</span>p2_start<span class="sc">:.2f}</span><span class="ss"> to </span><span class="sc">{</span>p2_end_str<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb17-165"><a href="#cb17-165" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb17-166"><a href="#cb17-166" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">No intervals found with </span><span class="sc">{</span>num_roots<span class="sc">}</span><span class="ss"> poses.&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -4049,7 +4070,7 @@ Found p2=4 with two distinct roots: [1.331642 1.777514]</code></pre>
 <pre><code>
 Intervals with 0 poses:
   p2 from 0.00 to 3.71
-  p2 from 9.27 to 12.98
+  p2 from 9.27 to infinity
 
 Intervals with 2 poses:
   p2 from 3.72 to 4.86
