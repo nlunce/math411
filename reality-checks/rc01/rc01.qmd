@@ -56,9 +56,11 @@ class Constants:
 
 #### Write a python function for f($\theta$). The parameters $L_1, L_2, L_3, \gamma, x_1, x_2, y_2$ are fixed constants, and the strut lengths $p_1, p_2, p_3$ will be known for a given pose. To test your code, set the parameters $L_1 = 2$, $L_2 = L_3 = \sqrt{2}$, $\gamma = \pi/2$, and $p_1 = p_2 = p_3 = \sqrt{5}$. Then, substituting $\theta = -\pi/4$ or $\theta = \pi/4$, should make $f(\theta) = 0$.
 
+
 I implemented the Python function $f(\theta)$ by putting all fixed constants into a `Constants` object. I initialized the constants with the given values in order to verify that $\theta = -\pi/4$ and $\theta = \pi/4$ were roots.
 
 #### Create function for $f(\theta)$
+
 
 ```{python}
 #| label: Function
@@ -94,6 +96,7 @@ def f(theta, constants):
 
 #### Test function $f(\theta)$
 
+
 ```{python}
 #| label: Test
 #| code-summary: Show code
@@ -121,9 +124,13 @@ print(f'f(θ=π/4) = {result}')
 ---
 
 #### Plot $f(\theta)$ on $[-\pi, \pi]$
+
+
 I plotted the function $f(\theta)$ over the interval $[-π, π]$ by generating a range of $\theta$ values and computing $f(\theta)$ for each. The graph clearly shows the behavior of $f(\theta)$ and highlights that the the roots identified in **Problem 1** are in fact roots.
 
+
 #### Create Plot
+
 
 ```{python}
 #| label: Plot
@@ -151,10 +158,13 @@ plt.show()
 
 #### Reproduce Figure 1.15. Plot a red triangle with vertices  $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
 
+
 I utilized several helper functions to efficiently calculate and visualize the Stewart platform's configuration. The `get_x_y()` function computes the $x$ and $y$ coordinates based on the given angle $\theta$ and the fixed constants, determining the position of one vertex of the triangle. The `get_points()` function then takes these coordinates, along with $\theta$ and the constants, to calculate the two other vertices of the red triangle. The `get_anchor_points()` function gets the fixed anchor points $(0,0)$, $(x_1, 0)$, and $(x_2, y_2)$. The `plot_triangle()` function takes the calculated triangle vertices and anchor points to plot the red triangle and connect the anchor points with blue lines, while also marking the anchor points with blue circles.
 
 
+
 #### Create Helper Functions
+
 
 ```{python}
 #| label: Helper-Functions
@@ -300,6 +310,7 @@ def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_ste
 ```
 
 #### Create Plot
+
 ```{python}
 #| label: Recreate-1.15
 #| code-summary: Show code
@@ -332,10 +343,11 @@ plt.show()
 
 #### Solve the forward kinematics problem for the planar Stewart platform specified by $x_1 = 5$, $(x_2, y_2) = (0,6)$, $L_1 = L_3 = 3$, $L_2 = 3\sqrt{2}$, $\gamma = \pi / 4$, $p_1 = p_2 = 5$, $p_3 = 3$. Begin by plotting $f(\theta)$. Use an equation solver of your choice to find all four poses (roots of $f(\theta)$), and plot them. Check your answers by verifying that $p_1, p_2, p_3$ are the lengths of the struts in your plot.\n
 
+
 I organized all the fixed parameters into a `Constants` object and plotted the function $f(\theta)$ over the interval $[-π, π]$ to visualize its behavior. Using the `fsolve` function with strategically chosen initial guesses, I identified all four roots of $f(\theta)$, each root representing a unique pose of the Stewart platform. For each detected root, I plotted the corresponding triangle configuration and verified that the strut lengths $p_1, p_2, p_3$ matched the expected values. 
 
+
 #### 4A)
----
 
 
 ```{python}
@@ -373,7 +385,7 @@ plt.show()
 ```
 
 #### 4B)
----
+
 
 ```{python}
 #| label: 4-b
@@ -457,8 +469,11 @@ plt.show()
 
 #### Change strut length to $p_2 = 7$ and re-solve the problem. For these parameters, there are six poses.
 
+
+I updated the strut length $p_2$ to 7 and re-solved the forward kinematics for the Stewart platform. To do that I modified the `Constants` object with the new $p_2$ value and plotted the updated function $f(\theta)$ over the interval $[-π, π]$ to see its behavior. I made a new set of initial guesses for the `find_roots()` function and successfully found all six roots corresponding to six possible poses. For each root, I plotted the corresponding triangle configuration and verified that the strut lengths $p_1, p_2, p_3$ matched the expected values.
+
 #### 5A)
----
+
 
 ```{python}
 #| label: 5AAAA
@@ -495,7 +510,6 @@ plt.show()
 
 #### 5B)
 
----
 
 ```{python}
 #| label: 5BBBB
@@ -541,6 +555,7 @@ plt.show()
 ---
 
 #### Find a strut length $p_2$, with the rest of the parameters as in Step 4, for which there are only two poses.
+
 
 To identify a strut length for $p_2$ that results in exactly two poses for the Stewart platform I systematically adjusted $p_2$ and utilizing the `fsolve` function to find the corresponding roots of the function $f(\theta)$. This method enabled me to determine a specific $p_2$ value that achieves the desired two-pose configuration.
 
