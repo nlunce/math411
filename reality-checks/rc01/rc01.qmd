@@ -54,7 +54,9 @@ class Constants:
 # PROBLEM 1
 ---
 
-#### Write a Matlab function file for $f(\theta)$. The parameters $L_1, L_2, L_3, \gamma, x_1, x_2, y_2$ are fixed constants, and the strut lengths $p_1, p_2, p_3$ will be known for a given pose. To test your code, set the parameters $L_1 = 2$, $L_2 = L_3 = \sqrt{2}$, $\gamma = \pi/2$, and $p_1 = p_2 = p_3 = \sqrt{5}$. Then, substituting $\theta = -\pi/4$ or $\theta = \pi/4$, should make $f(\theta) = 0$.
+#### Write a python function for f($\theta$). The parameters $L_1, L_2, L_3, \gamma, x_1, x_2, y_2$ are fixed constants, and the strut lengths $p_1, p_2, p_3$ will be known for a given pose. To test your code, set the parameters $L_1 = 2$, $L_2 = L_3 = \sqrt{2}$, $\gamma = \pi/2$, and $p_1 = p_2 = p_3 = \sqrt{5}$. Then, substituting $\theta = -\pi/4$ or $\theta = \pi/4$, should make $f(\theta) = 0$.
+
+I implemented the Python function $f(\theta)$ by putting all fixed constants into a `Constants` object. I initialized the constants with the given values in order to verify that $\theta = -\pi/4$ and $\theta = \pi/4$ were roots.
 
 #### Create function for $f(\theta)$
 
@@ -116,7 +118,10 @@ print(f'f(θ=π/4) = {result}')
 ```
 
 # PROBLEM 2
+---
+
 #### Plot $f(\theta)$ on $[-\pi, \pi]$
+I plotted the function $f(\theta)$ over the interval $[-π, π]$ by generating a range of $\theta$ values and computing $f(\theta)$ for each. The graph clearly shows the behavior of $f(\theta)$ and highlights that the the roots identified in **Problem 1** are in fact roots.
 
 #### Create Plot
 
@@ -145,6 +150,9 @@ plt.show()
 ---
 
 #### Reproduce Figure 1.15. Plot a red triangle with vertices  $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
+
+I utilized several helper functions to efficiently calculate and visualize the Stewart platform's configuration. The `get_x_y()` function computes the $x$ and $y$ coordinates based on the given angle $\theta$ and the fixed constants, determining the position of one vertex of the triangle. The `get_points()` function then takes these coordinates, along with $\theta$ and the constants, to calculate the two other vertices of the red triangle. The `get_anchor_points()` function gets the fixed anchor points $(0,0)$, $(x_1, 0)$, and $(x_2, y_2)$. The `plot_triangle()` function takes the calculated triangle vertices and anchor points to plot the red triangle and connect the anchor points with blue lines, while also marking the anchor points with blue circles.
+
 
 #### Create Helper Functions
 
@@ -322,10 +330,13 @@ plt.show()
 # PROBLEM 4
 ---
 
-#### Solve the forward kinematics problem for the planar Stewart platform specified by $x_1 = 5$, $(x_2, y_2) = (0,6)$, $L_1 = L_3 = 3$, $L_2 = 3\sqrt{2}$, $\gamma = \pi / 4$, $p_1 = p_2 = 5$, $p_3 = 3$. Begin by plotting $f(\theta)$. Use an equation solver of your choice to find all four poses (roots of $f(\theta)$), and plot them. Check your answers by verifying that $p_1, p_2, p_3$ are the lengths of the struts in your plot.
+#### Solve the forward kinematics problem for the planar Stewart platform specified by $x_1 = 5$, $(x_2, y_2) = (0,6)$, $L_1 = L_3 = 3$, $L_2 = 3\sqrt{2}$, $\gamma = \pi / 4$, $p_1 = p_2 = 5$, $p_3 = 3$. Begin by plotting $f(\theta)$. Use an equation solver of your choice to find all four poses (roots of $f(\theta)$), and plot them. Check your answers by verifying that $p_1, p_2, p_3$ are the lengths of the struts in your plot.\n
+
+I organized all the fixed parameters into a `Constants` object and plotted the function $f(\theta)$ over the interval $[-π, π]$ to visualize its behavior. Using the `fsolve` function with strategically chosen initial guesses, I identified all four roots of $f(\theta)$, each root representing a unique pose of the Stewart platform. For each detected root, I plotted the corresponding triangle configuration and verified that the strut lengths $p_1, p_2, p_3$ matched the expected values. 
 
 #### 4A)
 ---
+
 
 ```{python}
 #| label: 4-a
@@ -531,6 +542,8 @@ plt.show()
 
 #### Find a strut length $p_2$, with the rest of the parameters as in Step 4, for which there are only two poses.
 
+To identify a strut length for $p_2$ that results in exactly two poses for the Stewart platform I systematically adjusted $p_2$ and utilizing the `fsolve` function to find the corresponding roots of the function $f(\theta)$. This method enabled me to determine a specific $p_2$ value that achieves the desired two-pose configuration.
+
 ```{python}
 #| label: p6
 #| code-summary: Show code
@@ -645,44 +658,43 @@ find_p2_with_two_roots(constants, initial_guesses, p2_start=-1, total_plots=6)
 
 ####  Calculate the intervals in $p_2$, with the rest of the parameters as in Step 4, for which there are 0, 2, 4, and 6 poses, respectively.
 
+In transitioning from **Problem 6** to **Problem 7**, I found that using `fsolve` with predefined initial guesses was too inaccurate for reliably identifying roots. This method often missed valid roots or produced duplicates due to its sensitivity to starting points. To improve accuracy, I switched to detecting sign changes in the function $f(\theta)$ and used the `brentq` algorithm, which efficiently locates roots where the function changes from positive to negative or vice versa. This approach greatly improved the precision of root detection.
+
 ```{python}
 #| label: prob7
 #| code-summary: Show code
-
 def count_roots(constants, theta_min=-np.pi, theta_max=np.pi, num_points=1000):
     """
-    Counts the number of roots of f(theta) = 0 within the interval [theta_min, theta_max].
+    Counts roots of f(theta) = 0 within [theta_min, theta_max].
 
     Parameters:
-    constants (Constants): The constants defining the Stewart platform.
-    theta_min (float): The minimum theta value.
-    theta_max (float): The maximum theta value.
-    num_points (int): Number of points to sample in the interval.
+    constants (Constants): Stewart platform constants.
+    theta_min (float): Lower bound of theta.
+    theta_max (float): Upper bound of theta.
+    num_points (int): Sampling points.
 
     Returns:
-    int: Number of unique roots found.
-    list: List of roots.
+    int: Number of unique roots.
+    list: Root values.
     """
     theta_vals = np.linspace(theta_min, theta_max, num_points)
     
-    # Compute f(theta) for each scalar theta using a list comprehension
+    # Evaluate f(theta) over the range
     f_vals = np.array([f(theta, constants) for theta in theta_vals])
     
     roots = []
     
+    # Detect sign changes indicating roots
     for i in range(len(theta_vals)-1):
         if np.sign(f_vals[i]) != np.sign(f_vals[i+1]):
             try:
                 root = brentq(f, theta_vals[i], theta_vals[i+1], args=(constants,))
-                # Adjust root to be within [theta_min, theta_max]
                 if theta_min <= root <= theta_max:
                     roots.append(root)
             except ValueError:
-                # brentq failed to find a root in this interval
-                pass
+                pass  # No root in this interval
     
-    # Remove duplicate roots within a tolerance
-    roots = np.array(roots)
+    # Eliminate duplicate roots
     unique_roots = []
     for r in roots:
         if not any(np.isclose(r, ur, atol=1e-5) for ur in unique_roots):
@@ -690,39 +702,33 @@ def count_roots(constants, theta_min=-np.pi, theta_max=np.pi, num_points=1000):
     
     return len(unique_roots), unique_roots
 
-#### 3. Define the Function to Find \( p_2 \) Intervals
-
 def find_p2_intervals(constants, p2_min, p2_max, p2_step):
     """
-    Iterates over p2 values and records the number of roots for each.
+    Finds p2 intervals with specific numbers of roots.
 
     Parameters:
-    constants (Constants): The constants defining the Stewart platform.
-    p2_min (float): Minimum p2 value.
-    p2_max (float): Maximum p2 value.
-    p2_step (float): Step size for p2.
+    constants (Constants): Stewart platform constants.
+    p2_min (float): Starting p2 value.
+    p2_max (float): Ending p2 value.
+    p2_step (float): Increment step for p2.
 
     Returns:
-    dict: Dictionary with number of roots as keys and list of p2 values as values.
+    dict: Pose counts as keys and p2 lists as values.
     """
     p2_values = np.arange(p2_min, p2_max + p2_step, p2_step)
     root_counts = {0: [], 2: [], 4: [], 6: []}
     
     for p2 in p2_values:
         constants.p2 = p2
-        num_roots, roots = count_roots(constants)
-        
+        num_roots, _ = count_roots(constants)
         if num_roots in root_counts:
             root_counts[num_roots].append(p2)
-        # Optionally, handle cases with roots not in {0,2,4,6}
-        # else:
-        #     pass
     
     return root_counts
 
 #### 4. Implement Problem 7
 
-# Define the constants as per Problem 4
+# Initialize constants
 constants = Constants(
     l1=3, 
     l2=3 * np.sqrt(2), 
@@ -736,87 +742,62 @@ constants = Constants(
     p3=3
 )
 
-# Define the range and step for p2
+# Set p2 range
 p2_min = 0.0
-p2_max = 12.98
+p2_max = 12.98  # Extended to capture p2 >= 9.27
 p2_step = 0.01
 
-# Find the intervals
+# Get root counts
 root_counts = find_p2_intervals(constants, p2_min, p2_max, p2_step)
 
-# Plot the number of roots vs p2
+# Plotting
 plt.figure(figsize=(12, 6))
 colors = {0: 'blue', 2: 'green', 4: 'orange', 6: 'red'}
 
 for num_roots, p2_list in root_counts.items():
-    plt.scatter(p2_list, [num_roots]*len(p2_list), label=f'{num_roots} roots', s=10, color=colors.get(num_roots, 'grey'))
+    plt.scatter(p2_list, [num_roots]*len(p2_list), label=f'{num_roots} poses', s=10, color=colors.get(num_roots, 'grey'))
 
 plt.xlabel('$p_2$', fontsize=14)
 plt.ylabel('Number of Poses (Roots)', fontsize=14)
-plt.title('Number of Poses vs $p_2$', fontsize=16)
+plt.title('Number of Poses vs Length of Strut $p_2$', fontsize=16)
 plt.legend()
 plt.grid(True)
 plt.show()
 
-# Determine the intervals
-# Initialize a dictionary to store intervals for each number of roots
+# Identify intervals
 intervals_dict = {0: [], 2: [], 4: [], 6: []}
-
-# Define a small tolerance to handle floating point precision
-tol = 1e-6
+tol = 1e-6  # Tolerance for precision
 
 for num_roots, p2_list in root_counts.items():
     if p2_list:
         p2_sorted = np.sort(p2_list)
-        # Find continuous intervals
         diffs = np.diff(p2_sorted)
-        # Adjust the splitting condition to group consecutive p2 values
         split_indices = np.where(diffs > (p2_step + tol))[0] + 1
         intervals = np.split(p2_sorted, split_indices)
         
-        # Append each interval to the corresponding list in intervals_dict
         for interval in intervals:
-            p2_start = interval[0]
-            p2_end = interval[-1]
+            p2_start, p2_end = interval[0], interval[-1]
             intervals_dict[num_roots].append((p2_start, p2_end))
 
-# After all intervals are collected, print only the first and last interval for each number of poses
+# Print first and last intervals for each pose count
 for num_roots, intervals in intervals_dict.items():
     if intervals:
         print(f"\nIntervals with {num_roots} poses:")
         if len(intervals) == 1:
-            # Only one interval exists
             p2_start, p2_end = intervals[0]
-            # Check if the interval ends at p2_max to represent infinity
-            if np.isclose(p2_end, p2_max, atol=tol):
-                p2_end_str = "infinity"
-            else:
-                p2_end_str = f"{p2_end:.2f}"
+            p2_end_str = "infinity" if np.isclose(p2_end, p2_max, atol=tol) else f"{p2_end:.2f}"
             print(f"  p2 from {p2_start:.2f} to {p2_end_str}")
         else:
-            # Multiple intervals exist; print only the first and last intervals
-            first_interval = intervals[0]
-            last_interval = intervals[-1]
-            
             # First interval
-            p2_start, p2_end = first_interval
-            if np.isclose(p2_end, p2_max, atol=tol):
-                p2_end_str = "infinity"
-            else:
-                p2_end_str = f"{p2_end:.2f}"
+            p2_start, p2_end = intervals[0]
+            p2_end_str = "infinity" if np.isclose(p2_end, p2_max, atol=tol) else f"{p2_end:.2f}"
             print(f"  p2 from {p2_start:.2f} to {p2_end_str}")
             
             # Last interval
-            p2_start, p2_end = last_interval
-            if np.isclose(p2_end, p2_max, atol=tol):
-                p2_end_str = "infinity"
-            else:
-                p2_end_str = f"{p2_end:.2f}"
+            p2_start, p2_end = intervals[-1]
+            p2_end_str = "infinity" if np.isclose(p2_end, p2_max, atol=tol) else f"{p2_end:.2f}"
             print(f"  p2 from {p2_start:.2f} to {p2_end_str}")
-    else:
-        print(f"\nNo intervals found with {num_roots} poses.")
 ```
-
 
 
 
