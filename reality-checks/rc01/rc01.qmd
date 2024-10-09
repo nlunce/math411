@@ -28,10 +28,25 @@ format:
 #| include: false
 import numpy as np
 import matplotlib.pyplot as plt
+from dataclasses import dataclass
+from scipy.optimize import fsolve
+
+@dataclass
+class Constants:
+    l1: float
+    l2: float
+    l3: float
+    gamma: float
+    x1: float
+    x2: float
+    y2: float
+    p1: float
+    p2: float
+    p3: float
 ```
 
 
-# 1. Write a Python function for $f(\theta)$
+# 1. PROBLEM 1
 
 Write a Matlab function file for $f(\theta)$. The parameters $L_1, L_2, L_3, \gamma, x_1, x_2, y_2$ are fixed constants, and the strut lengths $p_1, p_2, p_3$ will be known for a given pose. To test your code, set the parameters $L_1 = 2$, $L_2 = L_3 = \sqrt{2}$, $\gamma = \pi/2$, and $p_1 = p_2 = p_3 = \sqrt{5}$. Then, substituting $\theta = -\pi/4$ or $\theta = \pi/4$, should make $f(\theta) = 0$.
 
@@ -40,46 +55,33 @@ Write a Matlab function file for $f(\theta)$. The parameters $L_1, L_2, L_3, \ga
 ```{python}
 #| label: Function
 #| code-summary: Show code
-
-def f(theta):
+# Define the function for f(θ)
+def f(theta, constants):
     """
-    Calculates a value based on the given angle theta.
+    Calculates a value based on the given angle theta and constants object.
 
     Parameters:
     theta (float): The angle in radians.
+    constants (Constants): An object containing the necessary constants.
 
     Returns:
     float: The calculated result.
-
-    Raises:
-    ZeroDivisionError: If the denominator D is zero.
     """
-    # Calculate intermediate values A2, B2, A3, B3
-    A2 = (L3 * np.cos(theta)) - X1
-    B2 = L3 * np.sin(theta)
-    
-    A3 = L2 * ((np.cos(theta) * np.cos(GAMA)) - (np.sin(theta) * np.sin(GAMA))) - X2
-    B3 = L2 * ((np.cos(theta) * np.sin(GAMA)) - (np.sin(theta) * np.cos(GAMA))) - Y2
-    
-    # Calculate N1, N2, and D
-    N1 = (B3 * ((P2 ** 2) - (P1 ** 2) - (A2 ** 2) - (B2 ** 2))) - (B2 * ((P3 ** 2) - (P1 ** 2) - (A3 ** 2) - (B3 ** 2)))
-    N2 = ((-1 * A3) * ((P2 ** 2) - (P1 ** 2) - (A2 ** 2) - (B2 ** 2))) + (A2 * ((P3 ** 2) - (P1 ** 2) - (A3 ** 2) - (B3 ** 2)))
-    
-    D = 2 * ((A2 * B3) - (B2 * A3))
-    
-    # Check for division by zero
-    if D == 0:
-        raise ZeroDivisionError("D cannot be zero, division by zero error.")
-    
-    x = N1 / D
-    y = N2 / D
+    l1, l2, l3 = constants.l1, constants.l2, constants.l3
+    gamma = constants.gamma
+    x1, x2, y2 = constants.x1, constants.x2, constants.y2
+    p1, p2, p3 = constants.p1, constants.p2, constants.p3
 
-    # Continue with calculations involving D (if applicable)
-    result = (N1 ** 2) + (N2 ** 2) - ((P1 ** 2) * (D ** 2))
+    a2 = l3 * np.cos(theta) - x1 
+    b2 = l3 * np.sin(theta)
+    a3 = l2 * np.cos(theta + gamma) - x2
+    b3 = l2 * np.sin(theta + gamma) - y2
+    d = 2 * (a2 * b3 - b2 * a3)
     
-    return result, x, y
-
-
+    n1 = b3 * (p2**2 - p1**2 - a2**2 - b2**2) - b2 * (p3**2 - p1**2 - a3**2 - b3**2)
+    n2 = -a3 * (p2**2 - p1**2 - a2**2 - b2**2) + a2 * (p3**2 - p1**2 - a3**2 - b3**2)
+    
+    return n1**2 + n2**2 - p1**2 * d**2
 ```
 
 ## Test function $f(\theta)$
@@ -88,53 +90,44 @@ def f(theta):
 #| label: Test
 #| code-summary: Show code
 # Test the function with correct parameters
-
-# Constants
-L1 = 2
-L2 = np.sqrt(2)
-L3 = np.sqrt(2)
-GAMA = np.pi / 2
-P1 = np.sqrt(5)
-P2 = np.sqrt(5)
-P3 = np.sqrt(5)
-X0 = 0
-Y0 = 0
-X1 = 4
-Y1 = 0
-X2 = 0
-Y2 = 4
+# Constants for testing
+constants = Constants(
+    l1=2, 
+    l2=np.sqrt(2),
+    l3=np.sqrt(2),
+    gamma=np.pi / 2, 
+    x1=4, 
+    x2=0, 
+    y2=4, 
+    p1=np.sqrt(5),
+    p2=np.sqrt(5), 
+    p3=np.sqrt(5)
+)
 
 theta = np.pi / 4
 
-result, x, y = f(theta)
-print(f'f(π/4) = {result}\nx = {x}\ny = {y}')
+# Evaluate the function
+result = f(theta, constants)
+print(f'f(θ=π/4) = {result}')
 ```
 
-# 2. Plot $f(\theta)$ on $[-π, π]$
+# PROBLEM 2
 
 ## Create Plot
 
 ```{python}
 #| label: Plot
 #| code-summary: Show code
+# Generate theta values and compute f(theta) for plotting
+theta_values = np.linspace(-np.pi, np.pi, 400)
+results = [f(theta, constants) for theta in theta_values]
 
-# Generate theta values and compute f(theta)
-# Plotting f(theta) on [-pi, pi]
-theta_values = np.linspace(-np.pi, np.pi, 1000)
-results = []
-for theta in theta_values:
-    try:
-        res, _, _ = f(theta)
-        results.append(res)
-    except ZeroDivisionError:
-        results.append(np.nan)
-
-
+# Plotting f(theta)
 plt.figure(figsize=(10, 6))
-plt.plot(theta_values, results, label=r'$f(\theta)$')  # Default linewidth
-plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  # Default linewidth
-plt.axvline(-np.pi/4, color='red', linestyle=':', linewidth=2, label=r'$\theta = -\pi/4$')  # Increased linewidth
-plt.axvline(np.pi/4, color='red', linestyle=':', linewidth=2, label=r'$\theta = \pi/4$')  # Increased linewidth
+plt.plot(theta_values, results, label=r'$f(\theta)$', linewidth=2)
+plt.axhline(0, color='black', linestyle='--', linewidth=0.8)
+plt.axvline(-np.pi/4, color='red', linestyle=':', linewidth=2, label=r'$\theta = -\pi/4$')
+plt.axvline(np.pi/4, color='red', linestyle=':', linewidth=2, label=r'$\theta = \pi/4$')
 plt.xlabel(r'$\theta$', fontsize=14)
 plt.ylabel(r'$f(\theta)$', fontsize=14)
 plt.title(r'Function of $f(\theta)$ for Stewart Platform', fontsize=16)
@@ -143,7 +136,7 @@ plt.grid(True)
 plt.show()
 ```
 
-# 3. Reproduce Figure 1.15.
+# PROBLEM 3
 
 Reproduce Figure 1.15. Plot a red triangle with vertices  $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
 
@@ -152,58 +145,141 @@ Reproduce Figure 1.15. Plot a red triangle with vertices  $(u_1, v_1), (u_2, v_2
 ```{python}
 #| label: Helper-Functions
 #| code-summary: Show code
-# Function to calculate the points of the triangle based on x, y, and angles
-def get_points(x, y, theta, gama):
-    L1_point = (x, y)
-    
-    L2_x = x + (L3 * np.cos(theta))
-    L2_y = y + (L3 * np.sin(theta))
-    L2_point = (np.round(L2_x), np.round(L2_y))
-    
-    L3_x = x + (L2 * np.cos(theta + gama))
-    L3_y = y + (L2 * np.sin(theta + gama))
-    L3_point = (np.round(L3_x), np.round(L3_y))
-    
-    return [L1_point, L2_point, L3_point]
+# Create Helper Functions
+def get_x_y(theta, constants):
+    """
+    Returns the coordinates x and y for the given angle theta and constants object.
 
-# Function to generate the anchor points
-def get_anchor_points(x1, x2, y2):
+    Parameters:
+    theta (float): The angle in radians.
+    constants (Constants): An object containing the necessary constants.
+    
+    Returns:
+    tuple: The coordinates (x, y).
+    """
+    l1, l2, l3 = constants.l1, constants.l2, constants.l3
+    gamma = constants.gamma
+    x1, x2, y2 = constants.x1, constants.x2, constants.y2
+    p1, p2, p3 = constants.p1, constants.p2, constants.p3
+
+    a2 = l3 * np.cos(theta) - x1 
+    b2 = l3 * np.sin(theta)
+    a3 = l2 * np.cos(theta + gamma) - x2
+    b3 = l2 * np.sin(theta + gamma) - y2
+    
+    d = 2 * (a2 * b3 - b2 * a3)
+    n1 = b3 * (p2**2 - p1**2 - a2**2 - b2**2) - b2 * (p3**2 - p1**2 - a3**2 - b3**2)
+    n2 = -a3 * (p2**2 - p1**2 - a2**2 - b2**2) + a2 * (p3**2 - p1**2 - a3**2 - b3**2)
+    
+    x = n1 / d
+    y = n2 / d
+    
+    return x, y
+
+
+def get_points(x, y, theta, constants):
+    """
+    Returns the points of the triangle based on x, y, and theta using the constants object.
+
+    Parameters:
+    x (float): The x-coordinate.
+    y (float): The y-coordinate.
+    theta (float): The angle in radians.
+    constants (Constants): An object containing the necessary constants.
+
+    Returns:
+    list: A list containing the points (l1_point, l2_point, l3_point) of the triangle.
+    """
+    l1, l2, l3 = constants.l1, constants.l2, constants.l3
+    gamma = constants.gamma
+
+    # Base point of the triangle (first vertex)
+    l1_point = (x, y)
+    
+    # Second vertex of the triangle
+    l2_x = x + (l3 * np.cos(theta))
+    l2_y = y + (l3 * np.sin(theta))
+    l2_point = (np.round(l2_x, 3), np.round(l2_y))  # Rounded to 3 decimal places for clarity
+    
+    # Third vertex of the triangle
+    l3_x = x + (l2 * np.cos(theta + gamma))
+    l3_y = y + (l2 * np.sin(theta + gamma))
+    l3_point = (np.round(l3_x), np.round(l3_y))  # Rounded to 3 decimal places for clarity
+    
+    return [l1_point, l2_point, l3_point]
+
+def get_anchor_points(constants):
+    """
+    Returns the anchor points for the strut anchor points using the constants object.
+
+    Parameters:
+    constants (Constants): An object containing the necessary constants (x1, x2, y2).
+
+    Returns:
+    list: A list containing tuples with the coordinates of the anchor points.
+    """
+    x1, x2, y2 = constants.x1, constants.x2, constants.y2
+    
     return [(0, 0), (x1, 0), (x2, y2)]
 
-# Function to plot the triangle on a given axis
-def plot_triangle(ax, points, anchor_points):
-    # Ensure points and anchor_points are numpy arrays
+def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_step=None, y_step=None):
+    """
+    Plots a triangle given the points and anchor points on the provided axis.
+
+    Parameters:
+    ax: The axis on which to plot the triangle.
+    points: The points of the triangle (list of 3 points).
+    anchor_points: The anchor points (list of 2 or more points).
+    x_limits (tuple, optional): Tuple specifying the x-axis limits (x_min, x_max).
+    y_limits (tuple, optional): Tuple specifying the y-axis limits (y_min, y_max).
+    x_step (float, optional): Step size for the x-axis grid.
+    y_step (float, optional): Step size for the y-axis grid.
+
+    Returns:
+    None
+    """
     points = np.array(points)
     anchor_points = np.array(anchor_points)
     
-    # Extract the x and y coordinates for the triangle vertices
+    # Extract x and y coordinates for the triangle points
     x_coords = points[:, 0]
     y_coords = points[:, 1]
     
-    # Close the triangle by repeating the first point at the end
+    # Close the triangle by appending the first point at the end
     x_closed = np.append(x_coords, x_coords[0])
     y_closed = np.append(y_coords, y_coords[0])
     
-    # Plot the triangle with thicker lines
+    # Plot the triangle with red lines
     ax.plot(x_closed, y_closed, 'r-', linewidth=3.5)
     
-    # Plot red dots at the triangle vertices
+    # Plot blue dots at the triangle vertices
     ax.plot(x_coords, y_coords, 'bo', markersize=8)
     
-    # Plot lines from base points to corresponding triangle vertices
+    # Plot lines from anchor points to triangle points
     for i, anchor in enumerate(anchor_points):
-        ax.plot([anchor[0], points[i, 0]], [anchor[1], points[i, 1]], 'b-', linewidth=1.5)
+        if i < len(points):  # Ensure we stay within bounds
+            ax.plot([anchor[0], points[i, 0]], [anchor[1], points[i, 1]], 'b-', linewidth=1.5)
     
-    # Plot small blue circles at the strut anchor points
+    # Plot blue dots at the anchor points
     ax.plot(anchor_points[:, 0], anchor_points[:, 1], 'bo', markersize=8)
     
-    # Set labels 
+    # Set axis labels
     ax.set_xlabel("x")
     ax.set_ylabel("y")
     
-    # Set the domain and range for both axes
-    ax.set_xlim(-0.25, 4.25)
-    ax.set_ylim(-0.25, 4.25)
+    # Set x-axis limits if provided
+    if x_limits is not None:
+        ax.set_xlim(x_limits)
+    
+    # Set y-axis limits if provided
+    if y_limits is not None:
+        ax.set_ylim(y_limits)
+    
+    # Set grid step increments if limits are provided
+    if x_step is not None and x_limits is not None:
+        ax.set_xticks(np.arange(x_limits[0], x_limits[1] + x_step, x_step))  # Adjust x-axis ticks
+    if y_step is not None and y_limits is not None:
+        ax.set_yticks(np.arange(y_limits[0], y_limits[1] + y_step, y_step))  # Adjust y-axis ticks
     
     # Add grid for better visualization
     ax.grid(True)
@@ -214,33 +290,131 @@ def plot_triangle(ax, points, anchor_points):
 ```{python}
 #| label: Recreate-1.15
 #| code-summary: Show code
-
+# Create Plot
 theta = np.pi / 4
 theta_negative = -np.pi / 4
-gama = np.pi / 2
 
 # First triangle points
-_, x, y = f(theta_negative)  
-points1 = get_points(x, y, theta_negative, gama)
-anchor_points = get_anchor_points(4, 0, 4)
+x, y = get_x_y(theta_negative, constants)  # Use constants object here
+points1 = get_points(x, y, theta_negative, constants)  # Use constants object
+anchor_points = get_anchor_points(constants)  # Use constants object for anchor points
 
 # Second triangle points
-_, x, y = f(theta) 
-points2 = get_points(x, y, theta, gama)
+x, y = get_x_y(theta, constants)  # Use constants object here
+points2 = get_points(x, y, theta, constants)  # Use constants object
 
 # Create subplots for side-by-side triangles
 fig, axes = plt.subplots(1, 2, figsize=(11, 5))
 
-# Plot the first triangle on the first axis
-plot_triangle(axes[0], points1, anchor_points)
+# Plot the first triangle on the first axis with custom axis limits
+plot_triangle(axes[0], points1, anchor_points, x_limits=(-0.25, 4.25), y_limits=(-0.25, 4.25))
 
-# Plot the second triangle on the second axis
-plot_triangle(axes[1], points2, anchor_points)
+# Plot the second triangle on the second axis with custom axis limits
+plot_triangle(axes[1], points2, anchor_points, x_limits=(-0.25, 4.25), y_limits=(-0.25, 4.25))
 
 # Adjust layout to avoid overlap
 plt.tight_layout()
 
 # Display the concatenated plots
 plt.show()
+```
 
+# PROBLEM 4
+
+Solve the forward kinematics problem for the planar Stewart platform specified by
+$x_1 = 5$, $(x_2, y_2) = (0,6)$, $L_1 = L_3 = 3$, $L_2 = 3\sqrt{2}$, $\gamma = \pi / 4$, $p_1 = p_2 = 5$, $p_3 = 3$. Begin by plotting $f(\theta)$. Use an equation solver of your choice to find all four poses (roots of $f(\theta)$), and plot them. Check your answers by verifying that $p_1, p_2, p_3$ are the lengths of the struts in your plot.
+
+## A)
+```{python}
+#| label: Number-4
+#| code-summary: Show code
+constants = Constants(
+    l1=3, 
+    l2=3 * np.sqrt(2), 
+    l3=3, 
+    gamma=np.pi / 4,  # GAMMA in lowercase
+    x1=5, 
+    x2=0, 
+    y2=6,  # Updated Y2 as per your request
+    p1=5, 
+    p2=5, 
+    p3=3
+)
+
+theta_values = np.linspace(-np.pi, np.pi, 400)
+
+plt.figure(figsize=(10, 6))
+plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$')  # Default linewidth
+plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  # Default linewidth
+plt.xlabel(r'$\theta$', fontsize=14)
+plt.ylabel(r'$f(\theta)$', fontsize=14)
+plt.title(r'Function of $f(\theta)$ for Stewart Platform', fontsize=16)
+plt.legend(fontsize=12)
+plt.grid(True)
+plt.show()
+
+```
+
+## B)
+
+```{python}
+#| label: Roots
+#| code-summary: Show code
+# Function to find roots using fsolve
+def find_roots(constants, initial_guesses):
+    """
+    Finds roots of f(theta) using different initial guesses.
+    
+    Parameters:
+    constants (Constants): Object containing the necessary constants.
+    initial_guesses (list or array): List of initial guesses for fsolve to start from.
+    
+    Returns:
+    list: A list of unique roots.
+    """
+    # Use fsolve to find the roots based on the provided initial guesses
+    roots = []
+    for guess in initial_guesses:
+        root = fsolve(f, guess, args=(constants))[0]
+        roots.append(root)
+    
+    # Round the roots to avoid numerical precision issues and remove duplicates
+    roots = np.round(roots, decimals=6)
+    unique_roots = np.unique(roots)
+    
+    return unique_roots
+
+# Provide initial guesses for fsolve to find the roots
+initial_guesses = [-1, -np.pi / 3, np.pi / 3, .5, 2]  # Customize this list
+
+# Find and print the roots using the custom initial guesses
+roots = find_roots(constants, initial_guesses)
+print(f"The roots of f(θ) in the interval are : {roots}")
+```
+
+```{python}
+#| label: Plots2
+#| code-summary: Show code
+
+fig, axes = plt.subplots(2, 2, figsize=(10, 10))
+axes = axes.flatten()
+
+anchor_points = get_anchor_points(constants)
+
+# Loop through up to four roots
+for i, theta in enumerate(roots):  # Limit to the first four roots
+    x, y = get_x_y(theta, constants)
+    points = get_points(x, y, theta, constants)
+    
+    # Plot the triangle in the corresponding subplot with custom limits
+    plot_triangle(axes[i], points, anchor_points, x_limits=(-2.5, 7.5), y_limits=(-2, 7), x_step=2.5, y_step=2)
+    axes[i].set_title(f"Root: {theta}")
+
+# Turn off any unused subplots if fewer than four roots
+for j in range(len(roots), 4):
+    axes[j].axis('off')
+
+# Adjust layout
+plt.tight_layout()
+plt.show()
 ```
