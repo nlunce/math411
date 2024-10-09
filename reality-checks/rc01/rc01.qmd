@@ -150,7 +150,9 @@ plt.ylabel(r'$f(\theta)$', fontsize=14)
 plt.title(r'Function of $\theta$ for Stewart Platform', fontsize=16)
 plt.legend(fontsize=12)
 plt.grid(True)
+
 plt.show()
+
 ```
 
 # PROBLEM 3
@@ -334,6 +336,8 @@ plot_triangle(axes[0], points1, anchor_points, x_limits=(-0.25, 4.25), y_limits=
 plot_triangle(axes[1], points2, anchor_points, x_limits=(-0.25, 4.25), y_limits=(-0.25, 4.25))
 
 plt.tight_layout()
+plt.savefig('stewart_platform_two_triangles_plot.png', dpi=300, bbox_inches='tight')
+
 
 plt.show()
 ```
@@ -380,6 +384,9 @@ plt.ylabel(r'$f(\theta)$', fontsize=14)
 plt.title(r'Function of $\theta$ for Stewart Platform', fontsize=16)
 plt.legend(fontsize=12)
 plt.grid(True)
+
+
+
 plt.show()
 
 ```
@@ -461,6 +468,8 @@ for j in range(len(roots), 4):
 
 # Adjust layout
 plt.tight_layout()
+
+plt.savefig('p4_function_plot.png', dpi=300, bbox_inches='tight')
 plt.show()
 ```
 
@@ -504,6 +513,8 @@ plt.ylabel(r'$f(\theta)$', fontsize=14)
 plt.title(r'Function of $\theta$ for Stewart Platform', fontsize=16)
 plt.legend(fontsize=12)
 plt.grid(True)
+
+
 plt.show()
 
 ```
@@ -547,6 +558,8 @@ for j in range(len(roots), 6):
 
 # Adjust layout
 plt.tight_layout()
+
+
 plt.show()
 
 ```
@@ -644,6 +657,8 @@ def find_p2_with_two_roots(constants, initial_guesses, p2_start=-1, total_plots=
     
     # Show the final figure with all appended plots
     plt.tight_layout()
+
+    
     plt.show()
 
 # Example constants (with p2 placeholder)
@@ -777,6 +792,8 @@ plt.ylabel('Number of Poses (Roots)', fontsize=14)
 plt.title('Number of Poses vs Length of Strut $p_2$', fontsize=16)
 plt.legend()
 plt.grid(True)
+
+plt.savefig('p7_function_plot.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 # Identify intervals
