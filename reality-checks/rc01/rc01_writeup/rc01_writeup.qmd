@@ -71,11 +71,11 @@ These constants are necessary for expressing the inverse kinematics problem, whi
 To solve the forward kinematics problem, we eliminate the unknowns $x$ and $y$ from the inverse kinematics equations. This involves expanding and rearranging the equations to express $x$ and $y$ in terms of the constants and $\theta$. The final equation for $\theta$ is derived as:
 
 $$
-x = \frac{B_3(p_2^2 - p_1^2 - A_2^2 - B_2^2) - B_2(p_3^2 - p_1^2 - A_3^2 - B_3^2)}{2(A_2B_3 - B_2A_3)}
+x = \frac{N_1}{D} = \frac{B_3(p_2^2 - p_1^2 - A_2^2 - B_2^2) - B_2(p_3^2 - p_1^2 - A_3^2 - B_3^2)}{2(A_2B_3 - B_2A_3)}
 $$
 
 $$
-y = \frac{-A_3(p_2^2 - p_1^2 - A_2^2 - B_2^2) + A_2(p_3^2 - p_1^2 - A_3^2 - B_3^2)}{2(A_2B_3 - B_2A_3)}
+y = \frac{N_2}{D} = \frac{-A_3(p_2^2 - p_1^2 - A_2^2 - B_2^2) + A_2(p_3^2 - p_1^2 - A_3^2 - B_3^2)}{2(A_2B_3 - B_2A_3)}
 $$
 
 These expressions for $x$ and $y$ hold as long as the denominator $D = 2(A_2B_3 - B_2A_3)$ is nonzero. Substituting these values into the first inverse kinematics equation yields the final equation for $\theta$:
@@ -106,14 +106,15 @@ Here, $N_1$ and $N_2$ are intermediate expressions based on the system of equati
 
 ### Results:
 
-For the test values of $\theta = \pi/4$ and $\theta = -\pi/4$, the function returned:
+For the test values of $\theta = \pm \frac{\pi}{4}$, the function returned:
 
-```
-f(θ=π/4) = -4.547473508864641e-13
-f(θ=-π/4) = -4.547473508864641e-13
-```
+$$
+f\left(\pm \frac{\pi}{4}\right) = -4.547473508864641 \times 10^{-13}
+$$
 
-These values are effectively zero, within the limits of numerical precision. This confirms that the function $f(\theta)$ works correctly and that $\theta = \pm \pi/4$ are valid solutions for the given platform configuration.
+
+
+This value is effectively zero, within the limits of numerical precision. This confirms that the function $f(\theta)$ works correctly and that $\theta = \pm \frac{\pi}{4}$ are valid solutions for the given platform configuration.
 
 ---
 
@@ -243,14 +244,9 @@ As shown, I found the following six roots of $f(\theta)$, corresponding to six d
 
    - To identify the value of $p_2$ that results in exactly two poses, I iteratively adjusted $p_2$ and solved the corresponding $f(\theta) = 0$. The goal was to determine when the number of valid solutions (poses) reduced to exactly two, indicating a unique configuration of the platform with only two possible positions.
 
-2. **Refinement of the Numerical Method**:
+2. **Implementation in Code**:
 
-   - Initially, I used the `fsolve` method with predefined initial guesses. However, as seen in previous problems, this approach was not sufficiently reliable for identifying all valid roots, especially when the number of poses was limited to exactly two.
-   - To improve accuracy, I switched to **Brent's method** (`brentq`). This method locates roots based on sign changes in $f(\theta)$, ensuring that no valid poses were missed and that duplicate solutions were avoided. This more precise method enabled me to accurately detect the exact value of $p_2$ that corresponds to two valid poses.
-
-3. **Implementation in Code**:
-
-   - The solution was implemented by incrementally increasing the value of $p_2$ and using `brentq` to count the valid roots (poses) for each value. By plotting $f(\theta)$ for various values of $p_2$, I identified the specific $p_2$ that led to exactly two poses.
+   - I used the `fsolve()` method with predefined initial guesses to identify the roots of $f(\theta)$. This method relies on initial guesses for the root-finding process. While fsolve can be effective, its success depends on the accuracy of these guesses. Therefore, I systematically tested different values of $p_2$ to check whether exactly two valid roots could be found.
    - After verifying the results through both numerical methods and graphical plotting, I confirmed that $p_2 = 4.000$ produced exactly two distinct roots.
 
 ### Results:
