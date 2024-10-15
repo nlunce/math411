@@ -51,7 +51,7 @@ format:
 
 ## Week 3
 - [(C0-P2)](./w03/c0-p2.html) 
-- [(C3-P4) Exercise 3.2.2](#)
+- [(C3-P4) Exercise 3.2.2](./w03/exercise3-2-2.html)
 - [(C3-P5) Exercise 3.2.5](#)
 - [(C3-P6) Exercise 3.2.6](#) 
 - [(C3-P7) Computer Problem 3.1.3](#)
