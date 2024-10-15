@@ -75,7 +75,7 @@ format:
 - [(C5-P4) Exercise 5.2.10](#)
 - [(C5-P5) Exercise 5.2.12](#)
 - [(C5-P6) Computer Problem 5.2.1ac](#)  
-- [(C5-P7) Computer Problem 5.2.2de](#)  w04
+- [(C5-P7) Computer Problem 5.2.2de](#)
 - [(C5-P8) Computer Problem 5.2.9bf](#)  
 
 :::
