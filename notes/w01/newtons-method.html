@@ -3173,7 +3173,12 @@ x_{k+1} = x_k - \frac{f(x_k)}{f&#39;(x_k)}
 </section>
 <section id="convergence-criteria" class="level3">
 <h3 class="anchored" data-anchor-id="convergence-criteria">Convergence Criteria</h3>
-<p>Newton’s Method converges <strong>quadratically</strong> under certain conditions, which means that the number of correct digits roughly doubles with each iteration. However, this fast convergence occurs only if: 1. The function <span class="math inline">f(x)</span> is continuous and differentiable in the vicinity of the root. 2. The derivative <span class="math inline">f&#39;(x)</span> is non-zero at the root. 3. The initial guess is sufficiently close to the actual root.</p>
+<p>Newton’s Method converges <strong>quadratically</strong> under certain conditions, which means that the number of correct digits roughly doubles with each iteration. However, this fast convergence occurs only if:</p>
+<ol type="1">
+<li>The function <span class="math inline">f(x)</span> is continuous and differentiable in the vicinity of the root.</li>
+<li>The derivative <span class="math inline">f&#39;(x)</span> is non-zero at the root.</li>
+<li>The initial guess is sufficiently close to the actual root.</li>
+</ol>
 <p>If the initial guess is too far from the root, Newton’s Method may fail to converge or may converge very slowly.</p>
 </section>
 <section id="step-by-step-procedure" class="level3">

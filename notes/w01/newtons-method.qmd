@@ -44,6 +44,7 @@ Newton's Method can be interpreted geometrically: given an approximation $x_k$, 
 ### Convergence Criteria
 
 Newton's Method converges **quadratically** under certain conditions, which means that the number of correct digits roughly doubles with each iteration. However, this fast convergence occurs only if:
+
 1. The function $f(x)$ is continuous and differentiable in the vicinity of the root.
 2. The derivative $f'(x)$ is non-zero at the root.
 3. The initial guess is sufficiently close to the actual root.
