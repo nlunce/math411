@@ -37,8 +37,8 @@ Here, $x_k$ is the $k$-th approximation of the root, and $g(x)$ is a function ch
 
 For fixed-point iteration to converge, certain conditions must be met:
 
-1. **The function $ g(x) $ must be continuous** in the interval around the fixed point.
-2. **The derivative $ g'(x) $** must satisfy the following condition for convergence at the fixed point $x^*$:
+1. **The function $g(x)$ must be continuous** in the interval around the fixed point.
+2. **The derivative $g'(x)$** must satisfy the following condition for convergence at the fixed point $x^*$:
 
 $$
 |g'(x^*)| < 1
