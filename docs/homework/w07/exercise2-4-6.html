@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nathan Lunceford">
 
-<title>Homework – MATH411</title>
+<title>Exercise 2.4.6 (C2-P10) – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +24,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,8 +68,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -78,7 +108,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -89,15 +119,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../homework/index.html" aria-current="page"> 
+    <a class="nav-link" href="../../homework/index.html"> 
 <span class="menu-text">Homework</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../reality-checks/index.html"> 
+    <a class="nav-link" href="../../reality-checks/index.html"> 
 <span class="menu-text">Reality Checks</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../notes/index.html"> 
+    <a class="nav-link" href="../../notes/index.html"> 
 <span class="menu-text">Notes</span></a>
   </li>  
 </ul>
@@ -117,19 +147,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-1" id="toc-week-1" class="nav-link active" data-scroll-target="#week-1">Week 1</a></li>
-  <li><a href="#week-2" id="toc-week-2" class="nav-link" data-scroll-target="#week-2">Week 2</a></li>
-  <li><a href="#week-3" id="toc-week-3" class="nav-link" data-scroll-target="#week-3">Week 3</a></li>
-  <li><a href="#week-4" id="toc-week-4" class="nav-link" data-scroll-target="#week-4">Week 4</a></li>
-  <li><a href="#week-5" id="toc-week-5" class="nav-link" data-scroll-target="#week-5">Week 5</a></li>
-  <li><a href="#week-6" id="toc-week-6" class="nav-link" data-scroll-target="#week-6">Week 6</a></li>
-  <li><a href="#week-7" id="toc-week-7" class="nav-link" data-scroll-target="#week-7">Week 7</a></li>
-  <li><a href="#week-8" id="toc-week-8" class="nav-link" data-scroll-target="#week-8">Week 8</a></li>
-  <li><a href="#week-9" id="toc-week-9" class="nav-link" data-scroll-target="#week-9">Week 9</a></li>
-  <li><a href="#week-10" id="toc-week-10" class="nav-link" data-scroll-target="#week-10">Week 10</a></li>
-  <li><a href="#week-11" id="toc-week-11" class="nav-link" data-scroll-target="#week-11">Week 11</a></li>
-  <li><a href="#week-12" id="toc-week-12" class="nav-link" data-scroll-target="#week-12">Week 12</a></li>
-  <li><a href="#week-13" id="toc-week-13" class="nav-link" data-scroll-target="#week-13">Week 13</a></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem</strong></a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a>
+  <ul class="collapse">
+  <li><a href="#a-constructing-the-permutation-matrix-p" id="toc-a-constructing-the-permutation-matrix-p" class="nav-link" data-scroll-target="#a-constructing-the-permutation-matrix-p">(a) Constructing the Permutation Matrix <span class="math inline">\(P\)</span></a></li>
+  <li><a href="#b-effect-of-multiplying-on-the-right-by-p" id="toc-b-effect-of-multiplying-on-the-right-by-p" class="nav-link" data-scroll-target="#b-effect-of-multiplying-on-the-right-by-p">(b) Effect of Multiplying on the Right by <span class="math inline">\(P\)</span></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -138,13 +161,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Homework</h1>
+<h1 class="title">Exercise 2.4.6 (C2-P10)</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
     
   
     
@@ -155,169 +184,122 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><a href="./math411-suggested-homework.html">Suggested Homework</a></p>
-<section id="week-1" class="level2">
-<h2 class="anchored" data-anchor-id="week-1">Week 1</h2>
-<ul>
-<li><a href="#">(C0-P1)</a></li>
-<li><a href="#">(C1-P1) Exercise 1.1.4ab</a></li>
-<li><a href="#">(C1-P2) Exercise 1.2.2</a></li>
-<li><a href="#">(C1-P3)</a></li>
-<li><a href="#">(C1-P4) Exercise 1.2.14</a></li>
-<li><a href="#">(C1-P5) Exercise 1.4.1</a></li>
-<li><a href="#">(C1-P6) Exercise 1.4.3</a></li>
-</ul>
+<section id="problem" class="level1">
+<h1><strong>Problem</strong></h1>
+<p><strong>(a)</strong> Write down the <span class="math inline">\(4 \times 4\)</span> matrix <span class="math inline">\(P\)</span> such that multiplying a matrix on the left by <span class="math inline">\(P\)</span> causes the second and fourth rows of the matrix to be exchanged.</p>
+<p><strong>(b)</strong> What is the effect of multiplying on the right by <span class="math inline">\(P\)</span>? Demonstrate with an example.</p>
 </section>
-<section id="week-2" class="level2">
-<h2 class="anchored" data-anchor-id="week-2">Week 2</h2>
-<ul>
-<li><a href="#">(C1-P7) Exercise 1.4.6</a></li>
-<li><a href="#">(C1-P8) Exercise 1.4.8</a></li>
-<li><a href="#">(C1-P9) Computer Problem 1.4.7</a></li>
-<li><a href="#">(C1-P10) Exercise 1.5.1</a></li>
-<li><a href="#">(C1-P11)</a></li>
-<li><a href="./w02/exercise3-1-1a.html">(C3-P1) Exercise 3.1.1a</a></li>
-<li><a href="./w02/exercise3-1-1c.html">(C3-P1) Exercise 3.1.1c</a></li>
-<li><a href="./w02/exercise3-1-2a.html">(C3-P2) Exercise 3.1.2a</a></li>
-<li><a href="./w02/exercise3-1-2c.html">(C3-P2) Exercise 3.1.2c</a></li>
-<li><a href="./w02/exercise3-1-6.html">(C3-P3) Exercise 3.1.6</a></li>
-</ul>
+<section id="solution" class="level1">
+<h1><strong>Solution</strong></h1>
+<section id="a-constructing-the-permutation-matrix-p" class="level2">
+<h2 class="anchored" data-anchor-id="a-constructing-the-permutation-matrix-p">(a) Constructing the Permutation Matrix <span class="math inline">\(P\)</span></h2>
+<p>To create a permutation matrix <span class="math inline">\(P\)</span> that exchanges the second and fourth rows when multiplied on the left, start with the <span class="math inline">\(4 \times 4\)</span> identity matrix <span class="math inline">\(I_4\)</span> and swap its second and fourth rows.</p>
+<p><strong>Identity Matrix <span class="math inline">\(I_4\)</span>:</strong></p>
+<p><span class="math display">\[
+I_4 = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+\end{pmatrix}
+\]</span></p>
+<p><strong>Permutation Matrix <span class="math inline">\(P\)</span> (after swapping rows 2 and 4):</strong></p>
+<p><span class="math display">\[
+P = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{pmatrix}
+\]</span></p>
+<p>When <span class="math inline">\(P\)</span> multiplies any <span class="math inline">\(4 \times n\)</span> matrix <span class="math inline">\(A\)</span> on the left (<span class="math inline">\(PA\)</span>), it exchanges the second and fourth rows of <span class="math inline">\(A\)</span>.</p>
 </section>
-<section id="week-3" class="level2">
-<h2 class="anchored" data-anchor-id="week-3">Week 3</h2>
-<ul>
-<li><a href="./w03/c0-p2.html">(C0-P2)</a></li>
-<li><a href="./w03/exercise3-2-2.html">(C3-P4) Exercise 3.2.2</a></li>
-<li><a href="#">(C3-P5) Exercise 3.2.5</a></li>
-<li><a href="#">(C3-P6) Exercise 3.2.6</a></li>
-<li><a href="#">(C3-P7) Computer Problem 3.1.3</a></li>
-<li><a href="#">(C3-P8) Exercise 3.3.1ac</a></li>
-<li><a href="#">(C3-P9) Exercise 3.3.2ac</a></li>
-<li><a href="./w03/exercise3-3-3.html">(C3-P10) Exercise 3.3.3</a></li>
-</ul>
-</section>
-<section id="week-4" class="level2">
-<h2 class="anchored" data-anchor-id="week-4">Week 4</h2>
-<ul>
-<li><a href="./w04/exercise5-2-1a.html">(C5-P1) Exercise 5.2.1a</a></li>
-<li><a href="./w04/exercise5-2-b.html">(C5-P1) Exercise 5.2.1b</a></li>
-<li><a href="#">(C5-P2) Exercise 5.2.2ab</a></li>
-<li><a href="#">(C5-P3) Exercise 5.2.3ab</a></li>
-<li><a href="#">(C5-P4) Exercise 5.2.10</a></li>
-<li><a href="#">(C5-P5) Exercise 5.2.12</a></li>
-<li><a href="#">(C5-P6) Computer Problem 5.2.1ac</a><br>
-</li>
-<li><a href="#">(C5-P7) Computer Problem 5.2.2de</a></li>
-<li><a href="#">(C5-P8) Computer Problem 5.2.9bf</a></li>
-</ul>
-</section>
-<section id="week-5" class="level2">
-<h2 class="anchored" data-anchor-id="week-5">Week 5</h2>
-<ul>
-<li><a href="#">(C5-P9) Exercise 5.5.1ab</a></li>
-<li><a href="#">(C5-P10) Exercise 5.5.4cd</a><br>
-</li>
-<li><a href="#">(C5-P11) Computer Problem 5.4.1acd</a><br>
-</li>
-<li><a href="#">(C5-P12) Computer Problem 5.4.2</a><br>
-</li>
-<li><a href="#">(C5-P13) Computer Problem 5.4.3acd</a></li>
-<li><a href="#">(C5-P14) Exercise 5.5.5cd</a></li>
-<li><a href="#">(C5-P15) Exercise 5.5.7</a></li>
-</ul>
-</section>
-<section id="week-6" class="level2">
-<h2 class="anchored" data-anchor-id="week-6">Week 6</h2>
-<ul>
-<li><a href="#">(C2-P1) Exercise 2.1.2ac</a></li>
-<li><a href="#">(C2-P2) Computer Problem 2.1.2ac</a></li>
-<li><a href="#">(C2-P3) Exercise 2.2.1ab</a></li>
-<li><a href="#">(C2-P4) Exercise 2.2.2ab</a></li>
-</ul>
-</section>
-<section id="week-7" class="level2">
-<h2 class="anchored" data-anchor-id="week-7">Week 7</h2>
-<ul>
-<li><a href="#">(C2-P5) Exercise 2.2.4</a><br>
-</li>
-<li><a href="#">(C2-P6) Computer Problem 2.2.1ab</a><br>
-</li>
-<li><a href="#">(C2-P7) Exercise 2.4.1ab</a><br>
-</li>
-<li><a href="#">(C2-P8) Exercise 2.4.2ab</a><br>
-</li>
-<li><a href="./w07/exercise2-4-4a.html">(C2-P9) Exercise 2.4.4a</a><br>
-</li>
-<li><a href="./w07/exercise2-4-6.html">(C2-P10) Exercise 2.4.6</a></li>
-</ul>
-</section>
-<section id="week-8" class="level2">
-<h2 class="anchored" data-anchor-id="week-8">Week 8</h2>
-<ul>
-<li><a href="#">(C2-P11) Exercise 2.5.2ab</a><br>
-</li>
-<li><a href="#">(C2-P12) Computer Problem 2.5.2 (solve using both Jacobi and Gauss-Seidel, compare results)</a><br>
-</li>
-<li><a href="#">(C4-P1) Exercise 4.1.2</a><br>
-</li>
-<li><a href="#">(C4-P2) Computer Problem 4.1.5 (also use a quadratic fit and compare)</a><br>
-</li>
-<li><a href="#">(C4-P3) Exercise 4.3.2</a></li>
-</ul>
-</section>
-<section id="week-9" class="level2">
-<h2 class="anchored" data-anchor-id="week-9">Week 9</h2>
-<ul>
-<li><a href="#">(C4-P4) Exercise 4.3.4 (use the matrix from Exercise 4.3.1d)</a><br>
-</li>
-<li><a href="#">(C4-P5) Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)</a><br>
-</li>
-<li><a href="#">(C4-P6) Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does).</a></li>
-</ul>
-</section>
-<section id="week-10" class="level2">
-<h2 class="anchored" data-anchor-id="week-10">Week 10</h2>
-<ul>
-<li><a href="#">(C4-P7) Exercise 4.4.2</a><br>
-</li>
-<li><a href="#">(C4-P8) Exercise 4.4.3</a><br>
-</li>
-<li><a href="#">(C4-P9) Computer Problem 4.4.2 (find a preconditioned GMRES Python code and use it)</a></li>
-</ul>
-</section>
-<section id="week-11" class="level2">
-<h2 class="anchored" data-anchor-id="week-11">Week 11</h2>
-<p>None</p>
-</section>
-<section id="week-12" class="level2">
-<h2 class="anchored" data-anchor-id="week-12">Week 12</h2>
-<ul>
-<li><a href="#">(C10-P1) Exercise 10.1.1ad (also, find the inverse DFT of your result, compare to the original vector)</a><br>
-</li>
-<li><a href="#">(C10-P2) Exercise 10.1.8</a><br>
-</li>
-<li><a href="#">(C10-P3) Exercise 10.2.1ab</a><br>
-</li>
-<li><a href="#">(C10-P4) Exercise 10.2.3ab</a><br>
-</li>
-<li><a href="#">(C10-P5) Exercise 10.2.3 (plot data and function to show your interpolating function does interpolate the data)</a><br>
-</li>
-<li><a href="#">(C10-P6) Computer Problem 10.2.4</a><br>
-</li>
-<li><a href="#">(C10-P7) Exercise 10.3.2ab</a></li>
-</ul>
-</section>
-<section id="week-13" class="level2">
-<h2 class="anchored" data-anchor-id="week-13">Week 13</h2>
-<ul>
-<li><a href="#">(C10-P8) Computer Problem 10.3.2cd</a><br>
-</li>
-<li><a href="#">(C10-P9) Exercise 10.3.5 (Complete the ( _{j=0}^{n-1} ) result only)</a><br>
-</li>
-<li><a href="#">(C10-P10) Exercise 10.1.6</a></li>
-</ul>
+<section id="b-effect-of-multiplying-on-the-right-by-p" class="level2">
+<h2 class="anchored" data-anchor-id="b-effect-of-multiplying-on-the-right-by-p">(b) Effect of Multiplying on the Right by <span class="math inline">\(P\)</span></h2>
+<p>Multiplying a matrix on the right by <span class="math inline">\(P\)</span> rearranges its <strong>columns</strong> (instead of rows) according to the pattern defined by <span class="math inline">\(P\)</span>. In this case, it specifically swaps the matrix’s second and fourth <strong>columns</strong>.</p>
+<p><strong>Demonstration with an Example:</strong></p>
+<p>Let’s consider a <span class="math inline">\(4 \times 4\)</span> matrix <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[
+A = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\
+a_{21} &amp; a_{22} &amp; a_{23} &amp; a_{24} \\
+a_{31} &amp; a_{32} &amp; a_{33} &amp; a_{34} \\
+a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44} \\
+\end{pmatrix}
+\]</span></p>
+<p><strong>Compute <span class="math inline">\(AP\)</span>:</strong></p>
+<p><span class="math display">\[
+AP = A \times P = A \times \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{pmatrix}
+\]</span></p>
+<p><strong>Resulting Matrix <span class="math inline">\(AP\)</span>:</strong></p>
+<p><span class="math display">\[
+AP = \begin{pmatrix}
+a_{11} &amp; a_{14} &amp; a_{13} &amp; a_{12} \\
+a_{21} &amp; a_{24} &amp; a_{23} &amp; a_{22} \\
+a_{31} &amp; a_{34} &amp; a_{33} &amp; a_{32} \\
+a_{41} &amp; a_{44} &amp; a_{43} &amp; a_{42} \\
+\end{pmatrix}
+\]</span></p>
+<p><strong>Numerical Example:</strong></p>
+<p><span class="math display">\[
+A = \begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 \\
+5 &amp; 6 &amp; 7 &amp; 8 \\
+9 &amp; 10 &amp; 11 &amp; 12 \\
+13 &amp; 14 &amp; 15 &amp; 16 \\
+\end{pmatrix}
+\]</span></p>
+<p><strong>Compute <span class="math inline">\(AP\)</span>:</strong></p>
+<p><span class="math display">\[
+AP = A \times \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{pmatrix} = \begin{pmatrix}
+1 &amp; 4 &amp; 3 &amp; 2 \\
+5 &amp; 8 &amp; 7 &amp; 6 \\
+9 &amp; 12 &amp; 11 &amp; 10 \\
+13 &amp; 16 &amp; 15 &amp; 14 \\
+\end{pmatrix}
+\]</span></p>
+<p><strong>Final Answer</strong></p>
+<p><strong>(a)</strong> The <span class="math inline">\(4 \times 4\)</span> permutation matrix <span class="math inline">\(P\)</span> that exchanges the second and fourth rows when multiplied on the left is:</p>
+<p><span class="math display">\[
+P = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+\end{pmatrix}
+\]</span></p>
+<p><strong>(b)</strong> Multiplying on the right by <span class="math inline">\(P\)</span> exchanges the second and fourth columns of a matrix. For example, for the matrix:</p>
+<p><span class="math display">\[
+A = \begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 \\
+5 &amp; 6 &amp; 7 &amp; 8 \\
+9 &amp; 10 &amp; 11 &amp; 12 \\
+13 &amp; 14 &amp; 15 &amp; 16 \\
+\end{pmatrix}
+\]</span></p>
+<p>Multiplying on the right by <span class="math inline">\(P\)</span> yields:</p>
+<p><span class="math display">\[
+AP = \begin{pmatrix}
+1 &amp; 4 &amp; 3 &amp; 2 \\
+5 &amp; 8 &amp; 7 &amp; 6 \\
+9 &amp; 12 &amp; 11 &amp; 10 \\
+13 &amp; 16 &amp; 15 &amp; 14 \\
+\end{pmatrix}
+\]</span></p>
+<p>which is <span class="math inline">\(A\)</span> with its second and fourth columns exchanged.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
