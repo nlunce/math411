@@ -28,7 +28,7 @@ $$
     L_{21} = \dfrac{a_{21}}{a_{11}} = \dfrac{4}{4} = 1
     $$
     $$
-    \text{Row 2} \leftarrow \text{Row 2} - L_{21} \times \text{Row 1}
+    \text{Row 2} \rightarrow \text{Row 2} - L_{21} \times \text{Row 1}
     $$
     $$
     \begin{pmatrix} 4 & 2 & 0 \\ 0 & 2 & 2 \\ 2 & 2 & 3 \end{pmatrix}
@@ -39,7 +39,7 @@ $$
     L_{31} = \dfrac{a_{31}}{a_{11}} = \dfrac{2}{4} = \dfrac{1}{2}
     $$
     $$
-    \text{Row 3} \leftarrow \text{Row 3} - L_{31} \times \text{Row 1}
+    \text{Row 3} \rightarrow \text{Row 3} - L_{31} \times \text{Row 1}
     $$
     $$
     \begin{pmatrix} 4 & 2 & 0 \\ 0 & 2 & 2 \\ 0 & 1 & 3 \end{pmatrix}
@@ -56,7 +56,7 @@ $$
     L_{32} = \dfrac{U_{32}}{U_{22}} = \dfrac{1}{2}
     $$
     $$
-    \text{Row 3} \leftarrow \text{Row 3} - L_{32} \times \text{Row 2}
+    \text{Row 3} \rightarrow \text{Row 3} - L_{32} \times \text{Row 2}
     $$
     $$
     \begin{pmatrix} 4 & 2 & 0 \\ 0 & 2 & 2 \\ 0 & 0 & 2 \end{pmatrix}
