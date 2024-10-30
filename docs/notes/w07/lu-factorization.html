@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nathan Lunceford">
 
-<title>Runge Phenomenon – MATH411</title>
+<title>LU Factorization – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -181,15 +147,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#definition-and-decomposition" id="toc-definition-and-decomposition" class="nav-link" data-scroll-target="#definition-and-decomposition">Definition and Decomposition</a></li>
+  <li><a href="#conditions-for-lu-factorization" id="toc-conditions-for-lu-factorization" class="nav-link" data-scroll-target="#conditions-for-lu-factorization">Conditions for LU Factorization</a></li>
+  <li><a href="#factorization-process" id="toc-factorization-process" class="nav-link" data-scroll-target="#factorization-process">Factorization Process</a>
   <ul class="collapse">
-  <li><a href="#the-issue-with-high-degree-polynomials" id="toc-the-issue-with-high-degree-polynomials" class="nav-link" data-scroll-target="#the-issue-with-high-degree-polynomials">The Issue with High-Degree Polynomials</a></li>
-  <li><a href="#runges-example" id="toc-runges-example" class="nav-link" data-scroll-target="#runges-example">Runge’s Example</a></li>
-  <li><a href="#why-does-it-happen" id="toc-why-does-it-happen" class="nav-link" data-scroll-target="#why-does-it-happen">Why Does It Happen?</a></li>
-  <li><a href="#graphical-representation" id="toc-graphical-representation" class="nav-link" data-scroll-target="#graphical-representation">Graphical Representation</a></li>
-  <li><a href="#chebyshev-nodes-as-a-solution" id="toc-chebyshev-nodes-as-a-solution" class="nav-link" data-scroll-target="#chebyshev-nodes-as-a-solution">Chebyshev Nodes as a Solution</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   </ul></li>
+  <li><a href="#solving-systems-with-lu-factorization" id="toc-solving-systems-with-lu-factorization" class="nav-link" data-scroll-target="#solving-systems-with-lu-factorization">Solving Systems with LU Factorization</a>
+  <ul class="collapse">
+  <li><a href="#efficiency" id="toc-efficiency" class="nav-link" data-scroll-target="#efficiency">Efficiency</a></li>
+  </ul></li>
+  <li><a href="#pivoting-and-permutation" id="toc-pivoting-and-permutation" class="nav-link" data-scroll-target="#pivoting-and-permutation">Pivoting and Permutation</a></li>
+  <li><a href="#advantages-of-lu-factorization" id="toc-advantages-of-lu-factorization" class="nav-link" data-scroll-target="#advantages-of-lu-factorization">Advantages of LU Factorization</a></li>
+  <li><a href="#applications-of-lu-factorization" id="toc-applications-of-lu-factorization" class="nav-link" data-scroll-target="#applications-of-lu-factorization">Applications of LU Factorization</a></li>
+  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem">Example Problem</a>
+  <ul class="collapse">
+  <li><a href="#solution-steps" id="toc-solution-steps" class="nav-link" data-scroll-target="#solution-steps">Solution Steps</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -198,7 +174,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Runge Phenomenon</h1>
+<h1 class="title">LU Factorization</h1>
 </div>
 
 
@@ -223,76 +199,108 @@ window.Quarto = {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The <strong>Runge Phenomenon</strong> refers to the oscillatory behavior that occurs when using high-degree polynomial interpolation on evenly spaced data points, particularly near the endpoints of an interval. The phenomenon is named after Carl Runge, who discovered this issue while studying interpolation of functions with large oscillations near the boundaries of an interval.</p>
-<section id="the-issue-with-high-degree-polynomials" class="level3">
-<h3 class="anchored" data-anchor-id="the-issue-with-high-degree-polynomials">The Issue with High-Degree Polynomials</h3>
-<p>When interpolating a smooth function using polynomials of high degree, the interpolation can become highly oscillatory near the edges of the interval, even if the function being interpolated is smooth and well-behaved. This is particularly problematic with <strong>equally spaced points</strong>, as the polynomial tries to fit too closely to the data points near the boundaries, leading to large errors.</p>
+<p>LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix <span class="math inline">\(A\)</span> into the product of a lower triangular matrix <span class="math inline">\(L\)</span> and an upper triangular matrix <span class="math inline">\(U\)</span>. This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices. This note explores LU Factorization’s definition, properties, computation, and applications.</p>
 </section>
-<section id="runges-example" class="level3">
-<h3 class="anchored" data-anchor-id="runges-example">Runge’s Example</h3>
-<p>The most famous example illustrating the Runge phenomenon is based on the <strong>Runge function</strong>:</p>
+<section id="definition-and-decomposition" class="level2">
+<h2 class="anchored" data-anchor-id="definition-and-decomposition">Definition and Decomposition</h2>
+<p>For a square matrix <span class="math inline">\(A\)</span>, LU Factorization is given by:</p>
 <p><span class="math display">\[
-f(x) = \frac{1}{1 + 25x^2}
+A = LU
 \]</span></p>
-<p>Runge showed that using high-degree polynomial interpolation on this function with evenly spaced points over the interval <span class="math inline">\([-5, 5]\)</span> leads to significant oscillations near the edges. The interpolation error grows as the degree of the polynomial increases, especially near the endpoints of the interval.</p>
-</section>
-<section id="why-does-it-happen" class="level3">
-<h3 class="anchored" data-anchor-id="why-does-it-happen">Why Does It Happen?</h3>
-<p>The Runge phenomenon arises because high-degree polynomials tend to oscillate more as their degree increases, especially when they are forced to pass through many points. With equally spaced points, the interpolation error is concentrated near the edges of the interval, causing large deviations from the true function in those regions.</p>
-<p>Mathematically, for a function <span class="math inline">\(f(x)\)</span> interpolated at <span class="math inline">\(n\)</span> evenly spaced points using a polynomial <span class="math inline">\(P_n(x)\)</span> of degree <span class="math inline">\(n-1\)</span>, the interpolation error is given by:</p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(L\)</span> is a lower triangular matrix with ones on the diagonal.</li>
+<li><span class="math inline">\(U\)</span> is an upper triangular matrix.</li>
+</ul>
+<p>If <span class="math inline">\(A\)</span> cannot be decomposed directly, <strong>partial pivoting</strong> may be applied, resulting in:</p>
 <p><span class="math display">\[
-|f(x) - P_n(x)| = \frac{|f^{(n)}(c)|}{n!} \prod_{i=1}^{n}(x - x_i)
+PA = LU
 \]</span></p>
-<p>As the number of interpolation points <span class="math inline">\(n\)</span> increases, the product term <span class="math inline">\(\prod_{i=1}^{n}(x - x_i)\)</span> becomes very large near the endpoints of the interval, causing the interpolation error to increase dramatically.</p>
+<p>where <span class="math inline">\(P\)</span> is a permutation matrix that records row exchanges.</p>
 </section>
-<section id="graphical-representation" class="level3">
-<h3 class="anchored" data-anchor-id="graphical-representation">Graphical Representation</h3>
-<p>The following figure illustrates the Runge phenomenon. For the Runge function <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span>, the polynomial interpolation for large <span class="math inline">\(n\)</span> shows excessive oscillations near the interval boundaries:</p>
-<div id="8e526283" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> runge_function(x):</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">25</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the x values</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the original Runge function</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.plot(x_values, runge_function(x_values), label<span class="op">=</span><span class="st">"Runge Function"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show interpolation for degree 5 and degree 10 polynomials</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Runge Phenomenon"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"f(x)"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="runge-phenomenon_files/figure-html/cell-2-output-1.png" width="663" height="523" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="conditions-for-lu-factorization" class="level2">
+<h2 class="anchored" data-anchor-id="conditions-for-lu-factorization">Conditions for LU Factorization</h2>
+<p>LU Factorization is valid when: 1. <strong>Matrix is Square</strong>: <span class="math inline">\(A\)</span> must be a square matrix. 2. <strong>Non-Singular Leading Submatrices</strong>: Each leading principal submatrix (upper-left submatrix) of <span class="math inline">\(A\)</span> must be non-singular.</p>
+<p>When these conditions are not met, row pivoting enables decomposition.</p>
 </section>
-<section id="chebyshev-nodes-as-a-solution" class="level3">
-<h3 class="anchored" data-anchor-id="chebyshev-nodes-as-a-solution">Chebyshev Nodes as a Solution</h3>
-<p>The <strong>Runge phenomenon</strong> can be mitigated by using <strong>Chebyshev nodes</strong> instead of equally spaced points. Chebyshev nodes distribute the points more densely near the edges of the interval, where the oscillations are most likely to occur. This results in more accurate interpolation with less oscillation near the boundaries.</p>
-<p>Chebyshev nodes <span class="math inline">\(x_i\)</span> for <span class="math inline">\(n\)</span> interpolation points on the interval <span class="math inline">\([-1, 1]\)</span> are given by:</p>
+<section id="factorization-process" class="level2">
+<h2 class="anchored" data-anchor-id="factorization-process">Factorization Process</h2>
+<p>To factorize <span class="math inline">\(A\)</span> into <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span>: 1. <strong>Eliminate Elements</strong>: Perform row operations to create zeros below the main diagonal of <span class="math inline">\(U\)</span>. 2. <strong>Store Multipliers</strong>: Record the multipliers in <span class="math inline">\(L\)</span>.</p>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>Given a <span class="math inline">\(3 \times 3\)</span> matrix:</p>
 <p><span class="math display">\[
-x_i = \cos\left(\frac{(2i - 1)\pi}{2n}\right)
+A = \begin{pmatrix} 2 &amp; 3 &amp; 1 \\ 4 &amp; 7 &amp; -1 \\ -2 &amp; 3 &amp; 5 \end{pmatrix}
 \]</span></p>
-<p>Using Chebyshev interpolation reduces the risk of large oscillations near the endpoints, providing a more stable approximation.</p>
+<ol type="1">
+<li>Transform <span class="math inline">\(A\)</span> into <span class="math inline">\(U\)</span> using row operations.</li>
+<li>Record elimination factors in <span class="math inline">\(L\)</span>.</li>
+<li>The result satisfies <span class="math inline">\(A = LU\)</span>.</li>
+</ol>
 </section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>The <strong>Runge phenomenon</strong> highlights the dangers of using high-degree polynomials for interpolation with evenly spaced points. To avoid this issue, it is recommended to use <strong>Chebyshev interpolation</strong> or lower-degree polynomial interpolation in smaller intervals (piecewise interpolation).</p>
+</section>
+<section id="solving-systems-with-lu-factorization" class="level2">
+<h2 class="anchored" data-anchor-id="solving-systems-with-lu-factorization">Solving Systems with LU Factorization</h2>
+<p>LU Factorization allows us to solve <span class="math inline">\(Ax = b\)</span> by breaking it down into two simpler systems:</p>
+<ol type="1">
+<li><strong>Solve <span class="math inline">\(Ly = b\)</span></strong>: Use forward substitution, as <span class="math inline">\(L\)</span> is lower triangular.</li>
+<li><strong>Solve <span class="math inline">\(Ux = y\)</span></strong>: Use back substitution with <span class="math inline">\(U\)</span> as an upper triangular matrix.</li>
+</ol>
+<section id="efficiency" class="level3">
+<h3 class="anchored" data-anchor-id="efficiency">Efficiency</h3>
+<p>This approach reduces computation time, especially when solving multiple systems with the same <span class="math inline">\(A\)</span> but different <span class="math inline">\(b\)</span> vectors, as the factorization needs to be computed only once.</p>
+</section>
+</section>
+<section id="pivoting-and-permutation" class="level2">
+<h2 class="anchored" data-anchor-id="pivoting-and-permutation">Pivoting and Permutation</h2>
+<p>In cases where <span class="math inline">\(A\)</span> has zeros or small values on the diagonal, <strong>partial pivoting</strong> improves numerical stability by reordering rows to place a larger element on the diagonal:</p>
+<p><span class="math display">\[
+PA = LU
+\]</span></p>
+<p>where <span class="math inline">\(P\)</span> is a permutation matrix that tracks row exchanges.</p>
+</section>
+<section id="advantages-of-lu-factorization" class="level2">
+<h2 class="anchored" data-anchor-id="advantages-of-lu-factorization">Advantages of LU Factorization</h2>
+<ul>
+<li><strong>Efficient Linear System Solving</strong>: Faster than Gaussian elimination for repeated systems.</li>
+<li><strong>Determinant Computation</strong>: The determinant of <span class="math inline">\(A\)</span> is the product of the diagonal elements of <span class="math inline">\(U\)</span>.</li>
+<li><strong>Matrix Inversion</strong>: LU Factorization simplifies inversion by inverting <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span> separately.</li>
+</ul>
+</section>
+<section id="applications-of-lu-factorization" class="level2">
+<h2 class="anchored" data-anchor-id="applications-of-lu-factorization">Applications of LU Factorization</h2>
+<p>LU Factorization is widely used across various fields due to its computational efficiency:</p>
+<ul>
+<li><strong>Numerical Linear Algebra</strong>: Fundamental for solving linear systems.</li>
+<li><strong>Optimization</strong>: Integral in algorithms that rely on matrix decompositions.</li>
+<li><strong>Computer Graphics</strong>: Enables transformations and projections.</li>
+<li><strong>Scientific Computing</strong>: Common in simulations and solving differential equations.</li>
+</ul>
+</section>
+<section id="example-problem" class="level2">
+<h2 class="anchored" data-anchor-id="example-problem">Example Problem</h2>
+<p><strong>Problem:</strong> For the matrix</p>
+<p><span class="math display">\[
+A = \begin{pmatrix} 3 &amp; -7 &amp; -2 \\ -3 &amp; 5 &amp; 1 \\ 6 &amp; -4 &amp; 0 \end{pmatrix}
+\]</span></p>
+<ol type="1">
+<li><strong>Factorize <span class="math inline">\(A\)</span> into <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span></strong>.</li>
+<li><strong>Solve <span class="math inline">\(Ax = b\)</span></strong> for <span class="math inline">\(b = \begin{pmatrix} 5 \\ -1 \\ 3 \end{pmatrix}\)</span>.</li>
+</ol>
+<section id="solution-steps" class="level3">
+<h3 class="anchored" data-anchor-id="solution-steps">Solution Steps</h3>
+<ol type="1">
+<li>Perform row operations to decompose <span class="math inline">\(A\)</span> into <span class="math inline">\(L\)</span> and <span class="math inline">\(U\)</span>.</li>
+<li>Solve <span class="math inline">\(Ly = b\)</span> via forward substitution.</li>
+<li>Solve <span class="math inline">\(Ux = y\)</span> via back substitution.</li>
+</ol>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>LU Factorization is an essential tool in linear algebra, providing a simplified method to solve linear systems efficiently. By breaking matrices into triangular forms, it reduces computational complexity and lays the groundwork for more advanced numerical techniques.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

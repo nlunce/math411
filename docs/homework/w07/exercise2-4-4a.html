@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nathan Lunceford">
 
-<title>Runge Phenomenon – MATH411</title>
+<title>Exercise 2.4.4a (C2-P9) – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -181,14 +147,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem</strong></a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a>
   <ul class="collapse">
-  <li><a href="#the-issue-with-high-degree-polynomials" id="toc-the-issue-with-high-degree-polynomials" class="nav-link" data-scroll-target="#the-issue-with-high-degree-polynomials">The Issue with High-Degree Polynomials</a></li>
-  <li><a href="#runges-example" id="toc-runges-example" class="nav-link" data-scroll-target="#runges-example">Runge’s Example</a></li>
-  <li><a href="#why-does-it-happen" id="toc-why-does-it-happen" class="nav-link" data-scroll-target="#why-does-it-happen">Why Does It Happen?</a></li>
-  <li><a href="#graphical-representation" id="toc-graphical-representation" class="nav-link" data-scroll-target="#graphical-representation">Graphical Representation</a></li>
-  <li><a href="#chebyshev-nodes-as-a-solution" id="toc-chebyshev-nodes-as-a-solution" class="nav-link" data-scroll-target="#chebyshev-nodes-as-a-solution">Chebyshev Nodes as a Solution</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#lu-factorization-with-partial-pivoting" id="toc-lu-factorization-with-partial-pivoting" class="nav-link" data-scroll-target="#lu-factorization-with-partial-pivoting">LU Factorization with Partial Pivoting</a></li>
+  <li><a href="#forward-substitution-solve-ly-b" id="toc-forward-substitution-solve-ly-b" class="nav-link" data-scroll-target="#forward-substitution-solve-ly-b">Forward Substitution: Solve <span class="math inline">\(Ly = b\)</span></a></li>
+  <li><a href="#back-substitution-solve-ux-y" id="toc-back-substitution-solve-ux-y" class="nav-link" data-scroll-target="#back-substitution-solve-ux-y">Back Substitution: Solve <span class="math inline">\(Ux = y\)</span></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -198,7 +162,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Runge Phenomenon</h1>
+<h1 class="title">Exercise 2.4.4a (C2-P9)</h1>
 </div>
 
 
@@ -221,75 +185,117 @@ window.Quarto = {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The <strong>Runge Phenomenon</strong> refers to the oscillatory behavior that occurs when using high-degree polynomial interpolation on evenly spaced data points, particularly near the endpoints of an interval. The phenomenon is named after Carl Runge, who discovered this issue while studying interpolation of functions with large oscillations near the boundaries of an interval.</p>
-<section id="the-issue-with-high-degree-polynomials" class="level3">
-<h3 class="anchored" data-anchor-id="the-issue-with-high-degree-polynomials">The Issue with High-Degree Polynomials</h3>
-<p>When interpolating a smooth function using polynomials of high degree, the interpolation can become highly oscillatory near the edges of the interval, even if the function being interpolated is smooth and well-behaved. This is particularly problematic with <strong>equally spaced points</strong>, as the polynomial tries to fit too closely to the data points near the boundaries, leading to large errors.</p>
-</section>
-<section id="runges-example" class="level3">
-<h3 class="anchored" data-anchor-id="runges-example">Runge’s Example</h3>
-<p>The most famous example illustrating the Runge phenomenon is based on the <strong>Runge function</strong>:</p>
+<section id="problem" class="level1">
+<h1><strong>Problem</strong></h1>
+<p>Solve the system by finding the <span class="math inline">\(PA = LU\)</span> factorization and then carrying out the two-step back substitution:</p>
 <p><span class="math display">\[
-f(x) = \frac{1}{1 + 25x^2}
+\begin{pmatrix} 4 &amp; 2 &amp; 0 \\ 4 &amp; 4 &amp; 2 \\ 2 &amp; 2 &amp; 3 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \\ 6 \end{pmatrix}
 \]</span></p>
-<p>Runge showed that using high-degree polynomial interpolation on this function with evenly spaced points over the interval <span class="math inline">\([-5, 5]\)</span> leads to significant oscillations near the edges. The interpolation error grows as the degree of the polynomial increases, especially near the endpoints of the interval.</p>
 </section>
-<section id="why-does-it-happen" class="level3">
-<h3 class="anchored" data-anchor-id="why-does-it-happen">Why Does It Happen?</h3>
-<p>The Runge phenomenon arises because high-degree polynomials tend to oscillate more as their degree increases, especially when they are forced to pass through many points. With equally spaced points, the interpolation error is concentrated near the edges of the interval, causing large deviations from the true function in those regions.</p>
-<p>Mathematically, for a function <span class="math inline">\(f(x)\)</span> interpolated at <span class="math inline">\(n\)</span> evenly spaced points using a polynomial <span class="math inline">\(P_n(x)\)</span> of degree <span class="math inline">\(n-1\)</span>, the interpolation error is given by:</p>
+<section id="solution" class="level1">
+<h1><strong>Solution</strong></h1>
+<section id="lu-factorization-with-partial-pivoting" class="level2">
+<h2 class="anchored" data-anchor-id="lu-factorization-with-partial-pivoting">LU Factorization with Partial Pivoting</h2>
+<p><strong>Step 1: First Column</strong></p>
+<ul>
+<li><p><strong>Pivot Selection</strong>: Both <span class="math inline">\(a_{11} = 4\)</span> and <span class="math inline">\(a_{21} = 4\)</span> are tied for the largest absolute value. Choose <span class="math inline">\(a_{11}\)</span> as the pivot (no row swap needed).</p></li>
+<li><p><strong>Compute Multipliers and Eliminate Below Pivot</strong>:</p>
+<ul>
+<li><p><strong>Row 2</strong>: <span class="math display">\[
+L_{21} = \dfrac{a_{21}}{a_{11}} = \dfrac{4}{4} = 1
+\]</span> <span class="math display">\[
+\text{Row 2} \leftarrow \text{Row 2} - L_{21} \times \text{Row 1}
+\]</span> <span class="math display">\[
+\begin{pmatrix} 4 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 2 \\ 2 &amp; 2 &amp; 3 \end{pmatrix}
+\]</span></p></li>
+<li><p><strong>Row 3</strong>: <span class="math display">\[
+L_{31} = \dfrac{a_{31}}{a_{11}} = \dfrac{2}{4} = \dfrac{1}{2}
+\]</span> <span class="math display">\[
+\text{Row 3} \leftarrow \text{Row 3} - L_{31} \times \text{Row 1}
+\]</span> <span class="math display">\[
+\begin{pmatrix} 4 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 2 \\ 0 &amp; 1 &amp; 3 \end{pmatrix}
+\]</span></p></li>
+</ul></li>
+</ul>
+<p><strong>Step 2: Second Column</strong></p>
+<ul>
+<li><p><strong>Pivot Selection</strong>: <span class="math inline">\(U_{22} = 2\)</span> is the largest absolute value below the pivot (no row swap needed).</p></li>
+<li><p><strong>Compute Multiplier and Eliminate Below Pivot</strong>:</p>
+<ul>
+<li><strong>Row 3</strong>: <span class="math display">\[
+L_{32} = \dfrac{U_{32}}{U_{22}} = \dfrac{1}{2}
+\]</span> <span class="math display">\[
+\text{Row 3} \leftarrow \text{Row 3} - L_{32} \times \text{Row 2}
+\]</span> <span class="math display">\[
+\begin{pmatrix} 4 &amp; 2 &amp; 0 \\ 0 &amp; 2 &amp; 2 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}
+\]</span></li>
+</ul></li>
+</ul>
+<p><strong>Resulting Matrices</strong></p>
+<ul>
+<li><p><strong>Lower Triangular Matrix <span class="math inline">\(L\)</span></strong>: <span class="math display">\[
+L = \begin{pmatrix}
+1 &amp; 0 &amp; 0 \\
+1 &amp; 1 &amp; 0 \\
+\dfrac{1}{2} &amp; \dfrac{1}{2} &amp; 1
+\end{pmatrix}
+\]</span></p></li>
+<li><p><strong>Upper Triangular Matrix <span class="math inline">\(U\)</span></strong>: <span class="math display">\[
+U = \begin{pmatrix}
+4 &amp; 2 &amp; 0 \\
+0 &amp; 2 &amp; 2 \\
+0 &amp; 0 &amp; 2
+\end{pmatrix}
+\]</span></p></li>
+<li><p><strong>Permutation Matrix <span class="math inline">\(P\)</span></strong>: <span class="math display">\[
+P = I \quad (\text{identity matrix, since no row swaps were performed})
+\]</span></p></li>
+</ul>
+</section>
+<section id="forward-substitution-solve-ly-b" class="level2">
+<h2 class="anchored" data-anchor-id="forward-substitution-solve-ly-b">Forward Substitution: Solve <span class="math inline">\(Ly = b\)</span></h2>
 <p><span class="math display">\[
-|f(x) - P_n(x)| = \frac{|f^{(n)}(c)|}{n!} \prod_{i=1}^{n}(x - x_i)
+L \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \\ 6 \end{pmatrix}
 \]</span></p>
-<p>As the number of interpolation points <span class="math inline">\(n\)</span> increases, the product term <span class="math inline">\(\prod_{i=1}^{n}(x - x_i)\)</span> becomes very large near the endpoints of the interval, causing the interpolation error to increase dramatically.</p>
+<ul>
+<li><p><strong>Equation 1</strong>: <span class="math display">\[
+y_1 = 2
+\]</span></p></li>
+<li><p><strong>Equation 2</strong>: <span class="math display">\[
+y_2 = b_2 - L_{21} y_1 = 4 - (1)(2) = 2
+\]</span></p></li>
+<li><p><strong>Equation 3</strong>: <span class="math display">\[
+y_3 = b_3 - L_{31} y_1 - L_{32} y_2 = 6 - \left( \dfrac{1}{2} \times 2 \right) - \left( \dfrac{1}{2} \times 2 \right) = 6 - 1 - 1 = 4
+\]</span></p></li>
+</ul>
+<p><strong>Solution</strong>: <span class="math display">\[
+y = \begin{pmatrix} 2 \\ 2 \\ 4 \end{pmatrix}
+\]</span></p>
 </section>
-<section id="graphical-representation" class="level3">
-<h3 class="anchored" data-anchor-id="graphical-representation">Graphical Representation</h3>
-<p>The following figure illustrates the Runge phenomenon. For the Runge function <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span>, the polynomial interpolation for large <span class="math inline">\(n\)</span> shows excessive oscillations near the interval boundaries:</p>
-<div id="8e526283" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> runge_function(x):</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">25</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the x values</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the original Runge function</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.plot(x_values, runge_function(x_values), label<span class="op">=</span><span class="st">"Runge Function"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show interpolation for degree 5 and degree 10 polynomials</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Runge Phenomenon"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"f(x)"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="runge-phenomenon_files/figure-html/cell-2-output-1.png" width="663" height="523" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="chebyshev-nodes-as-a-solution" class="level3">
-<h3 class="anchored" data-anchor-id="chebyshev-nodes-as-a-solution">Chebyshev Nodes as a Solution</h3>
-<p>The <strong>Runge phenomenon</strong> can be mitigated by using <strong>Chebyshev nodes</strong> instead of equally spaced points. Chebyshev nodes distribute the points more densely near the edges of the interval, where the oscillations are most likely to occur. This results in more accurate interpolation with less oscillation near the boundaries.</p>
-<p>Chebyshev nodes <span class="math inline">\(x_i\)</span> for <span class="math inline">\(n\)</span> interpolation points on the interval <span class="math inline">\([-1, 1]\)</span> are given by:</p>
+<section id="back-substitution-solve-ux-y" class="level2">
+<h2 class="anchored" data-anchor-id="back-substitution-solve-ux-y">Back Substitution: Solve <span class="math inline">\(Ux = y\)</span></h2>
 <p><span class="math display">\[
-x_i = \cos\left(\frac{(2i - 1)\pi}{2n}\right)
+U \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \\ 4 \end{pmatrix}
 \]</span></p>
-<p>Using Chebyshev interpolation reduces the risk of large oscillations near the endpoints, providing a more stable approximation.</p>
-</section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>The <strong>Runge phenomenon</strong> highlights the dangers of using high-degree polynomials for interpolation with evenly spaced points. To avoid this issue, it is recommended to use <strong>Chebyshev interpolation</strong> or lower-degree polynomial interpolation in smaller intervals (piecewise interpolation).</p>
+<ul>
+<li><p><strong>Equation 3</strong>: <span class="math display">\[
+2 x_3 = y_3 \implies x_3 = \dfrac{y_3}{2} = \dfrac{4}{2} = 2
+\]</span></p></li>
+<li><p><strong>Equation 2</strong>: <span class="math display">\[
+2 x_2 + 2 x_3 = y_2 \implies x_2 = \dfrac{y_2 - 2 x_3}{2} = \dfrac{2 - (2 \times 2)}{2} = \dfrac{-2}{2} = -1
+\]</span></p></li>
+<li><p><strong>Equation 1</strong>: <span class="math display">\[
+4 x_1 + 2 x_2 = y_1 \implies x_1 = \dfrac{y_1 - 2 x_2}{4} = \dfrac{2 - (2 \times -1)}{4} = \dfrac{2 + 2}{4} = \dfrac{4}{4} = 1
+\]</span></p></li>
+</ul>
+<p><strong>Solution</strong>: <span class="math display">\[
+x = \begin{pmatrix} 1 \\ -1 \\ 2 \end{pmatrix}
+\]</span></p>
+<p><strong>Final Answer</strong></p>
+<p>The solution to the system is:</p>
+<p><span class="math display">\[
+x_1 = 1, \quad x_2 = -1, \quad x_3 = 2
+\]</span></p>
 
 
 </section>

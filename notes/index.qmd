@@ -20,22 +20,13 @@ title: "Notes"
 ## Week 4
 - [Trapezoidal Rule](./w04/trapezoidal-rule.html)
 
-
-
-::: {.callout-note icon=false collapse="true"}
 ## Week 5
 
-:::
-
-::: {.callout-note icon=false collapse="true"}
 ## Week 6
 
-:::
-
-::: {.callout-note icon=false collapse="true"}
 ## Week 7
+- [LU Factorization](./w07/lu-factorization.html)
 
-:::
 
 ::: {.callout-note icon=false collapse="true"}
 ## Week 8
