@@ -12,6 +12,9 @@ project:
 website:
   title: 'MATH411'
   navbar:
+    tools:
+      - icon: github
+        href: https://github.com/nlunce/math411
     left:
       - href: ./homework/index.qmd
         text: Homework
