@@ -1,0 +1,25 @@
+project:
+  type: website
+  render:
+    - '*.qmd' # Render all .qmd files in the root directory
+    - '!exams/' # Ignore the entire exams folder
+    - '!quizzes/' # Ignore the entire quizzes folder
+    - '!book/' # Ignore the entire quizzes folder
+    - '!site_libs/' # Ignore the entire site_libs folder
+
+website:
+  title: 'MATH411'
+  navbar:
+    left:
+      - href: ./homework/index.qmd
+        text: Homework
+      - href: ./reality-checks/index.qmd
+        text: Reality Checks
+      - href: ./notes/index.qmd
+        text: Notes
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
