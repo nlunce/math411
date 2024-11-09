@@ -1,7 +1,7 @@
 ---
-title: "Exercise 3.1.1c (C3-P1)"
-subtitle: "MATH411"
-author: "Nathan Lunceford"
+title: 'Exercise 3.1.1c (C3-P1)'
+subtitle: 'MATH411'
+author: 'Nathan Lunceford'
 format:
   html:
     self-contained: true
@@ -13,13 +13,13 @@ format:
     number-sections: false
     html-math-method: katex
     code-fold: true
-    code-summary: "Show the code"
+    code-summary: 'Show the code'
     code-overflow: wrap
     code-copy: hover
     code-tools:
-        source: false
-        toggle: true
-        caption: See code
+      source: false
+      toggle: true
+      caption: See code
 ---
 
 ```{python}
@@ -45,11 +45,11 @@ We will first construct the **divided differences table** and use it to construc
 
 ### 1. Divided Difference Table
 
-| $x$  | $f[x]$ | $f[x_1, x_2]$ | $f[x_1, x_2, x_3]$ |
-|------|--------|----------------|--------------------|
-| 0    | -2     |                |                    |
-| 2    | 1      | 1.5            |                    |
-| 4    | 4      | 1.5            | 0                  |
+| $x$ | $f[x]$ | $f[x_1, x_2]$ | $f[x_1, x_2, x_3]$ |
+| --- | ------ | ------------- | ------------------ |
+| 0   | -2     |               |                    |
+| 2   | 1      | 1.5           |                    |
+| 4   | 4      | 1.5           | 0                  |
 
 ### Explanation:
 

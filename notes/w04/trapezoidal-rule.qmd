@@ -1,6 +1,6 @@
 ---
-title: "Trapezoidal Rule"
-author: "Nathan Lunceford"
+title: 'Trapezoidal Rule'
+author: 'Nathan Lunceford'
 ---
 
 # Overview
@@ -10,6 +10,7 @@ author: "Nathan Lunceford"
 The trapezoidal rule is a **numerical method** for approximating definite integrals. It works by dividing the interval of integration into sub-intervals and approximating the area under the curve as a series of **trapezoids**. This method is particularly useful for complex functions or when an analytical solution is not feasible.
 
 # General Formula
+
 ---
 
 Given the integral:
@@ -18,10 +19,10 @@ $$
 \int_a^b f(x) \, dx
 $$
 
-The trapezoidal rule estimates the integral by approximating the region under the curve with trapezoids. 
-
+The trapezoidal rule estimates the integral by approximating the region under the curve with trapezoids.
 
 # Equal Sub-Intervals (Uniform Spacing)
+
 ---
 
 When the interval $[a, b]$ is divided into $n$ **equal sub-intervals** of width:
@@ -51,9 +52,7 @@ $$
 
 This formula simplifies integration when the sub-intervals are uniformly spaced.
 
-
 ### Summation Notation for Uniform Spacing
-
 
 Alternatively, the composite trapezoidal rule for **uniform spacing** can be written as:
 
@@ -66,9 +65,8 @@ where:
 - $x_0 = a$, $x_n = b$, and $x_i = a + i \Delta x$.
 - The summation accounts for the contributions of interior points.
 
-
-
 # Unequal Sub-Intervals (Non-Uniform Spacing)
+
 ---
 
 When the sub-intervals are **not equally spaced**, the formula adjusts to account for varying widths $\Delta x_i$ between points. The **non-uniform trapezoidal rule** becomes:
@@ -82,14 +80,10 @@ where:
 - Each term computes the area of a trapezoid over the individual sub-interval $[x_{i-1}, x_i]$.
 - The width of each sub-interval is $\Delta x_i = x_i - x_{i-1}$, which may vary.
 
-
 # Comparison: Equal vs. Unequal Sub-Intervals
 
-| **Property**              | **Equal Sub-Intervals**                                | **Unequal Sub-Intervals**                           |
-|---------------------------|-------------------------------------------------------|---------------------------------------------------|
-| **Width of Sub-Intervals** | $\Delta x = \frac{b - a}{n}$ (constant)            | $\Delta x_i = x_i - x_{i-1}$ (varies)         |
+| **Property**               | **Equal Sub-Intervals**                                                   | **Unequal Sub-Intervals**                                      |
+| -------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| **Width of Sub-Intervals** | $\Delta x = \frac{b - a}{n}$ (constant)                                   | $\Delta x_i = x_i - x_{i-1}$ (varies)                          |
 | **Formula**                | $\frac{\Delta x}{2} \left( y_0 + 2 y_1 + \dots + 2 y_{n-1} + y_n \right)$ | $\sum \frac{\Delta x_i}{2} \left( f(x_{i-1}) + f(x_i) \right)$ |
-| **Computational Effort**   | Easier to compute with uniform spacing                | More complicated due to variable widths           |
-
-
-
+| **Computational Effort**   | Easier to compute with uniform spacing                                    | More complicated due to variable widths                        |

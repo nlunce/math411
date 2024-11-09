@@ -1,8 +1,5 @@
 ---
-title: "Reality Checks"
+title: 'Reality Checks'
 ---
 
 ### [Reality Check 1 - Stewart Platform Kinematics](./rc01/rc01.html)
-
-
-

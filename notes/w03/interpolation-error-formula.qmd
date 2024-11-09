@@ -1,6 +1,6 @@
 ---
-title: "Interpolation Error Formula"  
-author: "Nathan Lunceford"
+title: 'Interpolation Error Formula'
+author: 'Nathan Lunceford'
 ---
 
 ## Interpolation Error Formula
@@ -15,11 +15,11 @@ $$
 f(x) - P(x) = \frac{(x - x_1)(x - x_2) \cdots (x - x_n)}{n!} f^{(n)}(c)
 $$
 
-Here:  
+Here:
 
-- $f(x)$ is the true function we are approximating.  
-- $P(x)$ is the interpolating polynomial of degree $n - 1$ that passes through all the given data points.  
-- $f^{(n)}(c)$ is the $n$-th derivative of $f$, evaluated at some unknown point $c$, which lies between the smallest and largest $x$-values.  
+- $f(x)$ is the true function we are approximating.
+- $P(x)$ is the interpolating polynomial of degree $n - 1$ that passes through all the given data points.
+- $f^{(n)}(c)$ is the $n$-th derivative of $f$, evaluated at some unknown point $c$, which lies between the smallest and largest $x$-values.
 - $(x - x_1)(x - x_2) \cdots (x - x_n)$ is the product of terms $(x - x_i)$, which depend on how far the point $x$ is from the given data points.
 - $n!$ is the factorial of $n$, the number of data points.
 
@@ -44,4 +44,3 @@ Since $|f^{(4)}(c)| \leq 1$ (for $\sin(x)$, the fourth derivative does not excee
 ### Conclusion
 
 The **Interpolation Error Formula** is a powerful tool for estimating how close an interpolating polynomial $P(x)$ is to the true function $f(x)$. While it is often difficult to calculate the exact error, the formula helps provide an upper bound on the error, especially useful for functions with known derivatives. The error tends to be smaller in the middle of the interpolation interval and larger near the edges, which is a key factor in numerical interpolation.
-

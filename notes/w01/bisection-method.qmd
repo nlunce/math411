@@ -1,6 +1,6 @@
 ---
-title: "Bisection Method"
-author: "Nathan Lunceford"
+title: 'Bisection Method'
+author: 'Nathan Lunceford'
 ---
 
 **Bisection Method** is one of the simplest and most reliable numerical methods for finding a root of a continuous function $f(x) = 0$ over a closed interval $[a, b]$. The method works by repeatedly bisecting the interval and then selecting the subinterval in which the function changes sign, ensuring that a root lies within that subinterval.
@@ -82,7 +82,6 @@ Let’s solve the equation $f(x) = x^3 - x - 2 = 0$ in the interval $[1, 2]$.
 ### Limitations of the Bisection Method
 
 1. **Slow Convergence**: The method converges linearly, which makes it slower compared to methods like Newton’s Method, which has quadratic convergence.
-   
 2. **Only One Root**: The Bisection Method only finds one root in the interval. If multiple roots exist, it cannot find them all without running the method on different intervals.
 
 3. **Initial Interval Requirement**: The method requires an initial interval $[a, b]$ where the function changes sign, which may not always be easy to determine.
@@ -90,4 +89,3 @@ Let’s solve the equation $f(x) = x^3 - x - 2 = 0$ in the interval $[1, 2]$.
 ### Conclusion
 
 The Bisection Method is a reliable and simple method for finding roots of continuous functions, especially when no derivative information is available. While slower than other root-finding algorithms, its guaranteed convergence and robustness make it a valuable tool in numerical analysis.
-

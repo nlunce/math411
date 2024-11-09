@@ -1,0 +1,27 @@
+# Quarto Project Prettier Configuration
+proseWrap: 'always'
+semi: false
+singleQuote: true
+tabWidth: 2
+trailingComma: 'none'
+
+# Overrides for project files
+overrides:
+  # Apply markdown formatting specifically for .qmd files
+  - files: '**/*.qmd'
+    options:
+      parser: 'markdown'
+      proseWrap: 'preserve' # Keeps line breaks for callout blocks
+
+  # Apply settings for YAML files
+  - files: '*.yml'
+    options:
+      proseWrap: 'preserve'
+      tabWidth: 2
+
+  # Ensure code blocks and inline math in Markdown are formatted for clarity
+  - files: '*.md'
+    options:
+      tabWidth: 2
+      trailingComma: 'none'
+      proseWrap: 'always'

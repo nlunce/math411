@@ -1,6 +1,6 @@
 ---
-title: "Fixed-Point Iteration"
-author: "Nathan Lunceford"
+title: 'Fixed-Point Iteration'
+author: 'Nathan Lunceford'
 ---
 
 **Fixed-Point Iteration** is a simple numerical method used to solve equations of the form $x = g(x)$. The method is based on the idea that a root of the equation $f(x) = 0$ can be found by rewriting it as $x = g(x)$, and then iterating the function $g(x)$ until the sequence of values converges to a solution.
@@ -78,7 +78,6 @@ The method converges when the derivative $|g'(x^*)| < 1$, ensuring that the succ
 ### Acceleration Techniques
 
 1. **Aitken's $\Delta^2$-Process**: This method accelerates convergence by extrapolating the sequence of approximations.
-   
 2. **Relaxation Methods**: Modifying the iterative formula to include a relaxation parameter $\lambda$, such as in **under-relaxation** and **over-relaxation**, to speed up convergence:
 
 $$
@@ -101,7 +100,6 @@ Where $\lambda \in (0,1)$ for under-relaxation and $\lambda > 1$ for over-relaxa
 ### Limitations of Fixed-Point Iteration
 
 1. **Slow Convergence**: Fixed-point iteration may converge slowly, especially if the function $g(x)$ is poorly chosen.
-   
 2. **Sensitive to Initial Guess**: The success and speed of convergence depend heavily on the choice of the initial guess. A poor initial guess can lead to divergence.
 
 3. **Not Always Convergent**: If $|g'(x)| \geq 1$, the method may not converge to a solution, and alternative methods like **Newton’s Method** or **Bisection Method** may be preferred.
@@ -109,4 +107,3 @@ Where $\lambda \in (0,1)$ for under-relaxation and $\lambda > 1$ for over-relaxa
 ### Conclusion
 
 Fixed-point iteration is a fundamental and simple numerical method for finding roots of equations. However, it is essential to ensure the proper choice of function $g(x)$ and initial guess to ensure convergence. While it is not always the fastest method, its simplicity makes it a good starting point for solving non-linear equations.
-

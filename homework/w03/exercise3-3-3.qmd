@@ -1,7 +1,7 @@
 ---
-title: "Exercise 3.3.3 (C3-P10)"
-subtitle: "MATH411"
-author: "Nathan Lunceford"
+title: 'Exercise 3.3.3 (C3-P10)'
+subtitle: 'MATH411'
+author: 'Nathan Lunceford'
 format:
   html:
     self-contained: true
@@ -13,13 +13,13 @@ format:
     number-sections: false
     html-math-method: katex
     code-fold: true
-    code-summary: "Show the code"
+    code-summary: 'Show the code'
     code-overflow: wrap
     code-copy: hover
     code-tools:
-        source: false
-        toggle: true
-        caption: See code 
+      source: false
+      toggle: true
+      caption: See code
 ---
 
 ## Question
@@ -72,4 +72,3 @@ Where $M$ is an upper bound on the $6$th derivative of $f(x) = e^x$ over $[-1, 1
    Since the error bound is approximately $0.000118$, this means we can expect approximately 3 correct digits after the decimal point. The error affects the fourth decimal place, but the first three digits are expected to be correct.
 
    Therefore, the approximation $Q_5(x)$ will be accurate to **3 digits** after the decimal point when approximating $e^x$ on the interval $[-1, 1]$.
-

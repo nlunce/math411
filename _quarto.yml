@@ -17,11 +17,11 @@ website:
         href: https://github.com/nlunce/math411
     left:
       - href: ./homework/index.qmd
-        text: Homework
+        text: HOMEWORK
       - href: ./reality-checks/index.qmd
-        text: Reality Checks
+        text: REALITY CHECKS
       - href: ./notes/index.qmd
-        text: Notes
+        text: NOTES
 
 format:
   html:

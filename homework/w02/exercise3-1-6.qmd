@@ -1,7 +1,7 @@
 ---
-title: "Exercise 3.1.6 (C3-P6)"
-subtitle: "MATH411"
-author: "Nathan Lunceford"
+title: 'Exercise 3.1.6 (C3-P6)'
+subtitle: 'MATH411'
+author: 'Nathan Lunceford'
 format:
   html:
     self-contained: true
@@ -13,13 +13,13 @@ format:
     number-sections: false
     html-math-method: katex
     code-fold: true
-    code-summary: "Show the code"
+    code-summary: 'Show the code'
     code-overflow: wrap
     code-copy: hover
     code-tools:
-        source: false
-        toggle: true
-        caption: See code 
+      source: false
+      toggle: true
+      caption: See code
 ---
 
 ## Question
@@ -43,12 +43,12 @@ We will use Newton’s divided differences to first construct the degree 3 polyn
 
 We will use the given points $(x_1, y_1) = (1, 1)$, $(x_2, y_2) = (2, 3)$, $(x_3, y_3) = (3, 3)$, and $(x_4, y_4) = (4, 4)$ to compute the divided differences and build the polynomial.
 
-| $x$ | $f(x)$ | First Difference $f[x_i, x_{i+1}]$ | Second Difference $f[x_i, x_{i+1}, x_{i+2}]$ | Third Difference $f[x_i, x_{i+1}, x_{i+2}, x_{i+3}]$ |
-|--------|-----------|-----------------------------------------|--------------------------------------------------|------------------------------------------------------------|
-| 1      | 1         |                                         |                                                  |                                                            |
-| 2      | 3         | $\frac{3 - 1}{2 - 1} = 2$           |                                                  |                                                            |
-| 3      | 3         | $\frac{3 - 3}{3 - 2} = 0$           | $\frac{0 - 2}{3 - 1} = -1$                   |                                                            |
-| 4      | 4         | $\frac{4 - 3}{4 - 3} = 1$           | $\frac{1 - 0}{4 - 2} = \frac{1}{2}$          | $\frac{\frac{1}{2} - (-1)}{4 - 1} = \frac{3}{6} = \frac{1}{2}$ |
+| $x$ | $f(x)$ | First Difference $f[x_i, x_{i+1}]$ | Second Difference $f[x_i, x_{i+1}, x_{i+2}]$ | Third Difference $f[x_i, x_{i+1}, x_{i+2}, x_{i+3}]$           |
+| --- | ------ | ---------------------------------- | -------------------------------------------- | -------------------------------------------------------------- |
+| 1   | 1      |                                    |                                              |                                                                |
+| 2   | 3      | $\frac{3 - 1}{2 - 1} = 2$          |                                              |                                                                |
+| 3   | 3      | $\frac{3 - 3}{3 - 2} = 0$          | $\frac{0 - 2}{3 - 1} = -1$                   |                                                                |
+| 4   | 4      | $\frac{4 - 3}{4 - 3} = 1$          | $\frac{1 - 0}{4 - 2} = \frac{1}{2}$          | $\frac{\frac{1}{2} - (-1)}{4 - 1} = \frac{3}{6} = \frac{1}{2}$ |
 
 ### 2. Construct the Degree 3 Polynomial $P_3(x)$:
 

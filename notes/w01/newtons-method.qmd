@@ -1,6 +1,6 @@
 ---
 title: "Newton's Method"
-author: "Nathan Lunceford"
+author: 'Nathan Lunceford'
 ---
 
 **Newton's Method**, also known as the **Newton-Raphson Method**, is a widely used numerical method for finding successively better approximations to the roots (or zeros) of a real-valued function. It is particularly efficient when the initial guess is close to the actual root and when the function is well-behaved (smooth and differentiable).
@@ -15,13 +15,13 @@ $$
 
 where:
 
-- $f(x)$ is the function whose root we are trying to find.  
-- $f'(x)$ is the derivative of $f(x)$.  
-- $x_k$ is the current approximation, and $x_{k+1}$ is the next approximation.  
+- $f(x)$ is the function whose root we are trying to find.
+- $f'(x)$ is the derivative of $f(x)$.
+- $x_k$ is the current approximation, and $x_{k+1}$ is the next approximation.
 
 ### Geometrical Interpretation
 
-Newton's Method can be interpreted geometrically: given an approximation $x_k$, the tangent line to the curve $y = f(x)$ at the point $ (x_k, f(x_k)) $ is used to estimate where the curve crosses the x-axis, which provides the next approximation $x_{k+1}$. 
+Newton's Method can be interpreted geometrically: given an approximation $x_k$, the tangent line to the curve $y = f(x)$ at the point $ (x*k, f(x_k)) $ is used to estimate where the curve crosses the x-axis, which provides the next approximation $x*{k+1}$.
 
 ### Convergence Criteria
 
@@ -49,9 +49,11 @@ $$
 Let’s solve the equation $f(x) = x^2 - 2 = 0$ using Newton's Method, which has a root at $x = \sqrt{2}$.
 
 1. **Function and Derivative**:
+
    $$
    f(x) = x^2 - 2
    $$
+
    $$
    f'(x) = 2x
    $$
@@ -59,11 +61,13 @@ Let’s solve the equation $f(x) = x^2 - 2 = 0$ using Newton's Method, which has
 2. **Initial Guess**: Let $x_0 = 1.5$.
 
 3. **First Iteration**:
+
    $$
    x_1 = x_0 - \frac{f(x_0)}{f'(x_0)} = 1.5 - \frac{1.5^2 - 2}{2(1.5)} = 1.4167
    $$
 
 4. **Second Iteration**:
+
    $$
    x_2 = x_1 - \frac{f(x_1)}{f'(x_1)} = 1.4167 - \frac{1.4167^2 - 2}{2(1.4167)} = 1.4142
    $$
@@ -95,7 +99,6 @@ In this case, after just a few iterations, we have a highly accurate approximati
 ### Limitations of Newton's Method
 
 1. **Requires Derivatives**: The method requires that $f(x)$ is differentiable, and that the derivative $f'(x)$ can be computed analytically or numerically.
-   
 2. **Risk of Divergence**: If the initial guess is too far from the root or if $f'(x)$ is zero or near zero, the method may diverge or fail to converge.
 
 3. **Slow or No Convergence**: For functions with inflection points or flat regions near the root, the method may converge very slowly or not at all. In these cases, alternative methods like the **Secant Method** or **Bisection Method** may be better suited.

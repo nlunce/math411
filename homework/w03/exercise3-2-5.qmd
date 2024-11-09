@@ -1,7 +1,7 @@
 ---
-title: "Exercise 3.1.6 (C3-P6)"
-subtitle: "MATH411"
-author: "Nathan Lunceford"
+title: 'Exercise 3.1.6 (C3-P6)'
+subtitle: 'MATH411'
+author: 'Nathan Lunceford'
 format:
   html:
     self-contained: true
@@ -13,13 +13,13 @@ format:
     number-sections: false
     html-math-method: katex
     code-fold: true
-    code-summary: "Show the code"
+    code-summary: 'Show the code'
     code-overflow: wrap
     code-copy: hover
     code-tools:
-        source: false
-        toggle: true
-        caption: See code 
+      source: false
+      toggle: true
+      caption: See code
 ---
 
 ## Question
@@ -38,14 +38,15 @@ Given four points $(1, 1)$, $(2, 3)$, $(3, 3)$, and $(4, 4)$, the standard inter
 To create a degree 5 polynomial that still passes through all four points $(1, 1)$, $(2, 3)$, $(3, 3)$, and $(4, 4)$, follow these steps:
 
 1. **Find the degree 3 polynomial $P_3(x)$:**
+
    - Use either **Newton’s divided differences** or **Lagrange interpolation** to find the polynomial of degree 3 that passes through the given points. Let’s call this polynomial $P_3(x)$.
 
 2. **Add a higher-degree term:**
    - To turn this degree 3 polynomial into a degree 5 polynomial, we add a term that evaluates to zero at the given points:
-   
+
 $$P_5(x) = P_3(x) + c(x - 1)(x - 2)(x - 3)(x - 4)$$
-   
-   - The new term $(x - 1)(x - 2)(x - 3)(x - 4)$ is zero at $x = 1, 2, 3, 4$, so it won’t affect the interpolation at those points. By multiplying this term by a constant $c$, we ensure that the degree of the polynomial is elevated to 5, but the polynomial still interpolates the original points.
+
+- The new term $(x - 1)(x - 2)(x - 3)(x - 4)$ is zero at $x = 1, 2, 3, 4$, so it won’t affect the interpolation at those points. By multiplying this term by a constant $c$, we ensure that the degree of the polynomial is elevated to 5, but the polynomial still interpolates the original points.
 
 ### Final Degree 5 Polynomial
 

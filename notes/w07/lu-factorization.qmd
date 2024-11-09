@@ -1,6 +1,6 @@
 ---
-title: "LU Factorization"
-author: "Nathan Lunceford"
+title: 'LU Factorization'
+author: 'Nathan Lunceford'
 ---
 
 ## Introduction
@@ -31,6 +31,7 @@ where $P$ is a permutation matrix that records row exchanges.
 ## Conditions for LU Factorization
 
 LU Factorization is valid when:
+
 1. **Matrix is Square**: $A$ must be a square matrix.
 2. **Non-Singular Leading Submatrices**: Each leading principal submatrix (upper-left submatrix) of $A$ must be non-singular.
 
@@ -39,6 +40,7 @@ When these conditions are not met, row pivoting enables decomposition.
 ## Factorization Process
 
 To factorize $A$ into $L$ and $U$:
+
 1. **Eliminate Elements**: Perform row operations to create zeros below the main diagonal of $U$.
 2. **Store Multipliers**: Record the multipliers in $L$.
 
@@ -107,8 +109,6 @@ $$
 2. Solve $Ly = b$ via forward substitution.
 3. Solve $Ux = y$ via back substitution.
 
-
 ## Conclusion
 
 LU Factorization is an essential tool in linear algebra, providing a simplified method to solve linear systems efficiently. By breaking matrices into triangular forms, it reduces computational complexity and lays the groundwork for more advanced numerical techniques.
-

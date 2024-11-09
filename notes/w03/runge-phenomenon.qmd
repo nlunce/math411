@@ -1,6 +1,6 @@
 ---
-title: "Runge Phenomenon"
-author: "Nathan Lunceford"
+title: 'Runge Phenomenon'
+author: 'Nathan Lunceford'
 ---
 
 ## Introduction

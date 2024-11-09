@@ -1,6 +1,6 @@
 ---
-title: "Exercise 2.4.4a (C2-P9)"
-author: "Nathan Lunceford"
+title: 'Exercise 2.4.4a (C2-P9)'
+author: 'Nathan Lunceford'
 ---
 
 # **Problem**
@@ -10,7 +10,6 @@ Solve the system by finding the $PA = LU$ factorization and then carrying out th
 $$
 \begin{pmatrix} 4 & 2 & 0 \\ 4 & 4 & 2 \\ 2 & 2 & 3 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \\ 6 \end{pmatrix}
 $$
-
 
 # **Solution**
 
@@ -23,12 +22,15 @@ $$
 - **Compute Multipliers and Eliminate Below Pivot**:
 
   - **Row 2**:
+
     $$
     L_{21} = \dfrac{a_{21}}{a_{11}} = \dfrac{4}{4} = 1
     $$
+
     $$
     \text{Row 2} \rightarrow \text{Row 2} - L_{21} \times \text{Row 1}
     $$
+
     $$
     \begin{pmatrix} 4 & 2 & 0 \\ 0 & 2 & 2 \\ 2 & 2 & 3 \end{pmatrix}
     $$
@@ -64,6 +66,7 @@ $$
 **Resulting Matrices**
 
 - **Lower Triangular Matrix $L$**:
+
   $$
   L = \begin{pmatrix}
   1 & 0 & 0 \\
@@ -73,6 +76,7 @@ $$
   $$
 
 - **Upper Triangular Matrix $U$**:
+
   $$
   U = \begin{pmatrix}
   4 & 2 & 0 \\
@@ -93,11 +97,13 @@ L \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \\ 6 
 $$
 
 - **Equation 1**:
+
   $$
   y_1 = 2
   $$
 
 - **Equation 2**:
+
   $$
   y_2 = b_2 - L_{21} y_1 = 4 - (1)(2) = 2
   $$
@@ -108,6 +114,7 @@ $$
   $$
 
 **Solution**:
+
 $$
 y = \begin{pmatrix} 2 \\ 2 \\ 4 \end{pmatrix}
 $$
@@ -119,11 +126,13 @@ U \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 2 \\ 2 \\ 4 
 $$
 
 - **Equation 3**:
+
   $$
   2 x_3 = y_3 \implies x_3 = \dfrac{y_3}{2} = \dfrac{4}{2} = 2
   $$
 
 - **Equation 2**:
+
   $$
   2 x_2 + 2 x_3 = y_2 \implies x_2 = \dfrac{y_2 - 2 x_3}{2} = \dfrac{2 - (2 \times 2)}{2} = \dfrac{-2}{2} = -1
   $$
@@ -134,6 +143,7 @@ $$
   $$
 
 **Solution**:
+
 $$
 x = \begin{pmatrix} 1 \\ -1 \\ 2 \end{pmatrix}
 $$

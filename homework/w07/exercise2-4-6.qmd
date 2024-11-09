@@ -1,15 +1,13 @@
 ---
-title: "Exercise 2.4.6 (C2-P10)"
-author: "Nathan Lunceford"
+title: 'Exercise 2.4.6 (C2-P10)'
+author: 'Nathan Lunceford'
 ---
-
 
 # **Problem**
 
 **(a)** Write down the $4 \times 4$ matrix $P$ such that multiplying a matrix on the left by $P$ causes the second and fourth rows of the matrix to be exchanged.
 
 **(b)** What is the effect of multiplying on the right by $P$? Demonstrate with an example.
-
 
 # **Solution**
 
@@ -107,7 +105,6 @@ AP = A \times \begin{pmatrix}
 \end{pmatrix}
 $$
 
-
 **Final Answer**
 
 **(a)** The $4 \times 4$ permutation matrix $P$ that exchanges the second and fourth rows when multiplied on the left is:
@@ -144,4 +141,3 @@ AP = \begin{pmatrix}
 $$
 
 which is $A$ with its second and fourth columns exchanged.
-

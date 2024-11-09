@@ -1,7 +1,7 @@
 ---
-title: "Reality Check 1"
-subtitle: "MATH411"
-author: "Nathan Lunceford"
+title: 'Reality Check 1'
+subtitle: 'MATH411'
+author: 'Nathan Lunceford'
 format:
   html:
     self-contained: true
@@ -13,16 +13,16 @@ format:
     number-sections: false
     html-math-method: katex
     code-fold: true
-    code-summary: "Show the code"
+    code-summary: 'Show the code'
     code-overflow: wrap
     code-copy: hover
     code-tools:
-        source: false
-        toggle: true
-        caption: See code
+      source: false
+      toggle: true
+      caption: See code
 execute:
   warning: false
-  message: false  
+  message: false
 ---
 
 ```{python}
@@ -50,17 +50,15 @@ class Constants:
     p3: float
 ```
 
-
 # PROBLEM 1
+
 ---
 
 #### Write a python function for f($\theta$). The parameters $L_1, L_2, L_3, \gamma, x_1, x_2, y_2$ are fixed constants, and the strut lengths $p_1, p_2, p_3$ will be known for a given pose. To test your code, set the parameters $L_1 = 2$, $L_2 = L_3 = \sqrt{2}$, $\gamma = \pi/2$, and $p_1 = p_2 = p_3 = \sqrt{5}$. Then, substituting $\theta = -\pi/4$ or $\theta = \pi/4$, should make $f(\theta) = 0$.
 
-
 I implemented the Python function $f(\theta)$ by putting all fixed constants into a `Constants` object. I initialized the constants with the given values in order to verify that $\theta = -\pi/4$ and $\theta = \pi/4$ were roots.
 
 #### Create function for $f(\theta)$
-
 
 ```{python}
 #| label: Function
@@ -82,55 +80,52 @@ def f(theta, constants):
     x1, x2, y2 = constants.x1, constants.x2, constants.y2
     p1, p2, p3 = constants.p1, constants.p2, constants.p3
 
-    a2 = l3 * np.cos(theta) - x1 
+    a2 = l3 * np.cos(theta) - x1
     b2 = l3 * np.sin(theta)
     a3 = l2 * np.cos(theta + gamma) - x2
     b3 = l2 * np.sin(theta + gamma) - y2
     d = 2 * (a2 * b3 - b2 * a3)
-    
+
     n1 = b3 * (p2**2 - p1**2 - a2**2 - b2**2) - b2 * (p3**2 - p1**2 - a3**2 - b3**2)
     n2 = -a3 * (p2**2 - p1**2 - a2**2 - b2**2) + a2 * (p3**2 - p1**2 - a3**2 - b3**2)
-    
+
     return n1**2 + n2**2 - p1**2 * d**2
 ```
 
 #### Test function $f(\theta)$
-
 
 ```{python}
 #| label: Test
 #| code-summary: Show code
 # Define constants and evaluate f(θ) at a specific angle θ = π/4 for testing purposes
 constants = Constants(
-    l1=2, 
+    l1=2,
     l2=np.sqrt(2),
     l3=np.sqrt(2),
-    gamma=np.pi / 2, 
-    x1=4, 
-    x2=0, 
-    y2=4, 
+    gamma=np.pi / 2,
+    x1=4,
+    x2=0,
+    y2=4,
     p1=np.sqrt(5),
-    p2=np.sqrt(5), 
+    p2=np.sqrt(5),
     p3=np.sqrt(5)
 )
 
 theta = np.pi / 4
-# Evaluate 
+# Evaluate
 result = f(theta, constants)
 print(f'f(θ=π/4) = {result}')
 ```
 
 # PROBLEM 2
+
 ---
 
 #### Plot $f(\theta)$ on $[-\pi, \pi]$
 
-
 I plotted the function $f(\theta)$ over the interval $[-π, π]$ by generating a range of $\theta$ values and computing $f(\theta)$ for each. The graph clearly shows the behavior of $f(\theta)$ and highlights that the the roots identified in **Problem 1** are in fact roots.
 
-
 #### Create Plot
-
 
 ```{python}
 #| label: Plot
@@ -156,16 +151,14 @@ plt.show()
 ```
 
 # PROBLEM 3
+
 ---
 
-#### Reproduce Figure 1.15. Plot a red triangle with vertices  $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
-
+#### Reproduce Figure 1.15. Plot a red triangle with vertices $(u_1, v_1), (u_2, v_2), (u_3, v_3)$ and place small blue circles at the strut anchor points $(0,0), (x_1, 0), (x_2, y_2)$:
 
 I utilized several helper functions to efficiently calculate and visualize the Stewart platform's configuration. The `get_x_y()` function computes the $x$ and $y$ coordinates based on the given angle $\theta$ and the fixed constants, determining the position of one vertex of the triangle. The `get_points()` function then takes these coordinates, along with $\theta$ and the constants, to calculate the two other vertices of the red triangle. The `get_anchor_points()` function gets the fixed anchor points $(0,0)$, $(x_1, 0)$, and $(x_2, y_2)$. The `plot_triangle()` function takes the calculated triangle vertices and anchor points to plot the red triangle and connect the anchor points with blue lines, while also marking the anchor points with blue circles.
 
-
 #### Create Helper Functions
-
 
 ```{python}
 #| label: Helper-Functions
@@ -178,7 +171,7 @@ def get_x_y(theta, constants):
     Parameters:
     theta (float): The angle in radians.
     constants (Constants): An object containing the necessary constants.
-    
+
     Returns:
     tuple: The coordinates (x, y).
     """
@@ -187,18 +180,18 @@ def get_x_y(theta, constants):
     x1, x2, y2 = constants.x1, constants.x2, constants.y2
     p1, p2, p3 = constants.p1, constants.p2, constants.p3
 
-    a2 = l3 * np.cos(theta) - x1 
+    a2 = l3 * np.cos(theta) - x1
     b2 = l3 * np.sin(theta)
     a3 = l2 * np.cos(theta + gamma) - x2
     b3 = l2 * np.sin(theta + gamma) - y2
-    
+
     d = 2 * (a2 * b3 - b2 * a3)
     n1 = b3 * (p2**2 - p1**2 - a2**2 - b2**2) - b2 * (p3**2 - p1**2 - a3**2 - b3**2)
     n2 = -a3 * (p2**2 - p1**2 - a2**2 - b2**2) + a2 * (p3**2 - p1**2 - a3**2 - b3**2)
-    
+
     x = n1 / d
     y = n2 / d
-    
+
     return x, y
 
 
@@ -220,17 +213,17 @@ def get_points(x, y, theta, constants):
 
     # First vertex (base point)
     l1_point = (x, y)
-    
+
     # Second vertex of the triangle
     l2_x = x + (l3 * np.cos(theta))
     l2_y = y + (l3 * np.sin(theta))
     l2_point = (np.round(l2_x, 3), np.round(l2_y))  # Rounded to 3 decimal places for clarity
-    
+
     # Third vertex of the triangle
     l3_x = x + (l2 * np.cos(theta + gamma))
     l3_y = y + (l2 * np.sin(theta + gamma))
     l3_point = (np.round(l3_x), np.round(l3_y))  # Rounded to 3 decimal places for clarity
-    
+
     return [l1_point, l2_point, l3_point]
 
 def get_anchor_points(constants):
@@ -244,7 +237,7 @@ def get_anchor_points(constants):
     list: A list of tuples representing the anchor points.
     """
     x1, x2, y2 = constants.x1, constants.x2, constants.y2
-    
+
     return [(0, 0), (x1, 0), (x2, y2)]
 
 def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_step=None, y_step=None):
@@ -265,33 +258,33 @@ def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_ste
     """
     points = np.array(points)
     anchor_points = np.array(anchor_points)
-    
+
     # Extract x and y coordinates for the triangle points
     x_coords = points[:, 0]
     y_coords = points[:, 1]
-    
+
     # Close the triangle by appending the first point at the end
     x_closed = np.append(x_coords, x_coords[0])
     y_closed = np.append(y_coords, y_coords[0])
-    
+
     # Plot the triangle with red lines
     ax.plot(x_closed, y_closed, 'r-', linewidth=3.5)
-    
+
     # Plot blue dots at the triangle vertices
     ax.plot(x_coords, y_coords, 'bo', markersize=8)
-    
+
     # Plot lines from anchor points to triangle points
     for i, anchor in enumerate(anchor_points):
         if i < len(points):  # Ensure we stay within bounds
             ax.plot([anchor[0], points[i, 0]], [anchor[1], points[i, 1]], 'b-', linewidth=1.5)
-    
+
     # Plot blue dots at the anchor points
     ax.plot(anchor_points[:, 0], anchor_points[:, 1], 'bo', markersize=8)
-    
+
     # Set axis labels
     ax.set_xlabel("x")
     ax.set_ylabel("y")
-    
+
     # Set x-axis limits if provided
     if x_limits is not None:
         ax.set_xlim(x_limits)
@@ -303,10 +296,10 @@ def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_ste
         ax.set_xticks(np.arange(x_limits[0], x_limits[1] + x_step, x_step))  # Adjust x-axis ticks
     if y_step is not None and y_limits is not None:
         ax.set_yticks(np.arange(y_limits[0], y_limits[1] + y_step, y_step))  # Adjust y-axis ticks
-    
+
     # Add grid for better visualization
     ax.grid(True)
-    
+
 
 ```
 
@@ -320,12 +313,12 @@ theta = np.pi / 4
 theta_negative = -np.pi / 4
 
 # Calculate the coordinates and points for the triangles
-x, y = get_x_y(theta_negative, constants)  
-points1 = get_points(x, y, theta_negative, constants) 
+x, y = get_x_y(theta_negative, constants)
+points1 = get_points(x, y, theta_negative, constants)
 anchor_points = get_anchor_points(constants)
 
-x, y = get_x_y(theta, constants)  
-points2 = get_points(x, y, theta, constants)  
+x, y = get_x_y(theta, constants)
+points2 = get_points(x, y, theta, constants)
 
 # Create side-by-side subplots to visualize the two triangles
 fig, axes = plt.subplots(1, 2, figsize=(11, 5))
@@ -342,16 +335,14 @@ plt.show()
 ```
 
 # PROBLEM 4
+
 ---
 
 #### Solve the forward kinematics problem for the planar Stewart platform specified by $x_1 = 5$, $(x_2, y_2) = (0,6)$, $L_1 = L_3 = 3$, $L_2 = 3\sqrt{2}$, $\gamma = \pi / 4$, $p_1 = p_2 = 5$, $p_3 = 3$. Begin by plotting $f(\theta)$. Use an equation solver of your choice to find all four poses (roots of $f(\theta)$), and plot them. Check your answers by verifying that $p_1, p_2, p_3$ are the lengths of the struts in your plot.\n
 
-
-I organized all the fixed parameters into a `Constants` object and plotted the function $f(\theta)$ over the interval $[-π, π]$ to visualize its behavior. Using the `fsolve` function with strategically chosen initial guesses, I identified all four roots of $f(\theta)$, each root representing a unique pose of the Stewart platform. For each detected root, I plotted the corresponding triangle configuration and verified that the strut lengths $p_1, p_2, p_3$ matched the expected values. 
-
+I organized all the fixed parameters into a `Constants` object and plotted the function $f(\theta)$ over the interval $[-π, π]$ to visualize its behavior. Using the `fsolve` function with strategically chosen initial guesses, I identified all four roots of $f(\theta)$, each root representing a unique pose of the Stewart platform. For each detected root, I plotted the corresponding triangle configuration and verified that the strut lengths $p_1, p_2, p_3$ matched the expected values.
 
 #### 4A)
-
 
 ```{python}
 #| label: 4-a
@@ -359,15 +350,15 @@ I organized all the fixed parameters into a `Constants` object and plotted the f
 
 # Create new constants object
 constants = Constants(
-    l1=3, 
-    l2=3 * np.sqrt(2), 
-    l3=3, 
-    gamma=np.pi / 4,  
-    x1=5, 
-    x2=0, 
-    y2=6,  
-    p1=5, 
-    p2=5, 
+    l1=3,
+    l2=3 * np.sqrt(2),
+    l3=3,
+    gamma=np.pi / 4,
+    x1=5,
+    x2=0,
+    y2=6,
+    p1=5,
+    p2=5,
     p3=3
 )
 
@@ -376,8 +367,8 @@ theta_values = np.linspace(-np.pi, np.pi, 400)
 
 # Plot the function f(θ) over the range of θ values using the given constants
 plt.figure(figsize=(10, 6))
-plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$') 
-plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  
+plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$')
+plt.axhline(0, color='black', linestyle='--', linewidth=0.8)
 plt.xlabel(r'$\theta$', fontsize=14)
 plt.ylabel(r'$f(\theta)$', fontsize=14)
 plt.title(r'Function of $\theta$ for Stewart Platform', fontsize=16)
@@ -392,7 +383,6 @@ plt.show()
 
 #### 4B)
 
-
 ```{python}
 #| label: 4-b
 #| code-summary: Show code
@@ -400,28 +390,28 @@ plt.show()
 def find_roots(constants, initial_guesses):
     """
     Finds roots of f(θ) using different initial guesses and the fsolve method.
-    
+
     Parameters:
     constants (Constants): Object containing the necessary constants.
     initial_guesses (list or array): List of initial guesses for fsolve to start from.
-    
+
     Returns:
     list: A list of unique roots.
     """
 
-    # Create an empty list to store the roots found    
+    # Create an empty list to store the roots found
     roots = []
     # Iterate over each initial guess and find the root using fsolve
     for guess in initial_guesses:
         root = fsolve(f, guess, args=(constants), xtol=1e-12)[0] # Find root for each guess
         roots.append(root) # Append the found root to the list
-    
+
     # Return only unique roots to avoid duplicates
     unique_roots = np.unique(roots)
     return unique_roots
 
 # Define initial guesses for fsolve to start the root-finding process
-initial_guesses = [- 1, np.pi / 3, .5, 2] 
+initial_guesses = [- 1, np.pi / 3, .5, 2]
 
 # Find and print the roots using the initial guesses
 roots = find_roots(constants, initial_guesses)
@@ -448,10 +438,10 @@ axes = axes.flatten() # Flatten the 2D array of subplots into a 1D array for eas
 anchor_points = get_anchor_points(constants)
 
 # Loop through up to four roots and plot the corresponding triangles
-for i, theta in enumerate(roots[:4]):  
+for i, theta in enumerate(roots[:4]):
     x, y = get_x_y(theta, constants)
     points = get_points(x, y, theta, constants)
-    
+
     # Plot the triangle in the corresponding subplot with custom limits
     plot_triangle(axes[i], points, anchor_points, x_limits=(-2.5, 7.5), y_limits=(-2, 7), x_step=2.5, y_step=2)
     axes[i].set_title(rf"$\theta$ = {theta}")
@@ -473,30 +463,29 @@ plt.show()
 ```
 
 # PROBLEM 5
+
 ---
 
 #### Change strut length to $p_2 = 7$ and re-solve the problem. For these parameters, there are six poses.
 
-
 I updated the strut length $p_2$ to 7 and re-solved the forward kinematics for the Stewart platform. To do that I modified the `Constants` object with the new $p_2$ value and plotted the updated function $f(\theta)$ over the interval $[-π, π]$ to see its behavior. I made a new set of initial guesses for the `find_roots()` function and successfully found all six roots corresponding to six possible poses. For each root, I plotted the corresponding triangle configuration and verified that the strut lengths $p_1, p_2, p_3$ matched the expected values.
 
 #### 5A)
-
 
 ```{python}
 #| label: 5AAAA
 #| code-summary: Show code
 # Update the constants to reflect the new strut length p2 = 7
 constants = Constants(
-    l1=3, 
-    l2=3 * np.sqrt(2), 
-    l3=3, 
-    gamma=np.pi / 4, 
-    x1=5, 
-    x2=0, 
-    y2=6,  
-    p1=5, 
-    p2=7, 
+    l1=3,
+    l2=3 * np.sqrt(2),
+    l3=3,
+    gamma=np.pi / 4,
+    x1=5,
+    x2=0,
+    y2=6,
+    p1=5,
+    p2=7,
     p3=3
 )
 
@@ -505,8 +494,8 @@ theta_values = np.linspace(-np.pi, np.pi, 400)
 
 # Plot f(θ) for the new strut length
 plt.figure(figsize=(10, 6))
-plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$')  
-plt.axhline(0, color='black', linestyle='--', linewidth=0.8)  
+plt.plot(theta_values, f(theta_values, constants), label=r'$f(\theta)$')
+plt.axhline(0, color='black', linestyle='--', linewidth=0.8)
 plt.xlabel(r'$\theta$', fontsize=14)
 plt.ylabel(r'$f(\theta)$', fontsize=14)
 plt.title(r'Function of $\theta$ for Stewart Platform', fontsize=16)
@@ -519,7 +508,6 @@ plt.show()
 ```
 
 #### 5B)
-
 
 ```{python}
 #| label: 5BBBB
@@ -539,7 +527,7 @@ axes = axes.flatten()  # Flatten the 2D array of axes for easier access
 anchor_points = get_anchor_points(constants)
 
 # Loop through the six roots and plot each pose
-for i, theta in enumerate(roots[:6]):  
+for i, theta in enumerate(roots[:6]):
     x, y = get_x_y(theta, constants)
     points = get_points(x, y, theta, constants)
     # Plot the triangle in the corresponding subplot with custom limits
@@ -564,10 +552,10 @@ plt.show()
 ```
 
 # PROBLEM 6
+
 ---
 
 #### Find a strut length $p_2$, with the rest of the parameters as in Step 4, for which there are only two poses.
-
 
 To identify a strut length for $p_2$ that results in exactly two poses for the Stewart platform I systematically adjusted $p_2$ and utilizing the `fsolve` function to find the corresponding roots of the function $f(\theta)$. This method enabled me to determine a specific $p_2$ value that achieves the desired two-pose configuration.
 
@@ -586,11 +574,11 @@ def find_roots_for_p2(p2_value, constants, initial_guesses, ax=None):
     """
     # Update p2 in constants
     constants.p2 = p2_value
-    
+
     # Generate theta values and compute f(theta)
     theta_values = np.linspace(-np.pi, np.pi, 400)
     f_values = [f(theta, constants) for theta in theta_values]
-    
+
     # Plot f(theta) for the current p2 value on the provided axis
     ax.plot(theta_values, f_values,)
     ax.axhline(0, color='black', linestyle='--', linewidth=0.8)
@@ -599,23 +587,23 @@ def find_roots_for_p2(p2_value, constants, initial_guesses, ax=None):
     ax.set_title(fr'$p_2 = {p2_value:.3f}$')
     ax.legend(fontsize=10)
     ax.grid(True)
-    
+
     # Find the roots for the given p2 value
     roots = []
     for guess in initial_guesses:
         root = fsolve(f, guess, args=(constants))[0]
-        
+
         # Check if the found root is valid (i.e., f(root) is close to zero)
         if abs(f(root, constants)) < ROOT_THRESHOLD:
             roots.append(root)
-    
+
     # Convert to numpy array and round the roots to avoid precision issues
     roots = np.round(np.array(roots), decimals=6)
     unique_roots = np.unique(roots)
-    
+
     # Print the number of valid roots and the roots themselves
     print(f"p2 = {p2_value:.3f}: Found {len(unique_roots)} valid roots: {unique_roots}")
-    
+
     return unique_roots
 
 # Function to iterate over possible p2 values and append plots in a grid (wrap after 3)
@@ -623,7 +611,7 @@ def find_p2_with_two_roots(constants, initial_guesses, p2_start=-1, total_plots=
     """
     Iterates over possible p2 values starting at p2_start, plots f(theta), and prints the number of roots.
     The plots wrap after 3 per row.
-    
+
     Parameters:
     - constants: The Constants object.
     - initial_guesses: List of initial guesses for root finding.
@@ -633,43 +621,43 @@ def find_p2_with_two_roots(constants, initial_guesses, p2_start=-1, total_plots=
     p2 = p2_start
     plot_count = 0
     max_plots_per_row = 3  # Wrap after 3 plots per row
-    
+
     # Calculate the number of rows needed (wrap after 3)
     num_rows = (total_plots + max_plots_per_row - 1) // max_plots_per_row
-    
+
     # Create a figure with a 3xN grid
     fig, axes = plt.subplots(num_rows, max_plots_per_row, figsize=(11, num_rows * 3))
     axes = axes.flatten()  # Flatten the 2D array of axes for easier access
     fig.subplots_adjust(hspace=0.3, wspace=0.3)  # Adjust the space between subplots
-    
+
     # Iterate to plot p2 and find roots
     while plot_count < total_plots:
         # Plot for the current p2 value and check the roots
         unique_roots = find_roots_for_p2(p2, constants, initial_guesses, ax=axes[plot_count])
-        
+
         if len(unique_roots) == 2:  # Check if there are exactly 2 unique roots
             print(f"Found p2={p2} with two distinct roots: {unique_roots}")
-        
+
         # Increment p2 and plot the next iteration
         p2 += 1
         plot_count += 1
-    
+
     # Show the final figure with all appended plots
     plt.tight_layout()
 
-    
+
     plt.show()
 
 # Example constants (with p2 placeholder)
 constants = Constants(
-    l1=3, 
-    l2=3 * np.sqrt(2), 
-    l3=3, 
-    gamma=np.pi / 4, 
-    x1=5, 
-    x2=0, 
-    y2=6,  
-    p1=5, 
+    l1=3,
+    l2=3 * np.sqrt(2),
+    l3=3,
+    gamma=np.pi / 4,
+    x1=5,
+    x2=0,
+    y2=6,
+    p1=5,
     p2=None,  # To be found
     p3=3
 )
@@ -683,9 +671,10 @@ find_p2_with_two_roots(constants, initial_guesses, p2_start=-1, total_plots=6)
 ```
 
 # PROBLEM 7
+
 ---
 
-####  Calculate the intervals in $p_2$, with the rest of the parameters as in Step 4, for which there are 0, 2, 4, and 6 poses, respectively.
+#### Calculate the intervals in $p_2$, with the rest of the parameters as in Step 4, for which there are 0, 2, 4, and 6 poses, respectively.
 
 In transitioning from **Problem 6** to **Problem 7**, I found that using `fsolve` with predefined initial guesses was too inaccurate for reliably identifying roots. This method often missed valid roots or produced duplicates due to its sensitivity to starting points. To improve accuracy, I switched to detecting sign changes in the function $f(\theta)$ and used the `brentq` algorithm, which efficiently locates roots where the function changes from positive to negative or vice versa. This approach greatly improved the precision of root detection.
 
@@ -707,12 +696,12 @@ def count_roots(constants, theta_min=-np.pi, theta_max=np.pi, num_points=1000):
     list: Root values.
     """
     theta_vals = np.linspace(theta_min, theta_max, num_points)
-    
+
     # Evaluate f(theta) over the range
     f_vals = np.array([f(theta, constants) for theta in theta_vals])
-    
+
     roots = []
-    
+
     # Detect sign changes indicating roots
     for i in range(len(theta_vals)-1):
         if np.sign(f_vals[i]) != np.sign(f_vals[i+1]):
@@ -722,13 +711,13 @@ def count_roots(constants, theta_min=-np.pi, theta_max=np.pi, num_points=1000):
                     roots.append(root)
             except ValueError:
                 pass  # No root in this interval
-    
+
     # Eliminate duplicate roots
     unique_roots = []
     for r in roots:
         if not any(np.isclose(r, ur, atol=1e-5) for ur in unique_roots):
             unique_roots.append(r)
-    
+
     return len(unique_roots), unique_roots
 
 def find_p2_intervals(constants, p2_min, p2_max, p2_step):
@@ -746,27 +735,27 @@ def find_p2_intervals(constants, p2_min, p2_max, p2_step):
     """
     p2_values = np.arange(p2_min, p2_max + p2_step, p2_step)
     root_counts = {0: [], 2: [], 4: [], 6: []}
-    
+
     for p2 in p2_values:
         constants.p2 = p2
         num_roots, _ = count_roots(constants)
         if num_roots in root_counts:
             root_counts[num_roots].append(p2)
-    
+
     return root_counts
 
 #### 4. Implement Problem 7
 
 # Initialize constants
 constants = Constants(
-    l1=3, 
-    l2=3 * np.sqrt(2), 
-    l3=3, 
-    gamma=np.pi / 4, 
-    x1=5, 
-    x2=0, 
-    y2=6,  
-    p1=5, 
+    l1=3,
+    l2=3 * np.sqrt(2),
+    l3=3,
+    gamma=np.pi / 4,
+    x1=5,
+    x2=0,
+    y2=6,
+    p1=5,
     p2=5,  # Initial p2; will be varied
     p3=3
 )
@@ -805,7 +794,7 @@ for num_roots, p2_list in root_counts.items():
         diffs = np.diff(p2_sorted)
         split_indices = np.where(diffs > (p2_step + tol))[0] + 1
         intervals = np.split(p2_sorted, split_indices)
-        
+
         for interval in intervals:
             p2_start, p2_end = interval[0], interval[-1]
             intervals_dict[num_roots].append((p2_start, p2_end))
@@ -823,20 +812,9 @@ for num_roots, intervals in intervals_dict.items():
             p2_start, p2_end = intervals[0]
             p2_end_str = "infinity" if np.isclose(p2_end, p2_max, atol=tol) else f"{p2_end:.2f}"
             print(f"  p2 from {p2_start:.2f} to {p2_end_str}")
-            
+
             # Last interval
             p2_start, p2_end = intervals[-1]
             p2_end_str = "infinity" if np.isclose(p2_end, p2_max, atol=tol) else f"{p2_end:.2f}"
             print(f"  p2 from {p2_start:.2f} to {p2_end_str}")
 ```
-
-
-
-
-
-
-
-
-
-
-

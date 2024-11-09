@@ -1,7 +1,7 @@
 ---
-title: "Exercise 5.2.1b (C5-P1)"
-subtitle: "MATH411"
-author: "Nathan Lunceford"
+title: 'Exercise 5.2.1b (C5-P1)'
+subtitle: 'MATH411'
+author: 'Nathan Lunceford'
 format:
   html:
     self-contained: true
@@ -13,15 +13,11 @@ format:
     number-sections: false
     html-math-method: katex
     code-fold: true
-    code-summary: "Show the code"
+    code-summary: 'Show the code'
     code-overflow: wrap
     code-copy: hover
     code-tools:
-        source: false
-        toggle: true
-        caption: See code
+      source: false
+      toggle: true
+      caption: See code
 ---
-
-
-
-

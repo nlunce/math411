@@ -1,6 +1,6 @@
 ---
-title: "Chebyshev Interpolation"
-author: "Nathan Lunceford"
+title: 'Chebyshev Interpolation'
+author: 'Nathan Lunceford'
 ---
 
 Chebyshev Interpolation is a powerful technique in numerical analysis used to approximate functions with polynomials, particularly minimizing errors and avoiding issues like Runge's phenomenon. This note provides an overview of Chebyshev Interpolation, including its definition, properties, advantages, and practical implementation.
@@ -128,6 +128,7 @@ $$
 $$
 
 where:
+
 - $M$ is an upper bound on the $(n+1)$-th derivative of $f(x)$ on $[-1, 1]$.
 
 ### Worst-Case Error Estimate
@@ -153,9 +154,11 @@ An error bound of approximately $1.18 \times 10^{-4}$ implies that at least thre
 **Solution:**
 
 1. **Determine $M$:**
+
    - $f^{(6)}(x) = e^x$, so $M = e$.
 
 2. **Compute the Error Bound:**
+
    $$
    |e^x - Q_5(x)| \leq \frac{e}{6!} \cdot \frac{1}{2^5} = \frac{2.71828}{720 \times 32} \approx 0.000118
    $$
@@ -192,6 +195,6 @@ Chebyshev Interpolation offers a reliable method for polynomial approximation, l
 
 ## References
 
-- Trefethen, L. N. (2000). *Approximation Theory and Approximation Practice*. SIAM.
-- Press, W. H., Teukolsky, S. A., Vetterling, W. T., & Flannery, B. P. (2007). *Numerical Recipes: The Art of Scientific Computing*. Cambridge University Press.
-- Olver, F. W. J., & Townsend, C. T. (2013). *A First Course in Chebyshev and Fourier Spectral Methods*. Cambridge University Press.
+- Trefethen, L. N. (2000). _Approximation Theory and Approximation Practice_. SIAM.
+- Press, W. H., Teukolsky, S. A., Vetterling, W. T., & Flannery, B. P. (2007). _Numerical Recipes: The Art of Scientific Computing_. Cambridge University Press.
+- Olver, F. W. J., & Townsend, C. T. (2013). _A First Course in Chebyshev and Fourier Spectral Methods_. Cambridge University Press.

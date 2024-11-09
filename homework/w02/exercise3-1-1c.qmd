@@ -1,7 +1,7 @@
 ---
-title: "Exercise 3.1.1c (C3-P1)"
-subtitle: "MATH411"
-author: "Nathan Lunceford"
+title: 'Exercise 3.1.1c (C3-P1)'
+subtitle: 'MATH411'
+author: 'Nathan Lunceford'
 format:
   html:
     self-contained: true
@@ -13,14 +13,13 @@ format:
     number-sections: false
     html-math-method: katex
     code-fold: true
-    code-summary: "Show the code"
+    code-summary: 'Show the code'
     code-overflow: wrap
     code-copy: hover
     code-tools:
-        source: false
-        toggle: true
-        caption: See code
-    
+      source: false
+      toggle: true
+      caption: See code
 ---
 
 ```{python}
@@ -114,7 +113,6 @@ $$
 P(x) = \frac{-2x^2 + 10x - 8}{4} + \frac{2x^2 - 4x}{4}
 $$
 
-
 $$
 P(x) = \frac{6x - 8}{4} = \frac{3x - 4}{2}
 $$
@@ -126,7 +124,6 @@ P(x) = \frac{3x - 4}{2}
 $$
 
 This is the interpolating polynomial that passes through the points $(0, -2)$, $(2, 1)$, and $(4, 4)$.
-
 
 ```{python}
 #| label: Graph
@@ -167,19 +164,3 @@ plt.legend()
 # Show the plot
 plt.show()
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
