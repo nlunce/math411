@@ -22,6 +22,8 @@ website:
         text: REALITY CHECKS
       - href: ./notes/index.qmd
         text: NOTES
+      - href: ./index.qmd
+        text: SCHEDULE
 
 format:
   html:

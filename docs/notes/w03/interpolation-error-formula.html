@@ -132,6 +132,10 @@ window.Quarto = {
     <a class="nav-link" href="../../notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">SCHEDULE</span></a>
+  </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -150,13 +154,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#interpolation-error-formula" id="toc-interpolation-error-formula" class="nav-link active" data-scroll-target="#interpolation-error-formula">Interpolation Error Formula</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#what-this-formula-shows" id="toc-what-this-formula-shows" class="nav-link" data-scroll-target="#what-this-formula-shows">What This Formula Shows</a>
   <ul class="collapse">
-  <li><a href="#the-error-formula" id="toc-the-error-formula" class="nav-link" data-scroll-target="#the-error-formula">The Error Formula</a></li>
-  <li><a href="#key-insights" id="toc-key-insights" class="nav-link" data-scroll-target="#key-insights">Key Insights</a></li>
-  <li><a href="#example-of-error-bound" id="toc-example-of-error-bound" class="nav-link" data-scroll-target="#example-of-error-bound">Example of Error Bound</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key Points</a></li>
   </ul></li>
+  <li><a href="#finding-the-maximum-error-over-the-interval" id="toc-finding-the-maximum-error-over-the-interval" class="nav-link" data-scroll-target="#finding-the-maximum-error-over-the-interval">Finding the Maximum Error Over the Interval</a></li>
   </ul>
 </nav>
     </div>
@@ -188,46 +191,48 @@ window.Quarto = {
 </header>
 
 
-<section id="interpolation-error-formula" class="level2">
-<h2 class="anchored" data-anchor-id="interpolation-error-formula">Interpolation Error Formula</h2>
-<p>The <strong>Interpolation Error Formula</strong> helps estimate how much error exists between an interpolating polynomial <span class="math inline">\(P(x)\)</span> and the true function <span class="math inline">\(f(x)\)</span> that we are approximating. This formula is important in numerical analysis when constructing polynomials to approximate functions based on given data points.</p>
-<section id="the-error-formula" class="level3">
-<h3 class="anchored" data-anchor-id="the-error-formula">The Error Formula</h3>
-<p>If we are given <span class="math inline">\(n\)</span> distinct data points <span class="math inline">\((x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)\)</span>, the interpolation error at a point <span class="math inline">\(x\)</span> between the data points is given by:</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The interpolation error formula is an expression used to estimate the error between a true function <span class="math inline">\(f(x)\)</span> and its interpolating polynomial <span class="math inline">\(P(x)\)</span> at a specific point. This formula helps us understand how closely the interpolating polynomial approximates the function, especially based on the distribution of interpolation points and the smoothness of <span class="math inline">\(f(x)\)</span>.</p>
+<p>The interpolation error formula is given by:</p>
 <p><span class="math display">\[
 f(x) - P(x) = \frac{(x - x_1)(x - x_2) \cdots (x - x_n)}{n!} f^{(n)}(c)
 \]</span></p>
-<p>Here:</p>
+<p>where:</p>
 <ul>
-<li><span class="math inline">\(f(x)\)</span> is the true function we are approximating.</li>
-<li><span class="math inline">\(P(x)\)</span> is the interpolating polynomial of degree <span class="math inline">\(n - 1\)</span> that passes through all the given data points.</li>
-<li><span class="math inline">\(f^{(n)}(c)\)</span> is the <span class="math inline">\(n\)</span>-th derivative of <span class="math inline">\(f\)</span>, evaluated at some unknown point <span class="math inline">\(c\)</span>, which lies between the smallest and largest <span class="math inline">\(x\)</span>-values.</li>
-<li><span class="math inline">\((x - x_1)(x - x_2) \cdots (x - x_n)\)</span> is the product of terms <span class="math inline">\((x - x_i)\)</span>, which depend on how far the point <span class="math inline">\(x\)</span> is from the given data points.</li>
-<li><span class="math inline">\(n!\)</span> is the factorial of <span class="math inline">\(n\)</span>, the number of data points.</li>
+<li><span class="math inline">\(n\)</span> is the number of interpolated points.</li>
+<li><span class="math inline">\(P(x)\)</span> is the interpolating polynomial of degree <span class="math inline">\(n - 1\)</span> that fits the points <span class="math inline">\((x_1, y_1), \ldots, (x_n, y_n)\)</span>,</li>
+<li><span class="math inline">\(f^{(n)}(c)\)</span> is the <span class="math inline">\(n\)</span>-th derivative of <span class="math inline">\(f(x)\)</span> evaluated at some unknown point <span class="math inline">\(c\)</span> in the interval <span class="math inline">\([x_1, x_n]\)</span>.</li>
 </ul>
 </section>
-<section id="key-insights" class="level3">
-<h3 class="anchored" data-anchor-id="key-insights">Key Insights</h3>
+<section id="what-this-formula-shows" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-formula-shows">What This Formula Shows</h2>
+<p>This formula provides the error at a <strong>specific point <span class="math inline">\(x\)</span></strong> between the true function <span class="math inline">\(f(x)\)</span> and the interpolating polynomial <span class="math inline">\(P(x)\)</span>. It does not directly give the maximum error across the entire interval, but rather the error at a particular <span class="math inline">\(x\)</span> based on the distribution of interpolation points and the properties of <span class="math inline">\(f(x)\)</span> at that point.</p>
+<section id="key-points" class="level3">
+<h3 class="anchored" data-anchor-id="key-points">Key Points</h3>
 <ol type="1">
-<li><p><strong>Factorial Growth</strong>: The denominator includes a factor of <span class="math inline">\(n!\)</span>, which grows quickly as the number of points increases. This reduces the impact of the higher-order term, especially for larger <span class="math inline">\(n\)</span>.</p></li>
-<li><p><strong>Derivative Behavior</strong>: The <span class="math inline">\(n\)</span>-th derivative <span class="math inline">\(f^{(n)}(c)\)</span> plays a crucial role in determining the size of the error. If the <span class="math inline">\(n\)</span>-th derivative of the function is small, the error will be smaller.</p></li>
-<li><p><strong>Closeness to Data Points</strong>: The term <span class="math inline">\((x - x_1)(x - x_2) \cdots (x - x_n)\)</span> increases when <span class="math inline">\(x\)</span> is far from the given data points. Thus, the error tends to be smaller when <span class="math inline">\(x\)</span> is near the center of the interpolation points and larger when it is near the boundaries.</p></li>
+<li><p><strong>Point-Specific Error</strong>: This formula gives the interpolation error at a particular point <span class="math inline">\(x\)</span>. It shows the difference <span class="math inline">\(f(x) - P(x)\)</span> at that point rather than over the entire interval.</p></li>
+<li><p><strong>Dependence on Higher Derivatives</strong>: The error depends on the <span class="math inline">\(n\)</span>-th derivative of <span class="math inline">\(f(x)\)</span> evaluated at some unknown point <span class="math inline">\(c\)</span> within <span class="math inline">\([x_1, x_n]\)</span>. This term reflects how “curved” <span class="math inline">\(f(x)\)</span> is over the interval. A larger <span class="math inline">\(|f^{(n)}(c)|\)</span> generally results in a larger error, as higher derivatives capture more variation in <span class="math inline">\(f(x)\)</span>.</p></li>
+<li><p><strong>Approximate Error Size</strong>: Although <span class="math inline">\(c\)</span> is unknown, we can approximate the error by assuming <span class="math inline">\(f^{(n)}(c)\)</span> reaches its maximum absolute value over <span class="math inline">\([x_1, x_n]\)</span>. This allows us to estimate an <strong>upper bound</strong> on the error at any point in the interval, though it’s still approximate.</p></li>
+<li><p><strong>Effect of Distance from Nodes</strong>: The term <span class="math inline">\((x - x_1)(x - x_2) \cdots (x - x_n)\)</span> grows as <span class="math inline">\(x\)</span> moves away from the interpolation nodes. This indicates that interpolation error typically increases the farther <span class="math inline">\(x\)</span> is from the interpolation points, which is why interpolation tends to be most accurate near the nodes.</p></li>
 </ol>
 </section>
-<section id="example-of-error-bound" class="level3">
-<h3 class="anchored" data-anchor-id="example-of-error-bound">Example of Error Bound</h3>
-<p>For example, consider the function <span class="math inline">\(f(x) = \sin(x)\)</span> and the interpolating polynomial <span class="math inline">\(P(x)\)</span> constructed using data points at <span class="math inline">\(0, \frac{\pi}{6}, \frac{\pi}{3}, \frac{\pi}{2}\)</span>. The error at <span class="math inline">\(x = 1\)</span> can be calculated using the formula:</p>
+</section>
+<section id="finding-the-maximum-error-over-the-interval" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-maximum-error-over-the-interval">Finding the Maximum Error Over the Interval</h2>
+<p>To find the maximum error over the entire interval <span class="math inline">\([x_1, x_n]\)</span>, we can use the interpolation error formula to create an <strong>upper bound</strong> for the error on the interval:</p>
+<ol type="1">
+<li><p><strong>Maximize <span class="math inline">\(|f^{(n)}(x)|\)</span> over the interval</strong>: Find the maximum of the <span class="math inline">\(n\)</span>-th derivative of <span class="math inline">\(f(x)\)</span>, <span class="math inline">\(f^{(n)}(x)\)</span>, over the interval <span class="math inline">\([x_1, x_n]\)</span>. This value represents the largest possible influence of the function’s curvature on the error.</p></li>
+<li><p><strong>Maximize <span class="math inline">\(|(x - x_1)(x - x_2) \cdots (x - x_n)|\)</span></strong>: Determine the maximum value of the product <span class="math inline">\(|(x - x_1)(x - x_2) \cdots (x - x_n)|\)</span> over the interval <span class="math inline">\([x_1, x_n]\)</span>. This product is largest near the midpoint of the interval (between the nodes) and tends to be smaller near the endpoints.</p></li>
+<li><p><strong>Combine the Results</strong>: Multiply these two maximum values and divide by <span class="math inline">\(n!\)</span> to get an <strong>upper bound</strong> on the maximum error over the interval:</p>
 <p><span class="math display">\[
-\sin(1) - P(1) \leq \frac{(1 - 0)(1 - \frac{\pi}{6})(1 - \frac{\pi}{3})(1 - \frac{\pi}{2})}{4!} \cdot |f^{(4)}(c)|
-\]</span></p>
-<p>Since <span class="math inline">\(|f^{(4)}(c)| \leq 1\)</span> (for <span class="math inline">\(\sin(x)\)</span>, the fourth derivative does not exceed 1), we can calculate the upper bound for the error.</p>
-</section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>The <strong>Interpolation Error Formula</strong> is a powerful tool for estimating how close an interpolating polynomial <span class="math inline">\(P(x)\)</span> is to the true function <span class="math inline">\(f(x)\)</span>. While it is often difficult to calculate the exact error, the formula helps provide an upper bound on the error, especially useful for functions with known derivatives. The error tends to be smaller in the middle of the interpolation interval and larger near the edges, which is a key factor in numerical interpolation.</p>
+\max_{x \in [x_1, x_n]} |f(x) - P(x)| \approx \frac{\max_{x \in [x_1, x_n]} |(x - x_1)(x - x_2) \cdots (x - x_n)|}{n!} \cdot \max_{x \in [x_1, x_n]} |f^{(n)}(x)|
+\]</span></p></li>
+</ol>
+<p>This approach provides an approximate maximum error over the interval. By using these maximum values, we can ensure that the error does not exceed this bound anywhere in <span class="math inline">\([x_1, x_n]\)</span>.</p>
+<p>In summary, the interpolation error formula gives insight into the <strong>local error</strong> at a specific point and can be used to estimate the <strong>maximum error</strong> on the interval by considering the maximum values of the components in the formula.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

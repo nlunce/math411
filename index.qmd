@@ -15,7 +15,7 @@ title: 'FALL 2024 - SCHEDULE'
         position: relative;
     }
     th {
-        background-color: #f2f2f2;
+  
         padding: 5px;
     }
     td {
