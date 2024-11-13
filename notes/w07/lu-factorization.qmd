@@ -3,7 +3,7 @@ title: 'LU Factorization'
 author: 'Nathan Lunceford'
 ---
 
-## Introduction
+## Overview
 
 LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix $A$ into the product of a lower triangular matrix $L$ and an upper triangular matrix $U$. This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices. This note explores LU Factorization's definition, properties, computation, and applications.
 

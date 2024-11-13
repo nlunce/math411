@@ -32,11 +32,9 @@ title: 'NOTES'
 
 - [LU Factorization](./w07/lu-factorization.html)
 
-::: {.callout-note icon=false collapse="true"}
-
 ## WEEK 8
 
-:::
+- [Gram-Schmidt Orthogonalization](./w08/gram-schmidt-orthogonalization.html)
 
 ::: {.callout-note icon=false collapse="true"}
 

@@ -382,7 +382,7 @@
     "href": "homework/index.html#week-9",
     "title": "Homework",
     "section": "Week 9",
-    "text": "Week 9\n\n(C4-P4) Exercise 4.3.4 (use the matrix from Exercise 4.3.1d)\n(C4-P5) Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)\n(C4-P6) Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does)."
+    "text": "Week 9\n\n(C4-P4) Exercise 4.3.4\n(C4-P5) Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)\n(C4-P6) Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does)."
   },
   {
     "objectID": "homework/index.html#week-10",
@@ -656,5 +656,208 @@
     "title": "Exercise 3.1.1c (C3-P1)",
     "section": "",
     "text": "Create a Python function that takes as input three points (six scalars, three pairs, or perhaps a 6-element numpy array–choose a method that makes sense to you) and uses the matplotlib package to create a figure window and then render a triangle with small open circles at each of the points and straight lines between each pair of circles. Include code to save your figure to a .png or .jpg file. Validate your function with the points (1, 2), (2, 1), and (2, 3).\n\n\nCreate function and figure\n# Define the function\ndef plot_triangle(points, save_path='triangle_plot.png'):\n    \"\"\"\n    Takes an input of three points (a list of 3 tuples or a 3x2 numpy array)\n    and plots a triangle with small open circles at each of the points.\n    The triangle is rendered with lines connecting each point.\n\n    Parameters:\n    points (list of tuples or numpy array): Points representing the vertices of the triangle.\n    save_path (str): File path to save the plotted figure.\n    \"\"\"\n\n    # Ensure points is a numpy array\n    points = np.array(points)\n\n    # Check if the input is in the correct shape (3x2)\n    if points.shape != (3, 2):\n        raise ValueError(\"Input should be a list of 3 points, each as a pair of (x, y) coordinates.\")\n\n    # Extract the x and y coordinates\n    x_coords = points[:, 0]\n    y_coords = points[:, 1]\n\n    # Close the triangle by repeating the first point at the end\n    x_closed = np.append(x_coords, x_coords[0])\n    y_closed = np.append(y_coords, y_coords[0])\n\n    # Create the plot\n    plt.figure(figsize=(6, 6))\n\n    # Plot the triangle with open circles at each vertex\n    plt.plot(x_closed, y_closed, 'b-', marker='o', markerfacecolor='none',\n             markeredgecolor='r', markersize=10, label='Triangle')\n\n    # Set labels and title\n    plt.title(\"Triangle with Given Vertices\")\n    plt.xlabel(\"x\")\n    plt.ylabel(\"y\")\n\n    # Set axis limits for better visualization\n    plt.xlim(min(x_closed) - 1, max(x_closed) + 1)\n    plt.ylim(min(y_closed) - 1, max(y_closed) + 1)\n\n    # Add grid for better visualization\n    plt.grid(True)\n\n\n    # Save the figure\n    plt.savefig(save_path, dpi=300)\n\n    # Show the plot\n   #  plt.show()\n\n# Test the function with the points (1, 2), (2, 1), and (2, 3)\ntest_points = [(1, 2), (2, 1), (2, 3)]\nplot_triangle(test_points, save_path='triangle_plot.png')\n\n\n\n\n\n\n\n\n\n\n\n\nFunction Definition:\n\nplot_triangle: This function takes in three points and an optional save_path parameter to specify where to save the plot.\nParameters:\n\npoints: A list of three tuples representing the vertices of the triangle or a 3x2 numpy array.\nsave_path: The file path where the plot image will be saved (default is 'triangle_plot.png').\n\n\nInput Validation:\n\nThe function first converts the input points to a numpy array and checks if it has the correct shape (3, 2). If not, it raises a ValueError.\n\nPlotting:\n\nClosing the Triangle: To draw a complete triangle, the first point is appended to the end of the x_coords and y_coords arrays.\nPlotting Lines and Markers:\n\nThe triangle is plotted with blue lines ('b-') connecting the points.\nSmall open red circles (marker='o', markerfacecolor='none', markeredgecolor='r') are placed at each vertex.\n\nLabels and Grid: The plot includes titles, axis labels, and a grid for better visualization.\n\nSaving and Displaying the Plot:\n\nThe plot is saved as a .png file with a resolution of 300 DPI.\nThe plot window is then displayed using plt.show().\n\n\n\n\n\nAfter running the function with the test points (1, 2), (2, 1), and (2, 3), the resulting triangle will be saved as triangle_plot.png and displayed as shown below:\n\n\n\nTriangle Plot"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html",
+    "href": "homework/w09/exercise4-3-1d.html",
+    "title": "Exercise 4.3.1d",
+    "section": "",
+    "text": "Apply classical Gram–Schmidt orthogonalization to find the full QR factorization of the matrix:\n\n\\mathbf{A} = \\begin{bmatrix} 4 & 8 & 1 \\\\ 0 & 2 & -2 \\\\ 3 & 6 & 7 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#step-1-define-the-columns-of-matrix-mathbfa",
+    "href": "homework/w09/exercise4-3-1d.html#step-1-define-the-columns-of-matrix-mathbfa",
+    "title": "Exercise 4.3.1d",
+    "section": "Step 1: Define the Columns of Matrix \\(\\mathbf{A}\\)",
+    "text": "Step 1: Define the Columns of Matrix \\(\\mathbf{A}\\)\nLet the columns of \\(\\mathbf{A}\\) be represented by vectors:\n\\[\n\\mathbf{a}_1 = \\begin{pmatrix} 4 \\\\ 0 \\\\ 3 \\end{pmatrix}, \\quad \\mathbf{a}_2 = \\begin{pmatrix} 8 \\\\ 2 \\\\ 6 \\end{pmatrix}, \\quad \\mathbf{a}_3 = \\begin{pmatrix} 1 \\\\ -2 \\\\ 7 \\end{pmatrix}\n\\]"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#step-2-compute-mathbfq_1",
+    "href": "homework/w09/exercise4-3-1d.html#step-2-compute-mathbfq_1",
+    "title": "Exercise 4.3.1d",
+    "section": "Step 2: Compute \\mathbf{q}_1",
+    "text": "Step 2: Compute \\mathbf{q}_1\nTo find the first orthonormal vector \\mathbf{q}_1, normalize \\mathbf{a}_1:\n\nCalculate the norm of \\mathbf{a}_1:\n\n\\|\\mathbf{a}_1\\| = \\sqrt{4^2 + 0^2 + 3^2} = \\sqrt{16 + 9} = \\sqrt{25} = 5\n\n\n\nNormalize \\mathbf{a}_1:\n\n\\mathbf{q}_1 = \\frac{\\mathbf{a}_1}{\\|\\mathbf{a}_1\\|} = \\frac{1}{5} \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#step-3-compute-mathbfq_2",
+    "href": "homework/w09/exercise4-3-1d.html#step-3-compute-mathbfq_2",
+    "title": "Exercise 4.3.1d",
+    "section": "Step 3: Compute \\(\\mathbf{q}_2\\)",
+    "text": "Step 3: Compute \\(\\mathbf{q}_2\\)\nTo find \\(\\mathbf{q}_2\\), first project \\(\\mathbf{a}_2\\) onto \\(\\mathbf{q}_1\\) and subtract:\n\\[\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\left( \\mathbf{a}_2 \\cdot \\mathbf{q}_1 \\right) \\mathbf{q}_1\n\\]\nCalculate \\(\\mathbf{a}_2 \\cdot \\mathbf{q}_1\\):\n\\[\n\\mathbf{a}_2 \\cdot \\mathbf{q}_1 = 10\n\\]\nThus,\n\\[\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\begin{pmatrix} 8 \\\\ 0 \\\\ 6 \\end{pmatrix}\n\\]\nThen,\n\\[\n\\mathbf{u}_2 = \\mathbf{a}_2 - \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\begin{pmatrix} 0 \\\\ 2 \\\\ 0 \\end{pmatrix}\n\\]\nNormalize \\(\\mathbf{u}_2\\) to get \\(\\mathbf{q}_2\\):\n\\[\n\\mathbf{q}_2 = \\begin{pmatrix} 0 \\\\ 1 \\\\ 0 \\end{pmatrix}\n\\]"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#step-4-compute-mathbfq_3",
+    "href": "homework/w09/exercise4-3-1d.html#step-4-compute-mathbfq_3",
+    "title": "Exercise 4.3.1d",
+    "section": "Step 4: Compute \\(\\mathbf{q}_3\\)",
+    "text": "Step 4: Compute \\(\\mathbf{q}_3\\)\nNow, project \\(\\mathbf{a}_3\\) onto \\(\\mathbf{q}_1\\) and \\(\\mathbf{q}_2\\), then subtract:\n\\[\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_3 = 5 \\begin{pmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{pmatrix} = \\begin{pmatrix} 4 \\\\ 0 \\\\ 3 \\end{pmatrix}\n\\]\n\\[\n\\text{proj}_{\\mathbf{q}_2} \\mathbf{a}_3 = \\begin{pmatrix} 0 \\\\ -2 \\\\ 0 \\end{pmatrix}\n\\]\nThus,\n\\[\n\\mathbf{u}_3 = \\begin{pmatrix} -3 \\\\ 0 \\\\ 4 \\end{pmatrix}\n\\]\nNormalize \\(\\mathbf{u}_3\\):\n\\[\n\\mathbf{q}_3 = \\begin{pmatrix} -\\frac{3}{5} \\\\ 0 \\\\ \\frac{4}{5} \\end{pmatrix}\n\\]"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#step-5-construct-mathbfq-and-mathbfr-matrices",
+    "href": "homework/w09/exercise4-3-1d.html#step-5-construct-mathbfq-and-mathbfr-matrices",
+    "title": "Exercise 4.3.1d",
+    "section": "Step 5: Construct \\(\\mathbf{Q}\\) and \\(\\mathbf{R}\\) Matrices",
+    "text": "Step 5: Construct \\(\\mathbf{Q}\\) and \\(\\mathbf{R}\\) Matrices\n\nOrthogonal Matrix \\(\\mathbf{Q}\\)\n\\[\n\\mathbf{Q} = \\begin{pmatrix} \\frac{4}{5} & 0 & -\\frac{3}{5} \\\\ 0 & 1 & 0 \\\\ \\frac{3}{5} & 0 & \\frac{4}{5} \\end{pmatrix}\n\\]\n\n\nUpper Triangular Matrix \\(\\mathbf{R}\\)\n\\[\n\\mathbf{R} = \\begin{pmatrix} 5 & 10 & 5 \\\\ 0 & 2 & -2 \\\\ 0 & 0 & 5 \\end{pmatrix}\n\\]"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#final-answer",
+    "href": "homework/w09/exercise4-3-1d.html#final-answer",
+    "title": "Exercise 4.3.1d",
+    "section": "Final Answer",
+    "text": "Final Answer\nThe QR factorization of \\mathbf{A} is:\n\n\\mathbf{A} = \\mathbf{Q} \\mathbf{R} = \\begin{bmatrix} \\frac{4}{5} & 0 & -\\frac{3}{5} \\\\ 0 & 1 & 0 \\\\ \\frac{3}{5} & 0 & \\frac{4}{5} \\end{bmatrix} \\begin{bmatrix} 5 & 10 & 5 \\\\ 0 & 2 & -2 \\\\ 0 & 0 & 5 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-4.html",
+    "href": "homework/w09/exercise4-3-4.html",
+    "title": "Exercise 2.4.6 (C2-P10)",
+    "section": "",
+    "text": "(a) Write down the \\(4 \\times 4\\) matrix \\(P\\) such that multiplying a matrix on the left by \\(P\\) causes the second and fourth rows of the matrix to be exchanged.\n(b) What is the effect of multiplying on the right by \\(P\\)? Demonstrate with an example."
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-4.html#a-constructing-the-permutation-matrix-p",
+    "href": "homework/w09/exercise4-3-4.html#a-constructing-the-permutation-matrix-p",
+    "title": "Exercise 2.4.6 (C2-P10)",
+    "section": "(a) Constructing the Permutation Matrix \\(P\\)",
+    "text": "(a) Constructing the Permutation Matrix \\(P\\)\nTo create a permutation matrix \\(P\\) that exchanges the second and fourth rows when multiplied on the left, start with the \\(4 \\times 4\\) identity matrix \\(I_4\\) and swap its second and fourth rows.\nIdentity Matrix \\(I_4\\):\n\\[\nI_4 = \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\\n0 & 1 & 0 & 0 \\\\\n0 & 0 & 1 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n\\end{pmatrix}\n\\]\nPermutation Matrix \\(P\\) (after swapping rows 2 and 4):\n\\[\nP = \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 0 \\\\\n\\end{pmatrix}\n\\]\nWhen \\(P\\) multiplies any \\(4 \\times n\\) matrix \\(A\\) on the left (\\(PA\\)), it exchanges the second and fourth rows of \\(A\\)."
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-4.html#b-effect-of-multiplying-on-the-right-by-p",
+    "href": "homework/w09/exercise4-3-4.html#b-effect-of-multiplying-on-the-right-by-p",
+    "title": "Exercise 2.4.6 (C2-P10)",
+    "section": "(b) Effect of Multiplying on the Right by \\(P\\)",
+    "text": "(b) Effect of Multiplying on the Right by \\(P\\)\nMultiplying a matrix on the right by \\(P\\) rearranges its columns (instead of rows) according to the pattern defined by \\(P\\). In this case, it specifically swaps the matrix’s second and fourth columns.\nDemonstration with an Example:\nLet’s consider a \\(4 \\times 4\\) matrix \\(A\\):\n\\[\nA = \\begin{pmatrix}\na_{11} & a_{12} & a_{13} & a_{14} \\\\\na_{21} & a_{22} & a_{23} & a_{24} \\\\\na_{31} & a_{32} & a_{33} & a_{34} \\\\\na_{41} & a_{42} & a_{43} & a_{44} \\\\\n\\end{pmatrix}\n\\]\nCompute \\(AP\\):\n\\[\nAP = A \\times P = A \\times \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 0 \\\\\n\\end{pmatrix}\n\\]\nResulting Matrix \\(AP\\):\n\\[\nAP = \\begin{pmatrix}\na_{11} & a_{14} & a_{13} & a_{12} \\\\\na_{21} & a_{24} & a_{23} & a_{22} \\\\\na_{31} & a_{34} & a_{33} & a_{32} \\\\\na_{41} & a_{44} & a_{43} & a_{42} \\\\\n\\end{pmatrix}\n\\]\nNumerical Example:\n\\[\nA = \\begin{pmatrix}\n1 & 2 & 3 & 4 \\\\\n5 & 6 & 7 & 8 \\\\\n9 & 10 & 11 & 12 \\\\\n13 & 14 & 15 & 16 \\\\\n\\end{pmatrix}\n\\]\nCompute \\(AP\\):\n\\[\nAP = A \\times \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 0 \\\\\n\\end{pmatrix} = \\begin{pmatrix}\n1 & 4 & 3 & 2 \\\\\n5 & 8 & 7 & 6 \\\\\n9 & 12 & 11 & 10 \\\\\n13 & 16 & 15 & 14 \\\\\n\\end{pmatrix}\n\\]\nFinal Answer\n(a) The \\(4 \\times 4\\) permutation matrix \\(P\\) that exchanges the second and fourth rows when multiplied on the left is:\n\\[\nP = \\begin{pmatrix}\n1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 1 \\\\\n0 & 0 & 1 & 0 \\\\\n0 & 1 & 0 & 0 \\\\\n\\end{pmatrix}\n\\]\n(b) Multiplying on the right by \\(P\\) exchanges the second and fourth columns of a matrix. For example, for the matrix:\n\\[\nA = \\begin{pmatrix}\n1 & 2 & 3 & 4 \\\\\n5 & 6 & 7 & 8 \\\\\n9 & 10 & 11 & 12 \\\\\n13 & 14 & 15 & 16 \\\\\n\\end{pmatrix}\n\\]\nMultiplying on the right by \\(P\\) yields:\n\\[\nAP = \\begin{pmatrix}\n1 & 4 & 3 & 2 \\\\\n5 & 8 & 7 & 6 \\\\\n9 & 12 & 11 & 10 \\\\\n13 & 16 & 15 & 14 \\\\\n\\end{pmatrix}\n\\]\nwhich is \\(A\\) with its second and fourth columns exchanged."
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#define-the-columns-of-matrix-mathbfa",
+    "href": "homework/w09/exercise4-3-1d.html#define-the-columns-of-matrix-mathbfa",
+    "title": "Exercise 4.3.1d",
+    "section": "Define the Columns of Matrix \\mathbf{A}",
+    "text": "Define the Columns of Matrix \\mathbf{A}\nRepresent the columns of \\mathbf{A} as vectors:\n\n\\mathbf{a}_1 = \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix}, \\quad \\mathbf{a}_2 = \\begin{bmatrix} 8 \\\\ 2 \\\\ 6 \\end{bmatrix}, \\quad \\mathbf{a}_3 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#compute-mathbfq_1",
+    "href": "homework/w09/exercise4-3-1d.html#compute-mathbfq_1",
+    "title": "Exercise 4.3.1d",
+    "section": "Compute \\(\\mathbf{q}_1\\)",
+    "text": "Compute \\(\\mathbf{q}_1\\)\nTo find \\(\\mathbf{q}_1\\), normalize \\(\\mathbf{a}_1\\):\n\\[\n\\mathbf{q}_1 = \\frac{\\mathbf{a}_1}{\\|\\mathbf{a}_1\\|} = \\frac{\\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix}}{\\sqrt{4^2 + 0^2 + 3^2}} = \\frac{1}{5} \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix}\n\\]"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#compute-mathbfq_2",
+    "href": "homework/w09/exercise4-3-1d.html#compute-mathbfq_2",
+    "title": "Exercise 4.3.1d",
+    "section": "Compute \\mathbf{q}_2",
+    "text": "Compute \\mathbf{q}_2\nTo find \\mathbf{q}_2, we first project \\mathbf{a}_2 onto \\mathbf{q}_1 and then subtract this projection from \\mathbf{a}_2.\n\nCalculate the projection of \\mathbf{a}_2 onto \\mathbf{q}_1:\nThe formula for the projection of a vector () onto a vector () is:\n\n\\text{proj}_{\\mathbf{u}} \\mathbf{v} = \\frac{\\mathbf{v} \\cdot \\mathbf{u}}{\\mathbf{u} \\cdot \\mathbf{u}} \\mathbf{u}\n\nFor our case:\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\left( \\frac{\\mathbf{a}_2 \\cdot \\mathbf{q}_1}{\\mathbf{q}_1 \\cdot \\mathbf{q}_1} \\right) \\mathbf{q}_1\n\nSince (_1) is a unit vector, (_1 _1 = 1).\n\n\nCompute \\mathbf{a}_2 \\cdot \\mathbf{q}_1:\n\n\\mathbf{a}_2 \\cdot \\mathbf{q}_1 = \\begin{bmatrix} 8 \\\\ 2 \\\\ 6 \\end{bmatrix} \\cdot \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\frac{32}{5} + 0 + \\frac{18}{5} = \\frac{50}{5} = 10\n\n\n\nCalculate \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2:\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = 10 \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\begin{bmatrix} 8 \\\\ 0 \\\\ 6 \\end{bmatrix}\n\n\n\nCalculate \\mathbf{u}_2:\nNow, subtract the projection from \\mathbf{a}_2 to get \\mathbf{u}_2:\n\n\\mathbf{u}_2 = \\mathbf{a}_2 - \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\begin{bmatrix} 8 \\\\ 2 \\\\ 6 \\end{bmatrix} - \\begin{bmatrix} 8 \\\\ 0 \\\\ 6 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 2 \\\\ 0 \\end{bmatrix}\n\n\n\nNormalize \\mathbf{u}_2 to get \\mathbf{q}_2:\nThe norm of \\mathbf{u}_2 is:\n\n\\|\\mathbf{u}_2\\| = \\sqrt{0^2 + 2^2 + 0^2} = 2\n\nTherefore,\n\n\\mathbf{q}_2 = \\frac{\\mathbf{u}_2}{\\|\\mathbf{u}_2\\|} = \\frac{1}{2} \\begin{bmatrix} 0 \\\\ 2 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#compute-mathbfq_3",
+    "href": "homework/w09/exercise4-3-1d.html#compute-mathbfq_3",
+    "title": "Exercise 4.3.1d",
+    "section": "Compute \\mathbf{q}_3",
+    "text": "Compute \\mathbf{q}_3\nNow, to find \\mathbf{q}_3, we project \\mathbf{a}_3 onto both \\mathbf{q}_1 and \\mathbf{q}_2, then subtract these projections from \\mathbf{a}_3.\n\nCalculate the projection of \\mathbf{a}_3 onto \\mathbf{q}_1:\n\n\\mathbf{a}_3 \\cdot \\mathbf{q}_1 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} \\cdot \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\frac{4}{5} + 0 + \\frac{21}{5} = \\frac{25}{5} = 5\n\nThen,\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_3 = 5 \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix}\n\n\n\nCalculate the projection of \\mathbf{a}_3 onto \\mathbf{q}_2:\n\n\\mathbf{a}_3 \\cdot \\mathbf{q}_2 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} \\cdot \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix} = -2\n\nThen,\n\n\\text{proj}_{\\mathbf{q}_2} \\mathbf{a}_3 = -2 \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ -2 \\\\ 0 \\end{bmatrix}\n\n\n\nCalculate \\mathbf{u}_3:\nNow, subtract both projections from \\mathbf{a}_3 to get \\mathbf{u}_3:\n\n\\mathbf{u}_3 = \\mathbf{a}_3 - \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_3 - \\text{proj}_{\\mathbf{q}_2} \\mathbf{a}_3 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} - \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix} - \\begin{bmatrix} 0 \\\\ -2 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} -3 \\\\ 0 \\\\ 4 \\end{bmatrix}\n\n\n\nNormalize \\mathbf{u}_3 to get \\mathbf{q}_3:\nThe norm of \\mathbf{u}_3 is:\n\n\\|\\mathbf{u}_3\\| = \\sqrt{(-3)^2 + 0^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\n\nTherefore,\n\n\\mathbf{q}_3 = \\frac{\\mathbf{u}_3}{\\|\\mathbf{u}_3\\|} = \\frac{1}{5} \\begin{bmatrix} -3 \\\\ 0 \\\\ 4 \\end{bmatrix} = \\begin{bmatrix} -\\frac{3}{5} \\\\ 0 \\\\ \\frac{4}{5} \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#construct-mathbfq-and-mathbfr-matrices",
+    "href": "homework/w09/exercise4-3-1d.html#construct-mathbfq-and-mathbfr-matrices",
+    "title": "Exercise 4.3.1d",
+    "section": "Construct \\mathbf{Q} and \\mathbf{R} Matrices",
+    "text": "Construct \\mathbf{Q} and \\mathbf{R} Matrices\n\nOrthogonal Matrix \\mathbf{Q}\nCombining the orthonormal vectors \\mathbf{q}_1, \\mathbf{q}_2, and \\mathbf{q}_3 as columns, we get:\n$$ =\n\\begin{bmatrix}\n\n\\frac{4}{5} & 0 & -\\frac{3}{5} \\\\ 0 & 1 & 0 \\\\ \\frac{3}{5} & 0 & \\frac{4}{5} \\end{bmatrix}\n$$\n\n\nUpper Triangular Matrix \\mathbf{R}\nThe entries of \\mathbf{R} are the dot products of the original columns of \\mathbf{A} with the orthonormal vectors \\mathbf{q}_1, \\mathbf{q}_2, and \\mathbf{q}_3:\n\n\\mathbf{R} = \\begin{bmatrix} \\mathbf{a}_1 \\cdot \\mathbf{q}_1 & \\mathbf{a}_2 \\cdot \\mathbf{q}_1 & \\mathbf{a}_3 \\cdot \\mathbf{q}_1 \\\\ 0 & \\mathbf{a}_2 \\cdot \\mathbf{q}_2 & \\mathbf{a}_3 \\cdot \\mathbf{q}_2 \\\\ 0 & 0 & \\mathbf{a}_3 \\cdot \\mathbf{q}_3 \\end{bmatrix} = \\begin{bmatrix} 5 & 10 & 5 \\\\ 0 & 2 & -2 \\\\ 0 & 0 & 5 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#finding-mathbfq_1",
+    "href": "homework/w09/exercise4-3-1d.html#finding-mathbfq_1",
+    "title": "Exercise 4.3.1d",
+    "section": "Finding \\mathbf{q}_1",
+    "text": "Finding \\mathbf{q}_1\nTo find the first orthonormal vector \\mathbf{q}_1, normalize \\mathbf{a}_1.\n\nCalculate the norm of \\mathbf{a}_1:\n\n\\|\\mathbf{a}_1\\| = \\sqrt{4^2 + 0^2 + 3^2} = \\sqrt{16 + 9} = \\sqrt{25} = 5\n\nNormalize \\mathbf{a}_1:\n\n\\mathbf{q}_1 = \\frac{\\mathbf{a}_1}{\\|\\mathbf{a}_1\\|} = \\frac{1}{5} \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#finding-mathbfq_2",
+    "href": "homework/w09/exercise4-3-1d.html#finding-mathbfq_2",
+    "title": "Exercise 4.3.1d",
+    "section": "Finding \\mathbf{q}_2",
+    "text": "Finding \\mathbf{q}_2\nTo find \\mathbf{q}_2, project \\mathbf{a}_2 onto \\mathbf{q}_1 and then subtract this projection from \\mathbf{a}_2.\n\nCalculate the projection of \\mathbf{a}_2 onto \\mathbf{q}_1:\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\left( \\mathbf{a}_2 \\cdot \\mathbf{q}_1 \\right) \\mathbf{q}_1\n\nSince \\mathbf{q}_1 is a unit vector, \\mathbf{q}_1 \\cdot \\mathbf{q}_1 = 1.\nCompute \\mathbf{a}_2 \\cdot \\mathbf{q}_1:\n\n\\mathbf{a}_2 \\cdot \\mathbf{q}_1 = \\begin{bmatrix} 8 \\\\ 2 \\\\ 6 \\end{bmatrix} \\cdot \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\frac{32}{5} + 0 + \\frac{18}{5} = \\frac{50}{5} = 10\n\nCalculate \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2:\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = 10 \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\begin{bmatrix} 8 \\\\ 0 \\\\ 6 \\end{bmatrix}\n\nCalculate \\mathbf{u}_2:\nSubtracting the projection from \\mathbf{a}_2 gives \\mathbf{u}_2:\n\n\\mathbf{u}_2 = \\mathbf{a}_2 - \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\begin{bmatrix} 8 \\\\ 2 \\\\ 6 \\end{bmatrix} - \\begin{bmatrix} 8 \\\\ 0 \\\\ 6 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 2 \\\\ 0 \\end{bmatrix}\n\nNormalize \\mathbf{u}_2 to obtain \\mathbf{q}_2:\nThe norm of \\mathbf{u}_2 is:\n\n\\|\\mathbf{u}_2\\| = \\sqrt{0^2 + 2^2 + 0^2} = 2\n\nThus,\n\n\\mathbf{q}_2 = \\frac{\\mathbf{u}_2}{\\|\\mathbf{u}_2\\|} = \\frac{1}{2} \\begin{bmatrix} 0 \\\\ 2 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#finding-mathbfq_3",
+    "href": "homework/w09/exercise4-3-1d.html#finding-mathbfq_3",
+    "title": "Exercise 4.3.1d",
+    "section": "Finding \\mathbf{q}_3",
+    "text": "Finding \\mathbf{q}_3\nTo find \\mathbf{q}_3, project \\mathbf{a}_3 onto both \\mathbf{q}_1 and \\mathbf{q}_2, and then subtract these projections from \\mathbf{a}_3.\n\nCalculate the projection of \\mathbf{a}_3 onto \\mathbf{q}_1:\n\n\\mathbf{a}_3 \\cdot \\mathbf{q}_1 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} \\cdot \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\frac{4}{5} + 0 + \\frac{21}{5} = \\frac{25}{5} = 5\n\nThen,\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_3 = 5 \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix}\n\nCalculate the projection of \\mathbf{a}_3 onto \\mathbf{q}_2:\n\n\\mathbf{a}_3 \\cdot \\mathbf{q}_2 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} \\cdot \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix} = -2\n\nThen,\n\n\\text{proj}_{\\mathbf{q}_2} \\mathbf{a}_3 = -2 \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ -2 \\\\ 0 \\end{bmatrix}\n\nCalculate \\mathbf{u}_3:\nSubtracting both projections from \\mathbf{a}_3 yields \\mathbf{u}_3:\n\n\\mathbf{u}_3 = \\mathbf{a}_3 - \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_3 - \\text{proj}_{\\mathbf{q}_2} \\mathbf{a}_3 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} - \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix} - \\begin{bmatrix} 0 \\\\ -2 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} -3 \\\\ 0 \\\\ 4 \\end{bmatrix}\n\nNormalize \\mathbf{u}_3 to obtain \\mathbf{q}_3:\nThe norm of \\mathbf{u}_3 is:\n\n\\|\\mathbf{u}_3\\| = \\sqrt{(-3)^2 + 0^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\n\nThus,\n\n\\mathbf{q}_3 = \\frac{\\mathbf{u}_3}{\\|\\mathbf{u}_3\\|} = \\frac{1}{5} \\begin{bmatrix} -3 \\\\ 0 \\\\ 4 \\end{bmatrix} = \\begin{bmatrix} -\\frac{3}{5} \\\\ 0 \\\\ \\frac{4}{5} \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w09/exercise4-3-1d.html#constructing-mathbfq-and-mathbfr-matrices",
+    "href": "homework/w09/exercise4-3-1d.html#constructing-mathbfq-and-mathbfr-matrices",
+    "title": "Exercise 4.3.1d",
+    "section": "Constructing \\mathbf{Q} and \\mathbf{R} Matrices",
+    "text": "Constructing \\mathbf{Q} and \\mathbf{R} Matrices\n\nOrthogonal Matrix \\mathbf{Q}\nCombine \\mathbf{q}_1, \\mathbf{q}\\_2, and \\mathbf{q}_3 as columns to form \\mathbf{Q}:\n\n\\mathbf{Q} = \\begin{bmatrix} \\frac{4}{5} & 0 & -\\frac{3}{5} \\\\ 0 & 1 & 0 \\\\ \\frac{3}{5} & 0 & \\frac{4}{5} \\end{bmatrix}\n\n\n\nUpper Triangular Matrix \\mathbf{R}\nThe entries of \\mathbf{R} are calculated as the dot products of the original columns of \\mathbf{A} with the orthonormal vectors \\mathbf{q}_1, \\mathbf{q}_2, and \\mathbf{q}_3:\n\n\\mathbf{R} = \\begin{bmatrix} \\mathbf{a}_1 \\cdot \\mathbf{q}_1 & \\mathbf{a}_2 \\cdot \\mathbf{q}_1 & \\mathbf{a}_3 \\cdot \\mathbf{q}_1 \\\\ 0 & \\mathbf{a}_2 \\cdot \\mathbf{q}_2 & \\mathbf{a}_3 \\cdot \\mathbf{q}_2 \\\\ 0 & 0 & \\mathbf{a}_3 \\cdot \\mathbf{q}_3 \\end{bmatrix} = \\begin{bmatrix} 5 & 10 & 5 \\\\ 0 & 2 & -2 \\\\ 0 & 0 & 5 \\end{bmatrix}\n\n\n\nFinal Answer\nThe QR factorization of \\mathbf{A} is:\n\n\\mathbf{A} = \\mathbf{Q} \\mathbf{R} = \\begin{bmatrix} \\frac{4}{5} & 0 & -\\frac{3}{5} \\\\ 0 & 1 & 0 \\\\ \\frac{3}{5} & 0 & \\frac{4}{5} \\end{bmatrix} \\begin{bmatrix} 5 & 10 & 5 \\\\ 0 & 2 & -2 \\\\ 0 & 0 & 5 \\end{bmatrix}"
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "",
+    "text": "The Gram-Schmidt Orthogonalization process is a fundamental technique in linear algebra for transforming a set of linearly independent vectors into an orthogonal (or orthonormal) set that spans the same subspace. This method is widely used in applications such as QR factorization, solving least squares problems, and numerical linear algebra. This note explores the definition, properties, computation, and applications of the Gram-Schmidt process."
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html#overview",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html#overview",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "",
+    "text": "The Gram-Schmidt Orthogonalization process is a fundamental technique in linear algebra for transforming a set of linearly independent vectors into an orthogonal (or orthonormal) set that spans the same subspace. This method is widely used in applications such as QR factorization, solving least squares problems, and numerical linear algebra. This note explores the definition, properties, computation, and applications of the Gram-Schmidt process."
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html#definition-and-process",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html#definition-and-process",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "Definition and Process",
+    "text": "Definition and Process\nGiven a set of linearly independent vectors \\(A_1, A_2, \\dots, A_n\\), the Gram-Schmidt process produces an orthogonal (or orthonormal) set of vectors \\(q_1, q_2, \\dots, q_n\\) such that:\n\nEach vector \\(q_i\\) is orthogonal to the previous vectors \\(q_1, q_2, \\dots, q_{i-1}\\).\nThe span of \\(q_1, q_2, \\dots, q_n\\) is the same as the span of \\(A_1, A_2, \\dots, A_n\\).\n\nThis orthogonal set can also be normalized to create an orthonormal basis."
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html#steps-of-the-gram-schmidt-process",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html#steps-of-the-gram-schmidt-process",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "Steps of the Gram-Schmidt Process",
+    "text": "Steps of the Gram-Schmidt Process\nThe Gram-Schmidt process involves the following steps:\n\nInitialize with the First Vector: Set \\(q_1\\) as the normalized version of \\(A_1\\):\n\\[\nq_1 = \\frac{A_1}{\\|A_1\\|}\n\\]\nCompute Subsequent Vectors: For each vector \\(A_i\\), construct a new vector \\(u_i\\) by subtracting components that align with previously computed \\(q\\)-vectors. Normalize \\(u_i\\) to obtain \\(q_i\\):\n\nDefine the non-normalized vector \\(u_i\\): \\[\nu_i = A_i - \\sum_{j=1}^{i-1} (q_j \\cdot A_i) \\, q_j\n\\]\nNormalize \\(u_i\\) to obtain \\(q_i\\): \\[\nq_i = \\frac{u_i}{\\|u_i\\|}\n\\]\n\n\nEach vector \\(q_i\\) is thus orthogonal to the preceding \\(q\\)-vectors and has unit length if normalized."
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html#example",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html#example",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "Example",
+    "text": "Example\nGiven vectors \\(A_1\\) and \\(A_2\\), the Gram-Schmidt process works as follows:\n\nCalculate \\(q_1\\):\n\\[\nq_1 = \\frac{A_1}{\\|A_1\\|}\n\\]\nCalculate \\(q_2\\):\n\nFirst, remove the component of \\(A_2\\) in the direction of \\(q_1\\) to obtain \\(u_2\\): \\[\nu_2 = A_2 - (q_1 \\cdot A_2) q_1\n\\]\nThen, normalize \\(u_2\\) to get \\(q_2\\): \\[\nq_2 = \\frac{u_2}{\\|u_2\\|}\n\\]"
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html#properties-of-gram-schmidt-orthogonalization",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html#properties-of-gram-schmidt-orthogonalization",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "Properties of Gram-Schmidt Orthogonalization",
+    "text": "Properties of Gram-Schmidt Orthogonalization\n\nOrthogonality: Each vector \\(q_i\\) is orthogonal to all previously generated vectors \\(q_1, \\dots, q_{i-1}\\).\nSpan Preservation: The set \\(\\{q_1, q_2, \\dots, q_n\\}\\) spans the same subspace as the original set \\(\\{A_1, A_2, \\dots, A_n\\}\\).\nOrthonormal Basis: By normalizing each \\(u_i\\) to get \\(q_i\\), the process yields an orthonormal basis for the subspace."
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html#applications-of-gram-schmidt-orthogonalization",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html#applications-of-gram-schmidt-orthogonalization",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "Applications of Gram-Schmidt Orthogonalization",
+    "text": "Applications of Gram-Schmidt Orthogonalization\nGram-Schmidt orthogonalization is widely applied in various fields due to its utility in creating orthogonal bases:\n\nQR Factorization: Used to decompose a matrix into an orthogonal matrix \\(Q\\) and an upper triangular matrix \\(R\\).\nLeast Squares Problems: Assists in minimizing the error in fitting data to a model by creating orthogonal projections.\nSignal Processing and Data Compression: Forms the foundation for methods that reduce redundancy by representing data in orthogonal bases.\nMachine Learning and Statistics: Simplifies computations by projecting data onto orthogonal components."
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html#example-problem",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html#example-problem",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "Example Problem",
+    "text": "Example Problem\nProblem: Given the vectors\n\\[\nA_1 = \\begin{pmatrix} 1 \\\\ 2 \\\\ 3 \\end{pmatrix}, \\quad A_2 = \\begin{pmatrix} 4 \\\\ 5 \\\\ 6 \\end{pmatrix}\n\\]\n\nUse Gram-Schmidt to find orthogonal vectors \\(q_1\\) and \\(q_2\\).\nNormalize \\(q_1\\) and \\(q_2\\) to form an orthonormal basis.\n\n\nSolution Steps\n\nCompute \\(q_1\\) by normalizing \\(A_1\\).\nCalculate \\(u_2\\) by removing the component of \\(A_2\\) in the direction of \\(q_1\\).\nNormalize \\(u_2\\) to obtain \\(q_2\\)."
+  },
+  {
+    "objectID": "notes/w08/gram-schmidt-orthogonalization.html#conclusion",
+    "href": "notes/w08/gram-schmidt-orthogonalization.html#conclusion",
+    "title": "Gram-Schmidt Orthogonalization",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe Gram-Schmidt process is a valuable tool in linear algebra for constructing orthogonal (or orthonormal) bases. By transforming a set of linearly independent vectors, it simplifies many matrix operations and lays the groundwork for QR factorization, data projections, and error minimization in least squares problems."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#overview",
+    "href": "notes/w07/lu-factorization.html#overview",
+    "title": "LU Factorization",
+    "section": "",
+    "text": "LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix \\(A\\) into the product of a lower triangular matrix \\(L\\) and an upper triangular matrix \\(U\\). This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices. This note explores LU Factorization’s definition, properties, computation, and applications."
   }
 ]

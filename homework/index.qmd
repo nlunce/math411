@@ -86,7 +86,8 @@ title: 'Homework'
 
 ## Week 9
 
-- [(C4-P4) Exercise 4.3.4 (use the matrix from Exercise 4.3.1d)](#)
+- [Exercise 4.3.1d](./w09/exercise4-3-1d.html)
+- [(C4-P4) Exercise 4.3.4](#)
 - [(C4-P5) Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)](#)
 - [(C4-P6) Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does).](#)
 
