@@ -1,69 +1,69 @@
 ---
-title: 'Notes'
+title: 'NOTES'
 ---
 
-## Week 1
+## WEEK 1
 
 - [Bisection Method](./w01/bisection-method.html)
 - [Fixed-Point Iteration](./w01/fixed-point-iteration.html)
 - [Newtons's Method](./w01/newtons-method.html)
 - [Secant Method](./w01/secant-method.html)
 
-## Week 2
+## WEEK 2
 
 - [Lagrange Interpolation](./w02/lagrange-interpolation.html)
 - [Newton’s Divided Differences](./w02/newtons-divided-differences.html)
 
-## Week 3
+## WEEK 3
 
 - [Interpolation Error Formula](./w03/interpolation-error-formula.html)
 - [Runge Phenomenon](./w03/runge-phenomenon.html)
 - [Chebyshev Interpolation](./w03/chebyshev-interpolation.html)
 
-## Week 4
+## WEEK 4
 
 - [Trapezoidal Rule](./w04/trapezoidal-rule.html)
 
-## Week 5
+## WEEK 5
 
-## Week 6
+## WEEK 6
 
-## Week 7
+## WEEK 7
 
 - [LU Factorization](./w07/lu-factorization.html)
 
 ::: {.callout-note icon=false collapse="true"}
 
-## Week 8
+## WEEK 8
 
 :::
 
 ::: {.callout-note icon=false collapse="true"}
 
-## Week 9
+## WEEK 9
 
 :::
 
 ::: {.callout-note icon=false collapse="true"}
 
-## Week 10
+## WEEK 10
 
 :::
 
 ::: {.callout-note icon=false collapse="true"}
 
-## Week 11
+## WEEK 11
 
 :::
 
 ::: {.callout-note icon=false collapse="true"}
 
-## Week 12
+## WEEK 12
 
 :::
 
 ::: {.callout-note icon=false collapse="true"}
 
-## Week
+## WEEK
 
 :::
