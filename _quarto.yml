@@ -7,7 +7,6 @@ project:
     - '!quizzes/' # Ignore the entire quizzes folder
     - '!book/' # Ignore the entire quizzes folder
     - '!rc01_writeup/'
-    - '!site_libs/' # Ignore the entire site_libs folder
 
 website:
   title: 'MATH411'
@@ -16,13 +15,13 @@ website:
       - icon: github
         href: https://github.com/nlunce/math411
     left:
-      - href: ./homework/index.qmd
+      - href: ./homework/index.html
         text: HOMEWORK
-      - href: ./reality-checks/index.qmd
+      - href: ./reality-checks/index.html
         text: REALITY CHECKS
-      - href: ./notes/index.qmd
+      - href: ./notes/index.html
         text: NOTES
-      - href: ./index.qmd
+      - href: ./index.html
         text: SCHEDULE
 
 format:
