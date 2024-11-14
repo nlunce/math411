@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nathan Lunceford">
 
-<title>Exercise 2.4.6 (C2-P10) – MATH411</title>
+<title>Exercise 4.3.4 (C4-P4) – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -155,11 +126,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem</strong></a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a>
-  <ul class="collapse">
-  <li><a href="#a-constructing-the-permutation-matrix-p" id="toc-a-constructing-the-permutation-matrix-p" class="nav-link" data-scroll-target="#a-constructing-the-permutation-matrix-p">(a) Constructing the Permutation Matrix <span class="math inline">\(P\)</span></a></li>
-  <li><a href="#b-effect-of-multiplying-on-the-right-by-p" id="toc-b-effect-of-multiplying-on-the-right-by-p" class="nav-link" data-scroll-target="#b-effect-of-multiplying-on-the-right-by-p">(b) Effect of Multiplying on the Right by <span class="math inline">\(P\)</span></a></li>
-  </ul></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -168,7 +135,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercise 2.4.6 (C2-P10)</h1>
+<h1 class="title">Exercise 4.3.4 (C4-P4)</h1>
 </div>
 
 
@@ -193,120 +160,11 @@ window.Quarto = {
 
 <section id="problem" class="level1">
 <h1><strong>Problem</strong></h1>
-<p><strong>(a)</strong> Write down the <span class="math inline">\(4 \times 4\)</span> matrix <span class="math inline">\(P\)</span> such that multiplying a matrix on the left by <span class="math inline">\(P\)</span> causes the second and fourth rows of the matrix to be exchanged.</p>
-<p><strong>(b)</strong> What is the effect of multiplying on the right by <span class="math inline">\(P\)</span>? Demonstrate with an example.</p>
 </section>
 <section id="solution" class="level1">
 <h1><strong>Solution</strong></h1>
-<section id="a-constructing-the-permutation-matrix-p" class="level2">
-<h2 class="anchored" data-anchor-id="a-constructing-the-permutation-matrix-p">(a) Constructing the Permutation Matrix <span class="math inline">\(P\)</span></h2>
-<p>To create a permutation matrix <span class="math inline">\(P\)</span> that exchanges the second and fourth rows when multiplied on the left, start with the <span class="math inline">\(4 \times 4\)</span> identity matrix <span class="math inline">\(I_4\)</span> and swap its second and fourth rows.</p>
-<p><strong>Identity Matrix <span class="math inline">\(I_4\)</span>:</strong></p>
-<p><span class="math display">\[
-I_4 = \begin{pmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 1 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 1 \\
-\end{pmatrix}
-\]</span></p>
-<p><strong>Permutation Matrix <span class="math inline">\(P\)</span> (after swapping rows 2 and 4):</strong></p>
-<p><span class="math display">\[
-P = \begin{pmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 1 \\
-0 &amp; 0 &amp; 1 &amp; 0 \\
-0 &amp; 1 &amp; 0 &amp; 0 \\
-\end{pmatrix}
-\]</span></p>
-<p>When <span class="math inline">\(P\)</span> multiplies any <span class="math inline">\(4 \times n\)</span> matrix <span class="math inline">\(A\)</span> on the left (<span class="math inline">\(PA\)</span>), it exchanges the second and fourth rows of <span class="math inline">\(A\)</span>.</p>
-</section>
-<section id="b-effect-of-multiplying-on-the-right-by-p" class="level2">
-<h2 class="anchored" data-anchor-id="b-effect-of-multiplying-on-the-right-by-p">(b) Effect of Multiplying on the Right by <span class="math inline">\(P\)</span></h2>
-<p>Multiplying a matrix on the right by <span class="math inline">\(P\)</span> rearranges its <strong>columns</strong> (instead of rows) according to the pattern defined by <span class="math inline">\(P\)</span>. In this case, it specifically swaps the matrix’s second and fourth <strong>columns</strong>.</p>
-<p><strong>Demonstration with an Example:</strong></p>
-<p>Let’s consider a <span class="math inline">\(4 \times 4\)</span> matrix <span class="math inline">\(A\)</span>:</p>
-<p><span class="math display">\[
-A = \begin{pmatrix}
-a_{11} &amp; a_{12} &amp; a_{13} &amp; a_{14} \\
-a_{21} &amp; a_{22} &amp; a_{23} &amp; a_{24} \\
-a_{31} &amp; a_{32} &amp; a_{33} &amp; a_{34} \\
-a_{41} &amp; a_{42} &amp; a_{43} &amp; a_{44} \\
-\end{pmatrix}
-\]</span></p>
-<p><strong>Compute <span class="math inline">\(AP\)</span>:</strong></p>
-<p><span class="math display">\[
-AP = A \times P = A \times \begin{pmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 1 \\
-0 &amp; 0 &amp; 1 &amp; 0 \\
-0 &amp; 1 &amp; 0 &amp; 0 \\
-\end{pmatrix}
-\]</span></p>
-<p><strong>Resulting Matrix <span class="math inline">\(AP\)</span>:</strong></p>
-<p><span class="math display">\[
-AP = \begin{pmatrix}
-a_{11} &amp; a_{14} &amp; a_{13} &amp; a_{12} \\
-a_{21} &amp; a_{24} &amp; a_{23} &amp; a_{22} \\
-a_{31} &amp; a_{34} &amp; a_{33} &amp; a_{32} \\
-a_{41} &amp; a_{44} &amp; a_{43} &amp; a_{42} \\
-\end{pmatrix}
-\]</span></p>
-<p><strong>Numerical Example:</strong></p>
-<p><span class="math display">\[
-A = \begin{pmatrix}
-1 &amp; 2 &amp; 3 &amp; 4 \\
-5 &amp; 6 &amp; 7 &amp; 8 \\
-9 &amp; 10 &amp; 11 &amp; 12 \\
-13 &amp; 14 &amp; 15 &amp; 16 \\
-\end{pmatrix}
-\]</span></p>
-<p><strong>Compute <span class="math inline">\(AP\)</span>:</strong></p>
-<p><span class="math display">\[
-AP = A \times \begin{pmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 1 \\
-0 &amp; 0 &amp; 1 &amp; 0 \\
-0 &amp; 1 &amp; 0 &amp; 0 \\
-\end{pmatrix} = \begin{pmatrix}
-1 &amp; 4 &amp; 3 &amp; 2 \\
-5 &amp; 8 &amp; 7 &amp; 6 \\
-9 &amp; 12 &amp; 11 &amp; 10 \\
-13 &amp; 16 &amp; 15 &amp; 14 \\
-\end{pmatrix}
-\]</span></p>
-<p><strong>Final Answer</strong></p>
-<p><strong>(a)</strong> The <span class="math inline">\(4 \times 4\)</span> permutation matrix <span class="math inline">\(P\)</span> that exchanges the second and fourth rows when multiplied on the left is:</p>
-<p><span class="math display">\[
-P = \begin{pmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 1 \\
-0 &amp; 0 &amp; 1 &amp; 0 \\
-0 &amp; 1 &amp; 0 &amp; 0 \\
-\end{pmatrix}
-\]</span></p>
-<p><strong>(b)</strong> Multiplying on the right by <span class="math inline">\(P\)</span> exchanges the second and fourth columns of a matrix. For example, for the matrix:</p>
-<p><span class="math display">\[
-A = \begin{pmatrix}
-1 &amp; 2 &amp; 3 &amp; 4 \\
-5 &amp; 6 &amp; 7 &amp; 8 \\
-9 &amp; 10 &amp; 11 &amp; 12 \\
-13 &amp; 14 &amp; 15 &amp; 16 \\
-\end{pmatrix}
-\]</span></p>
-<p>Multiplying on the right by <span class="math inline">\(P\)</span> yields:</p>
-<p><span class="math display">\[
-AP = \begin{pmatrix}
-1 &amp; 4 &amp; 3 &amp; 2 \\
-5 &amp; 8 &amp; 7 &amp; 6 \\
-9 &amp; 12 &amp; 11 &amp; 10 \\
-13 &amp; 16 &amp; 15 &amp; 14 \\
-\end{pmatrix}
-\]</span></p>
-<p>which is <span class="math inline">\(A\)</span> with its second and fourth columns exchanged.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
