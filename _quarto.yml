@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: docs
+  preview:
+    port: 4200
   render:
     - '*.qmd' # Render all .qmd files in the root directory
     - '!exams/' # Ignore the entire exams folder
@@ -31,3 +33,21 @@ format:
       dark: darkly
     css: styles.css
     toc: true
+    self-contained: true
+    page-layout: full
+    toc-location: right
+    toc-depth: 1
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: 'Show Code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+
+execute:
+  warning: false
+  message: false

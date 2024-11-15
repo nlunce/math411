@@ -1,5 +1,92 @@
 ---
-title: 'Reality Checks'
+title: 'REALITY CHECKS'
+format: html
+editor:
+  render-on-save: true
 ---
 
-### [Reality Check 1 - Stewart Platform Kinematics](./rc01/rc01.html)
+<style>
+    /* General styles */
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        letter-spacing: 1px;
+    }
+    .reality-check-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .reality-check-item {
+        padding: 1rem;
+        border-radius: 5px;
+        font-weight: bold;
+        font-family: Arial, sans-serif;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .reality-check-section {
+        font-size: 0.85rem;
+        margin-top: 5px;
+        font-weight: normal;
+    }
+    
+    /* Light mode styling */
+    body.quarto-light h1 {
+        color: #2c3e50;
+    }
+    body.quarto-light .reality-check-item {
+        background-color: #f2f2f2;
+        color: #2c3e50;
+    }
+    body.quarto-light .reality-check-item:hover {
+        background-color: #e0e0e0;
+    }
+    body.quarto-light .reality-check-item a {
+        color: #2c3e50;
+    }
+    body.quarto-light .reality-check-item a:hover {
+        color: #2980b9;
+    }
+    body.quarto-light .reality-check-section {
+        color: #7f8c8d;
+    }
+
+    /* Dark mode styling */
+    body.quarto-dark h1 {
+        color: #d1d5db;
+    }
+    body.quarto-dark .reality-check-item {
+        background-color: #2d2d2d;
+        color: #d1d5db;
+    }
+    body.quarto-dark .reality-check-item:hover {
+        background-color: #3a3a3a;
+    }
+    body.quarto-dark .reality-check-item a {
+        color: #d1d5db;
+    }
+    body.quarto-dark .reality-check-item a:hover {
+        color: #4dabf7;
+    }
+    body.quarto-dark .reality-check-section {
+        color: #a0aec0;
+    }
+</style>
+
+<ul class="reality-check-list">
+    <li class="reality-check-item">
+        <a href="./rc01/rc01.html">Reality Check 01</a>
+        <div class="reality-check-section">Stewart Platform Kinematics</div>
+    </li>
+    <li class="reality-check-item">
+        <a href="./rc05/rc05.html">Reality Check 05</a>
+        <div class="reality-check-section">Motion Control in Computer-Aided Modeling</div>
+    </li>
+</ul>

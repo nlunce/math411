@@ -1,15 +1,14 @@
 ---
-title: 'Reality Check 1'
+title: 'REALITY CHECK 01'
 subtitle: 'MATH411'
 author: 'Nathan Lunceford'
 format:
   html:
     self-contained: true
     page-layout: full
-    title-block-banner: true
     toc: true
-    toc-depth: 3
-    toc-location: body
+    toc-depth: 1
+    toc-location: left
     number-sections: false
     html-math-method: katex
     code-fold: true
@@ -61,8 +60,8 @@ I implemented the Python function $f(\theta)$ by putting all fixed constants int
 #### Create function for $f(\theta)$
 
 ```{python}
-#| label: Function
-#| code-summary: Show code
+#| label: p1-function
+#| code-summary: "Show Code"
 # Define the function f(θ) that calculates based on given constants and angle θ
 def f(theta, constants):
     """
@@ -95,8 +94,8 @@ def f(theta, constants):
 #### Test function $f(\theta)$
 
 ```{python}
-#| label: Test
-#| code-summary: Show code
+#| label: p1-test
+#| code-summary: "Show Code"
 # Define constants and evaluate f(θ) at a specific angle θ = π/4 for testing purposes
 constants = Constants(
     l1=2,
@@ -128,8 +127,8 @@ I plotted the function $f(\theta)$ over the interval $[-π, π]$ by generating a
 #### Create Plot
 
 ```{python}
-#| label: Plot
-#| code-summary: Show code
+#| label: p2-plot
+#| code-summary: "Show Code"
 # Generate a range of theta values and compute f(θ) for each value to visualize the function
 theta_values = np.linspace(-np.pi, np.pi, 400)
 results = [f(theta, constants) for theta in theta_values]
@@ -161,8 +160,8 @@ I utilized several helper functions to efficiently calculate and visualize the S
 #### Create Helper Functions
 
 ```{python}
-#| label: Helper-Functions
-#| code-summary: Show code
+#| label: p3-helper-functions
+#| code-summary: "Show Code"
 # Define helper functions for calculating x, y coordinates and plotting the Stewart platform triangle
 def get_x_y(theta, constants):
     """
@@ -306,7 +305,7 @@ def plot_triangle(ax, points, anchor_points, x_limits=None, y_limits=None, x_ste
 #### Create Plot
 
 ```{python}
-#| label: Recreate-1.15
+#| label: p3-plot
 #| code-summary: Show code
 # Create a plot to visualize the Stewart platform configurations for two different angles
 theta = np.pi / 4
@@ -321,15 +320,13 @@ x, y = get_x_y(theta, constants)
 points2 = get_points(x, y, theta, constants)
 
 # Create side-by-side subplots to visualize the two triangles
-fig, axes = plt.subplots(1, 2, figsize=(11, 5))
+fig, axes = plt.subplots(1, 2, figsize=(10, 5))
 
 # Plot the triangles on each subplot
 plot_triangle(axes[0], points1, anchor_points, x_limits=(-0.25, 4.25), y_limits=(-0.25, 4.25))
 plot_triangle(axes[1], points2, anchor_points, x_limits=(-0.25, 4.25), y_limits=(-0.25, 4.25))
 
 plt.tight_layout()
-plt.savefig('stewart_platform_two_triangles_plot.png', dpi=300, bbox_inches='tight')
-
 
 plt.show()
 ```
@@ -345,8 +342,8 @@ I organized all the fixed parameters into a `Constants` object and plotted the f
 #### 4A)
 
 ```{python}
-#| label: 4-a
-#| code-summary: Show code
+#| label: p4-a
+#| code-summary: "Show Code"
 
 # Create new constants object
 constants = Constants(
@@ -384,8 +381,8 @@ plt.show()
 #### 4B)
 
 ```{python}
-#| label: 4-b
-#| code-summary: Show code
+#| label: p4-b
+#| code-summary: "Show Code"
 # Function to find roots of f(θ) using fsolve
 def find_roots(constants, initial_guesses):
     """
@@ -428,8 +425,8 @@ def calculate_strut_lengths(points, anchor_points):
 ```
 
 ```{python}
-#| label: Plots2
-#| code-summary: Show code
+#| label: p4-plots
+#| code-summary: "Show Code"
 # Create a 2x2 grid of subplots to visualize the four roots and their corresponding triangles
 fig, axes = plt.subplots(2, 2, figsize=(10, 10))
 axes = axes.flatten() # Flatten the 2D array of subplots into a 1D array for easier access
@@ -458,7 +455,6 @@ for j in range(len(roots), 4):
 # Adjust layout
 plt.tight_layout()
 
-plt.savefig('p4_function_plot.png', dpi=300, bbox_inches='tight')
 plt.show()
 ```
 
@@ -473,8 +469,8 @@ I updated the strut length $p_2$ to 7 and re-solved the forward kinematics for t
 #### 5A)
 
 ```{python}
-#| label: 5AAAA
-#| code-summary: Show code
+#| label: p5-a
+#| code-summary: "Show Code"
 # Update the constants to reflect the new strut length p2 = 7
 constants = Constants(
     l1=3,
@@ -510,8 +506,8 @@ plt.show()
 #### 5B)
 
 ```{python}
-#| label: 5BBBB
-#| code-summary: Show code
+#| label: p5-b
+#| code-summary: "Show Code"
 # Provide new initial guesses to find six distinct roots for this configuration
 initial_guesses = [-.7, -.4, .01, .4, .9, 2.5 ]  # Customize this list
 
@@ -561,7 +557,7 @@ To identify a strut length for $p_2$ that results in exactly two poses for the S
 
 ```{python}
 #| label: p6
-#| code-summary: Show code
+#| code-summary: "Show Code"
 
 # Set a threshold for considering a valid root (how close to zero we want f(theta) to be)
 ROOT_THRESHOLD = 1e-6
@@ -626,7 +622,7 @@ def find_p2_with_two_roots(constants, initial_guesses, p2_start=-1, total_plots=
     num_rows = (total_plots + max_plots_per_row - 1) // max_plots_per_row
 
     # Create a figure with a 3xN grid
-    fig, axes = plt.subplots(num_rows, max_plots_per_row, figsize=(11, num_rows * 3))
+    fig, axes = plt.subplots(num_rows, max_plots_per_row, figsize=(10, num_rows * 3))
     axes = axes.flatten()  # Flatten the 2D array of axes for easier access
     fig.subplots_adjust(hspace=0.3, wspace=0.3)  # Adjust the space between subplots
 
@@ -679,8 +675,8 @@ find_p2_with_two_roots(constants, initial_guesses, p2_start=-1, total_plots=6)
 In transitioning from **Problem 6** to **Problem 7**, I found that using `fsolve` with predefined initial guesses was too inaccurate for reliably identifying roots. This method often missed valid roots or produced duplicates due to its sensitivity to starting points. To improve accuracy, I switched to detecting sign changes in the function $f(\theta)$ and used the `brentq` algorithm, which efficiently locates roots where the function changes from positive to negative or vice versa. This approach greatly improved the precision of root detection.
 
 ```{python}
-#| label: prob7
-#| code-summary: Show code
+#| label: p7
+#| code-summary: "Show Code"
 def count_roots(constants, theta_min=-np.pi, theta_max=np.pi, num_points=1000):
     """
     Counts roots of f(theta) = 0 within [theta_min, theta_max].
@@ -781,7 +777,6 @@ plt.title('Number of Poses vs Length of Strut $p_2$', fontsize=16)
 plt.legend()
 plt.grid(True)
 
-plt.savefig('p7_function_plot.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 # Identify intervals

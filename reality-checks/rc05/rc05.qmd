@@ -1,0 +1,72 @@
+---
+title: 'REALITY CHECK 05'
+author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 1
+    toc-location: left
+    number-sections: false
+    html-math-method: katex
+    code-fold: true
+    code-summary: 'Show the code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+execute:
+  warning: false
+  message: false
+---
+
+```{python}
+#| label: libraries
+#| include: false
+# Import necessary libraries and set up the class for constants
+import numpy as np
+import matplotlib.pyplot as plt
+from dataclasses import dataclass
+from scipy.optimize import fsolve
+from scipy.optimize import brentq
+
+```
+
+# **PROBLEM 01**
+
+---
+
+## Write a Python function that computes the arc length of the path $P$ (given on p. 278) from $t = 0$ to $t = s$ for a given $0 \leq s \leq 1$. The choice of numerical integration method is up to you.
+
+# **PROBLEM 02**
+
+---
+
+## Write a program that, for any input $0 \leq s \leq 1$, finds the parameter $t^*(s)$ that is $s$ of the way along the path. In other words, the arc length from $t = 0$ to $t = t^*(s)$ divided by the arc length from $t = 0$ to $t = 1$ should be equal to $s$. Use the Bisection Method to locate the point $t^*(s)$ to three correct decimal places. What function is being set to zero? What bracketing interval should be used to start the Bisection Method?
+
+# **PROBLEM 03**
+
+---
+
+## Equipartition the path of Figure 5.6 into $n$ subpaths of equal length, for $n = 4$ and $n = 20$. Plot analogues of Figure 5.6, showing the equipartitions.
+
+# **PROBLEM 04**
+
+---
+
+## Replace the Bisection Method in Step 2 with Newton’s Method, and repeat Steps 2 and 3. What is the derivative needed? What is a good choice for the initial guess? Is computation time decreased by this replacement?
+
+# **PROBLEM 05**
+
+---
+
+## Use Python animation commands to demonstrate traveling along the path, first at the original parameter $0 \leq t \leq 1$ speed and then at the (constant) speed given by $t^*(s)$ for $0 \leq s \leq 1$.
+
+# **PROBLEM 06**
+
+---
+
+## Experiment with equipartitioning a path of your choice. Choose a path defined by parametric equations (see Parametric Equation in Wikipedia for ideas), partition it into equal arc length segments, and animate as in Step 5.
