@@ -137,7 +137,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -183,23 +183,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#the-issue-with-high-degree-polynomials" id="toc-the-issue-with-high-degree-polynomials" class="nav-link" data-scroll-target="#the-issue-with-high-degree-polynomials">The Issue with High-Degree Polynomials</a></li>
-  <li><a href="#runges-example" id="toc-runges-example" class="nav-link" data-scroll-target="#runges-example">Runge’s Example</a></li>
-  <li><a href="#why-does-it-happen" id="toc-why-does-it-happen" class="nav-link" data-scroll-target="#why-does-it-happen">Why Does It Happen?</a></li>
-  <li><a href="#graphical-representation" id="toc-graphical-representation" class="nav-link" data-scroll-target="#graphical-representation">Graphical Representation</a></li>
-  <li><a href="#chebyshev-nodes-as-a-solution" id="toc-chebyshev-nodes-as-a-solution" class="nav-link" data-scroll-target="#chebyshev-nodes-as-a-solution">Chebyshev Nodes as a Solution</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -255,7 +239,7 @@ f(x) = \frac{1}{1 + 25x^2}
 <section id="graphical-representation" class="level3">
 <h3 class="anchored" data-anchor-id="graphical-representation">Graphical Representation</h3>
 <p>The following figure illustrates the Runge phenomenon. For the Runge function <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span>, the polynomial interpolation for large <span class="math inline">\(n\)</span> shows excessive oscillations near the interval boundaries:</p>
-<div id="6d3dd036" class="cell" data-execution_count="1">
+<div id="6fa5ae26" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
