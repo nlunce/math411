@@ -35,11 +35,76 @@ from scipy.optimize import brentq
 
 ```
 
+# OVERVIEW
+
+The application of **Adaptive Quadrature** is essential for maintaining constant speed along a specific path, a requirement in fields such as computer-aided manufacturing, robotics, and animation. Smooth, controlled movement is crucial for accuracy, but achieving a constant speed along a curved or complex path is challenging. Dividing a path into equal time intervals does not ensure equal-distance segments because the path’s shape influences the distance covered.
+
+To address this, numerical integration techniques are used to divide a path into equal arc-length segments. The main components involved are:
+
+1. **Arc Length Calculation**: A Python function calculates the arc length of the path based on parametric equations. This provides a precise measurement of the path’s total length, taking into account all curves and changes in direction.
+
+2. **Path Parameterization**: For any given point $s$ along the path (where $0 \leq s \leq 1$), the corresponding parameter $t^*(s)$ is determined. This parameter indicates the location $s$ of the way along the path in terms of arc length. Methods such as the Bisection Method and Newton's Method are used to accurately identify $t^*(s)$, ensuring that each segment has the same length.
+
+3. **Equipartitioning**: The path is divided into equal-length segments, known as equipartitioning. Visual representations of this division illustrate how the path can be segmented consistently, regardless of its shape.
+
+4. **Animation**: Python animations demonstrate two versions of path traversal: one at the original parameter speed and another at a constant speed along equal arc-length segments. This comparison highlights the difference in movement and the advantage of using equipartitioned segments for maintaining a steady speed.
+
+By dividing the path into equal-length segments, the Adaptive Quadrature method enables precise control over movement speed, making it ideal for applications that require smooth and consistent traversal along complex paths.
+
 # **PROBLEM 01**
 
 ---
 
-## Write a Python function that computes the arc length of the path $P$ (given on p. 278) from $t = 0$ to $t = s$ for a given $0 \leq s \leq 1$. The choice of numerical integration method is up to you.
+### Write a Python function that computes the arc length of the path $P$ (given on p. 278) from $t = 0$ to $t = s$ for a given $0 \leq s \leq 1$. The choice of numerical integration method is up to you.
+
+### Objective and Approach
+
+The goal is to calculate the arc length, or total distance, along a path defined by $x(t)$ and $y(t)$ as $t$ moves from 0 to $s$, where $s$ is between 0 and 1. This path length isn’t simply the difference between the start and end points because the path may curve or change direction.
+
+To determine the actual distance traveled along the path, the arc length formula is used:
+
+$$
+\text{Arc length} = \int_{0}^{s} \sqrt{\left( \frac{dx}{dt} \right)^2 + \left( \frac{dy}{dt} \right)^2} \, dt
+$$
+
+In simpler terms:
+
+1. First, the functions for $x(t)$ and $y(t)$, which describe the path, are defined.
+2. Next, calculate $\frac{dx}{dt}$ and $\frac{dy}{dt}$, which represent the rates of change of $x$ and $y$ with respect to $t$.
+3. Using these derivatives, the expression $\sqrt{\left( \frac{dx}{dt} \right)^2 + \left( \frac{dy}{dt} \right)^2}$ represents the "instantaneous speed" along the path at each point.
+4. Finally, integrating this speed from $t = 0$ to $t = s$ provides the total distance traveled along the path.
+
+The code below performs this calculation in Python:
+
+```python
+import numpy as np
+from scipy.integrate import quad
+
+# Define the functions for x(t) and y(t)
+def x(t):
+    return 0.5 + 0.3 * t + 3.9 * t**2 - 4.7 * t**3
+
+def y(t):
+    return 1.5 + 0.3 * t + 0.9 * t**2 - 2.7 * t**3
+
+# Define the derivatives of x(t) and y(t)
+def dx_dt(t):
+    return 0.3 + 2 * 3.9 * t - 3 * 4.7 * t**2
+
+def dy_dt(t):
+    return 0.3 + 2 * 0.9 * t - 3 * 2.7 * t**2
+
+# Define the integrand for the arc length
+def integrand(t):
+    return np.sqrt(dx_dt(t)**2 + dy_dt(t)**2)
+
+# Function to compute the arc length from t=0 to t=s
+def compute_arc_length(s):
+    arc_length, _ = quad(integrand, 0, s)
+    return arc_length
+```
+
+This code computes the arc length from $t = 0$ to a specified $t = s$ by integrating the instantaneous speed along the path, providing the total distance traveled along the curve up to the point $s$.
 
 # **PROBLEM 02**
 

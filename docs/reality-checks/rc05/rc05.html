@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -4822,7 +4856,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem-01" id="toc-problem-01" class="nav-link active" data-scroll-target="#problem-01"><strong>PROBLEM 01</strong></a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">OVERVIEW</a></li>
+  <li><a href="#problem-01" id="toc-problem-01" class="nav-link" data-scroll-target="#problem-01"><strong>PROBLEM 01</strong></a></li>
   <li><a href="#problem-02" id="toc-problem-02" class="nav-link" data-scroll-target="#problem-02"><strong>PROBLEM 02</strong></a></li>
   <li><a href="#problem-03" id="toc-problem-03" class="nav-link" data-scroll-target="#problem-03"><strong>PROBLEM 03</strong></a></li>
   <li><a href="#problem-04" id="toc-problem-04" class="nav-link" data-scroll-target="#problem-04"><strong>PROBLEM 04</strong></a></li>
@@ -4841,7 +4876,6 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">REALITY CHECK 05</h1>
-<p class="subtitle lead">MATH411</p>
 </div>
 
 
@@ -4864,11 +4898,65 @@ window.Quarto = {
 </header>
 
 
+<section id="overview" class="level1">
+<h1>OVERVIEW</h1>
+<p>The application of <strong>Adaptive Quadrature</strong> is essential for maintaining constant speed along a specific path, a requirement in fields such as computer-aided manufacturing, robotics, and animation. Smooth, controlled movement is crucial for accuracy, but achieving a constant speed along a curved or complex path is challenging. Dividing a path into equal time intervals does not ensure equal-distance segments because the path’s shape influences the distance covered.</p>
+<p>To address this, numerical integration techniques are used to divide a path into equal arc-length segments. The main components involved are:</p>
+<ol type="1">
+<li><p><strong>Arc Length Calculation</strong>: A Python function calculates the arc length of the path based on parametric equations. This provides a precise measurement of the path’s total length, taking into account all curves and changes in direction.</p></li>
+<li><p><strong>Path Parameterization</strong>: For any given point <span class="math inline">s</span> along the path (where <span class="math inline">0 \leq s \leq 1</span>), the corresponding parameter <span class="math inline">t^*(s)</span> is determined. This parameter indicates the location <span class="math inline">s</span> of the way along the path in terms of arc length. Methods such as the Bisection Method and Newton’s Method are used to accurately identify <span class="math inline">t^*(s)</span>, ensuring that each segment has the same length.</p></li>
+<li><p><strong>Equipartitioning</strong>: The path is divided into equal-length segments, known as equipartitioning. Visual representations of this division illustrate how the path can be segmented consistently, regardless of its shape.</p></li>
+<li><p><strong>Animation</strong>: Python animations demonstrate two versions of path traversal: one at the original parameter speed and another at a constant speed along equal arc-length segments. This comparison highlights the difference in movement and the advantage of using equipartitioned segments for maintaining a steady speed.</p></li>
+</ol>
+<p>By dividing the path into equal-length segments, the Adaptive Quadrature method enables precise control over movement speed, making it ideal for applications that require smooth and consistent traversal along complex paths.</p>
+</section>
 <section id="problem-01" class="level1">
 <h1><strong>PROBLEM 01</strong></h1>
 <hr>
-<section id="write-a-python-function-that-computes-the-arc-length-of-the-path-p-given-on-p.-278-from-t-0-to-t-s-for-a-given-0-leq-s-leq-1.-the-choice-of-numerical-integration-method-is-up-to-you." class="level2">
-<h2 class="anchored" data-anchor-id="write-a-python-function-that-computes-the-arc-length-of-the-path-p-given-on-p.-278-from-t-0-to-t-s-for-a-given-0-leq-s-leq-1.-the-choice-of-numerical-integration-method-is-up-to-you.">Write a Python function that computes the arc length of the path <span class="math inline">P</span> (given on p. 278) from <span class="math inline">t = 0</span> to <span class="math inline">t = s</span> for a given <span class="math inline">0 \leq s \leq 1</span>. The choice of numerical integration method is up to you.</h2>
+<section id="write-a-python-function-that-computes-the-arc-length-of-the-path-p-given-on-p.-278-from-t-0-to-t-s-for-a-given-0-leq-s-leq-1.-the-choice-of-numerical-integration-method-is-up-to-you." class="level3">
+<h3 class="anchored" data-anchor-id="write-a-python-function-that-computes-the-arc-length-of-the-path-p-given-on-p.-278-from-t-0-to-t-s-for-a-given-0-leq-s-leq-1.-the-choice-of-numerical-integration-method-is-up-to-you.">Write a Python function that computes the arc length of the path <span class="math inline">P</span> (given on p. 278) from <span class="math inline">t = 0</span> to <span class="math inline">t = s</span> for a given <span class="math inline">0 \leq s \leq 1</span>. The choice of numerical integration method is up to you.</h3>
+</section>
+<section id="objective-and-approach" class="level3">
+<h3 class="anchored" data-anchor-id="objective-and-approach">Objective and Approach</h3>
+<p>The goal is to calculate the arc length, or total distance, along a path defined by <span class="math inline">x(t)</span> and <span class="math inline">y(t)</span> as <span class="math inline">t</span> moves from 0 to <span class="math inline">s</span>, where <span class="math inline">s</span> is between 0 and 1. This path length isn’t simply the difference between the start and end points because the path may curve or change direction.</p>
+<p>To determine the actual distance traveled along the path, the arc length formula is used:</p>
+<p><span class="math display">
+\text{Arc length} = \int_{0}^{s} \sqrt{\left( \frac{dx}{dt} \right)^2 + \left( \frac{dy}{dt} \right)^2} \, dt
+</span></p>
+<p>In simpler terms:</p>
+<ol type="1">
+<li>First, the functions for <span class="math inline">x(t)</span> and <span class="math inline">y(t)</span>, which describe the path, are defined.</li>
+<li>Next, calculate <span class="math inline">\frac{dx}{dt}</span> and <span class="math inline">\frac{dy}{dt}</span>, which represent the rates of change of <span class="math inline">x</span> and <span class="math inline">y</span> with respect to <span class="math inline">t</span>.</li>
+<li>Using these derivatives, the expression <span class="math inline">\sqrt{\left( \frac{dx}{dt} \right)^2 + \left( \frac{dy}{dt} \right)^2}</span> represents the “instantaneous speed” along the path at each point.</li>
+<li>Finally, integrating this speed from <span class="math inline">t = 0</span> to <span class="math inline">t = s</span> provides the total distance traveled along the path.</li>
+</ol>
+<p>The code below performs this calculation in Python:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> quad</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the functions for x(t) and y(t)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> x(t):</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">0.3</span> <span class="op">*</span> t <span class="op">+</span> <span class="fl">3.9</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">4.7</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y(t):</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.5</span> <span class="op">+</span> <span class="fl">0.3</span> <span class="op">*</span> t <span class="op">+</span> <span class="fl">0.9</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">2.7</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the derivatives of x(t) and y(t)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dx_dt(t):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.3</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">3.9</span> <span class="op">*</span> t <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> <span class="fl">4.7</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dy_dt(t):</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.3</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">0.9</span> <span class="op">*</span> t <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> <span class="fl">2.7</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the integrand for the arc length</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> integrand(t):</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(dx_dt(t)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> dy_dt(t)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to compute the arc length from t=0 to t=s</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_arc_length(s):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    arc_length, _ <span class="op">=</span> quad(integrand, <span class="dv">0</span>, s)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> arc_length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code computes the arc length from <span class="math inline">t = 0</span> to a specified <span class="math inline">t = s</span> by integrating the instantaneous speed along the path, providing the total distance traveled along the curve up to the point <span class="math inline">s</span>.</p>
 </section>
 </section>
 <section id="problem-02" class="level1">
