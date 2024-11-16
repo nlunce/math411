@@ -4863,6 +4863,7 @@ window.Quarto = {
   <li><a href="#problem-04" id="toc-problem-04" class="nav-link" data-scroll-target="#problem-04"><strong>PROBLEM 04</strong></a></li>
   <li><a href="#problem-05" id="toc-problem-05" class="nav-link" data-scroll-target="#problem-05"><strong>PROBLEM 05</strong></a></li>
   <li><a href="#problem-06" id="toc-problem-06" class="nav-link" data-scroll-target="#problem-06"><strong>PROBLEM 06</strong></a></li>
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code"><strong>CODE</strong></a></li>
   </ul>
 </nav>
 </nav>
@@ -4943,7 +4944,7 @@ y(t) = 1.5 + 0.3t + 0.9t^2 - 2.7t^3
 <section id="solution-code" class="level3">
 <h3 class="anchored" data-anchor-id="solution-code"><strong>Solution Code</strong></h3>
 <p>The Python code below implements the above steps to calculate the arc length from <span class="math inline">t = 0</span> to a specified <span class="math inline">t = s</span> using numerical integration:</p>
-<div id="9c5fecee" class="cell" data-execution_count="2">
+<div id="a79ff40d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> quad</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -5016,7 +5017,7 @@ f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc l
 <section id="solution-code-1" class="level3">
 <h3 class="anchored" data-anchor-id="solution-code-1"><strong>Solution Code</strong></h3>
 <p>The Python code below implements the above approach using the Bisection Method to locate <span class="math inline">t^*(s)</span> for any input <span class="math inline">s</span>:</p>
-<div id="52b01071" class="cell" data-execution_count="3">
+<div id="7b201af6" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Total arc length from t=0 to t=1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>total_arc_length <span class="op">=</span> compute_arc_length(<span class="dv">1</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -5061,7 +5062,7 @@ f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc l
 <section id="problem-statement-2" class="level3">
 <h3 class="anchored" data-anchor-id="problem-statement-2"><strong>Problem Statement</strong></h3>
 <p>Equipartition the path of Figure 5.6 into <span class="math inline">n</span> subpaths of equal length, for <span class="math inline">n = 4</span> and <span class="math inline">n = 20</span>. Plot analogues of Figure 5.6, showing the equipartitions.</p>
-<div id="3fe8aa95" class="cell" data-execution_count="4">
+<div id="daeb23e6" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -5162,7 +5163,7 @@ f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc l
 </div>
 <section id="equipartitioned-curve-with-n4" class="level4">
 <h4 class="anchored" data-anchor-id="equipartitioned-curve-with-n4">Equipartitioned Curve with n=4</h4>
-<div id="eebabd10" class="cell" data-execution_count="6">
+<div id="50b23659" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -5174,7 +5175,7 @@ f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc l
 </section>
 <section id="equipartitioned-curve-with-n20" class="level4">
 <h4 class="anchored" data-anchor-id="equipartitioned-curve-with-n20">Equipartitioned Curve with n=20</h4>
-<div id="ccce368d" class="cell" data-execution_count="7">
+<div id="cf7bfd1f" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -5267,8 +5268,8 @@ f&#39;(t) = \sqrt{\left( \frac{dx}{dt} \right)^2 + \left( \frac{dy}{dt} \right)^
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>total_length <span class="op">=</span> compute_arc_length(<span class="dv">1</span>)</span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>compare_performance(total_length <span class="op">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Bisection Method Result: 0.800593771 Time: 0.007066488 seconds
-Newton&#39;s Method Result: 0.800593767 Time: 0.001001120 seconds</code></pre>
+<pre><code>Bisection Method Result: 0.800593771 Time: 0.007006884 seconds
+Newton&#39;s Method Result: 0.800593767 Time: 0.000000000 seconds</code></pre>
 </div>
 </div>
 </section>
@@ -5582,9 +5583,268 @@ y(t) = 0.3 \sin(4t) + 0.5
 <section id="conclusion-2" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion-2"><strong>Conclusion</strong></h3>
 <p>This exercise illustrates the benefits of equipartitioning a path into equal arc-length segments for applications that require consistent speed. By reparameterizing the curve to maintain constant speed, we can avoid the variable movement speed that results from a simple, evenly spaced parameter <span class="math inline">t</span>. This method has potential applications in animation, robotics, and automated manufacturing, where uniform movement along a path with varying curvature is essential.</p>
-
-
 </section>
+</section>
+</section>
+<section id="code" class="level1">
+<h1><strong>CODE</strong></h1>
+<p>The code above can be organized into a <code>ParametricCurve</code> class to improve structure and follow best practices. This class combines all the key methods, such as arc length computation, root-finding, and equipartitioning, into a clear and reusable design.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ParametricCurve:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x_func, y_func, dx_dt_func, dy_dt_func, t_min<span class="op">=</span><span class="dv">0</span>, t_max<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.x <span class="op">=</span> x_func</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.y <span class="op">=</span> y_func</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dx_dt <span class="op">=</span> dx_dt_func</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.dy_dt <span class="op">=</span> dy_dt_func</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.t_min <span class="op">=</span> t_min</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.t_max <span class="op">=</span> t_max</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> integrand(<span class="va">self</span>, t):</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> np.sqrt(<span class="va">self</span>.dx_dt(t)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="va">self</span>.dy_dt(t)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">@lru_cache</span>(maxsize<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> compute_arc_length(<span class="va">self</span>, s):</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        arc_length, _ <span class="op">=</span> quad(<span class="va">self</span>.integrand, <span class="va">self</span>.t_min, s)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> arc_length</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> total_length(<span class="va">self</span>):</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.compute_arc_length(<span class="va">self</span>.t_max)</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> newton_find_t(<span class="va">self</span>, target_length, initial_guess<span class="op">=</span><span class="va">None</span>, tol<span class="op">=</span><span class="fl">1e-8</span>, max_iter<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> initial_guess <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>            initial_guess <span class="op">=</span> (<span class="va">self</span>.t_min <span class="op">+</span> <span class="va">self</span>.t_max) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        t <span class="op">=</span> initial_guess</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>            f_t <span class="op">=</span> <span class="va">self</span>.compute_arc_length(t) <span class="op">-</span> target_length</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>            f_prime_t <span class="op">=</span> <span class="va">self</span>.integrand(t)</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">abs</span>(f_t) <span class="op">&lt;</span> tol:</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> t</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> f_prime_t <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">ZeroDivisionError</span>(<span class="st">&quot;Derivative zero encountered in Newton&#39;s method.&quot;</span>)</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>            t <span class="op">-=</span> f_t <span class="op">/</span> f_prime_t</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> <span class="bu">max</span>(<span class="va">self</span>.t_min, <span class="bu">min</span>(<span class="va">self</span>.t_max, t))</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">RuntimeError</span>(<span class="st">&quot;Newton&#39;s method did not converge.&quot;</span>)</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> bisection_find_t(<span class="va">self</span>, target_length, a<span class="op">=</span><span class="va">None</span>, b<span class="op">=</span><span class="va">None</span>, tol<span class="op">=</span><span class="fl">1e-8</span>, max_iter<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> a <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>            a <span class="op">=</span> <span class="va">self</span>.t_min</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> b <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>            b <span class="op">=</span> <span class="va">self</span>.t_max</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>        fa <span class="op">=</span> <span class="va">self</span>.compute_arc_length(a) <span class="op">-</span> target_length</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>        fb <span class="op">=</span> <span class="va">self</span>.compute_arc_length(b) <span class="op">-</span> target_length</span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> fa <span class="op">*</span> fb <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Bisection method fails: function has same signs at interval endpoints.&quot;</span>)</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>            t <span class="op">=</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>            f_t <span class="op">=</span> <span class="va">self</span>.compute_arc_length(t) <span class="op">-</span> target_length</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">abs</span>(f_t) <span class="op">&lt;</span> tol:</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>                <span class="cf">return</span> t</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> fa <span class="op">*</span> f_t <span class="op">&lt;</span> <span class="dv">0</span>:</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>                b <span class="op">=</span> t</span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>                fb <span class="op">=</span> f_t</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>                a <span class="op">=</span> t</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>                fa <span class="op">=</span> f_t</span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> t</span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> equipartition(<span class="va">self</span>, n, method<span class="op">=</span><span class="st">&#39;newton&#39;</span>):</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>        total_length <span class="op">=</span> <span class="va">self</span>.total_length()</span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>        segment_length <span class="op">=</span> total_length <span class="op">/</span> n</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>        partition_points <span class="op">=</span> [<span class="va">self</span>.t_min]</span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, n):</span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>            target_length <span class="op">=</span> i <span class="op">*</span> segment_length</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>            initial_guess <span class="op">=</span> partition_points[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> method <span class="op">==</span> <span class="st">&#39;newton&#39;</span>:</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>                t_i <span class="op">=</span> <span class="va">self</span>.newton_find_t(target_length, initial_guess)</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>            <span class="cf">elif</span> method <span class="op">==</span> <span class="st">&#39;bisection&#39;</span>:</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>                t_i <span class="op">=</span> <span class="va">self</span>.bisection_find_t(target_length, a<span class="op">=</span>initial_guess)</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>:</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>                <span class="cf">raise</span> <span class="pp">ValueError</span>(<span class="st">&quot;Method must be &#39;newton&#39; or &#39;bisection&#39;.&quot;</span>)</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>            partition_points.append(t_i)</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>        partition_points.append(<span class="va">self</span>.t_max)</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> partition_points</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="usage-example" class="level3">
+<h3 class="anchored" data-anchor-id="usage-example"><strong>Usage Example</strong></h3>
+<p>To use the <code>ParametricCurve</code> class for problem 1-6:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the first curve</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> x1(t):</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fl">0.3</span> <span class="op">*</span> t <span class="op">+</span> <span class="fl">3.9</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">4.7</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y1(t):</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.5</span> <span class="op">+</span> <span class="fl">0.3</span> <span class="op">*</span> t <span class="op">+</span> <span class="fl">0.9</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="fl">2.7</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dx1_dt(t):</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.3</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">3.9</span> <span class="op">*</span> t <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> <span class="fl">4.7</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dy1_dt(t):</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">0.3</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">*</span> <span class="fl">0.9</span> <span class="op">*</span> t <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> <span class="fl">2.7</span> <span class="op">*</span> t<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an instance of ParametricCurve for the first curve</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>curve1 <span class="op">=</span> ParametricCurve(x1, y1, dx1_dt, dy1_dt, t_min<span class="op">=</span><span class="dv">0</span>, t_max<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the second curve</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fl">0.4</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> np.pi <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>t_max2 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> x2(t):</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A <span class="op">*</span> np.sin(a <span class="op">*</span> t <span class="op">+</span> f) <span class="op">+</span> c</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y2(t):</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B <span class="op">*</span> np.sin(b <span class="op">*</span> t) <span class="op">+</span> D</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dx2_dt(t):</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A <span class="op">*</span> a <span class="op">*</span> np.cos(a <span class="op">*</span> t <span class="op">+</span> f)</span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dy2_dt(t):</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> B <span class="op">*</span> b <span class="op">*</span> np.cos(b <span class="op">*</span> t)</span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an instance of ParametricCurve for the second curve</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>curve2 <span class="op">=</span> ParametricCurve(x2, y2, dx2_dt, dy2_dt, t_min<span class="op">=</span><span class="dv">0</span>, t_max<span class="op">=</span>t_max2)</span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> style_plot(ax, x_limits, y_limits, adjust_tick_labels<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>    ax.grid(<span class="va">True</span>, linestyle<span class="op">=</span><span class="st">&#39;-&#39;</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, color<span class="op">=</span><span class="st">&#39;gray&#39;</span>)</span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>    ax.set_xticks(np.arange(x_limits[<span class="dv">0</span>], x_limits[<span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>    ax.set_yticks(np.arange(y_limits[<span class="dv">0</span>], y_limits[<span class="dv">1</span>] <span class="op">+</span> <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> adjust_tick_labels:</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>        ax.set_xticklabels([<span class="st">&#39;&#39;</span> <span class="cf">if</span> x <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:.1f}</span><span class="ss">&quot;</span> <span class="cf">for</span> x <span class="kw">in</span> ax.get_xticks()])</span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>        ax.set_yticklabels([<span class="st">&#39;&#39;</span> <span class="cf">if</span> y <span class="op">==</span> <span class="dv">0</span> <span class="cf">else</span> <span class="ss">f&quot;</span><span class="sc">{</span>y<span class="sc">:.1f}</span><span class="ss">&quot;</span> <span class="cf">for</span> y <span class="kw">in</span> ax.get_yticks()])</span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">&#39;left&#39;</span>].set_position(<span class="st">&#39;zero&#39;</span>)</span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">&#39;bottom&#39;</span>].set_position(<span class="st">&#39;zero&#39;</span>)</span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">&#39;right&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">&#39;top&#39;</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">&#39;left&#39;</span>].set_linewidth(<span class="fl">1.5</span>)</span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">&#39;bottom&#39;</span>].set_linewidth(<span class="fl">1.5</span>)</span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">&#39;both&#39;</span>, which<span class="op">=</span><span class="st">&#39;major&#39;</span>, length<span class="op">=</span><span class="dv">6</span>, width<span class="op">=</span><span class="dv">1</span>, colors<span class="op">=</span><span class="st">&#39;black&#39;</span>, direction<span class="op">=</span><span class="st">&#39;out&#39;</span>)</span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a>    ax.tick_params(axis<span class="op">=</span><span class="st">&#39;both&#39;</span>, which<span class="op">=</span><span class="st">&#39;minor&#39;</span>, length<span class="op">=</span><span class="dv">3</span>, width<span class="op">=</span><span class="dv">1</span>, colors<span class="op">=</span><span class="st">&#39;black&#39;</span>, direction<span class="op">=</span><span class="st">&#39;out&#39;</span>)</span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(x_limits)</span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(y_limits)</span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a>    ax.set_aspect(<span class="st">&#39;equal&#39;</span>)</span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_curve(curve, n_points<span class="op">=</span><span class="dv">500</span>, n_equipartition<span class="op">=</span><span class="va">None</span>, title<span class="op">=</span><span class="st">&#39;Parametric Curve&#39;</span>, x_limits<span class="op">=</span>(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>), y_limits<span class="op">=</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">2</span>)):</span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a>    t_vals <span class="op">=</span> np.linspace(curve.t_min, curve.t_max, n_points)</span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a>    x_vals <span class="op">=</span> curve.x(t_vals)</span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a>    y_vals <span class="op">=</span> curve.y(t_vals)</span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">&#39;white&#39;</span>)</span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.gca()</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a>    plt.plot(x_vals, y_vals, color<span class="op">=</span><span class="st">&quot;#2196F3&quot;</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot equipartition points if requested</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n_equipartition <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a>        partition_points <span class="op">=</span> curve.equipartition(n_equipartition)</span>
+<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>        x_points <span class="op">=</span> [curve.x(t) <span class="cf">for</span> t <span class="kw">in</span> partition_points]</span>
+<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>        y_points <span class="op">=</span> [curve.y(t) <span class="cf">for</span> t <span class="kw">in</span> partition_points]</span>
+<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>        plt.scatter(x_points, y_points, color<span class="op">=</span><span class="st">&quot;#1565C0&quot;</span>, s<span class="op">=</span><span class="dv">40</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>    style_plot(ax, x_limits, y_limits)</span>
+<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>    plt.title(title, fontsize<span class="op">=</span><span class="dv">14</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> animate_curve(curve, n_frames<span class="op">=</span><span class="dv">100</span>, filename<span class="op">=</span><span class="st">&#39;animation.mp4&#39;</span>, x_limits<span class="op">=</span>(<span class="op">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>), y_limits<span class="op">=</span>(<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">2</span>), xticks<span class="op">=</span><span class="va">None</span>, yticks<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Original speed parameterization</span></span>
+<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>    t_values_original <span class="op">=</span> np.linspace(curve.t_min, curve.t_max, n_frames)</span>
+<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>    x_original <span class="op">=</span> curve.x(t_values_original)</span>
+<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>    y_original <span class="op">=</span> curve.y(t_values_original)</span>
+<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Constant speed parameterization</span></span>
+<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>    t_values_constant <span class="op">=</span> curve.equipartition(n_frames)</span>
+<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>    x_constant <span class="op">=</span> [curve.x(t) <span class="cf">for</span> t <span class="kw">in</span> t_values_constant]</span>
+<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>    y_constant <span class="op">=</span> [curve.y(t) <span class="cf">for</span> t <span class="kw">in</span> t_values_constant]</span>
+<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Set up the figure</span></span>
+<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">8</span>), facecolor<span class="op">=</span><span class="st">&#39;white&#39;</span>)</span>
+<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>    ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">121</span>)</span>
+<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>    ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">122</span>)</span>
+<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot the curves</span></span>
+<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a>    ax1.plot(x_original, y_original, color<span class="op">=</span><span class="st">&quot;#2196F3&quot;</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a>    ax2.plot(x_constant, y_constant, color<span class="op">=</span><span class="st">&quot;#2196F3&quot;</span>, linewidth<span class="op">=</span><span class="fl">2.5</span>, zorder<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb9-106"><a href="#cb9-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-107"><a href="#cb9-107" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Initialize the points</span></span>
+<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a>    point1, <span class="op">=</span> ax1.plot([], [], <span class="st">&#39;o&#39;</span>, color<span class="op">=</span><span class="st">&quot;#1565C0&quot;</span>, markersize<span class="op">=</span><span class="dv">8</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a>    point2, <span class="op">=</span> ax2.plot([], [], <span class="st">&#39;go&#39;</span>, markersize<span class="op">=</span><span class="dv">8</span>, zorder<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a>    style_plot(ax1, x_limits, y_limits, adjust_tick_labels<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>    style_plot(ax2, x_limits, y_limits, adjust_tick_labels<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> xticks <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a>        ax1.set_xticks(xticks)</span>
+<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a>        ax2.set_xticks(xticks)</span>
+<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>        ax1.set_xticklabels([<span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:.1f}</span><span class="ss">&quot;</span> <span class="cf">for</span> x <span class="kw">in</span> xticks])</span>
+<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>        ax2.set_xticklabels([<span class="ss">f&quot;</span><span class="sc">{</span>x<span class="sc">:.1f}</span><span class="ss">&quot;</span> <span class="cf">for</span> x <span class="kw">in</span> xticks])</span>
+<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> yticks <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
+<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a>        ax1.set_yticks(yticks)</span>
+<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a>        ax2.set_yticks(yticks)</span>
+<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a>        ax1.set_yticklabels([<span class="ss">f&quot;</span><span class="sc">{</span>y<span class="sc">:.1f}</span><span class="ss">&quot;</span> <span class="cf">for</span> y <span class="kw">in</span> yticks])</span>
+<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a>        ax2.set_yticklabels([<span class="ss">f&quot;</span><span class="sc">{</span>y<span class="sc">:.1f}</span><span class="ss">&quot;</span> <span class="cf">for</span> y <span class="kw">in</span> yticks])</span>
+<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">&quot;Original Speed&quot;</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>    ax2.set_title(<span class="st">&quot;Constant Speed&quot;</span>, fontsize<span class="op">=</span><span class="dv">12</span>, fontweight<span class="op">=</span><span class="st">&#39;bold&#39;</span>, pad<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Update functions</span></span>
+<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> update(frame):</span>
+<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update original speed point</span></span>
+<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>        point1.set_data(x_original[:frame], y_original[:frame])</span>
+<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update constant speed point</span></span>
+<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>        point2.set_data(x_constant[:frame], y_constant[:frame])</span>
+<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> point1, point2</span>
+<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a>    ani <span class="op">=</span> animation.FuncAnimation(fig, update, frames<span class="op">=</span>n_frames, interval<span class="op">=</span><span class="dv">200</span>, blit<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb9-138"><a href="#cb9-138" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Save the animation</span></span>
+<span id="cb9-139"><a href="#cb9-139" aria-hidden="true" tabindex="-1"></a>    ani.save(filename, writer<span class="op">=</span><span class="st">&#39;ffmpeg&#39;</span>)</span>
+<span id="cb9-140"><a href="#cb9-140" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb9-141"><a href="#cb9-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-142"><a href="#cb9-142" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compare_performance(curve, target_length):</span>
+<span id="cb9-143"><a href="#cb9-143" aria-hidden="true" tabindex="-1"></a>    start_time_bisection <span class="op">=</span> time.time()</span>
+<span id="cb9-144"><a href="#cb9-144" aria-hidden="true" tabindex="-1"></a>    bisection_result <span class="op">=</span> curve.bisection_find_t(target_length)</span>
+<span id="cb9-145"><a href="#cb9-145" aria-hidden="true" tabindex="-1"></a>    bisection_time <span class="op">=</span> time.time() <span class="op">-</span> start_time_bisection</span>
+<span id="cb9-146"><a href="#cb9-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-147"><a href="#cb9-147" aria-hidden="true" tabindex="-1"></a>    start_time_newton <span class="op">=</span> time.time()</span>
+<span id="cb9-148"><a href="#cb9-148" aria-hidden="true" tabindex="-1"></a>    newton_result <span class="op">=</span> curve.newton_find_t(target_length)</span>
+<span id="cb9-149"><a href="#cb9-149" aria-hidden="true" tabindex="-1"></a>    newton_time <span class="op">=</span> time.time() <span class="op">-</span> start_time_newton</span>
+<span id="cb9-150"><a href="#cb9-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-151"><a href="#cb9-151" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Bisection Method Result: </span><span class="sc">{</span>bisection_result<span class="sc">:.9f}</span><span class="ss"> Time: </span><span class="sc">{</span>bisection_time<span class="sc">:.9f}</span><span class="ss"> seconds&quot;</span>)</span>
+<span id="cb9-152"><a href="#cb9-152" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Newton&#39;s Method Result: </span><span class="sc">{</span>newton_result<span class="sc">:.9f}</span><span class="ss"> Time: </span><span class="sc">{</span>newton_time<span class="sc">:.9f}</span><span class="ss"> seconds&quot;</span>)</span>
+<span id="cb9-153"><a href="#cb9-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-154"><a href="#cb9-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute total arc length of the first curve</span></span>
+<span id="cb9-155"><a href="#cb9-155" aria-hidden="true" tabindex="-1"></a>total_length1 <span class="op">=</span> curve1.total_length()</span>
+<span id="cb9-156"><a href="#cb9-156" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Arc Length from t=0 to t=1: </span><span class="sc">{</span>total_length1<span class="sc">:.6f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-157"><a href="#cb9-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-158"><a href="#cb9-158" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare performance of root-finding methods on the first curve</span></span>
+<span id="cb9-159"><a href="#cb9-159" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Comparing Performance of Bisection and Newton&#39;s Methods:&quot;</span>)</span>
+<span id="cb9-160"><a href="#cb9-160" aria-hidden="true" tabindex="-1"></a>compare_performance(curve1, total_length1 <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb9-161"><a href="#cb9-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-162"><a href="#cb9-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the first curve with equipartition points (n=4 and n=20)</span></span>
+<span id="cb9-163"><a href="#cb9-163" aria-hidden="true" tabindex="-1"></a>plot_curve(curve1, n_points<span class="op">=</span><span class="dv">500</span>, n_equipartition<span class="op">=</span><span class="dv">4</span>, title<span class="op">=</span><span class="st">&#39;Curve with 4 Equipartition Points&#39;</span>)</span>
+<span id="cb9-164"><a href="#cb9-164" aria-hidden="true" tabindex="-1"></a>plot_curve(curve1, n_points<span class="op">=</span><span class="dv">500</span>, n_equipartition<span class="op">=</span><span class="dv">20</span>, title<span class="op">=</span><span class="st">&#39;Curve with 20 Equipartition Points&#39;</span>)</span>
+<span id="cb9-165"><a href="#cb9-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a><span class="co"># Animate the first curve</span></span>
+<span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>animate_curve(curve1, n_frames<span class="op">=</span><span class="dv">25</span>, filename<span class="op">=</span><span class="st">&#39;combined_animation.mp4&#39;</span>)</span>
+<span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute total arc length of the second curve</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>total_length2 <span class="op">=</span> curve2.total_length()</span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Arc Length from t=0 to t=</span><span class="sc">{</span>curve2<span class="sc">.</span>t_max<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>total_length2<span class="sc">:.6f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted ticks</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>xticks <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="fl">1.1</span>, <span class="fl">0.2</span>)</span>
+<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>yticks <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="fl">1.1</span>, <span class="fl">0.2</span>)</span>
+<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a><span class="co"># Animate the second curve</span></span>
+<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>animate_curve(curve2, n_frames<span class="op">=</span><span class="dv">200</span>, filename<span class="op">=</span><span class="st">&#39;custom_path_animation.mp4&#39;</span>, x_limits<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>), y_limits<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>), xticks<span class="op">=</span>xticks, yticks<span class="op">=</span>yticks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
 </section>
 </section>
 
