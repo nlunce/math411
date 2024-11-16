@@ -4,10 +4,10 @@ project:
   preview:
     port: 4200
   render:
-    - '*.qmd' # Render all .qmd files in the root directory
-    - '!exams/' # Ignore the entire exams folder
-    - '!quizzes/' # Ignore the entire quizzes folder
-    - '!book/' # Ignore the entire quizzes folder
+    - '*.qmd'
+    - '!exams/'
+    - '!quizzes/'
+    - '!book/'
     - '!rc01_writeup/'
 
 website:
