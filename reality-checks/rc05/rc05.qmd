@@ -35,17 +35,16 @@ from scipy.integrate import quad
 
 # **OVERVIEW**
 
-The application of **Adaptive Quadrature** is essential for maintaining constant speed along a specific path, a requirement in fields such as computer-aided manufacturing, robotics, and animation. Smooth, controlled movement is crucial for accuracy, but achieving a constant speed along a curved or complex path is challenging. Dividing a path into equal time intervals does not ensure equal-distance segments because the path’s shape influences the distance covered.
+The use of **Adaptive Quadrature** is essential for maintaining constant speed along a specific path. This is a requirement in fields like computer-aided manufacturing, robotics and animation. Smooth and controlled movement is crucial for accuracy, but achieving a constant speed along a curved or complex path is challenging. Dividing a path into equal time intervals does not ensure equal-distance segments because the path’s shape influences the distance covered.
 
-To address this, numerical integration techniques are used to divide a path into equal arc-length segments. The main components involved are:
+To address this, numerical methods are employed to divide the path into equal arc-length segments, ensuring consistent movement. The process involves several key steps:
 
-1. **Arc Length Calculation**: A Python function calculates the arc length of the path based on parametric equations. This provides a precise measurement of the path’s total length, taking into account all curves and changes in direction.
+1. **Arc Length Measurement**: The total length of the path is calculated using parametric equations, accounting for all curves and directional changes. This measurement provides the foundation for precise segmentation.
 
-2. **Path Parameterization**: For any given point $s$ along the path (where $0 \leq s \leq 1$), the corresponding parameter $t^*(s)$ is determined. This parameter indicates the location $s$ of the way along the path in terms of arc length. Methods such as the Bisection Method and Newton's Method are used to accurately identify $t^*(s)$, ensuring that each segment has the same length.
+2. **Mapping Path Position**: To locate a point at a given distance $s$ along the path, the corresponding parameter $t$ is determined using numerical methods like Bisection or Newton’s Method. This ensures precise mapping of arc-length positions to their parametric coordinates.
+3. **Segmenting the Path**: The path is divided into segments of equal arc length, a process called equipartitioning. This segmentation ensures uniformity in the spacing of points along the path, regardless of its complexity or curvature.
 
-3. **Equipartitioning**: The path is divided into equal-length segments, known as equipartitioning. Visual representations of this division illustrate how the path can be segmented consistently, regardless of its shape.
-
-4. **Animation**: Python animations demonstrate two versions of path traversal: one at the original parameter speed and another at a constant speed along equal arc-length segments. This comparison highlights the difference in movement and the advantage of using equipartitioned segments for maintaining a steady speed.
+4. **Smooth Traversal**: Animations or simulations often demonstrate the practical effects of this approach. By comparing movement at constant parameter speed with movement along equal arc-length segments, the benefits of consistent, controlled traversal become clear, showcasing smoother and more predictable motion.
 
 # **PROBLEM 01**
 
@@ -155,7 +154,7 @@ To accomplish this:
 2. **Objective Function**: Rewrite this condition as $f(t) = 0$, where
 
    $$
-   f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t}{\text{Total arc length}} - s
+   f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc length}} - s
    $$
 
 3. **Bisection Method**: Use the Bisection Method to find $t$ such that $f(t) = 0$, starting with an initial interval of \([0, 1]\) and achieving a precision of three decimal places.
@@ -177,16 +176,16 @@ def f(t, s):
 
 # Bisection method to find t^*(s)
 def find_t_star(s, tol=1e-3):
-    a, b = 0, 1  # Initial interval for bisection
+    a, b = 0, 1
     while (b - a) / 2 > tol:
         midpoint = (a + b) / 2
         if f(midpoint, s) == 0:
-            return midpoint  # Exact solution found
+            return midpoint
         elif f(a, s) * f(midpoint, s) < 0:
             b = midpoint
         else:
             a = midpoint
-    return (a + b) / 2  # Midpoint as approximate solution
+    return (a + b) / 2
 
 # Example usage
 s = 0.5  # Example value for s (e.g., halfway along the path)
@@ -214,7 +213,6 @@ Equipartition the path of Figure 5.6 into $n$ subpaths of equal length, for $n =
 ```{python}
 #| echo: false
 #| include: true
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -236,26 +234,33 @@ t_vals = np.linspace(0, 1, 500)
 x_vals = x(t_vals)
 y_vals = y(t_vals)
 
-# Plot the path
-plt.plot(x_vals, y_vals, color="skyblue", linewidth=2)
-plt.scatter(x_points, y_points, color="blue", s=30, zorder=3)
+# Create figure and axis
+fig, ax = plt.subplots()
 
-# Add labels for the points, slightly offset to avoid overlap with the line
+# Plot the path
+ax.plot(x_vals, y_vals, color="#2196F3", linewidth=2)
+ax.scatter(x_points, y_points, color="#2196F3", s=30, zorder=3)
+
+# Add labels
 for (px, py, label) in zip(x_points, y_points, labels):
-    plt.text(px + 0.1, py + 0.1, label, fontsize=8, ha='center')
+    ax.text(px + 0.03, py + 0.1 , label, fontsize=8, ha='left')
 
 # Style the plot
-plt.axhline(0, color="black", linewidth=0.5)
-plt.axvline(0, color="black", linewidth=0.5)
-plt.xlabel("x")
-plt.ylabel("y")
-plt.xlim(-1.5, 1.5)
-plt.ylim(-0.5, 2.5)
-plt.xticks([-1, 0, 1])
-plt.yticks([0, 1, 2])
-plt.title("Figure 5.6: Parametrized Curve with Labeled Points")
-plt.grid()
+ax.axhline(0, color="black", linewidth=0.5)
+ax.axvline(0, color="black", linewidth=0.5)
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_xlim(-1.5, 1.5)
+ax.set_ylim(-0.5, 2.5)
+ax.set_aspect('equal')
+ax.set_xticks([-1, 0, 1])
+ax.set_yticks([0, 1, 2])
+ax.set_title("Figure 5.6: Parametrized curve given by Bézier spline.")
+ax.grid(True)
+
+# Show the plot
 plt.show()
+
 ```
 
 ### **Objective and Approach**
@@ -282,8 +287,8 @@ The approach includes the following steps:
 #| include: true
 
 # Bisection method to find t for a target arc length fraction
-def bisection_find_t(target_length, tol=1e-3):
-    a, b = 0, 1  # Initial interval for bisection
+def bisection_find_t(target_length, tol=1e-8):
+    a, b = 0, 1
     while (b - a) / 2 > tol:
         midpoint = (a + b) / 2
         if compute_arc_length(midpoint) == target_length:
@@ -296,45 +301,81 @@ def bisection_find_t(target_length, tol=1e-3):
 
 # Equipartition function
 def equipartition(n):
-    partition_points = [0]  # Start at t=0
+    partition_points = [0]
     total_length = compute_arc_length(1)
     segment_length = total_length / n
     for i in range(1, n):
         target_length = i * segment_length
         t_i = bisection_find_t(target_length)
         partition_points.append(t_i)
-    partition_points.append(1)  # End at t=1
+    partition_points.append(1)
     return partition_points
 
-# Plot function for equipartitions
+# Plot function for equipartitioned curve
 def plot_styled_curve(n):
-    # Generate smooth curve for the path
+    plt.figure(figsize=(8, 8), facecolor='white')
+
     t_vals = np.linspace(0, 1, 500)
     x_vals = x(t_vals)
     y_vals = y(t_vals)
 
-    # Define the key points using equipartition
     key_points_t = equipartition(n)
     key_points_x = [x(t) for t in key_points_t]
     key_points_y = [y(t) for t in key_points_t]
 
-    # Plot the path
-    plt.plot(x_vals, y_vals, color="skyblue", linewidth=2)
-    plt.scatter(key_points_x, key_points_y, color="blue", s=30, zorder=3)
-    plt.axhline(0, color="black", linewidth=0.5)
-    plt.axvline(0, color="black", linewidth=0.5)
-    plt.xlabel("x")
-    plt.ylabel("y")
+    # Plot the curve with enhanced styling
+    plt.plot(x_vals, y_vals, color="#2196F3", linewidth=2.5, zorder=3)
+    plt.scatter(key_points_x, key_points_y, color="#1565C0", s=40, zorder=4)
+
+    # Add grid with softer appearance
+    plt.grid(True, linestyle='-', alpha=0.2, color='gray')
+    plt.xticks(np.arange(-1, 1.5, 0.5))
+    plt.yticks(np.arange(0, 2.5, 0.5))
+
+
+    # Enhanced axis lines
+    ax = plt.gca()
+    ax.set_xticklabels(['' if x == 0 else str(x) for x in ax.get_xticks()])
+    ax.set_yticklabels(['' if y == 0 else str(y) for y in ax.get_yticks()])
+
+    ax.spines['left'].set_position('zero')
+    ax.spines['bottom'].set_position('zero')
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.spines['left'].set_linewidth(1.5)
+    ax.spines['bottom'].set_linewidth(1.5)
+
+    # Enhance tick appearance
+    plt.tick_params(axis='both', which='major', length=6, width=1, colors='black', direction='out')
+    plt.tick_params(axis='both', which='minor', length=3, width=1, colors='black', direction='out')
+
+    # Label positioning and styling
+    ax.set_ylabel('y', rotation=0, labelpad=15, y=1.02, fontsize=12)
+    ax.set_xlabel('x', x=1.02, fontsize=12)
+
     plt.xlim(-1.5, 1.5)
-    plt.ylim(-0.5, 2.5)
-    plt.xticks([-1, 0, 1])
-    plt.yticks([0, 1, 2])
-    plt.title(f"Equipartitioned Path for n = {n}")
-    plt.grid()
+    plt.ylim(-0.5, 2)
+    plt.gca().set_aspect('equal')
+
     plt.show()
 
-# Call the function to plot with n=4 and n=20
+```
+
+#### Equipartitioned Curve with n=4
+
+```{python}
+#| echo: false
+#| include: true
+
 plot_styled_curve(4)
+```
+
+#### Equipartitioned Curve with n=20
+
+```{python}
+#| echo: false
+#| include: true
+
 plot_styled_curve(20)
 ```
 
@@ -378,6 +419,13 @@ Replace the Bisection Method in Step 2 with Newton’s Method, and repeat Steps 
 
 4. **Performance Comparison**: To evaluate if Newton’s Method reduces computation time, we will measure the time taken by both the Bisection and Newton’s methods to achieve the same accuracy.
 
+#### **Why $t_i = \frac{i}{n}$ is a Good Initial Guess**
+
+- **Uniform Parameter Distribution**: The parameter $t$ varies between 0 and 1 (or the specified range of $t$), and $\frac{i}{n}$ provides evenly spaced points within this interval. This ensures that the initial guess is distributed consistently across the parameter space.
+- **Proximity to the True Solution**: For smooth and "well-behaved" curves, the true $t_i$ values for equal arc-length segments are often near $\frac{i}{n}$. This proximity ensures that Newton’s Method starts "in the ballpark" of the correct value.
+- **Simplicity and Efficiency**: Computing $\frac{i}{n}$ is computationally trivial and requires no extra effort. This simplicity makes it a practical choice compared to complex initialization schemes.
+- **Improved Convergence**: Starting close to the actual solution allows Newton’s Method to converge quadratically, reducing the number of iterations needed to achieve the desired accuracy.
+
 ### **Solution Code**
 
 The following Python code implements Newton’s Method to find partition points and compares its performance with the Bisection Method.
@@ -390,7 +438,7 @@ The following Python code implements Newton’s Method to find partition points 
 import time
 
 # Newton's Method to find t for a target arc length
-def newton_find_t(target_length, initial_guess, tol=1e-3, max_iter=100):
+def newton_find_t(target_length, initial_guess, tol=1e-8, max_iter=100):
     t = initial_guess
     for _ in range(max_iter):
         f_t = compute_arc_length(t) - target_length
@@ -402,16 +450,16 @@ def newton_find_t(target_length, initial_guess, tol=1e-3, max_iter=100):
 
 # Compare performance of Bisection and Newton's methods
 def compare_performance(target_length):
-    start_time_bisect = time.time()
-    bisection_find_t(target_length)
-    bisection_time = time.time() - start_time_bisect
+    start_time_bisection = time.time()
+    bisection_result = bisection_find_t(target_length)
+    bisection_time = time.time() - start_time_bisection
 
     start_time_newton = time.time()
-    newton_find_t(target_length, initial_guess=0.5)
+    newton_result = newton_find_t(target_length, initial_guess=0.5)
     newton_time = time.time() - start_time_newton
 
-    print(f"Bisection Method Time: {bisection_time:.6f} seconds")
-    print(f"Newton's Method Time: {newton_time:.6f} seconds")
+    print(f"Bisection Method Result: {bisection_result:.9f} Time: {bisection_time:.9f} seconds")
+    print(f"Newton's Method Result: {newton_result:.9f} Time: {newton_time:.9f} seconds")
 
 # Example target length (e.g., half the arc length)
 total_length = compute_arc_length(1)
@@ -462,56 +510,71 @@ The following Python code generates both animations, showing the path traversal 
 ```python
 import matplotlib.animation as animation
 
-# Generate data for original and constant speed
-t_values_original_speed = np.linspace(0, 1, 25)
-x_vals_original_speed = x(t_values_original_speed)
-y_vals_original_speed = y(t_values_original_speed)
+def animate_path():
+    fig = plt.figure(figsize=(16, 8), facecolor='white')
 
-t_values_constant_speed = equipartition(25)
-x_vals_constant_speed = [x(t) for t in t_values_constant_speed]
-y_vals_constant_speed = [y(t) for t in t_values_constant_speed]
+    ax1 = fig.add_subplot(121)
+    ax2 = fig.add_subplot(122)
 
-# Set up the figure and axes
-fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+    # Generate data for original and constant speed
+    t_values_original_speed = np.linspace(0, 1, 25)
+    x_vals_original_speed = x(t_values_original_speed)
+    y_vals_original_speed = y(t_values_original_speed)
 
-# Plot settings for original speed
-ax1.plot(x_vals_original_speed, y_vals_original_speed, color="skyblue")
-original_point, = ax1.plot([], [], 'bo')  # Blue points for original speed
-ax1.set_title("Original Speed")
-ax1.set_xlim(-1.5, 1.5)
-ax1.set_ylim(-0.5, 2.5)
-ax1.axhline(0, color="black", linewidth=0.5)
-ax1.axvline(0, color="black", linewidth=0.5)
-ax1.grid()
+    t_values_constant_speed = equipartition(25)
+    x_vals_constant_speed = [x(t) for t in t_values_constant_speed]
+    y_vals_constant_speed = [y(t) for t in t_values_constant_speed]
 
-# Plot settings for constant speed
-ax2.plot(x_vals_constant_speed, y_vals_constant_speed, color="skyblue")
-constant_point, = ax2.plot([], [], 'bo')  # Blue points for constant speed
-ax2.set_title("Constant Speed")
-ax2.set_xlim(-1.5, 1.5)
-ax2.set_ylim(-0.5, 2.5)
-ax2.axhline(0, color="black", linewidth=0.5)
-ax2.axvline(0, color="black", linewidth=0.5)
-ax2.grid()
+    # Enhanced styling function for subplots
+    def style_subplot(ax, title):
+        ax.grid(True, linestyle='-', alpha=0.2, color='gray')
+        ax.set_xlim(-1.5, 1.5)
+        ax.set_ylim(-0.5, 2)
+        ax.set_xticks(np.arange(-1, 1.5, 0.5))
+        ax.set_yticks(np.arange(0, 2.5, 0.5))
+        ax.set_aspect('equal')
+        ax.set_xticklabels(['' if x == 0 else str(x) for x in ax.get_xticks()])
+        ax.set_yticklabels(['' if y == 0 else str(y) for y in ax.get_yticks()])
 
-# Define update functions for each animation
-def update_original(fnum):
-    original_point.set_data(x_vals_original_speed[:fnum], y_vals_original_speed[:fnum])
-    return original_point,
 
-def update_constant(fnum):
-    constant_point.set_data(x_vals_constant_speed[:fnum], y_vals_constant_speed[:fnum])
-    return constant_point,
+        # Enhanced axis lines
+        ax.spines['left'].set_position('zero')
+        ax.spines['bottom'].set_position('zero')
+        ax.spines['right'].set_visible(False)
+        ax.spines['top'].set_visible(False)
+        ax.spines['left'].set_linewidth(1.5)
+        ax.spines['bottom'].set_linewidth(1.5)
 
-# Get the number of frames based on data length
-num_frames = len(x_vals_original_speed)
+        # Enhanced ticks
+        ax.tick_params(axis='both', which='major', length=6, width=1, colors='black', direction='out')
+        ax.tick_params(axis='both', which='minor', length=3, width=1, colors='black', direction='out')
 
-# Create a single animation showing both plots side by side
-ani = animation.FuncAnimation(fig, lambda fnum: update_original(fnum) + update_constant(fnum),
-                              frames=num_frames, interval=200, blit=True)
+        ax.set_title(title, pad=20, fontsize=12, fontweight='bold')
 
-# Save as MP4
-ani.save('combined_animation.mp4', writer='ffmpeg')
+    # Configure first subplot
+    ax1.plot(x_vals_original_speed, y_vals_original_speed, color="#2196F3", linewidth=2.5, zorder=3)
+    original_point, = ax1.plot([], [], 'o', color="#1565C0", markersize=8, zorder=4)
+    style_subplot(ax1, "Original Speed")
+
+    # Configure second subplot
+    ax2.plot(x_vals_constant_speed, y_vals_constant_speed, color="#2196F3", linewidth=2.5, zorder=3)
+    constant_point, = ax2.plot([], [], 'go',  markersize=8, zorder=4)
+    style_subplot(ax2, "Constant Speed")
+
+    plt.tight_layout()
+
+    def update_original(fnum):
+        original_point.set_data(x_vals_original_speed[:fnum], y_vals_original_speed[:fnum])
+        return original_point,
+
+    def update_constant(fnum):
+        constant_point.set_data(x_vals_constant_speed[:fnum], y_vals_constant_speed[:fnum])
+        return constant_point,
+
+    num_frames = len(x_vals_original_speed)
+    ani = animation.FuncAnimation(fig, lambda fnum: update_original(fnum) + update_constant(fnum),
+                                frames=num_frames, interval=200, blit=True)
+    ani.save('combined_animation.mp4', writer='ffmpeg')
 ```
 
 <div style="display: flex; justify-content: center; margin-top: 1rem;">
@@ -542,7 +605,7 @@ The two animations effectively demonstrate the difference between moving at a va
 
 Experiment with equipartitioning a path of your choice. Choose a path defined by parametric equations, partition it into equal arc-length segments, and animate the traversal as demonstrated in Problem 5.
 
-The chosen path is defined by the following parametric equations:
+#### **Chosen Equation:**
 
 $$
 x(t) = 0.4 \sin(3t + \frac{\pi}{2}) + 0.5
@@ -580,7 +643,7 @@ b = 4
 D = 0.5
 
 # Maximum value of t for one full loop
-t_max = 2 * np.pi  # Adjusted to match the period of the curve
+t_max = 2 * np.pi
 
 # Define the functions for x(t) and y(t)
 def x(t):
@@ -617,7 +680,7 @@ def equipartition(n):
     return partition_points
 
 # Find parameter t for a given arc length using Newton's Method
-def find_t_for_length(target_length, initial_guess=0, tol=1e-6, max_iter=100):
+def find_t_for_length(target_length, initial_guess=0, tol=1e-8, max_iter=100):
     t = initial_guess
     for _ in range(max_iter):
         f_t = compute_arc_length(t) - target_length
@@ -627,6 +690,7 @@ def find_t_for_length(target_length, initial_guess=0, tol=1e-6, max_iter=100):
         t -= f_t / f_prime_t
         t = max(0, min(2 * np.pi, t))
     return t
+
 
 # Data for animations
 n_points = 200
@@ -642,20 +706,22 @@ y_constant = [y(t) for t in t_values_constant]
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
 # Original speed plot
-ax1.plot(x_original, y_original, color="skyblue")
-point1, = ax1.plot([], [], 'bo')
+ax1.plot(x_original, y_original, color="#2196F3", linewidth=2)
+point1, = ax1.plot([], [], 'o', color="#1565C0")
 ax1.set_title("Original Speed")
 ax1.set_xlim(0, 1)
 ax1.set_ylim(0, 1)
-ax1.grid()
+ax1.set_aspect('equal')
+ax1.grid(True, linestyle='-', alpha=0.2, color='gray')
 
 # Constant speed plot
-ax2.plot(x_constant, y_constant, color="skyblue")
+ax2.plot(x_constant, y_constant, color="#2196F3", linewidth=2)
 point2, = ax2.plot([], [], 'go')
 ax2.set_title("Constant Speed")
 ax2.set_xlim(0, 1)
 ax2.set_ylim(0, 1)
-ax2.grid()
+ax2.set_aspect('equal')
+ax2.grid(True, linestyle='-', alpha=0.2, color='gray')
 
 # Update functions for each animation
 def update_original(frame):
