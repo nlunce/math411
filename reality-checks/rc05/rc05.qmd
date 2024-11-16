@@ -360,7 +360,7 @@ def plot_styled_curve(n):
 
 ```
 
-#### Equipartitioned Curve with n=4
+#### Equipartitioned Curve with $n = 4$
 
 ```{python}
 #| echo: false
@@ -369,7 +369,7 @@ def plot_styled_curve(n):
 plot_styled_curve(4)
 ```
 
-#### Equipartitioned Curve with n=20
+#### Equipartitioned Curve with $n = 20$
 
 ```{python}
 #| echo: false

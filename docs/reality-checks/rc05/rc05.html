@@ -4944,7 +4944,7 @@ y(t) = 1.5 + 0.3t + 0.9t^2 - 2.7t^3
 <section id="solution-code" class="level3">
 <h3 class="anchored" data-anchor-id="solution-code"><strong>Solution Code</strong></h3>
 <p>The Python code below implements the above steps to calculate the arc length from <span class="math inline">t = 0</span> to a specified <span class="math inline">t = s</span> using numerical integration:</p>
-<div id="92d94736" class="cell" data-execution_count="2">
+<div id="1913141a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> quad</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -5017,7 +5017,7 @@ f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc l
 <section id="solution-code-1" class="level3">
 <h3 class="anchored" data-anchor-id="solution-code-1"><strong>Solution Code</strong></h3>
 <p>The Python code below implements the above approach using the Bisection Method to locate <span class="math inline">t^*(s)</span> for any input <span class="math inline">s</span>:</p>
-<div id="cfc77fb8" class="cell" data-execution_count="3">
+<div id="cffcd10f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Total arc length from t=0 to t=1</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>total_arc_length <span class="op">=</span> compute_arc_length(<span class="dv">1</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -5062,7 +5062,7 @@ f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc l
 <section id="problem-statement-2" class="level3">
 <h3 class="anchored" data-anchor-id="problem-statement-2"><strong>Problem Statement</strong></h3>
 <p>Equipartition the path of Figure 5.6 into <span class="math inline">n</span> subpaths of equal length, for <span class="math inline">n = 4</span> and <span class="math inline">n = 20</span>. Plot analogues of Figure 5.6, showing the equipartitions.</p>
-<div id="f505a62b" class="cell" data-execution_count="4">
+<div id="57299837" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -5161,9 +5161,9 @@ f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc l
 <span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="equipartitioned-curve-with-n4" class="level4">
-<h4 class="anchored" data-anchor-id="equipartitioned-curve-with-n4">Equipartitioned Curve with n=4</h4>
-<div id="83936d6f" class="cell" data-execution_count="6">
+<section id="equipartitioned-curve-with-n-4" class="level4">
+<h4 class="anchored" data-anchor-id="equipartitioned-curve-with-n-4">Equipartitioned Curve with <span class="math inline">n = 4</span></h4>
+<div id="1093634e" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -5173,9 +5173,9 @@ f(t) = \frac{\text{Arc length from } t = 0 \text{ to } t^*(s)}{\text{Total arc l
 </div>
 </div>
 </section>
-<section id="equipartitioned-curve-with-n20" class="level4">
-<h4 class="anchored" data-anchor-id="equipartitioned-curve-with-n20">Equipartitioned Curve with n=20</h4>
-<div id="6840ef2e" class="cell" data-execution_count="7">
+<section id="equipartitioned-curve-with-n-20" class="level4">
+<h4 class="anchored" data-anchor-id="equipartitioned-curve-with-n-20">Equipartitioned Curve with <span class="math inline">n = 20</span></h4>
+<div id="0ccfc336" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -5268,8 +5268,8 @@ f&#39;(t) = \sqrt{\left( \frac{dx}{dt} \right)^2 + \left( \frac{dy}{dt} \right)^
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>total_length <span class="op">=</span> compute_arc_length(<span class="dv">1</span>)</span>
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>compare_performance(total_length <span class="op">/</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Bisection Method Result: 0.800593771 Time: 0.007005453 seconds
-Newton&#39;s Method Result: 0.800593767 Time: 0.000000000 seconds</code></pre>
+<pre><code>Bisection Method Result: 0.800593771 Time: 0.007006168 seconds
+Newton&#39;s Method Result: 0.800593767 Time: 0.001000881 seconds</code></pre>
 </div>
 </div>
 </section>
@@ -5833,16 +5833,12 @@ y(t) = 0.3 \sin(4t) + 0.5
 <span id="cb9-166"><a href="#cb9-166" aria-hidden="true" tabindex="-1"></a><span class="co"># Animate the first curve</span></span>
 <span id="cb9-167"><a href="#cb9-167" aria-hidden="true" tabindex="-1"></a>animate_curve(curve1, n_frames<span class="op">=</span><span class="dv">25</span>, filename<span class="op">=</span><span class="st">&#39;combined_animation.mp4&#39;</span>)</span>
 <span id="cb9-168"><a href="#cb9-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute total arc length of the second curve</span></span>
-<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>total_length2 <span class="op">=</span> curve2.total_length()</span>
-<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="ch">\n</span><span class="ss">Arc Length from t=0 to t=</span><span class="sc">{</span>curve2<span class="sc">.</span>t_max<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>total_length2<span class="sc">:.6f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb9-169"><a href="#cb9-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted ticks</span></span>
+<span id="cb9-170"><a href="#cb9-170" aria-hidden="true" tabindex="-1"></a>xticks <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="fl">1.1</span>, <span class="fl">0.2</span>)</span>
+<span id="cb9-171"><a href="#cb9-171" aria-hidden="true" tabindex="-1"></a>yticks <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="fl">1.1</span>, <span class="fl">0.2</span>)</span>
 <span id="cb9-172"><a href="#cb9-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjusted ticks</span></span>
-<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>xticks <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="fl">1.1</span>, <span class="fl">0.2</span>)</span>
-<span id="cb9-175"><a href="#cb9-175" aria-hidden="true" tabindex="-1"></a>yticks <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="fl">1.1</span>, <span class="fl">0.2</span>)</span>
-<span id="cb9-176"><a href="#cb9-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-177"><a href="#cb9-177" aria-hidden="true" tabindex="-1"></a><span class="co"># Animate the second curve</span></span>
-<span id="cb9-178"><a href="#cb9-178" aria-hidden="true" tabindex="-1"></a>animate_curve(curve2, n_frames<span class="op">=</span><span class="dv">200</span>, filename<span class="op">=</span><span class="st">&#39;custom_path_animation.mp4&#39;</span>, x_limits<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>), y_limits<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>), xticks<span class="op">=</span>xticks, yticks<span class="op">=</span>yticks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-173"><a href="#cb9-173" aria-hidden="true" tabindex="-1"></a><span class="co"># Animate the second curve</span></span>
+<span id="cb9-174"><a href="#cb9-174" aria-hidden="true" tabindex="-1"></a>animate_curve(curve2, n_frames<span class="op">=</span><span class="dv">200</span>, filename<span class="op">=</span><span class="st">&#39;custom_path_animation.mp4&#39;</span>, x_limits<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>), y_limits<span class="op">=</span>(<span class="dv">0</span>, <span class="dv">1</span>), xticks<span class="op">=</span>xticks, yticks<span class="op">=</span>yticks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
