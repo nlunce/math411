@@ -34,7 +34,7 @@ The **residual** is a fundamental concept in numerical linear algebra, used to q
 The residual is defined as:
 
 $$
-\mathbf{r} = \mathbf{b} - A\mathbf{x_a},
+\mathbf{r} = \mathbf{b} - A\mathbf{x_a}
 $$
 
 where:
@@ -59,7 +59,7 @@ The residual measures how far $\mathbf{x_a}$ is from satisfying the system $A\ma
 
    - If $\mathbf{x_a} = \mathbf{x}$ (the exact solution), then:
      $$
-     \mathbf{r} = \mathbf{0}.
+     \mathbf{r} = \mathbf{0}
      $$
 
 3. **Approximate Solution**:
@@ -70,7 +70,7 @@ The residual measures how far $\mathbf{x_a}$ is from satisfying the system $A\ma
 The size of the residual can be measured using norms, such as the infinity norm:
 
 $$
-\|\mathbf{r}\|_\infty = \max_{i} |r_i|.
+\|\mathbf{r}\|_\infty = \max_{i} |r_i|
 $$
 
 This provides a scalar measure of the largest discrepancy in the system. A smaller residual norm indicates that $\mathbf{x_a}$ is closer to satisfying the system.
@@ -82,7 +82,7 @@ Consider the system:
 $$
 A = \begin{bmatrix} 1 & 1 \\ 3 & -4 \end{bmatrix}, \quad
 \mathbf{b} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}, \quad
-\mathbf{x_a} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}.
+\mathbf{x_a} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}
 $$
 
 ### Step 1: Compute $A\mathbf{x_a}$
@@ -90,7 +90,7 @@ $$
 Multiply $A$ by $\mathbf{x_a}$:
 
 $$
-A\mathbf{x_a} = \begin{bmatrix} 1 & 1 \\ 3 & -4 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 2 \\ -1 \end{bmatrix}.
+A\mathbf{x_a} = \begin{bmatrix} 1 & 1 \\ 3 & -4 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 2 \\ -1 \end{bmatrix}
 $$
 
 ### Step 2: Compute the Residual $\mathbf{r}$
@@ -98,13 +98,13 @@ $$
 Subtract $A\mathbf{x_a}$ from $\mathbf{b}$:
 
 $$
-\mathbf{r} = \mathbf{b} - A\mathbf{x_a} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} - \begin{bmatrix} 2 \\ -1 \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}.
+\mathbf{r} = \mathbf{b} - A\mathbf{x_a} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} - \begin{bmatrix} 2 \\ -1 \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}
 $$
 
 The residual is:
 
 $$
-\mathbf{r} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}.
+\mathbf{r} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}
 $$
 
 ### Step 3: Compute the Residual Norm
@@ -112,7 +112,7 @@ $$
 The infinity norm of $\mathbf{r}$ is:
 
 $$
-\|\mathbf{r}\|_\infty = \max(|1|, |3|) = 3.
+\|\mathbf{r}\|_\infty = \max(|1|, |3|) = 3
 $$
 
 This indicates that the largest mismatch in the system is $3$.
