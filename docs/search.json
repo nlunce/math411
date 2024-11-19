@@ -655,7 +655,7 @@
     "href": "notes/index.html",
     "title": "NOTES",
     "section": "",
-    "text": "WEEK 01\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nBisection Method\nFixed-Point Iteration\nNewtons’s Method\nSecant Method\n\n\n\n\n\n\nWEEK 02\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nLagrange Interpolation\nNewton’s Divided Differences\n\n\n\n\n\n\nWEEK 03\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nInterpolation Error Formula\nRunge Phenomenon\nChebyshev Interpolation\n\n\n\n\n\n\nWEEK 04\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nTrapezoidal Rule\n\n\n\n\n\n\nWEEK 05\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 06\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 07\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nChapter 2 Section 3 Notes\nNorms\nLinear System Error Analysis\nLU Factorization\n\n\n\n\n\n\nWEEK 08\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nGram-Schmidt Orthogonalization\n\n\n\n\n\n\nWEEK 09\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 10\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 11\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 12\n\n\n\n\n\n\n‎"
+    "text": "WEEK 01\n\nBisection Method\nFixed-Point Iteration\nNewtons’s Method\nSecant Method\n\n\n\nWEEK 02\n\nLagrange Interpolation\nNewton’s Divided Differences\n\n\n\nWEEK 03\n\nInterpolation Error Formula\nRunge Phenomenon\nChebyshev Interpolation\n\n\n\nWEEK 04\n\nTrapezoidal Rule\n\n\n\nWEEK 05\n\n\nWEEK 06\n\n\nWEEK 07\n\nChapter 2 Section 3 Notes\nNorms\nLinear System Error Analysis\nLU Factorization\n\n\n\nWEEK 08\n\nGram-Schmidt Orthogonalization\n\n\n\nWEEK 09\n\n\nWEEK 10\n\n\nWEEK 11\n\n\nWEEK 12"
   },
   {
     "objectID": "notes/w01/fixed-point-iteration.html",
