@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nathan Lunceford">
 
-<title>MATH411 Suggested Homework - Fall 2024 – MATH411</title>
+<title>Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,40 +19,6 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
-}
-
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -1701,7 +1668,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="../">
+<meta name="quarto:offset" content="../../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4812,7 +4779,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4823,19 +4790,19 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href=".././homework/index.html"> 
+    <a class="nav-link" href="../.././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././reality-checks/index.html"> 
+    <a class="nav-link" href="../.././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././notes/index.html"> 
+    <a class="nav-link" href="../.././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././index.html"> 
+    <a class="nav-link" href="../.././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4856,19 +4823,51 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-1" id="toc-week-1" class="nav-link active" data-scroll-target="#week-1">Week 1</a></li>
-  <li><a href="#week-2" id="toc-week-2" class="nav-link" data-scroll-target="#week-2">Week 2</a></li>
-  <li><a href="#week-3" id="toc-week-3" class="nav-link" data-scroll-target="#week-3">Week 3</a></li>
-  <li><a href="#week-4" id="toc-week-4" class="nav-link" data-scroll-target="#week-4">Week 4</a></li>
-  <li><a href="#week-5" id="toc-week-5" class="nav-link" data-scroll-target="#week-5">Week 5</a></li>
-  <li><a href="#week-6" id="toc-week-6" class="nav-link" data-scroll-target="#week-6">Week 6</a></li>
-  <li><a href="#week-7" id="toc-week-7" class="nav-link" data-scroll-target="#week-7">Week 7</a></li>
-  <li><a href="#week-8" id="toc-week-8" class="nav-link" data-scroll-target="#week-8">Week 8</a></li>
-  <li><a href="#week-9" id="toc-week-9" class="nav-link" data-scroll-target="#week-9">Week 9</a></li>
-  <li><a href="#week-10" id="toc-week-10" class="nav-link" data-scroll-target="#week-10">Week 10</a></li>
-  <li><a href="#week-11" id="toc-week-11" class="nav-link" data-scroll-target="#week-11">Week 11</a></li>
-  <li><a href="#week-12" id="toc-week-12" class="nav-link" data-scroll-target="#week-12">Week 12</a></li>
-  <li><a href="#week-13" id="toc-week-13" class="nav-link" data-scroll-target="#week-13">Week 13</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#vector-norms" id="toc-vector-norms" class="nav-link" data-scroll-target="#vector-norms">Vector Norms</a>
+  <ul class="collapse">
+  <li><a href="#ell_2-norm-euclidean-norm" id="toc-ell_2-norm-euclidean-norm" class="nav-link" data-scroll-target="#ell_2-norm-euclidean-norm">1. <span class="math inline">\ell_2</span>-Norm (Euclidean Norm)</a></li>
+  <li><a href="#ell_1-norm-taxicab-or-manhattan-norm" id="toc-ell_1-norm-taxicab-or-manhattan-norm" class="nav-link" data-scroll-target="#ell_1-norm-taxicab-or-manhattan-norm">2. <span class="math inline">\ell_1</span>-Norm (Taxicab or Manhattan Norm)</a></li>
+  <li><a href="#ell_infty-norm-maximum-or-infinity-norm" id="toc-ell_infty-norm-maximum-or-infinity-norm" class="nav-link" data-scroll-target="#ell_infty-norm-maximum-or-infinity-norm">3. <span class="math inline">\ell_\infty</span>-Norm (Maximum or Infinity Norm)</a></li>
+  </ul></li>
+  <li><a href="#matrix-norms" id="toc-matrix-norms" class="nav-link" data-scroll-target="#matrix-norms">Matrix Norms</a>
+  <ul class="collapse">
+  <li><a href="#spectral-norm-a_2" id="toc-spectral-norm-a_2" class="nav-link" data-scroll-target="#spectral-norm-a_2">1. Spectral Norm (<span class="math inline">\|A\|_2</span>)</a></li>
+  <li><a href="#maximum-column-sum-norm-a_1" id="toc-maximum-column-sum-norm-a_1" class="nav-link" data-scroll-target="#maximum-column-sum-norm-a_1">2. Maximum Column Sum Norm (<span class="math inline">\|A\|_1</span>)</a></li>
+  <li><a href="#maximum-row-sum-norm-a_infty" id="toc-maximum-row-sum-norm-a_infty" class="nav-link" data-scroll-target="#maximum-row-sum-norm-a_infty">3. Maximum Row Sum Norm (<span class="math inline">\|A\|_\infty</span>)</a></li>
+  </ul></li>
+  <li><a href="#the-matrix-infinity-norm-and-row-sums" id="toc-the-matrix-infinity-norm-and-row-sums" class="nav-link" data-scroll-target="#the-matrix-infinity-norm-and-row-sums">The Matrix Infinity Norm and Row Sums</a>
+  <ul class="collapse">
+  <li><a href="#definition-of-a_infty" id="toc-definition-of-a_infty" class="nav-link" data-scroll-target="#definition-of-a_infty">Definition of <span class="math inline">\|A\|_\infty</span></a></li>
+  <li><a href="#key-insight" id="toc-key-insight" class="nav-link" data-scroll-target="#key-insight">Key Insight</a></li>
+  </ul></li>
+  <li><a href="#proof-a_infty-maximum-row-sum-of-a" id="toc-proof-a_infty-maximum-row-sum-of-a" class="nav-link" data-scroll-target="#proof-a_infty-maximum-row-sum-of-a">Proof: <span class="math inline">\|A\|_\infty =</span> Maximum Row Sum of <span class="math inline">A</span></a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#choosing-mathbfhatx" id="toc-choosing-mathbfhatx" class="nav-link" data-scroll-target="#choosing-mathbfhatx">Choosing <span class="math inline">\mathbf{\hat{x}}</span></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  <li><a href="#error-analysis-and-condition-numbers" id="toc-error-analysis-and-condition-numbers" class="nav-link" data-scroll-target="#error-analysis-and-condition-numbers">Error Analysis and Condition Numbers</a>
+  <ul class="collapse">
+  <li><a href="#why-care-about-errors-in-amathbfx-mathbfb" id="toc-why-care-about-errors-in-amathbfx-mathbfb" class="nav-link" data-scroll-target="#why-care-about-errors-in-amathbfx-mathbfb">Why Care About Errors in <span class="math inline">A\mathbf{x} = \mathbf{b}</span>?</a></li>
+  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions">Definitions</a></li>
+  </ul></li>
+  <li><a href="#error-magnification-factor-emf" id="toc-error-magnification-factor-emf" class="nav-link" data-scroll-target="#error-magnification-factor-emf">Error Magnification Factor (EMF)</a></li>
+  <li><a href="#condition-number-of-a-matrix" id="toc-condition-number-of-a-matrix" class="nav-link" data-scroll-target="#condition-number-of-a-matrix">Condition Number of a Matrix</a>
+  <ul class="collapse">
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation:</a></li>
+  </ul></li>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example</a>
+  <ul class="collapse">
+  <li><a href="#step-1-compute-errors" id="toc-step-1-compute-errors" class="nav-link" data-scroll-target="#step-1-compute-errors">Step 1: Compute Errors</a></li>
+  <li><a href="#step-2-compute-emf" id="toc-step-2-compute-emf" class="nav-link" data-scroll-target="#step-2-compute-emf">Step 2: Compute EMF</a></li>
+  <li><a href="#step-3-compute-condition-number" id="toc-step-3-compute-condition-number" class="nav-link" data-scroll-target="#step-3-compute-condition-number">Step 3: Compute Condition Number</a></li>
+  </ul></li>
+  <li><a href="#next-steps-pa-lu-decomposition-partial-pivoting" id="toc-next-steps-pa-lu-decomposition-partial-pivoting" class="nav-link" data-scroll-target="#next-steps-pa-lu-decomposition-partial-pivoting">Next Steps: <span class="math inline">PA = LU</span> Decomposition (Partial Pivoting)</a>
+  <ul class="collapse">
+  <li><a href="#what-is-partial-pivoting" id="toc-what-is-partial-pivoting" class="nav-link" data-scroll-target="#what-is-partial-pivoting">What is Partial Pivoting?</a></li>
+  <li><a href="#consequences-of-partial-pivoting" id="toc-consequences-of-partial-pivoting" class="nav-link" data-scroll-target="#consequences-of-partial-pivoting">Consequences of Partial Pivoting:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -4877,13 +4876,19 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MATH411 Suggested Homework - Fall 2024</h1>
+<h1 class="title">Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers</h1>
 </div>
 
 
 
 <div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
     
   
     
@@ -4894,153 +4899,291 @@ window.Quarto = {
 </header>
 
 
-<section id="week-1" class="level1">
-<h1>Week 1</h1>
-<hr>
-<p><strong>(C0-P1)</strong> Read/work through the <em>Getting Started with Python</em> notebook (see Modules &gt; Homework &gt; Getting_Started_with_Python.ipynb). Then complete the following exercises in a separate notebook or <code>.py</code> file:</p>
-<ol type="a">
-<li>What is the difference between the outputs generated by the following two lines of code?</li>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>When solving linear systems of the form <span class="math inline">A\mathbf{x} = \mathbf{b}</span>, two significant issues may arise:</p>
+<ol type="1">
+<li><strong>Controllable Errors</strong>: Errors due to computational methods, which we can manage or minimize.</li>
+<li><strong>Uncontrollable Errors</strong>: Errors inherent to the problem’s nature, which we cannot eliminate but need to understand.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>np.array([i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)])</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">10</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="a">
-<li><p>Use both <code>np.linspace()</code> and <code>np.arange()</code> to create an array containing floating point numbers starting at 1.0, ending at 4.0, equally spaced with separation 0.2. In other words, the array should contain 1.0, 1.2, 1.4, …, 3.8, 4.0.</p></li>
-<li><p>Create an array consisting of the floats 1.0, 2.0, 3.0, 4.0, and 5.0. Create a second array containing the square root of each of these numbers. Then, use a <code>for</code> loop to compute the sum of the squared differences between the two arrays:</p></li>
-</ol>
+<p>This document explores vector and matrix norms, their importance in numerical computations, and how they relate to error analysis and condition numbers when solving <span class="math inline">A\mathbf{x} = \mathbf{b}</span>.</p>
+</section>
+<section id="vector-norms" class="level2">
+<h2 class="anchored" data-anchor-id="vector-norms">Vector Norms</h2>
+<p>A <strong>norm</strong> is a function that assigns a non-negative length or size to vectors in a vector space. Norms help measure the magnitude of vectors, which is essential in analyzing algorithms and numerical stability.</p>
+<p>For a vector <span class="math inline">\mathbf{v} = [v_1, v_2, \dots, v_n]^T</span>, common norms include:</p>
+<section id="ell_2-norm-euclidean-norm" class="level3">
+<h3 class="anchored" data-anchor-id="ell_2-norm-euclidean-norm">1. <span class="math inline">\ell_2</span>-Norm (Euclidean Norm)</h3>
+<p>Measures the straight-line distance from the origin to the point <span class="math inline">\mathbf{v}</span>:</p>
 <p><span class="math display">
-\sum_{i=1}^n \left(x_i - \sqrt{x_i}\right)^2
+\|\mathbf{v}\|_2 = \sqrt{v_1^2 + v_2^2 + \dots + v_n^2}
 </span></p>
-<p><strong>Extra Challenge</strong>: Can you do this without a loop?</p>
-<ol start="4" type="a">
-<li><p>Starting with <span class="math inline">x = 1</span>, use a <code>while</code> loop to divide by 2 until <span class="math inline">x &lt; 10^{-4}</span>. Display (print) the list 1.0, 0.5, 0.25, …, and report the number of divisions by 2 needed such that the <span class="math inline">(k-1)</span>th division produces <span class="math inline">x &gt; 10^{-4}</span> and the <span class="math inline">k</span>th division produces <span class="math inline">x &lt; 10^{-4}</span>.</p></li>
-<li><p>Write code to create a function to compute <span class="math inline">f(x) = e^{-x} \cos x</span>, where <span class="math inline">x</span> is a vector (array) of one or more numbers. Then evaluate <span class="math inline">f(x)</span> at the points 0, 0.1, 0.2, …, 1.0.</p></li>
-<li><p>Write code to plot the function <span class="math inline">h(x) = e^{x} \cos^2 x - 2</span> on the interval -0.5 to 5.5 and visually estimate the roots of <span class="math inline">h(x)</span> on that interval.</p></li>
+</section>
+<section id="ell_1-norm-taxicab-or-manhattan-norm" class="level3">
+<h3 class="anchored" data-anchor-id="ell_1-norm-taxicab-or-manhattan-norm">2. <span class="math inline">\ell_1</span>-Norm (Taxicab or Manhattan Norm)</h3>
+<p>Sums the absolute values of the vector components:</p>
+<p><span class="math display">
+\|\mathbf{v}\|_1 = |v_1| + |v_2| + \dots + |v_n|
+</span></p>
+</section>
+<section id="ell_infty-norm-maximum-or-infinity-norm" class="level3">
+<h3 class="anchored" data-anchor-id="ell_infty-norm-maximum-or-infinity-norm">3. <span class="math inline">\ell_\infty</span>-Norm (Maximum or Infinity Norm)</h3>
+<p>Takes the maximum absolute value among the components:</p>
+<p><span class="math display">
+\|\mathbf{v}\|_\infty = \max_{1 \leq i \leq n} |v_i|
+</span></p>
+<p>Also expressed as:</p>
+<p><span class="math display">
+\|\mathbf{v}\|_\infty = \lim_{p \to \infty} \left( \sum_{i=1}^n |v_i|^p \right)^{1/p}.
+</span></p>
+</section>
+</section>
+<section id="matrix-norms" class="level2">
+<h2 class="anchored" data-anchor-id="matrix-norms">Matrix Norms</h2>
+<p>Matrix norms measure the “size” of matrices and help understand how matrices affect vector norms when used as linear transformations.</p>
+<p>Common matrix norms include:</p>
+<section id="spectral-norm-a_2" class="level3">
+<h3 class="anchored" data-anchor-id="spectral-norm-a_2">1. Spectral Norm (<span class="math inline">\|A\|_2</span>)</h3>
+<p>Involves the largest singular value of <span class="math inline">A</span>:</p>
+<p><span class="math display">
+\|A\|_2 = \sqrt{\lambda_{\text{max}}(A^TA)},
+</span></p>
+<p>where <span class="math inline">\lambda_{\text{max}}</span> is the largest eigenvalue of <span class="math inline">A^TA</span>.</p>
+</section>
+<section id="maximum-column-sum-norm-a_1" class="level3">
+<h3 class="anchored" data-anchor-id="maximum-column-sum-norm-a_1">2. Maximum Column Sum Norm (<span class="math inline">\|A\|_1</span>)</h3>
+<p>The largest sum of absolute values in any column:</p>
+<p><span class="math display">
+\|A\|_1 = \max_j \sum_i |a_{ij}|
+</span></p>
+</section>
+<section id="maximum-row-sum-norm-a_infty" class="level3">
+<h3 class="anchored" data-anchor-id="maximum-row-sum-norm-a_infty">3. Maximum Row Sum Norm (<span class="math inline">\|A\|_\infty</span>)</h3>
+<p>The largest sum of absolute values in any row:</p>
+<p><span class="math display">
+\|A\|_\infty = \max_i \sum_j |a_{ij}|
+</span></p>
+</section>
+</section>
+<section id="the-matrix-infinity-norm-and-row-sums" class="level2">
+<h2 class="anchored" data-anchor-id="the-matrix-infinity-norm-and-row-sums">The Matrix Infinity Norm and Row Sums</h2>
+<section id="definition-of-a_infty" class="level3">
+<h3 class="anchored" data-anchor-id="definition-of-a_infty">Definition of <span class="math inline">\|A\|_\infty</span></h3>
+<p>Formally defined as:</p>
+<p><span class="math display">
+\|A\|_\infty = \sup_{\mathbf{x} \neq 0} \frac{\|A\mathbf{x}\|_\infty}{\|\mathbf{x}\|_\infty} = \sup_{\|\mathbf{x}\|_\infty = 1} \|A\mathbf{x}\|_\infty
+</span></p>
+</section>
+<section id="key-insight" class="level3">
+<h3 class="anchored" data-anchor-id="key-insight">Key Insight</h3>
+<ul>
+<li>The infinity norm of <span class="math inline">A</span> is equal to the maximum row sum of <span class="math inline">A</span>.</li>
+<li>It represents the maximum effect <span class="math inline">A</span> can have on any vector <span class="math inline">\mathbf{x}</span> with <span class="math inline">\|\mathbf{x}\|_\infty = 1</span>.</li>
+</ul>
+</section>
+</section>
+<section id="proof-a_infty-maximum-row-sum-of-a" class="level2">
+<h2 class="anchored" data-anchor-id="proof-a_infty-maximum-row-sum-of-a">Proof: <span class="math inline">\|A\|_\infty =</span> Maximum Row Sum of <span class="math inline">A</span></h2>
+<p>For matrix <span class="math inline">A</span>:</p>
+<p><span class="math display">
+\|A\|_\infty = \max_i \sum_j |a_{ij}|.
+</span></p>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>Consider:</p>
+<p><span class="math display">
+A = \begin{bmatrix}
+-1 &amp; -2 &amp; 3 \\
+3 &amp; -4 &amp; -5 \\
+-2 &amp; 3 &amp; -4
+\end{bmatrix}
+</span></p>
+<section id="compute-row-sums" class="level4">
+<h4 class="anchored" data-anchor-id="compute-row-sums">Compute Row Sums</h4>
+<ol type="1">
+<li><strong>Row 1</strong>: <span class="math inline">|-1| + |-2| + |3| = 6</span></li>
+<li><strong>Row 2</strong>: <span class="math inline">|3| + |-4| + |-5| = 12</span></li>
+<li><strong>Row 3</strong>: <span class="math inline">|-2| + |3| + |-4| = 9</span></li>
 </ol>
-<p><strong>(C1-P1)</strong> Exercise 1.1.4ab<br>
-<strong>(C1-P2)</strong> Exercise 1.2.2<br>
-<strong>(C1-P3)</strong> Computer Problem 1.2.2ab. For each equation, find an initial point <span class="math inline">x_0</span> and a function <span class="math inline">g(x)</span> such that the fixed-point iteration <span class="math inline">x_{k+1} = g(x_k)</span> converges to <span class="math inline">x</span>, where <span class="math inline">g(x) = x</span>. If this is not possible, explain why.</p>
-<p><strong>(C1-P4)</strong> Exercise 1.2.14<br>
-<strong>(C1-P5)</strong> Exercise 1.4.1<br>
-<strong>(C1-P6)</strong> Exercise 1.4.3</p>
+<p><strong>Maximum Row Sum</strong>: <span class="math inline">12</span> (Row 2)</p>
+<p>Therefore, <span class="math inline">\|A\|_\infty = 12</span>.</p>
 </section>
-<section id="week-2" class="level1">
-<h1>Week 2</h1>
-<hr>
-<p><strong>(C1-P7)</strong> Exercise 1.4.6<br>
-<strong>(C1-P8)</strong> Exercise 1.4.8<br>
-<strong>(C1-P9)</strong> Computer Problem 1.4.7<br>
-<strong>(C1-P10)</strong> Exercise 1.5.1<br>
-<strong>(C1-P11)</strong> Use Python to compare results obtained using the Bisection Method, Newton’s Method, and the Secant Method to solve the equation <span class="math inline">\ln x + x^2 = 3</span>. Note that Python code for these methods is available on I-Learn.</p>
-<ol type="a">
-<li><p>Solve the problem using each of the three methods. Report starting values and the number of iterations required to obtain 6 correct decimal places of accuracy. <strong>Hint</strong>: a graph of the function may help with starting values.</p></li>
-<li><p>On the same axes, plot <span class="math inline">\log(\epsilon_{i+1})</span> vs. <span class="math inline">\log(\epsilon_i)</span> for the three methods. Explain your plot. How is it related to the rate or order of convergence? Use the errors to determine if your results are consistent with theory. How would you compute the error if you didn’t have an exact value for the root?</p></li>
+</section>
+<section id="choosing-mathbfhatx" class="level3">
+<h3 class="anchored" data-anchor-id="choosing-mathbfhatx">Choosing <span class="math inline">\mathbf{\hat{x}}</span></h3>
+<p>To achieve <span class="math inline">\|A\mathbf{\hat{x}}\|_\infty = \|A\|_\infty</span>, select <span class="math inline">\mathbf{\hat{x}}</span> with <span class="math inline">\|\mathbf{\hat{x}}\|_\infty = 1</span> that aligns with the signs of Row 2:</p>
+<p><span class="math display">
+\mathbf{\hat{x}} = \begin{bmatrix}
+1 \\
+-1 \\
+-1
+\end{bmatrix}
+</span></p>
+<section id="compute-amathbfhatx" class="level4">
+<h4 class="anchored" data-anchor-id="compute-amathbfhatx">Compute <span class="math inline">A\mathbf{\hat{x}}</span>:</h4>
+<p><span class="math display">
+A\mathbf{\hat{x}} = \begin{bmatrix}
+-1(1) + -2(-1) + 3(-1) \\
+3(1) + -4(-1) + -5(-1) \\
+-2(1) + 3(-1) + -4(-1)
+\end{bmatrix} = \begin{bmatrix}
+-2 \\
+12 \\
+-1
+\end{bmatrix}
+</span></p>
+</section>
+<section id="compute-amathbfhatx_infty" class="level4">
+<h4 class="anchored" data-anchor-id="compute-amathbfhatx_infty">Compute <span class="math inline">\|A\mathbf{\hat{x}}\|_\infty</span>:</h4>
+<p><span class="math display">
+\|A\mathbf{\hat{x}}\|_\infty = \max(|-2|, |12|, |-1|) = 12 = \|A\|_\infty
+</span></p>
+</section>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>It is <strong>not possible</strong> to find <span class="math inline">\mathbf{\hat{x}}</span> such that <span class="math inline">\|A\mathbf{\hat{x}}\|_\infty &gt; \|A\|_\infty</span> when <span class="math inline">\|\mathbf{\hat{x}}\|_\infty = 1</span>, because <span class="math inline">\|A\|_\infty</span> is the supremum of <span class="math inline">\|A\mathbf{x}\|_\infty</span> over all such <span class="math inline">\mathbf{x}</span>.</p>
+</section>
+</section>
+<section id="error-analysis-and-condition-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="error-analysis-and-condition-numbers">Error Analysis and Condition Numbers</h2>
+<section id="why-care-about-errors-in-amathbfx-mathbfb" class="level3">
+<h3 class="anchored" data-anchor-id="why-care-about-errors-in-amathbfx-mathbfb">Why Care About Errors in <span class="math inline">A\mathbf{x} = \mathbf{b}</span>?</h3>
+<p>When solving <span class="math inline">A\mathbf{x} = \mathbf{b}</span>, understanding errors helps improve numerical accuracy and stability.</p>
+<p>Let <span class="math inline">\mathbf{x_a}</span> be an <strong>approximate solution</strong> to <span class="math inline">A\mathbf{x} = \mathbf{b}</span>, meaning:</p>
+<p><span class="math display">
+A\mathbf{x_a} \neq \mathbf{b}
+</span></p>
+<p>We quantify errors to assess the accuracy of <span class="math inline">\mathbf{x_a}</span> and evaluate the impact of approximations.</p>
+</section>
+<section id="definitions" class="level3">
+<h3 class="anchored" data-anchor-id="definitions">Definitions</h3>
+<ul>
+<li><p><strong>Residual</strong>: The difference between <span class="math inline">\mathbf{b}</span> and <span class="math inline">A\mathbf{x_a}</span>:</p>
+<p><span class="math display">
+\mathbf{r} = \mathbf{b} - A\mathbf{x_a}
+</span></p></li>
+<li><p><strong>Backward Error (BE)</strong>: Measures the infinity norm of the residual:</p>
+<p><span class="math display">
+\text{BE} = \|\mathbf{r}\|_\infty = \|\mathbf{b} - A\mathbf{x_a}\|_\infty
+</span></p></li>
+<li><p><strong>Relative Backward Error (RBE)</strong>: Normalizes the backward error relative to <span class="math inline">\mathbf{b}</span>:</p>
+<p><span class="math display">
+\text{RBE} = \frac{\|\mathbf{r}\|_\infty}{\|\mathbf{b}\|_\infty}
+</span></p></li>
+<li><p><strong>Forward Error (FE)</strong>: Measures the difference between the true solution <span class="math inline">\mathbf{x}</span> and the approximate solution <span class="math inline">\mathbf{x_a}</span>:</p>
+<p><span class="math display">
+\text{FE} = \|\mathbf{x} - \mathbf{x_a}\|_\infty
+</span></p></li>
+<li><p><strong>Relative Forward Error (RFE)</strong>: Normalizes the forward error relative to <span class="math inline">\mathbf{x}</span>:</p>
+<p><span class="math display">
+\text{RFE} = \frac{\|\mathbf{x} - \mathbf{x_a}\|_\infty}{\|x\|_\infty}
+</span></p></li>
+</ul>
+</section>
+</section>
+<section id="error-magnification-factor-emf" class="level2">
+<h2 class="anchored" data-anchor-id="error-magnification-factor-emf">Error Magnification Factor (EMF)</h2>
+<p>The <strong>error magnification factor (EMF)</strong> relates the relative forward error (RFE) to the relative backward error (RBE):</p>
+<p><span class="math display">
+\text{EMF} = \frac{\text{RFE}}{\text{RBE}}
+</span></p>
+<p>This quantifies how much the backward error is amplified when reflected in the forward error.</p>
+</section>
+<section id="condition-number-of-a-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="condition-number-of-a-matrix">Condition Number of a Matrix</h2>
+<p>The <strong>condition number</strong> of a matrix <span class="math inline">A</span> measures the sensitivity of the solution <span class="math inline">\mathbf{x}</span> to changes in <span class="math inline">\mathbf{b}</span>. It is defined as:</p>
+<p><span class="math display">
+\text{cond}(A) = \|A\|_\infty \cdot \|A^{-1}\|_\infty
+</span></p>
+<section id="interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation">Interpretation:</h3>
+<ul>
+<li>A <strong>low condition number</strong> (close to 1) indicates a well-conditioned matrix.</li>
+<li>A <strong>high condition number</strong> suggests an ill-conditioned matrix, meaning small changes in <span class="math inline">\mathbf{b}</span> can result in large changes in <span class="math inline">\mathbf{x}</span>.</li>
+</ul>
+</section>
+</section>
+<section id="example-1" class="level2">
+<h2 class="anchored" data-anchor-id="example-1">Example</h2>
+<p>Given:</p>
+<p><span class="math display">
+\mathbf{x} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}, \quad
+\mathbf{x_a} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}, \quad
+A = \begin{bmatrix} 1 &amp; 1 \\ 3 &amp; -4 \end{bmatrix}, \quad
+\mathbf{b} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}
+</span></p>
+<section id="step-1-compute-errors" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-compute-errors">Step 1: Compute Errors</h3>
+<ol type="1">
+<li><p><strong>Forward Error (FE)</strong>:</p>
+<p><span class="math display">
+\text{FE} = \|\mathbf{x} - \mathbf{x_a}\|_\infty = \left\| \begin{bmatrix} 2 \\ 1 \end{bmatrix} - \begin{bmatrix} 1 \\ 1 \end{bmatrix} \right\|_\infty = 1
+</span></p></li>
+<li><p><strong>Relative Forward Error (RFE)</strong>:</p>
+<p><span class="math display">
+\text{RFE} = \frac{\text{FE}}{\|\mathbf{x}\|_\infty} = \frac{1}{2} = 0.5
+</span></p></li>
+<li><p><strong>Residual</strong>:</p>
+<p><span class="math display">
+r = b - Ax_a = \begin{bmatrix} 3 \\ 2 \end{bmatrix} - \begin{bmatrix} 2 \\ -1 \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}
+</span></p></li>
+<li><p><strong>Backward Error (BE)</strong>:</p>
+<p><span class="math display">
+\text{BE} = \|\mathbf{r}\|_\infty = 3
+</span></p></li>
+<li><p><strong>Relative Backward Error (RBE)</strong>:</p>
+<p><span class="math display">
+\text{RBE} = \frac{\text{BE}}{\|\mathbf{b}\|_\infty} = \frac{3}{3} = 1
+</span></p></li>
 </ol>
-<p><strong>(C3-P1)</strong> Exercise 3.1.1ac<br>
-<strong>(C3-P2)</strong> Exercise 3.1.2ac<br>
-<strong>(C3-P3)</strong> Exercise 3.1.6</p>
 </section>
-<section id="week-3" class="level1">
-<h1>Week 3</h1>
-<hr>
-<p><strong>(C0-P2)</strong> Create a Python function that takes as input three points (six scalars, three pairs, or perhaps a 6-element numpy array—choose a method that makes sense to you) and uses the <code>matplotlib</code> package to create a figure window and then render a triangle with small open circles at each of the points and straight lines between each pair of circles. Include code to save your figure to a <code>.png</code> or <code>.jpg</code> file. Validate your function with the points (1, 2), (2, 1), and (2, 3).</p>
-<p><strong>(C3-P4)</strong> Exercise 3.2.2<br>
-<strong>(C3-P5)</strong> Exercise 3.2.5<br>
-<strong>(C3-P6)</strong> Exercise 3.2.6 <strong>Note</strong>: the two additional points in the next-to-last sentence should be <span class="math inline">(x_7, y_7) = (0.1, f(0.1))</span> and <span class="math inline">(x_8, y_8) = (0.5, f(0.5))</span>.</p>
-<p><strong>(C3-P7)</strong> Computer Problem 3.1.3. To demonstrate that your function works, interpolate <span class="math inline">\sin(x)</span> on the interval <span class="math inline">[-\pi, \pi]</span> using nodes <span class="math inline">-\pi, -\frac{\pi}{2}, 0, \frac{\pi}{2}, \pi</span>. Plot your interpolating polynomial. Plot <span class="math inline">\sin(x)</span> on the same graph, and use the numpy functions <code>polyfit</code> and <code>polyval</code> to plot an interpolating polynomial from Python on the same graph. Use a legend to make clear which curve is yours and which one came from Python. <strong>Hint</strong>: the code on p. 146 should help. Python versions of <code>newtdd</code> and <code>nest</code> (p. 3) are available in Canvas.</p>
-<p><strong>(C3-P8)</strong> Exercise 3.3.2ac<br>
-<strong>(C3-P9)</strong> Exercise 3.3.2ac<br>
-<strong>(C3-P10)</strong> Exercise 3.3.3</p>
+<section id="step-2-compute-emf" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-compute-emf">Step 2: Compute EMF</h3>
+<p>Using:</p>
+<p><span class="math display">
+\text{EMF} = \frac{\text{RFE}}{\text{RBE}}
+</span></p>
+<p>we find:</p>
+<p><span class="math display">
+\text{EMF} = \frac{0.5}{1} = 0.5
+</span></p>
 </section>
-<section id="week-4" class="level1">
-<h1>Week 4</h1>
-<hr>
-<p><strong>(C5-P1)</strong> Exercise 5.2.1ab<br>
-<strong>(C5-P2)</strong> Exercise 5.2.2ab<br>
-<strong>(C5-P3)</strong> Exercise 5.2.3ab<br>
-<strong>(C5-P4)</strong> Exercise 5.2.10<br>
-<strong>(C5-P5)</strong> Exercise 5.2.12<br>
-<strong>(C5-P6)</strong> Computer Problem 5.2.1ac<br>
-<strong>(C5-P7)</strong> Computer Problem 5.2.2de<br>
-<strong>(C5-P8)</strong> Computer Problem 5.2.9bf</p>
+<section id="step-3-compute-condition-number" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-compute-condition-number">Step 3: Compute Condition Number</h3>
+<ol type="1">
+<li><p><strong>Compute <span class="math inline">\|A\|_\infty</span></strong>:</p>
+<p><span class="math display">
+\|A\|_\infty = \max\left( |1| + |1|, |3| + |-4| \right) = \max(2, 7) = 7
+</span></p></li>
+<li><p><strong>Compute <span class="math inline">\|A^{-1}\|_\infty</span></strong>:</p>
+<p>From <span class="math inline">A^{-1}</span>, we find:</p>
+<p><span class="math display">
+\|A^{-1}\|_\infty = \max\left( \frac{4}{7} + \frac{1}{7}, \frac{3}{7} + \frac{1}{7} \right) = \frac{5}{7}
+</span></p></li>
+<li><p><strong>Condition Number</strong>:</p>
+<p><span class="math display">
+\text{cond}(A) = \|A\|_\infty \cdot \|A^{-1}\|_\infty = 7 \cdot \frac{5}{7} = 5
+</span></p></li>
+</ol>
 </section>
-<section id="week-5" class="level1">
-<h1>Week 5</h1>
-<hr>
-<p><strong>(C5-P9)</strong> Exercise 5.5.1ab<br>
-<strong>(C5-P10)</strong> Exercise 5.5.4cd<br>
-<strong>(C5-P11)</strong> Computer Problem 5.4.1acd<br>
-<strong>(C5-P12)</strong> Computer Problem 5.4.2<br>
-<strong>(C5-P13)</strong> Computer Problem 5.4.3acd<br>
-<strong>(C5-P14)</strong> Exercise 5.5.5cd<br>
-<strong>(C5-P15)</strong> Exercise 5.5.7</p>
 </section>
-<section id="week-6" class="level1">
-<h1>Week 6</h1>
-<hr>
-<p><strong>(C2-P1)</strong> Exercise 2.1.2ac<br>
-<strong>(C2-P2)</strong> Computer Problem 2.1.2ac<br>
-<strong>(C2-P3)</strong> Exercise 2.2.1ab<br>
-<strong>(C2-P4)</strong> Exercise 2.2.2ab</p>
+<section id="next-steps-pa-lu-decomposition-partial-pivoting" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps-pa-lu-decomposition-partial-pivoting">Next Steps: <span class="math inline">PA = LU</span> Decomposition (Partial Pivoting)</h2>
+<section id="what-is-partial-pivoting" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-partial-pivoting">What is Partial Pivoting?</h3>
+<p>Partial pivoting rearranges rows of <span class="math inline">A</span> during LU decomposition to place the largest available pivot element on the diagonal. This ensures numerical stability by reducing rounding errors.</p>
 </section>
-<section id="week-7" class="level1">
-<h1>Week 7</h1>
-<hr>
-<p><strong>(C2-P5)</strong> Exercise 2.2.4<br>
-<strong>(C2-P6)</strong> Computer Problem 2.2.1ab<br>
-<strong>(C2-P7)</strong> Exercise 2.4.1ab<br>
-<strong>(C2-P8)</strong> Exercise 2.4.2ab<br>
-<strong>(C2-P9)</strong> Exercise 2.4.4a<br>
-<strong>(C2-P10)</strong> Exercise 2.4.6</p>
-</section>
-<section id="week-8" class="level1">
-<h1>Week 8</h1>
-<hr>
-<p><strong>(C2-P11)</strong> Exercise 2.5.2ab<br>
-<strong>(C2-P12)</strong> Computer Problem 2.5.2 (solve using both Jacobi and Gauss-Seidel, compare results)<br>
-<strong>(C4-P1)</strong> Exercise 4.1.2<br>
-<strong>(C4-P2)</strong> Computer Problem 4.1.5 (also use a quadratic fit and compare)<br>
-<strong>(C4-P3)</strong> Exercise 4.3.2</p>
-</section>
-<section id="week-9" class="level1">
-<h1>Week 9</h1>
-<hr>
-<p><strong>(C4-P4)</strong> Exercise 4.3.4 (use the matrix from Exercise 4.3.1d)<br>
-<strong>(C4-P5)</strong> Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)<br>
-<strong>(C4-P6)</strong> Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does).</p>
-</section>
-<section id="week-10" class="level1">
-<h1>Week 10</h1>
-<hr>
-<p><strong>(C4-P7)</strong> Exercise 4.4.2<br>
-<strong>(C4-P8)</strong> Exercise 4.4.3<br>
-<strong>(C4-P9)</strong> Computer Problem 4.4.2 (find a preconditioned GMRES Python code and use it)</p>
-</section>
-<section id="week-11" class="level1">
-<h1>Week 11</h1>
-<hr>
-<p><strong>None</strong><br>
-<strong>Exam 2 in class on Monday Week 11</strong><br>
-Attempt the first several Week 12 problems before Monday Week 12</p>
-</section>
-<section id="week-12" class="level1">
-<h1>Week 12</h1>
-<hr>
-<p><strong>(C10-P1)</strong> Exercise 10.1.1ad (also, find the inverse DFT of your result, compare to the original vector)<br>
-<strong>(C10-P2)</strong> Exercise 10.1.8<br>
-<strong>(C10-P3)</strong> Exercise 10.2.1ab<br>
-<strong>(C10-P4)</strong> Exercise 10.2.3ab<br>
-<strong>(C10-P5)</strong> Exercise 10.2.3 (plot data and function to show your interpolating function does interpolate the data)<br>
-<strong>(C10-P6)</strong> Computer Problem 10.2.4<br>
-<strong>(C10-P7)</strong> Exercise 10.3.2ab</p>
-</section>
-<section id="week-13" class="level1">
-<h1>Week 13</h1>
-<hr>
-<p><strong>(C10-P8)</strong> Computer Problem 10.3.2cd<br>
-<strong>(C10-P9)</strong> Exercise 10.3.5 (Complete the <span class="math inline">\sum_{j=0}^{n-1} \cos \frac{2 \pi j k}{n} \cos \frac{2 \pi j l}{n}</span> result only)<br>
-<strong>(C10-P10)</strong> Exercise 10.1.6</p>
+<section id="consequences-of-partial-pivoting" class="level3">
+<h3 class="anchored" data-anchor-id="consequences-of-partial-pivoting">Consequences of Partial Pivoting:</h3>
+<ol type="1">
+<li><strong>Controlled Multipliers</strong>: Ensures all multipliers satisfy <span class="math inline">|m_{ij}| \leq 1</span>.</li>
+<li><strong>Prevents Swamping</strong>: Avoids large numerical errors caused by small pivot elements.</li>
+</ol>
+<p>Understanding norms, errors, and condition numbers is foundational for solving <span class="math inline">A\mathbf{x} = \mathbf{b}</span> efficiently and accurately.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

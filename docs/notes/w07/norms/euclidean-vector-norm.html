@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nathan Lunceford">
 
-<title>MATH411 Suggested Homework - Fall 2024 – MATH411</title>
+<title>Euclidean Vector Norm – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,40 +19,6 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
-}
-
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -1701,7 +1668,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="../">
+<meta name="quarto:offset" content="../../../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4812,7 +4779,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4823,19 +4790,19 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href=".././homework/index.html"> 
+    <a class="nav-link" href="../../.././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././reality-checks/index.html"> 
+    <a class="nav-link" href="../../.././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././notes/index.html"> 
+    <a class="nav-link" href="../../.././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././index.html"> 
+    <a class="nav-link" href="../../.././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4856,19 +4823,28 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#week-1" id="toc-week-1" class="nav-link active" data-scroll-target="#week-1">Week 1</a></li>
-  <li><a href="#week-2" id="toc-week-2" class="nav-link" data-scroll-target="#week-2">Week 2</a></li>
-  <li><a href="#week-3" id="toc-week-3" class="nav-link" data-scroll-target="#week-3">Week 3</a></li>
-  <li><a href="#week-4" id="toc-week-4" class="nav-link" data-scroll-target="#week-4">Week 4</a></li>
-  <li><a href="#week-5" id="toc-week-5" class="nav-link" data-scroll-target="#week-5">Week 5</a></li>
-  <li><a href="#week-6" id="toc-week-6" class="nav-link" data-scroll-target="#week-6">Week 6</a></li>
-  <li><a href="#week-7" id="toc-week-7" class="nav-link" data-scroll-target="#week-7">Week 7</a></li>
-  <li><a href="#week-8" id="toc-week-8" class="nav-link" data-scroll-target="#week-8">Week 8</a></li>
-  <li><a href="#week-9" id="toc-week-9" class="nav-link" data-scroll-target="#week-9">Week 9</a></li>
-  <li><a href="#week-10" id="toc-week-10" class="nav-link" data-scroll-target="#week-10">Week 10</a></li>
-  <li><a href="#week-11" id="toc-week-11" class="nav-link" data-scroll-target="#week-11">Week 11</a></li>
-  <li><a href="#week-12" id="toc-week-12" class="nav-link" data-scroll-target="#week-12">Week 12</a></li>
-  <li><a href="#week-13" id="toc-week-13" class="nav-link" data-scroll-target="#week-13">Week 13</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <ul class="collapse">
+  <li><a href="#d-vector" id="toc-d-vector" class="nav-link" data-scroll-target="#d-vector">1. 2D Vector</a></li>
+  <li><a href="#d-vector-1" id="toc-d-vector-1" class="nav-link" data-scroll-target="#d-vector-1">2. 3D Vector</a></li>
+  <li><a href="#general-case" id="toc-general-case" class="nav-link" data-scroll-target="#general-case">3. General Case</a></li>
+  </ul></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a>
+  <ul class="collapse">
+  <li><a href="#measuring-distance" id="toc-measuring-distance" class="nav-link" data-scroll-target="#measuring-distance">1. Measuring Distance</a></li>
+  <li><a href="#normalizing-vectors" id="toc-normalizing-vectors" class="nav-link" data-scroll-target="#normalizing-vectors">2. Normalizing Vectors</a></li>
+  <li><a href="#error-measurement" id="toc-error-measurement" class="nav-link" data-scroll-target="#error-measurement">3. Error Measurement</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning">4. Machine Learning</a></li>
+  </ul></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
+  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem">Example Problem</a>
+  <ul class="collapse">
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution:</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -4877,13 +4853,19 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MATH411 Suggested Homework - Fall 2024</h1>
+<h1 class="title">Euclidean Vector Norm</h1>
 </div>
 
 
 
 <div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
     
   
     
@@ -4894,151 +4876,95 @@ window.Quarto = {
 </header>
 
 
-<section id="week-1" class="level1">
-<h1>Week 1</h1>
-<hr>
-<p><strong>(C0-P1)</strong> Read/work through the <em>Getting Started with Python</em> notebook (see Modules &gt; Homework &gt; Getting_Started_with_Python.ipynb). Then complete the following exercises in a separate notebook or <code>.py</code> file:</p>
-<ol type="a">
-<li>What is the difference between the outputs generated by the following two lines of code?</li>
-</ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>np.array([i <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)])</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.linspace(<span class="dv">0</span>, <span class="dv">9</span>, <span class="dv">10</span>, endpoint<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="a">
-<li><p>Use both <code>np.linspace()</code> and <code>np.arange()</code> to create an array containing floating point numbers starting at 1.0, ending at 4.0, equally spaced with separation 0.2. In other words, the array should contain 1.0, 1.2, 1.4, …, 3.8, 4.0.</p></li>
-<li><p>Create an array consisting of the floats 1.0, 2.0, 3.0, 4.0, and 5.0. Create a second array containing the square root of each of these numbers. Then, use a <code>for</code> loop to compute the sum of the squared differences between the two arrays:</p></li>
-</ol>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The <strong>Euclidean vector norm</strong> (or 2-norm) is a measure of the magnitude (or length) of a vector in Euclidean space. It is widely used in mathematics, physics, and engineering for calculating distances, measuring error, and normalizing vectors. This note covers the definition, properties, computation, and applications of the Euclidean norm.</p>
+</section>
+<section id="definition" class="level2">
+<h2 class="anchored" data-anchor-id="definition">Definition</h2>
+<p>For a vector <span class="math inline">\mathbf{v} = [v_1, v_2, \dots, v_n]</span> in <span class="math inline">\mathbb{R}^n</span>, the Euclidean norm is defined as:</p>
 <p><span class="math display">
-\sum_{i=1}^n \left(x_i - \sqrt{x_i}\right)^2
+\|\mathbf{v}\|_2 = \sqrt{\sum_{i=1}^n v_i^2}.
 </span></p>
-<p><strong>Extra Challenge</strong>: Can you do this without a loop?</p>
-<ol start="4" type="a">
-<li><p>Starting with <span class="math inline">x = 1</span>, use a <code>while</code> loop to divide by 2 until <span class="math inline">x &lt; 10^{-4}</span>. Display (print) the list 1.0, 0.5, 0.25, …, and report the number of divisions by 2 needed such that the <span class="math inline">(k-1)</span>th division produces <span class="math inline">x &gt; 10^{-4}</span> and the <span class="math inline">k</span>th division produces <span class="math inline">x &lt; 10^{-4}</span>.</p></li>
-<li><p>Write code to create a function to compute <span class="math inline">f(x) = e^{-x} \cos x</span>, where <span class="math inline">x</span> is a vector (array) of one or more numbers. Then evaluate <span class="math inline">f(x)</span> at the points 0, 0.1, 0.2, …, 1.0.</p></li>
-<li><p>Write code to plot the function <span class="math inline">h(x) = e^{x} \cos^2 x - 2</span> on the interval -0.5 to 5.5 and visually estimate the roots of <span class="math inline">h(x)</span> on that interval.</p></li>
+<p>This formula calculates the straight-line distance from the origin to the point represented by <span class="math inline">\mathbf{v}</span> in <span class="math inline">n</span>-dimensional space.</p>
+</section>
+<section id="properties" class="level2">
+<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<p>The Euclidean norm satisfies several key properties:</p>
+<ol type="1">
+<li><strong>Non-negativity</strong>: <span class="math inline">\|\mathbf{v}\|_2 \geq 0</span>, and <span class="math inline">\|\mathbf{v}\|_2 = 0</span> if and only if <span class="math inline">\mathbf{v} = \mathbf{0}</span>.</li>
+<li><strong>Homogeneity</strong>: For any scalar <span class="math inline">c</span>, <span class="math inline">\|c \mathbf{v}\|_2 = |c| \|\mathbf{v}\|_2</span>.</li>
+<li><strong>Triangle Inequality</strong>: <span class="math inline">\|\mathbf{u} + \mathbf{v}\|_2 \leq \|\mathbf{u}\|_2 + \|\mathbf{v}\|_2</span>.</li>
 </ol>
-<p><strong>(C1-P1)</strong> Exercise 1.1.4ab<br>
-<strong>(C1-P2)</strong> Exercise 1.2.2<br>
-<strong>(C1-P3)</strong> Computer Problem 1.2.2ab. For each equation, find an initial point <span class="math inline">x_0</span> and a function <span class="math inline">g(x)</span> such that the fixed-point iteration <span class="math inline">x_{k+1} = g(x_k)</span> converges to <span class="math inline">x</span>, where <span class="math inline">g(x) = x</span>. If this is not possible, explain why.</p>
-<p><strong>(C1-P4)</strong> Exercise 1.2.14<br>
-<strong>(C1-P5)</strong> Exercise 1.4.1<br>
-<strong>(C1-P6)</strong> Exercise 1.4.3</p>
 </section>
-<section id="week-2" class="level1">
-<h1>Week 2</h1>
-<hr>
-<p><strong>(C1-P7)</strong> Exercise 1.4.6<br>
-<strong>(C1-P8)</strong> Exercise 1.4.8<br>
-<strong>(C1-P9)</strong> Computer Problem 1.4.7<br>
-<strong>(C1-P10)</strong> Exercise 1.5.1<br>
-<strong>(C1-P11)</strong> Use Python to compare results obtained using the Bisection Method, Newton’s Method, and the Secant Method to solve the equation <span class="math inline">\ln x + x^2 = 3</span>. Note that Python code for these methods is available on I-Learn.</p>
-<ol type="a">
-<li><p>Solve the problem using each of the three methods. Report starting values and the number of iterations required to obtain 6 correct decimal places of accuracy. <strong>Hint</strong>: a graph of the function may help with starting values.</p></li>
-<li><p>On the same axes, plot <span class="math inline">\log(\epsilon_{i+1})</span> vs. <span class="math inline">\log(\epsilon_i)</span> for the three methods. Explain your plot. How is it related to the rate or order of convergence? Use the errors to determine if your results are consistent with theory. How would you compute the error if you didn’t have an exact value for the root?</p></li>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<section id="d-vector" class="level3">
+<h3 class="anchored" data-anchor-id="d-vector">1. 2D Vector</h3>
+<p>For <span class="math inline">\mathbf{v} = [3, 4]</span>:</p>
+<p><span class="math display">
+\|\mathbf{v}\|_2 = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = 5.
+</span></p>
+</section>
+<section id="d-vector-1" class="level3">
+<h3 class="anchored" data-anchor-id="d-vector-1">2. 3D Vector</h3>
+<p>For <span class="math inline">\mathbf{v} = [1, 2, 3]</span>:</p>
+<p><span class="math display">
+\|\mathbf{v}\|_2 = \sqrt{1^2 + 2^2 + 3^2} = \sqrt{1 + 4 + 9} = \sqrt{14}.
+</span></p>
+</section>
+<section id="general-case" class="level3">
+<h3 class="anchored" data-anchor-id="general-case">3. General Case</h3>
+<p>For <span class="math inline">\mathbf{v} = [v_1, v_2, \dots, v_n]</span>:</p>
+<p><span class="math display">
+\|\mathbf{v}\|_2 = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}.
+</span></p>
+</section>
+</section>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<section id="measuring-distance" class="level3">
+<h3 class="anchored" data-anchor-id="measuring-distance">1. Measuring Distance</h3>
+<p>The Euclidean norm is used to calculate the distance between two points <span class="math inline">\mathbf{u}</span> and <span class="math inline">\mathbf{v}</span> in space:</p>
+<p><span class="math display">
+\|\mathbf{u} - \mathbf{v}\|_2 = \sqrt{\sum_{i=1}^n (u_i - v_i)^2}.
+</span></p>
+</section>
+<section id="normalizing-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="normalizing-vectors">2. Normalizing Vectors</h3>
+<p>To convert a vector to unit length, divide it by its Euclidean norm:</p>
+<p><span class="math display">
+\mathbf{u} = \frac{\mathbf{v}}{\|\mathbf{v}\|_2}.
+</span></p>
+</section>
+<section id="error-measurement" class="level3">
+<h3 class="anchored" data-anchor-id="error-measurement">3. Error Measurement</h3>
+<p>In numerical analysis, the Euclidean norm measures the error or residual of a solution.</p>
+</section>
+<section id="machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="machine-learning">4. Machine Learning</h3>
+<p>The Euclidean norm underpins metrics like the Euclidean distance, used in clustering and regression.</p>
+</section>
+</section>
+<section id="visualization" class="level2">
+<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<p>In two-dimensional space, the Euclidean norm corresponds to the length of the hypotenuse of a right triangle formed by the vector’s components. This is equivalent to the straight-line distance from the origin to the point represented by the vector.</p>
+</section>
+<section id="example-problem" class="level2">
+<h2 class="anchored" data-anchor-id="example-problem">Example Problem</h2>
+<p><strong>Problem:</strong> Compute the Euclidean norm of <span class="math inline">\mathbf{v} = [2, -3, 6]</span>.</p>
+<section id="solution" class="level3">
+<h3 class="anchored" data-anchor-id="solution">Solution:</h3>
+<ol type="1">
+<li>Square each component: <span class="math inline">2^2 = 4</span>, <span class="math inline">(-3)^2 = 9</span>, <span class="math inline">6^2 = 36</span>.</li>
+<li>Sum the squares: <span class="math inline">4 + 9 + 36 = 49</span>.</li>
+<li>Take the square root: <span class="math inline">\|\mathbf{v}\|_2 = \sqrt{49} = 7</span>.</li>
 </ol>
-<p><strong>(C3-P1)</strong> Exercise 3.1.1ac<br>
-<strong>(C3-P2)</strong> Exercise 3.1.2ac<br>
-<strong>(C3-P3)</strong> Exercise 3.1.6</p>
 </section>
-<section id="week-3" class="level1">
-<h1>Week 3</h1>
-<hr>
-<p><strong>(C0-P2)</strong> Create a Python function that takes as input three points (six scalars, three pairs, or perhaps a 6-element numpy array—choose a method that makes sense to you) and uses the <code>matplotlib</code> package to create a figure window and then render a triangle with small open circles at each of the points and straight lines between each pair of circles. Include code to save your figure to a <code>.png</code> or <code>.jpg</code> file. Validate your function with the points (1, 2), (2, 1), and (2, 3).</p>
-<p><strong>(C3-P4)</strong> Exercise 3.2.2<br>
-<strong>(C3-P5)</strong> Exercise 3.2.5<br>
-<strong>(C3-P6)</strong> Exercise 3.2.6 <strong>Note</strong>: the two additional points in the next-to-last sentence should be <span class="math inline">(x_7, y_7) = (0.1, f(0.1))</span> and <span class="math inline">(x_8, y_8) = (0.5, f(0.5))</span>.</p>
-<p><strong>(C3-P7)</strong> Computer Problem 3.1.3. To demonstrate that your function works, interpolate <span class="math inline">\sin(x)</span> on the interval <span class="math inline">[-\pi, \pi]</span> using nodes <span class="math inline">-\pi, -\frac{\pi}{2}, 0, \frac{\pi}{2}, \pi</span>. Plot your interpolating polynomial. Plot <span class="math inline">\sin(x)</span> on the same graph, and use the numpy functions <code>polyfit</code> and <code>polyval</code> to plot an interpolating polynomial from Python on the same graph. Use a legend to make clear which curve is yours and which one came from Python. <strong>Hint</strong>: the code on p. 146 should help. Python versions of <code>newtdd</code> and <code>nest</code> (p. 3) are available in Canvas.</p>
-<p><strong>(C3-P8)</strong> Exercise 3.3.2ac<br>
-<strong>(C3-P9)</strong> Exercise 3.3.2ac<br>
-<strong>(C3-P10)</strong> Exercise 3.3.3</p>
 </section>
-<section id="week-4" class="level1">
-<h1>Week 4</h1>
-<hr>
-<p><strong>(C5-P1)</strong> Exercise 5.2.1ab<br>
-<strong>(C5-P2)</strong> Exercise 5.2.2ab<br>
-<strong>(C5-P3)</strong> Exercise 5.2.3ab<br>
-<strong>(C5-P4)</strong> Exercise 5.2.10<br>
-<strong>(C5-P5)</strong> Exercise 5.2.12<br>
-<strong>(C5-P6)</strong> Computer Problem 5.2.1ac<br>
-<strong>(C5-P7)</strong> Computer Problem 5.2.2de<br>
-<strong>(C5-P8)</strong> Computer Problem 5.2.9bf</p>
-</section>
-<section id="week-5" class="level1">
-<h1>Week 5</h1>
-<hr>
-<p><strong>(C5-P9)</strong> Exercise 5.5.1ab<br>
-<strong>(C5-P10)</strong> Exercise 5.5.4cd<br>
-<strong>(C5-P11)</strong> Computer Problem 5.4.1acd<br>
-<strong>(C5-P12)</strong> Computer Problem 5.4.2<br>
-<strong>(C5-P13)</strong> Computer Problem 5.4.3acd<br>
-<strong>(C5-P14)</strong> Exercise 5.5.5cd<br>
-<strong>(C5-P15)</strong> Exercise 5.5.7</p>
-</section>
-<section id="week-6" class="level1">
-<h1>Week 6</h1>
-<hr>
-<p><strong>(C2-P1)</strong> Exercise 2.1.2ac<br>
-<strong>(C2-P2)</strong> Computer Problem 2.1.2ac<br>
-<strong>(C2-P3)</strong> Exercise 2.2.1ab<br>
-<strong>(C2-P4)</strong> Exercise 2.2.2ab</p>
-</section>
-<section id="week-7" class="level1">
-<h1>Week 7</h1>
-<hr>
-<p><strong>(C2-P5)</strong> Exercise 2.2.4<br>
-<strong>(C2-P6)</strong> Computer Problem 2.2.1ab<br>
-<strong>(C2-P7)</strong> Exercise 2.4.1ab<br>
-<strong>(C2-P8)</strong> Exercise 2.4.2ab<br>
-<strong>(C2-P9)</strong> Exercise 2.4.4a<br>
-<strong>(C2-P10)</strong> Exercise 2.4.6</p>
-</section>
-<section id="week-8" class="level1">
-<h1>Week 8</h1>
-<hr>
-<p><strong>(C2-P11)</strong> Exercise 2.5.2ab<br>
-<strong>(C2-P12)</strong> Computer Problem 2.5.2 (solve using both Jacobi and Gauss-Seidel, compare results)<br>
-<strong>(C4-P1)</strong> Exercise 4.1.2<br>
-<strong>(C4-P2)</strong> Computer Problem 4.1.5 (also use a quadratic fit and compare)<br>
-<strong>(C4-P3)</strong> Exercise 4.3.2</p>
-</section>
-<section id="week-9" class="level1">
-<h1>Week 9</h1>
-<hr>
-<p><strong>(C4-P4)</strong> Exercise 4.3.4 (use the matrix from Exercise 4.3.1d)<br>
-<strong>(C4-P5)</strong> Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)<br>
-<strong>(C4-P6)</strong> Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does).</p>
-</section>
-<section id="week-10" class="level1">
-<h1>Week 10</h1>
-<hr>
-<p><strong>(C4-P7)</strong> Exercise 4.4.2<br>
-<strong>(C4-P8)</strong> Exercise 4.4.3<br>
-<strong>(C4-P9)</strong> Computer Problem 4.4.2 (find a preconditioned GMRES Python code and use it)</p>
-</section>
-<section id="week-11" class="level1">
-<h1>Week 11</h1>
-<hr>
-<p><strong>None</strong><br>
-<strong>Exam 2 in class on Monday Week 11</strong><br>
-Attempt the first several Week 12 problems before Monday Week 12</p>
-</section>
-<section id="week-12" class="level1">
-<h1>Week 12</h1>
-<hr>
-<p><strong>(C10-P1)</strong> Exercise 10.1.1ad (also, find the inverse DFT of your result, compare to the original vector)<br>
-<strong>(C10-P2)</strong> Exercise 10.1.8<br>
-<strong>(C10-P3)</strong> Exercise 10.2.1ab<br>
-<strong>(C10-P4)</strong> Exercise 10.2.3ab<br>
-<strong>(C10-P5)</strong> Exercise 10.2.3 (plot data and function to show your interpolating function does interpolate the data)<br>
-<strong>(C10-P6)</strong> Computer Problem 10.2.4<br>
-<strong>(C10-P7)</strong> Exercise 10.3.2ab</p>
-</section>
-<section id="week-13" class="level1">
-<h1>Week 13</h1>
-<hr>
-<p><strong>(C10-P8)</strong> Computer Problem 10.3.2cd<br>
-<strong>(C10-P9)</strong> Exercise 10.3.5 (Complete the <span class="math inline">\sum_{j=0}^{n-1} \cos \frac{2 \pi j k}{n} \cos \frac{2 \pi j l}{n}</span> result only)<br>
-<strong>(C10-P10)</strong> Exercise 10.1.6</p>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The Euclidean vector norm is an essential concept in mathematics and its applications, providing a straightforward measure of vector magnitude. Its simplicity and intuitive geometric interpretation make it a fundamental tool across diverse fields such as physics, engineering, and machine learning.</p>
 
 
 </section>

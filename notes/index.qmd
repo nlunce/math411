@@ -94,8 +94,9 @@ preview:
 
 # ‎
 
+- [Chapter 2 Section 3 Notes](./w07/2-3.html)
+- [Norms](./w07/norms/index.html)
 - [LU Factorization](./w07/lu-factorization.html)
-- [Euclidean Vector Norm](./w07/euclidean-vector-norm.html)
 
 :::
 

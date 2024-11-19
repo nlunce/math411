@@ -56,81 +56,270 @@
     "text": "Reality Check 01\n\nStewart Platform Kinematics\n\n\n\nReality Check 05\n\nMotion Control in Computer-Aided Modeling"
   },
   {
-    "objectID": "notes/w07/lu-factorization.html",
-    "href": "notes/w07/lu-factorization.html",
-    "title": "LU Factorization",
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html",
+    "href": "notes/w07/norms/taxicab-vector-norm.html",
+    "title": "Taxicab Norm",
     "section": "",
-    "text": "LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix \\(A\\) into the product of a lower triangular matrix \\(L\\) and an upper triangular matrix \\(U\\). This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices. This note explores LU Factorization’s definition, properties, computation, and applications."
+    "text": "The Taxicab norm (also known as the Manhattan norm or \\ell_1-norm) is a way of measuring the “distance” of a vector in a grid-like space. Unlike the Euclidean norm, which measures the straight-line distance, the Taxicab norm sums the absolute values of a vector’s components. It is often used in scenarios where movement is constrained to axes, like navigating a city grid."
   },
   {
-    "objectID": "notes/w07/lu-factorization.html#overview",
-    "href": "notes/w07/lu-factorization.html#overview",
-    "title": "LU Factorization",
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html#overview",
+    "href": "notes/w07/norms/taxicab-vector-norm.html#overview",
+    "title": "Taxicab Norm",
     "section": "",
-    "text": "LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix \\(A\\) into the product of a lower triangular matrix \\(L\\) and an upper triangular matrix \\(U\\). This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices. This note explores LU Factorization’s definition, properties, computation, and applications."
+    "text": "The Taxicab norm (also known as the Manhattan norm or \\ell_1-norm) is a way of measuring the “distance” of a vector in a grid-like space. Unlike the Euclidean norm, which measures the straight-line distance, the Taxicab norm sums the absolute values of a vector’s components. It is often used in scenarios where movement is constrained to axes, like navigating a city grid."
   },
   {
-    "objectID": "notes/w07/lu-factorization.html#definition-and-decomposition",
-    "href": "notes/w07/lu-factorization.html#definition-and-decomposition",
-    "title": "LU Factorization",
-    "section": "Definition and Decomposition",
-    "text": "Definition and Decomposition\nFor a square matrix \\(A\\), LU Factorization is given by:\n\\[\nA = LU\n\\]\nwhere:\n\n\\(L\\) is a lower triangular matrix with ones on the diagonal.\n\\(U\\) is an upper triangular matrix.\n\nIf \\(A\\) cannot be decomposed directly, partial pivoting may be applied, resulting in:\n\\[\nPA = LU\n\\]\nwhere \\(P\\) is a permutation matrix that records row exchanges."
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html#definition",
+    "href": "notes/w07/norms/taxicab-vector-norm.html#definition",
+    "title": "Taxicab Norm",
+    "section": "Definition",
+    "text": "Definition\nFor a vector \\mathbf{v} = [v_1, v_2, \\dots, v_n] in \\mathbb{R}^n, the Taxicab norm is defined as:\n\n\\|\\mathbf{v}\\|_1 = \\sum_{i=1}^n |v_i|.\n\nThis measures the total “travel distance” required along the axes to reach the endpoint of the vector."
   },
   {
-    "objectID": "notes/w07/lu-factorization.html#conditions-for-lu-factorization",
-    "href": "notes/w07/lu-factorization.html#conditions-for-lu-factorization",
-    "title": "LU Factorization",
-    "section": "Conditions for LU Factorization",
-    "text": "Conditions for LU Factorization\nLU Factorization is valid when:\n\nMatrix is Square: \\(A\\) must be a square matrix.\nNon-Singular Leading Submatrices: Each leading principal submatrix (upper-left submatrix) of \\(A\\) must be non-singular.\n\nWhen these conditions are not met, row pivoting enables decomposition."
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html#properties",
+    "href": "notes/w07/norms/taxicab-vector-norm.html#properties",
+    "title": "Taxicab Norm",
+    "section": "Properties",
+    "text": "Properties\nThe Taxicab norm satisfies the following properties:\n\nNon-negativity: \\|\\mathbf{v}\\|_1 \\geq 0, and \\|\\mathbf{v}\\|_1 = 0 if and only if \\mathbf{v} = \\mathbf{0}.\nHomogeneity: For any scalar c, \\|c \\mathbf{v}\\|_1 = |c| \\|\\mathbf{v}\\|_1.\nTriangle Inequality: \\|\\mathbf{u} + \\mathbf{v}\\|_1 \\leq \\|\\mathbf{u}\\|_1 + \\|\\mathbf{v}\\|_1."
   },
   {
-    "objectID": "notes/w07/lu-factorization.html#factorization-process",
-    "href": "notes/w07/lu-factorization.html#factorization-process",
-    "title": "LU Factorization",
-    "section": "Factorization Process",
-    "text": "Factorization Process\nTo factorize \\(A\\) into \\(L\\) and \\(U\\):\n\nEliminate Elements: Perform row operations to create zeros below the main diagonal of \\(U\\).\nStore Multipliers: Record the multipliers in \\(L\\).\n\n\nExample\nGiven a \\(3 \\times 3\\) matrix:\n\\[\nA = \\begin{pmatrix} 2 & 3 & 1 \\\\ 4 & 7 & -1 \\\\ -2 & 3 & 5 \\end{pmatrix}\n\\]\n\nTransform \\(A\\) into \\(U\\) using row operations.\nRecord elimination factors in \\(L\\).\nThe result satisfies \\(A = LU\\)."
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html#examples",
+    "href": "notes/w07/norms/taxicab-vector-norm.html#examples",
+    "title": "Taxicab Norm",
+    "section": "Examples",
+    "text": "Examples\n\n1. 2D Example\nFor \\mathbf{v} = [3, -4]:\n\n\\|\\mathbf{v}\\|_1 = |3| + |-4| = 3 + 4 = 7.\n\n\n\n2. 3D Example\nFor \\mathbf{v} = [1, -2, 3]:\n\n\\|\\mathbf{v}\\|_1 = |1| + |-2| + |3| = 1 + 2 + 3 = 6.\n\n\n\n3. General Case\nFor \\mathbf{v} = [v_1, v_2, \\dots, v_n]:\n\n\\|\\mathbf{v}\\|_1 = |v_1| + |v_2| + \\cdots + |v_n|."
   },
   {
-    "objectID": "notes/w07/lu-factorization.html#solving-systems-with-lu-factorization",
-    "href": "notes/w07/lu-factorization.html#solving-systems-with-lu-factorization",
-    "title": "LU Factorization",
-    "section": "Solving Systems with LU Factorization",
-    "text": "Solving Systems with LU Factorization\nLU Factorization allows us to solve \\(Ax = b\\) by breaking it down into two simpler systems:\n\nSolve \\(Ly = b\\): Use forward substitution, as \\(L\\) is lower triangular.\nSolve \\(Ux = y\\): Use back substitution with \\(U\\) as an upper triangular matrix.\n\n\nEfficiency\nThis approach reduces computation time, especially when solving multiple systems with the same \\(A\\) but different \\(b\\) vectors, as the factorization needs to be computed only once."
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html#applications",
+    "href": "notes/w07/norms/taxicab-vector-norm.html#applications",
+    "title": "Taxicab Norm",
+    "section": "Applications",
+    "text": "Applications\n\n1. Urban Navigation\nThe Taxicab norm models distance in grid-based systems, such as city streets, where movement is restricted to horizontal and vertical directions.\n\n\n2. Machine Learning\nIn machine learning, the \\ell_1-norm is used as a regularization term (Lasso regression) to encourage sparsity in models.\n\n\n3. Optimization\nThe Taxicab norm is used in linear programming and optimization problems where constraints align with the \\ell_1-metric.\n\n\n4. Signal Processing\nThe \\ell_1-norm is used in compressed sensing and sparse recovery to find solutions with minimal non-zero components."
   },
   {
-    "objectID": "notes/w07/lu-factorization.html#pivoting-and-permutation",
-    "href": "notes/w07/lu-factorization.html#pivoting-and-permutation",
-    "title": "LU Factorization",
-    "section": "Pivoting and Permutation",
-    "text": "Pivoting and Permutation\nIn cases where \\(A\\) has zeros or small values on the diagonal, partial pivoting improves numerical stability by reordering rows to place a larger element on the diagonal:\n\\[\nPA = LU\n\\]\nwhere \\(P\\) is a permutation matrix that tracks row exchanges."
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html#visualization",
+    "href": "notes/w07/norms/taxicab-vector-norm.html#visualization",
+    "title": "Taxicab Norm",
+    "section": "Visualization",
+    "text": "Visualization\nIn 2D, the set of points at a fixed Taxicab norm distance from the origin forms a diamond shape (rotated square). For example, all points satisfying \\|\\mathbf{v}\\|_1 = 3 in \\mathbb{R}^2 would form the square:\n\n|x| + |y| = 3."
   },
   {
-    "objectID": "notes/w07/lu-factorization.html#advantages-of-lu-factorization",
-    "href": "notes/w07/lu-factorization.html#advantages-of-lu-factorization",
-    "title": "LU Factorization",
-    "section": "Advantages of LU Factorization",
-    "text": "Advantages of LU Factorization\n\nEfficient Linear System Solving: Faster than Gaussian elimination for repeated systems.\nDeterminant Computation: The determinant of \\(A\\) is the product of the diagonal elements of \\(U\\).\nMatrix Inversion: LU Factorization simplifies inversion by inverting \\(L\\) and \\(U\\) separately."
-  },
-  {
-    "objectID": "notes/w07/lu-factorization.html#applications-of-lu-factorization",
-    "href": "notes/w07/lu-factorization.html#applications-of-lu-factorization",
-    "title": "LU Factorization",
-    "section": "Applications of LU Factorization",
-    "text": "Applications of LU Factorization\nLU Factorization is widely used across various fields due to its computational efficiency:\n\nNumerical Linear Algebra: Fundamental for solving linear systems.\nOptimization: Integral in algorithms that rely on matrix decompositions.\nComputer Graphics: Enables transformations and projections.\nScientific Computing: Common in simulations and solving differential equations."
-  },
-  {
-    "objectID": "notes/w07/lu-factorization.html#example-problem",
-    "href": "notes/w07/lu-factorization.html#example-problem",
-    "title": "LU Factorization",
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html#example-problem",
+    "href": "notes/w07/norms/taxicab-vector-norm.html#example-problem",
+    "title": "Taxicab Norm",
     "section": "Example Problem",
-    "text": "Example Problem\nProblem: For the matrix\n\\[\nA = \\begin{pmatrix} 3 & -7 & -2 \\\\ -3 & 5 & 1 \\\\ 6 & -4 & 0 \\end{pmatrix}\n\\]\n\nFactorize \\(A\\) into \\(L\\) and \\(U\\).\nSolve \\(Ax = b\\) for \\(b = \\begin{pmatrix} 5 \\\\ -1 \\\\ 3 \\end{pmatrix}\\).\n\n\nSolution Steps\n\nPerform row operations to decompose \\(A\\) into \\(L\\) and \\(U\\).\nSolve \\(Ly = b\\) via forward substitution.\nSolve \\(Ux = y\\) via back substitution."
+    "text": "Example Problem\nProblem: Compute the Taxicab norm of \\mathbf{v} = [-3, 4, -5].\n\nSolution:\n\nTake the absolute values of the components: |-3| = 3, |4| = 4, |-5| = 5.\nSum them: \\|\\mathbf{v}\\|_1 = 3 + 4 + 5 = 12."
   },
   {
-    "objectID": "notes/w07/lu-factorization.html#conclusion",
-    "href": "notes/w07/lu-factorization.html#conclusion",
-    "title": "LU Factorization",
+    "objectID": "notes/w07/norms/taxicab-vector-norm.html#conclusion",
+    "href": "notes/w07/norms/taxicab-vector-norm.html#conclusion",
+    "title": "Taxicab Norm",
     "section": "Conclusion",
-    "text": "Conclusion\nLU Factorization is an essential tool in linear algebra, providing a simplified method to solve linear systems efficiently. By breaking matrices into triangular forms, it reduces computational complexity and lays the groundwork for more advanced numerical techniques."
+    "text": "Conclusion\nThe Taxicab norm is a useful measure of distance in grid-based systems and finds applications in various fields such as geometry, optimization, and machine learning. Its simplicity and intuitive interpretation make it a valuable tool for analyzing vector magnitudes under \\ell_1-metrics."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html",
+    "href": "notes/w07/norms/infinity-norm-matrices.html",
+    "title": "Infinity Norm for Matrices",
+    "section": "",
+    "text": "The infinity norm (or maximum row sum norm) of a matrix is a measure of its size, calculated as the maximum absolute row sum. It is often used to analyze the stability of numerical algorithms and the behavior of matrices in linear transformations. The infinity norm provides an upper bound on the effect a matrix can have on a vector in terms of row-wise contributions."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html#overview",
+    "href": "notes/w07/norms/infinity-norm-matrices.html#overview",
+    "title": "Infinity Norm for Matrices",
+    "section": "",
+    "text": "The infinity norm (or maximum row sum norm) of a matrix is a measure of its size, calculated as the maximum absolute row sum. It is often used to analyze the stability of numerical algorithms and the behavior of matrices in linear transformations. The infinity norm provides an upper bound on the effect a matrix can have on a vector in terms of row-wise contributions."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html#definition",
+    "href": "notes/w07/norms/infinity-norm-matrices.html#definition",
+    "title": "Infinity Norm for Matrices",
+    "section": "Definition",
+    "text": "Definition\nFor a matrix A = [a_{ij}] of size m \\times n, the infinity norm is defined as:\n\n\\|A\\|_\\infty = \\max_{1 \\leq i \\leq m} \\sum_{j=1}^n |a_{ij}|.\n\nThis is equivalent to finding the largest sum of absolute values of the elements in any row of the matrix.\n\nGeometric Interpretation\nThe infinity norm quantifies the maximum influence of a row of the matrix when applied to a vector. It answers the question: “What is the largest total contribution of any single row?”"
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html#properties",
+    "href": "notes/w07/norms/infinity-norm-matrices.html#properties",
+    "title": "Infinity Norm for Matrices",
+    "section": "Properties",
+    "text": "Properties\nThe infinity norm satisfies the following key properties:\n\nNon-negativity: \\|A\\|_\\infty \\geq 0, and \\|A\\|_\\infty = 0 if and only if A = 0 (a zero matrix).\nHomogeneity: For any scalar c, \\|cA\\|_\\infty = |c| \\|A\\|_\\infty.\nTriangle Inequality: \\|A + B\\|_\\infty \\leq \\|A\\|_\\infty + \\|B\\|_\\infty."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html#example",
+    "href": "notes/w07/norms/infinity-norm-matrices.html#example",
+    "title": "Infinity Norm for Matrices",
+    "section": "Example",
+    "text": "Example\nGiven a matrix A:\n\nA = \\begin{pmatrix}\n1 & -2 & 3 \\\\\n-4 & 5 & -6 \\\\\n7 & -8 & 9\n\\end{pmatrix},\n\n\nCompute the row sums:\n\nRow 1: |1| + |-2| + |3| = 1 + 2 + 3 = 6,\nRow 2: |-4| + |5| + |-6| = 4 + 5 + 6 = 15,\nRow 3: |7| + |-8| + |9| = 7 + 8 + 9 = 24.\n\nFind the maximum row sum: \n\\|A\\|_\\infty = \\max(6, 15, 24) = 24.\n\n\nThus, the infinity norm of A is 24."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html#applications",
+    "href": "notes/w07/norms/infinity-norm-matrices.html#applications",
+    "title": "Infinity Norm for Matrices",
+    "section": "Applications",
+    "text": "Applications\n\nNumerical Stability:\n\nThe infinity norm is often used to measure the sensitivity of solutions to changes in the matrix.\n\nCondition Numbers:\n\nIt contributes to the calculation of matrix condition numbers, which measure how close a matrix is to being singular.\n\nError Analysis:\n\nThe infinity norm is used to bound errors in iterative algorithms and numerical solutions to matrix equations.\n\nOptimization:\n\nIt appears in optimization problems where constraints are defined by row-wise contributions."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html#visualization",
+    "href": "notes/w07/norms/infinity-norm-matrices.html#visualization",
+    "title": "Infinity Norm for Matrices",
+    "section": "Visualization",
+    "text": "Visualization\nFor a matrix, the infinity norm represents the largest “row weight” when summing all the absolute values of the row’s entries. It gives insight into the matrix’s effect along the rows."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html#example-problem",
+    "href": "notes/w07/norms/infinity-norm-matrices.html#example-problem",
+    "title": "Infinity Norm for Matrices",
+    "section": "Example Problem",
+    "text": "Example Problem\nProblem: Compute the infinity norm of:\n\nA = \\begin{pmatrix}\n2 & -1 \\\\\n-3 & 4\n\\end{pmatrix}.\n\n\nSolution:\n\nCompute the row sums:\n\nRow 1: |2| + |-1| = 2 + 1 = 3,\nRow 2: |-3| + |4| = 3 + 4 = 7.\n\nFind the maximum row sum: \n\\|A\\|_\\infty = \\max(3, 7) = 7.\n\n\nThus, \\|A\\|_\\infty = 7."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-norm-matrices.html#conclusion",
+    "href": "notes/w07/norms/infinity-norm-matrices.html#conclusion",
+    "title": "Infinity Norm for Matrices",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe infinity norm provides a simple yet powerful way to measure the row-wise magnitude of a matrix. Its computational simplicity and relevance to numerical analysis make it an essential tool in matrix computations."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html",
+    "href": "notes/w07/norms/euclidean-vector-norm.html",
+    "title": "Euclidean Vector Norm",
+    "section": "",
+    "text": "The Euclidean vector norm (or 2-norm) is a measure of the magnitude (or length) of a vector in Euclidean space. It is widely used in mathematics, physics, and engineering for calculating distances, measuring error, and normalizing vectors. This note covers the definition, properties, computation, and applications of the Euclidean norm."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html#overview",
+    "href": "notes/w07/norms/euclidean-vector-norm.html#overview",
+    "title": "Euclidean Vector Norm",
+    "section": "",
+    "text": "The Euclidean vector norm (or 2-norm) is a measure of the magnitude (or length) of a vector in Euclidean space. It is widely used in mathematics, physics, and engineering for calculating distances, measuring error, and normalizing vectors. This note covers the definition, properties, computation, and applications of the Euclidean norm."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html#definition",
+    "href": "notes/w07/norms/euclidean-vector-norm.html#definition",
+    "title": "Euclidean Vector Norm",
+    "section": "Definition",
+    "text": "Definition\nFor a vector \\mathbf{v} = [v_1, v_2, \\dots, v_n] in \\mathbb{R}^n, the Euclidean norm is defined as:\n\n\\|\\mathbf{v}\\|_2 = \\sqrt{\\sum_{i=1}^n v_i^2}.\n\nThis formula calculates the straight-line distance from the origin to the point represented by \\mathbf{v} in n-dimensional space."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html#properties",
+    "href": "notes/w07/norms/euclidean-vector-norm.html#properties",
+    "title": "Euclidean Vector Norm",
+    "section": "Properties",
+    "text": "Properties\nThe Euclidean norm satisfies several key properties:\n\nNon-negativity: \\|\\mathbf{v}\\|_2 \\geq 0, and \\|\\mathbf{v}\\|_2 = 0 if and only if \\mathbf{v} = \\mathbf{0}.\nHomogeneity: For any scalar c, \\|c \\mathbf{v}\\|_2 = |c| \\|\\mathbf{v}\\|_2.\nTriangle Inequality: \\|\\mathbf{u} + \\mathbf{v}\\|_2 \\leq \\|\\mathbf{u}\\|_2 + \\|\\mathbf{v}\\|_2."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html#examples",
+    "href": "notes/w07/norms/euclidean-vector-norm.html#examples",
+    "title": "Euclidean Vector Norm",
+    "section": "Examples",
+    "text": "Examples\n\n1. 2D Vector\nFor \\mathbf{v} = [3, 4]:\n\n\\|\\mathbf{v}\\|_2 = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = 5.\n\n\n\n2. 3D Vector\nFor \\mathbf{v} = [1, 2, 3]:\n\n\\|\\mathbf{v}\\|_2 = \\sqrt{1^2 + 2^2 + 3^2} = \\sqrt{1 + 4 + 9} = \\sqrt{14}.\n\n\n\n3. General Case\nFor \\mathbf{v} = [v_1, v_2, \\dots, v_n]:\n\n\\|\\mathbf{v}\\|_2 = \\sqrt{v_1^2 + v_2^2 + \\cdots + v_n^2}."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html#applications",
+    "href": "notes/w07/norms/euclidean-vector-norm.html#applications",
+    "title": "Euclidean Vector Norm",
+    "section": "Applications",
+    "text": "Applications\n\n1. Measuring Distance\nThe Euclidean norm is used to calculate the distance between two points \\mathbf{u} and \\mathbf{v} in space:\n\n\\|\\mathbf{u} - \\mathbf{v}\\|_2 = \\sqrt{\\sum_{i=1}^n (u_i - v_i)^2}.\n\n\n\n2. Normalizing Vectors\nTo convert a vector to unit length, divide it by its Euclidean norm:\n\n\\mathbf{u} = \\frac{\\mathbf{v}}{\\|\\mathbf{v}\\|_2}.\n\n\n\n3. Error Measurement\nIn numerical analysis, the Euclidean norm measures the error or residual of a solution.\n\n\n4. Machine Learning\nThe Euclidean norm underpins metrics like the Euclidean distance, used in clustering and regression."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html#visualization",
+    "href": "notes/w07/norms/euclidean-vector-norm.html#visualization",
+    "title": "Euclidean Vector Norm",
+    "section": "Visualization",
+    "text": "Visualization\nIn two-dimensional space, the Euclidean norm corresponds to the length of the hypotenuse of a right triangle formed by the vector’s components. This is equivalent to the straight-line distance from the origin to the point represented by the vector."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html#example-problem",
+    "href": "notes/w07/norms/euclidean-vector-norm.html#example-problem",
+    "title": "Euclidean Vector Norm",
+    "section": "Example Problem",
+    "text": "Example Problem\nProblem: Compute the Euclidean norm of \\mathbf{v} = [2, -3, 6].\n\nSolution:\n\nSquare each component: 2^2 = 4, (-3)^2 = 9, 6^2 = 36.\nSum the squares: 4 + 9 + 36 = 49.\nTake the square root: \\|\\mathbf{v}\\|_2 = \\sqrt{49} = 7."
+  },
+  {
+    "objectID": "notes/w07/norms/euclidean-vector-norm.html#conclusion",
+    "href": "notes/w07/norms/euclidean-vector-norm.html#conclusion",
+    "title": "Euclidean Vector Norm",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe Euclidean vector norm is an essential concept in mathematics and its applications, providing a straightforward measure of vector magnitude. Its simplicity and intuitive geometric interpretation make it a fundamental tool across diverse fields such as physics, engineering, and machine learning."
+  },
+  {
+    "objectID": "notes/w07/2-3.html",
+    "href": "notes/w07/2-3.html",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "",
+    "text": "When solving linear systems of the form A\\mathbf{x} = \\mathbf{b}, two significant issues may arise:\n\nControllable Errors: Errors due to computational methods, which we can manage or minimize.\nUncontrollable Errors: Errors inherent to the problem’s nature, which we cannot eliminate but need to understand.\n\nThis document explores vector and matrix norms, their importance in numerical computations, and how they relate to error analysis and condition numbers when solving A\\mathbf{x} = \\mathbf{b}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#overview",
+    "href": "notes/w07/2-3.html#overview",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "",
+    "text": "When solving linear systems of the form A\\mathbf{x} = \\mathbf{b}, two significant issues may arise:\n\nControllable Errors: Errors due to computational methods, which we can manage or minimize.\nUncontrollable Errors: Errors inherent to the problem’s nature, which we cannot eliminate but need to understand.\n\nThis document explores vector and matrix norms, their importance in numerical computations, and how they relate to error analysis and condition numbers when solving A\\mathbf{x} = \\mathbf{b}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#vector-norms",
+    "href": "notes/w07/2-3.html#vector-norms",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Vector Norms",
+    "text": "Vector Norms\nA norm is a function that assigns a non-negative length or size to vectors in a vector space. Norms help measure the magnitude of vectors, which is essential in analyzing algorithms and numerical stability.\nFor a vector \\mathbf{v} = [v_1, v_2, \\dots, v_n]^T, common norms include:\n\n1. \\ell_2-Norm (Euclidean Norm)\nMeasures the straight-line distance from the origin to the point \\mathbf{v}:\n\n\\|\\mathbf{v}\\|_2 = \\sqrt{v_1^2 + v_2^2 + \\dots + v_n^2}\n\n\n\n2. \\ell_1-Norm (Taxicab or Manhattan Norm)\nSums the absolute values of the vector components:\n\n\\|\\mathbf{v}\\|_1 = |v_1| + |v_2| + \\dots + |v_n|\n\n\n\n3. \\ell_\\infty-Norm (Maximum or Infinity Norm)\nTakes the maximum absolute value among the components:\n\n\\|\\mathbf{v}\\|_\\infty = \\max_{1 \\leq i \\leq n} |v_i|\n\nAlso expressed as:\n\n\\|\\mathbf{v}\\|_\\infty = \\lim_{p \\to \\infty} \\left( \\sum_{i=1}^n |v_i|^p \\right)^{1/p}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#matrix-norms",
+    "href": "notes/w07/2-3.html#matrix-norms",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Matrix Norms",
+    "text": "Matrix Norms\nMatrix norms measure the “size” of matrices and help understand how matrices affect vector norms when used as linear transformations.\nCommon matrix norms include:\n\n1. Spectral Norm (\\|A\\|_2)\nInvolves the largest singular value of A:\n\n\\|A\\|_2 = \\sqrt{\\lambda_{\\text{max}}(A^TA)},\n\nwhere \\lambda_{\\text{max}} is the largest eigenvalue of A^TA.\n\n\n2. Maximum Column Sum Norm (\\|A\\|_1)\nThe largest sum of absolute values in any column:\n\n\\|A\\|_1 = \\max_j \\sum_i |a_{ij}|\n\n\n\n3. Maximum Row Sum Norm (\\|A\\|_\\infty)\nThe largest sum of absolute values in any row:\n\n\\|A\\|_\\infty = \\max_i \\sum_j |a_{ij}|"
+  },
+  {
+    "objectID": "notes/w07/2-3.html#the-matrix-infinity-norm-and-row-sums",
+    "href": "notes/w07/2-3.html#the-matrix-infinity-norm-and-row-sums",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "The Matrix Infinity Norm and Row Sums",
+    "text": "The Matrix Infinity Norm and Row Sums\n\nDefinition of \\|A\\|_\\infty\nFormally defined as:\n\n\\|A\\|_\\infty = \\sup_{\\mathbf{x} \\neq 0} \\frac{\\|A\\mathbf{x}\\|_\\infty}{\\|\\mathbf{x}\\|_\\infty} = \\sup_{\\|\\mathbf{x}\\|_\\infty = 1} \\|A\\mathbf{x}\\|_\\infty\n\n\n\nKey Insight\n\nThe infinity norm of A is equal to the maximum row sum of A.\nIt represents the maximum effect A can have on any vector \\mathbf{x} with \\|\\mathbf{x}\\|_\\infty = 1."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#proof-a_infty-maximum-row-sum-of-a",
+    "href": "notes/w07/2-3.html#proof-a_infty-maximum-row-sum-of-a",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Proof: \\|A\\|_\\infty = Maximum Row Sum of A",
+    "text": "Proof: \\|A\\|_\\infty = Maximum Row Sum of A\nFor matrix A:\n\n\\|A\\|_\\infty = \\max_i \\sum_j |a_{ij}|.\n\n\nExample\nConsider:\n\nA = \\begin{bmatrix}\n-1 & -2 & 3 \\\\\n3 & -4 & -5 \\\\\n-2 & 3 & -4\n\\end{bmatrix}\n\n\nCompute Row Sums\n\nRow 1: |-1| + |-2| + |3| = 6\nRow 2: |3| + |-4| + |-5| = 12\nRow 3: |-2| + |3| + |-4| = 9\n\nMaximum Row Sum: 12 (Row 2)\nTherefore, \\|A\\|_\\infty = 12.\n\n\n\nChoosing \\mathbf{\\hat{x}}\nTo achieve \\|A\\mathbf{\\hat{x}}\\|_\\infty = \\|A\\|_\\infty, select \\mathbf{\\hat{x}} with \\|\\mathbf{\\hat{x}}\\|_\\infty = 1 that aligns with the signs of Row 2:\n\n\\mathbf{\\hat{x}} = \\begin{bmatrix}\n1 \\\\\n-1 \\\\\n-1\n\\end{bmatrix}\n\n\nCompute A\\mathbf{\\hat{x}}:\n\nA\\mathbf{\\hat{x}} = \\begin{bmatrix}\n-1(1) + -2(-1) + 3(-1) \\\\\n3(1) + -4(-1) + -5(-1) \\\\\n-2(1) + 3(-1) + -4(-1)\n\\end{bmatrix} = \\begin{bmatrix}\n-2 \\\\\n12 \\\\\n-1\n\\end{bmatrix}\n\n\n\nCompute \\|A\\mathbf{\\hat{x}}\\|_\\infty:\n\n\\|A\\mathbf{\\hat{x}}\\|_\\infty = \\max(|-2|, |12|, |-1|) = 12 = \\|A\\|_\\infty\n\n\n\n\nConclusion\nIt is not possible to find \\mathbf{\\hat{x}} such that \\|A\\mathbf{\\hat{x}}\\|_\\infty &gt; \\|A\\|_\\infty when \\|\\mathbf{\\hat{x}}\\|_\\infty = 1, because \\|A\\|_\\infty is the supremum of \\|A\\mathbf{x}\\|_\\infty over all such \\mathbf{x}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#error-analysis-and-condition-numbers",
+    "href": "notes/w07/2-3.html#error-analysis-and-condition-numbers",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Error Analysis and Condition Numbers",
+    "text": "Error Analysis and Condition Numbers\n\nWhy Care About Errors in A\\mathbf{x} = \\mathbf{b}?\nWhen solving A\\mathbf{x} = \\mathbf{b}, understanding errors helps improve numerical accuracy and stability.\nLet \\mathbf{x_a} be an approximate solution to A\\mathbf{x} = \\mathbf{b}, meaning:\n\nA\\mathbf{x_a} \\neq \\mathbf{b}\n\nWe quantify errors to assess the accuracy of \\mathbf{x_a} and evaluate the impact of approximations.\n\n\nDefinitions\n\nResidual: The difference between \\mathbf{b} and A\\mathbf{x_a}:\n\n\\mathbf{r} = \\mathbf{b} - A\\mathbf{x_a}\n\nBackward Error (BE): Measures the infinity norm of the residual:\n\n\\text{BE} = \\|\\mathbf{r}\\|_\\infty = \\|\\mathbf{b} - A\\mathbf{x_a}\\|_\\infty\n\nRelative Backward Error (RBE): Normalizes the backward error relative to \\mathbf{b}:\n\n\\text{RBE} = \\frac{\\|\\mathbf{r}\\|_\\infty}{\\|\\mathbf{b}\\|_\\infty}\n\nForward Error (FE): Measures the difference between the true solution \\mathbf{x} and the approximate solution \\mathbf{x_a}:\n\n\\text{FE} = \\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty\n\nRelative Forward Error (RFE): Normalizes the forward error relative to \\mathbf{x}:\n\n\\text{RFE} = \\frac{\\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty}{\\|x\\|_\\infty}"
+  },
+  {
+    "objectID": "notes/w07/2-3.html#error-magnification-factor-emf",
+    "href": "notes/w07/2-3.html#error-magnification-factor-emf",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Error Magnification Factor (EMF)",
+    "text": "Error Magnification Factor (EMF)\nThe error magnification factor (EMF) relates the relative forward error (RFE) to the relative backward error (RBE):\n\n\\text{EMF} = \\frac{\\text{RFE}}{\\text{RBE}}\n\nThis quantifies how much the backward error is amplified when reflected in the forward error."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#condition-number-of-a-matrix",
+    "href": "notes/w07/2-3.html#condition-number-of-a-matrix",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Condition Number of a Matrix",
+    "text": "Condition Number of a Matrix\nThe condition number of a matrix A measures the sensitivity of the solution \\mathbf{x} to changes in \\mathbf{b}. It is defined as:\n\n\\text{cond}(A) = \\|A\\|_\\infty \\cdot \\|A^{-1}\\|_\\infty\n\n\nInterpretation:\n\nA low condition number (close to 1) indicates a well-conditioned matrix.\nA high condition number suggests an ill-conditioned matrix, meaning small changes in \\mathbf{b} can result in large changes in \\mathbf{x}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#example-1",
+    "href": "notes/w07/2-3.html#example-1",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Example",
+    "text": "Example\nGiven:\n\n\\mathbf{x} = \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix}, \\quad\n\\mathbf{x_a} = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}, \\quad\nA = \\begin{bmatrix} 1 & 1 \\\\ 3 & -4 \\end{bmatrix}, \\quad\n\\mathbf{b} = \\begin{bmatrix} 3 \\\\ 2 \\end{bmatrix}\n\n\nStep 1: Compute Errors\n\nForward Error (FE):\n\n\\text{FE} = \\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty = \\left\\| \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix} - \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} \\right\\|_\\infty = 1\n\nRelative Forward Error (RFE):\n\n\\text{RFE} = \\frac{\\text{FE}}{\\|\\mathbf{x}\\|_\\infty} = \\frac{1}{2} = 0.5\n\nResidual:\n\nr = b - Ax_a = \\begin{bmatrix} 3 \\\\ 2 \\end{bmatrix} - \\begin{bmatrix} 2 \\\\ -1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}\n\nBackward Error (BE):\n\n\\text{BE} = \\|\\mathbf{r}\\|_\\infty = 3\n\nRelative Backward Error (RBE):\n\n\\text{RBE} = \\frac{\\text{BE}}{\\|\\mathbf{b}\\|_\\infty} = \\frac{3}{3} = 1\n\n\n\n\nStep 2: Compute EMF\nUsing:\n\n\\text{EMF} = \\frac{\\text{RFE}}{\\text{RBE}}\n\nwe find:\n\n\\text{EMF} = \\frac{0.5}{1} = 0.5\n\n\n\nStep 3: Compute Condition Number\n\nCompute \\|A\\|_\\infty:\n\n\\|A\\|_\\infty = \\max\\left( |1| + |1|, |3| + |-4| \\right) = \\max(2, 7) = 7\n\nCompute \\|A^{-1}\\|_\\infty:\nFrom A^{-1}, we find:\n\n\\|A^{-1}\\|_\\infty = \\max\\left( \\frac{4}{7} + \\frac{1}{7}, \\frac{3}{7} + \\frac{1}{7} \\right) = \\frac{5}{7}\n\nCondition Number:\n\n\\text{cond}(A) = \\|A\\|_\\infty \\cdot \\|A^{-1}\\|_\\infty = 7 \\cdot \\frac{5}{7} = 5"
+  },
+  {
+    "objectID": "notes/w07/2-3.html#next-steps-pa-lu-decomposition-partial-pivoting",
+    "href": "notes/w07/2-3.html#next-steps-pa-lu-decomposition-partial-pivoting",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Next Steps: PA = LU Decomposition (Partial Pivoting)",
+    "text": "Next Steps: PA = LU Decomposition (Partial Pivoting)\n\nWhat is Partial Pivoting?\nPartial pivoting rearranges rows of A during LU decomposition to place the largest available pivot element on the diagonal. This ensures numerical stability by reducing rounding errors.\n\n\nConsequences of Partial Pivoting:\n\nControlled Multipliers: Ensures all multipliers satisfy |m_{ij}| \\leq 1.\nPrevents Swamping: Avoids large numerical errors caused by small pivot elements.\n\nUnderstanding norms, errors, and condition numbers is foundational for solving A\\mathbf{x} = \\mathbf{b} efficiently and accurately."
   },
   {
     "objectID": "notes/w03/interpolation-error-formula.html",
@@ -207,7 +396,7 @@
     "href": "notes/index.html",
     "title": "NOTES",
     "section": "",
-    "text": "WEEK 01\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nBisection Method\nFixed-Point Iteration\nNewtons’s Method\nSecant Method\n\n\n\n\n\n\nWEEK 02\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nLagrange Interpolation\nNewton’s Divided Differences\n\n\n\n\n\n\nWEEK 03\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nInterpolation Error Formula\nRunge Phenomenon\nChebyshev Interpolation\n\n\n\n\n\n\nWEEK 04\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nTrapezoidal Rule\n\n\n\n\n\n\nWEEK 05\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 06\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 07\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nLU Factorization\nEuclidean Vector Norm\n\n\n\n\n\n\nWEEK 08\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nGram-Schmidt Orthogonalization\n\n\n\n\n\n\nWEEK 09\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 10\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 11\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 12\n\n\n\n\n\n\n‎"
+    "text": "WEEK 01\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nBisection Method\nFixed-Point Iteration\nNewtons’s Method\nSecant Method\n\n\n\n\n\n\nWEEK 02\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nLagrange Interpolation\nNewton’s Divided Differences\n\n\n\n\n\n\nWEEK 03\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nInterpolation Error Formula\nRunge Phenomenon\nChebyshev Interpolation\n\n\n\n\n\n\nWEEK 04\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nTrapezoidal Rule\n\n\n\n\n\n\nWEEK 05\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 06\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 07\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nChapter 2 Section 3 Notes\nNorms\nLU Factorization\n\n\n\n\n\n\nWEEK 08\n\n\n\n\n\n\n‎\n\n\n\n\n\n\nGram-Schmidt Orthogonalization\n\n\n\n\n\n\nWEEK 09\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 10\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 11\n\n\n\n\n\n\n‎\n\n\n\n\n\n\n\n\n\n\n\nWEEK 12\n\n\n\n\n\n\n‎"
   },
   {
     "objectID": "homework/w09/exercise4-3-4.html",
@@ -305,7 +494,7 @@
     "href": "homework/math411-suggested-homework.html",
     "title": "MATH411 Suggested Homework - Fall 2024",
     "section": "",
-    "text": "Week 1\n\n(C0-P1) Read/work through the Getting Started with Python notebook (see Modules &gt; Homework &gt; Getting_Started_with_Python.ipynb). Then complete the following exercises in a separate notebook or .py file:\n\nWhat is the difference between the outputs generated by the following two lines of code?\n\nnp.array([i for i in range(10)])\nnp.linspace(0, 9, 10, endpoint=True)\n\nUse both np.linspace() and np.arange() to create an array containing floating point numbers starting at 1.0, ending at 4.0, equally spaced with separation 0.2. In other words, the array should contain 1.0, 1.2, 1.4, …, 3.8, 4.0.\nCreate an array consisting of the floats 1.0, 2.0, 3.0, 4.0, and 5.0. Create a second array containing the square root of each of these numbers. Then, use a for loop to compute the sum of the squared differences between the two arrays:\n\n\\[\n\\sum_{i=1}^n \\left(x_i - \\sqrt{x_i}\\right)^2\n\\]\nExtra Challenge: Can you do this without a loop?\n\nStarting with \\(x = 1\\), use a while loop to divide by 2 until \\(x &lt; 10^{-4}\\). Display (print) the list 1.0, 0.5, 0.25, …, and report the number of divisions by 2 needed such that the \\((k-1)\\)th division produces \\(x &gt; 10^{-4}\\) and the \\(k\\)th division produces \\(x &lt; 10^{-4}\\).\nWrite code to create a function to compute \\(f(x) = e^{-x} \\cos x\\), where \\(x\\) is a vector (array) of one or more numbers. Then evaluate \\(f(x)\\) at the points 0, 0.1, 0.2, …, 1.0.\nWrite code to plot the function \\(h(x) = e^{x} \\cos^2 x - 2\\) on the interval -0.5 to 5.5 and visually estimate the roots of \\(h(x)\\) on that interval.\n\n(C1-P1) Exercise 1.1.4ab\n(C1-P2) Exercise 1.2.2\n(C1-P3) Computer Problem 1.2.2ab. For each equation, find an initial point \\(x_0\\) and a function \\(g(x)\\) such that the fixed-point iteration \\(x_{k+1} = g(x_k)\\) converges to \\(x\\), where \\(g(x) = x\\). If this is not possible, explain why.\n(C1-P4) Exercise 1.2.14\n(C1-P5) Exercise 1.4.1\n(C1-P6) Exercise 1.4.3\n\n\nWeek 2\n\n(C1-P7) Exercise 1.4.6\n(C1-P8) Exercise 1.4.8\n(C1-P9) Computer Problem 1.4.7\n(C1-P10) Exercise 1.5.1\n(C1-P11) Use Python to compare results obtained using the Bisection Method, Newton’s Method, and the Secant Method to solve the equation \\(\\ln x + x^2 = 3\\). Note that Python code for these methods is available on I-Learn.\n\nSolve the problem using each of the three methods. Report starting values and the number of iterations required to obtain 6 correct decimal places of accuracy. Hint: a graph of the function may help with starting values.\nOn the same axes, plot \\(\\log(\\epsilon_{i+1})\\) vs. \\(\\log(\\epsilon_i)\\) for the three methods. Explain your plot. How is it related to the rate or order of convergence? Use the errors to determine if your results are consistent with theory. How would you compute the error if you didn’t have an exact value for the root?\n\n(C3-P1) Exercise 3.1.1ac\n(C3-P2) Exercise 3.1.2ac\n(C3-P3) Exercise 3.1.6\n\n\nWeek 3\n\n(C0-P2) Create a Python function that takes as input three points (six scalars, three pairs, or perhaps a 6-element numpy array—choose a method that makes sense to you) and uses the matplotlib package to create a figure window and then render a triangle with small open circles at each of the points and straight lines between each pair of circles. Include code to save your figure to a .png or .jpg file. Validate your function with the points (1, 2), (2, 1), and (2, 3).\n(C3-P4) Exercise 3.2.2\n(C3-P5) Exercise 3.2.5\n(C3-P6) Exercise 3.2.6 Note: the two additional points in the next-to-last sentence should be \\((x_7, y_7) = (0.1, f(0.1))\\) and \\((x_8, y_8) = (0.5, f(0.5))\\).\n(C3-P7) Computer Problem 3.1.3. To demonstrate that your function works, interpolate \\(\\sin(x)\\) on the interval \\([-\\pi, \\pi]\\) using nodes \\(-\\pi, -\\frac{\\pi}{2}, 0, \\frac{\\pi}{2}, \\pi\\). Plot your interpolating polynomial. Plot \\(\\sin(x)\\) on the same graph, and use the numpy functions polyfit and polyval to plot an interpolating polynomial from Python on the same graph. Use a legend to make clear which curve is yours and which one came from Python. Hint: the code on p. 146 should help. Python versions of newtdd and nest (p. 3) are available in Canvas.\n(C3-P8) Exercise 3.3.2ac\n(C3-P9) Exercise 3.3.2ac\n(C3-P10) Exercise 3.3.3\n\n\nWeek 4\n\n(C5-P1) Exercise 5.2.1ab\n(C5-P2) Exercise 5.2.2ab\n(C5-P3) Exercise 5.2.3ab\n(C5-P4) Exercise 5.2.10\n(C5-P5) Exercise 5.2.12\n(C5-P6) Computer Problem 5.2.1ac\n(C5-P7) Computer Problem 5.2.2de\n(C5-P8) Computer Problem 5.2.9bf\n\n\nWeek 5\n\n(C5-P9) Exercise 5.5.1ab\n(C5-P10) Exercise 5.5.4cd\n(C5-P11) Computer Problem 5.4.1acd\n(C5-P12) Computer Problem 5.4.2\n(C5-P13) Computer Problem 5.4.3acd\n(C5-P14) Exercise 5.5.5cd\n(C5-P15) Exercise 5.5.7\n\n\nWeek 6\n\n(C2-P1) Exercise 2.1.2ac\n(C2-P2) Computer Problem 2.1.2ac\n(C2-P3) Exercise 2.2.1ab\n(C2-P4) Exercise 2.2.2ab\n\n\nWeek 7\n\n(C2-P5) Exercise 2.2.4\n(C2-P6) Computer Problem 2.2.1ab\n(C2-P7) Exercise 2.4.1ab\n(C2-P8) Exercise 2.4.2ab\n(C2-P9) Exercise 2.4.4a\n(C2-P10) Exercise 2.4.6\n\n\nWeek 8\n\n(C2-P11) Exercise 2.5.2ab\n(C2-P12) Computer Problem 2.5.2 (solve using both Jacobi and Gauss-Seidel, compare results)\n(C4-P1) Exercise 4.1.2\n(C4-P2) Computer Problem 4.1.5 (also use a quadratic fit and compare)\n(C4-P3) Exercise 4.3.2\n\n\nWeek 9\n\n(C4-P4) Exercise 4.3.4 (use the matrix from Exercise 4.3.1d)\n(C4-P5) Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)\n(C4-P6) Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does).\n\n\nWeek 10\n\n(C4-P7) Exercise 4.4.2\n(C4-P8) Exercise 4.4.3\n(C4-P9) Computer Problem 4.4.2 (find a preconditioned GMRES Python code and use it)\n\n\nWeek 11\n\nNone\nExam 2 in class on Monday Week 11\nAttempt the first several Week 12 problems before Monday Week 12\n\n\nWeek 12\n\n(C10-P1) Exercise 10.1.1ad (also, find the inverse DFT of your result, compare to the original vector)\n(C10-P2) Exercise 10.1.8\n(C10-P3) Exercise 10.2.1ab\n(C10-P4) Exercise 10.2.3ab\n(C10-P5) Exercise 10.2.3 (plot data and function to show your interpolating function does interpolate the data)\n(C10-P6) Computer Problem 10.2.4\n(C10-P7) Exercise 10.3.2ab\n\n\nWeek 13\n\n(C10-P8) Computer Problem 10.3.2cd\n(C10-P9) Exercise 10.3.5 (Complete the \\(\\sum_{j=0}^{n-1} \\cos \\frac{2 \\pi j k}{n} \\cos \\frac{2 \\pi j l}{n}\\) result only)\n(C10-P10) Exercise 10.1.6"
+    "text": "Week 1\n\n(C0-P1) Read/work through the Getting Started with Python notebook (see Modules &gt; Homework &gt; Getting_Started_with_Python.ipynb). Then complete the following exercises in a separate notebook or .py file:\n\nWhat is the difference between the outputs generated by the following two lines of code?\n\nnp.array([i for i in range(10)])\nnp.linspace(0, 9, 10, endpoint=True)\n\nUse both np.linspace() and np.arange() to create an array containing floating point numbers starting at 1.0, ending at 4.0, equally spaced with separation 0.2. In other words, the array should contain 1.0, 1.2, 1.4, …, 3.8, 4.0.\nCreate an array consisting of the floats 1.0, 2.0, 3.0, 4.0, and 5.0. Create a second array containing the square root of each of these numbers. Then, use a for loop to compute the sum of the squared differences between the two arrays:\n\n\n\\sum_{i=1}^n \\left(x_i - \\sqrt{x_i}\\right)^2\n\nExtra Challenge: Can you do this without a loop?\n\nStarting with x = 1, use a while loop to divide by 2 until x &lt; 10^{-4}. Display (print) the list 1.0, 0.5, 0.25, …, and report the number of divisions by 2 needed such that the (k-1)th division produces x &gt; 10^{-4} and the kth division produces x &lt; 10^{-4}.\nWrite code to create a function to compute f(x) = e^{-x} \\cos x, where x is a vector (array) of one or more numbers. Then evaluate f(x) at the points 0, 0.1, 0.2, …, 1.0.\nWrite code to plot the function h(x) = e^{x} \\cos^2 x - 2 on the interval -0.5 to 5.5 and visually estimate the roots of h(x) on that interval.\n\n(C1-P1) Exercise 1.1.4ab\n(C1-P2) Exercise 1.2.2\n(C1-P3) Computer Problem 1.2.2ab. For each equation, find an initial point x_0 and a function g(x) such that the fixed-point iteration x_{k+1} = g(x_k) converges to x, where g(x) = x. If this is not possible, explain why.\n(C1-P4) Exercise 1.2.14\n(C1-P5) Exercise 1.4.1\n(C1-P6) Exercise 1.4.3\n\n\nWeek 2\n\n(C1-P7) Exercise 1.4.6\n(C1-P8) Exercise 1.4.8\n(C1-P9) Computer Problem 1.4.7\n(C1-P10) Exercise 1.5.1\n(C1-P11) Use Python to compare results obtained using the Bisection Method, Newton’s Method, and the Secant Method to solve the equation \\ln x + x^2 = 3. Note that Python code for these methods is available on I-Learn.\n\nSolve the problem using each of the three methods. Report starting values and the number of iterations required to obtain 6 correct decimal places of accuracy. Hint: a graph of the function may help with starting values.\nOn the same axes, plot \\log(\\epsilon_{i+1}) vs. \\log(\\epsilon_i) for the three methods. Explain your plot. How is it related to the rate or order of convergence? Use the errors to determine if your results are consistent with theory. How would you compute the error if you didn’t have an exact value for the root?\n\n(C3-P1) Exercise 3.1.1ac\n(C3-P2) Exercise 3.1.2ac\n(C3-P3) Exercise 3.1.6\n\n\nWeek 3\n\n(C0-P2) Create a Python function that takes as input three points (six scalars, three pairs, or perhaps a 6-element numpy array—choose a method that makes sense to you) and uses the matplotlib package to create a figure window and then render a triangle with small open circles at each of the points and straight lines between each pair of circles. Include code to save your figure to a .png or .jpg file. Validate your function with the points (1, 2), (2, 1), and (2, 3).\n(C3-P4) Exercise 3.2.2\n(C3-P5) Exercise 3.2.5\n(C3-P6) Exercise 3.2.6 Note: the two additional points in the next-to-last sentence should be (x_7, y_7) = (0.1, f(0.1)) and (x_8, y_8) = (0.5, f(0.5)).\n(C3-P7) Computer Problem 3.1.3. To demonstrate that your function works, interpolate \\sin(x) on the interval [-\\pi, \\pi] using nodes -\\pi, -\\frac{\\pi}{2}, 0, \\frac{\\pi}{2}, \\pi. Plot your interpolating polynomial. Plot \\sin(x) on the same graph, and use the numpy functions polyfit and polyval to plot an interpolating polynomial from Python on the same graph. Use a legend to make clear which curve is yours and which one came from Python. Hint: the code on p. 146 should help. Python versions of newtdd and nest (p. 3) are available in Canvas.\n(C3-P8) Exercise 3.3.2ac\n(C3-P9) Exercise 3.3.2ac\n(C3-P10) Exercise 3.3.3\n\n\nWeek 4\n\n(C5-P1) Exercise 5.2.1ab\n(C5-P2) Exercise 5.2.2ab\n(C5-P3) Exercise 5.2.3ab\n(C5-P4) Exercise 5.2.10\n(C5-P5) Exercise 5.2.12\n(C5-P6) Computer Problem 5.2.1ac\n(C5-P7) Computer Problem 5.2.2de\n(C5-P8) Computer Problem 5.2.9bf\n\n\nWeek 5\n\n(C5-P9) Exercise 5.5.1ab\n(C5-P10) Exercise 5.5.4cd\n(C5-P11) Computer Problem 5.4.1acd\n(C5-P12) Computer Problem 5.4.2\n(C5-P13) Computer Problem 5.4.3acd\n(C5-P14) Exercise 5.5.5cd\n(C5-P15) Exercise 5.5.7\n\n\nWeek 6\n\n(C2-P1) Exercise 2.1.2ac\n(C2-P2) Computer Problem 2.1.2ac\n(C2-P3) Exercise 2.2.1ab\n(C2-P4) Exercise 2.2.2ab\n\n\nWeek 7\n\n(C2-P5) Exercise 2.2.4\n(C2-P6) Computer Problem 2.2.1ab\n(C2-P7) Exercise 2.4.1ab\n(C2-P8) Exercise 2.4.2ab\n(C2-P9) Exercise 2.4.4a\n(C2-P10) Exercise 2.4.6\n\n\nWeek 8\n\n(C2-P11) Exercise 2.5.2ab\n(C2-P12) Computer Problem 2.5.2 (solve using both Jacobi and Gauss-Seidel, compare results)\n(C4-P1) Exercise 4.1.2\n(C4-P2) Computer Problem 4.1.5 (also use a quadratic fit and compare)\n(C4-P3) Exercise 4.3.2\n\n\nWeek 9\n\n(C4-P4) Exercise 4.3.4 (use the matrix from Exercise 4.3.1d)\n(C4-P5) Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)\n(C4-P6) Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does).\n\n\nWeek 10\n\n(C4-P7) Exercise 4.4.2\n(C4-P8) Exercise 4.4.3\n(C4-P9) Computer Problem 4.4.2 (find a preconditioned GMRES Python code and use it)\n\n\nWeek 11\n\nNone\nExam 2 in class on Monday Week 11\nAttempt the first several Week 12 problems before Monday Week 12\n\n\nWeek 12\n\n(C10-P1) Exercise 10.1.1ad (also, find the inverse DFT of your result, compare to the original vector)\n(C10-P2) Exercise 10.1.8\n(C10-P3) Exercise 10.2.1ab\n(C10-P4) Exercise 10.2.3ab\n(C10-P5) Exercise 10.2.3 (plot data and function to show your interpolating function does interpolate the data)\n(C10-P6) Computer Problem 10.2.4\n(C10-P7) Exercise 10.3.2ab\n\n\nWeek 13\n\n(C10-P8) Computer Problem 10.3.2cd\n(C10-P9) Exercise 10.3.5 (Complete the \\sum_{j=0}^{n-1} \\cos \\frac{2 \\pi j k}{n} \\cos \\frac{2 \\pi j l}{n} result only)\n(C10-P10) Exercise 10.1.6"
   },
   {
     "objectID": "homework/w03/exercise3-2-2.html",
@@ -532,6 +721,153 @@
     "text": "Overview\n\nThe trapezoidal rule is a numerical method for approximating definite integrals. It works by dividing the interval of integration into sub-intervals and approximating the area under the curve as a series of trapezoids. This method is particularly useful for complex functions or when an analytical solution is not feasible.\n\n\nGeneral Formula\n\nGiven the integral:\n\\[\n\\int_a^b f(x) \\, dx\n\\]\nThe trapezoidal rule estimates the integral by approximating the region under the curve with trapezoids.\n\n\nEqual Sub-Intervals (Uniform Spacing)\n\nWhen the interval \\([a, b]\\) is divided into \\(n\\) equal sub-intervals of width:\n\\[\n\\Delta x = \\frac{b - a}{n}\n\\]\nThe composite trapezoidal rule can be expressed as:\n\\[\nT_n = \\frac{\\Delta x}{2} \\left( y_0 + 2 y_1 + 2 y_2 + \\dots + 2 y_{n-1} + y_n \\right)\n\\]\nwhere:\n\n\\(y_0 = f(a)\\) and \\(y_n = f(b)\\) are the function values at the endpoints.\n\\(y_1, y_2, \\dots, y_{n-1}\\) are the function values at the interior points, each multiplied by 2 because they are shared by two adjacent trapezoids.\n\n\nStep-by-Step Formula in Function Terms\nUsing function values at each point \\(x_i = a + i \\Delta x\\), the formula becomes:\n\\[\nT_n = \\frac{\\Delta x}{2} \\left( f(a) + 2 f(a + \\Delta x) + 2 f(a + 2 \\Delta x) + \\dots + 2 f(a + (n - 1) \\Delta x) + f(b) \\right)\n\\]\nThis formula simplifies integration when the sub-intervals are uniformly spaced.\n\n\nSummation Notation for Uniform Spacing\nAlternatively, the composite trapezoidal rule for uniform spacing can be written as:\n\\[\nT_n = \\frac{\\Delta x}{2} \\left( f(x_0) + 2 \\sum_{i=1}^{n-1} f(x_i) + f(x_n) \\right)\n\\]\nwhere:\n\n\\(x_0 = a\\), \\(x_n = b\\), and \\(x_i = a + i \\Delta x\\).\nThe summation accounts for the contributions of interior points.\n\n\n\n\nUnequal Sub-Intervals (Non-Uniform Spacing)\n\nWhen the sub-intervals are not equally spaced, the formula adjusts to account for varying widths \\(\\Delta x_i\\) between points. The non-uniform trapezoidal rule becomes:\n\\[\nT = \\sum_{i=1}^{n} \\frac{\\Delta x_i}{2} \\left( f(x_{i-1}) + f(x_i) \\right)\n\\]\nwhere:\n\nEach term computes the area of a trapezoid over the individual sub-interval \\([x_{i-1}, x_i]\\).\nThe width of each sub-interval is \\(\\Delta x_i = x_i - x_{i-1}\\), which may vary.\n\n\n\nComparison: Equal vs. Unequal Sub-Intervals\n\n\n\n\n\n\n\n\nProperty\nEqual Sub-Intervals\nUnequal Sub-Intervals\n\n\n\n\nWidth of Sub-Intervals\n\\(\\Delta x = \\frac{b - a}{n}\\) (constant)\n\\(\\Delta x_i = x_i - x_{i-1}\\) (varies)\n\n\nFormula\n\\(\\frac{\\Delta x}{2} \\left( y_0 + 2 y_1 + \\dots + 2 y_{n-1} + y_n \\right)\\)\n\\(\\sum \\frac{\\Delta x_i}{2} \\left( f(x_{i-1}) + f(x_i) \\right)\\)\n\n\nComputational Effort\nEasier to compute with uniform spacing\nMore complicated due to variable widths"
   },
   {
+    "objectID": "notes/w07/lu-factorization.html",
+    "href": "notes/w07/lu-factorization.html",
+    "title": "LU Factorization",
+    "section": "",
+    "text": "LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix \\(A\\) into the product of a lower triangular matrix \\(L\\) and an upper triangular matrix \\(U\\). This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices. This note explores LU Factorization’s definition, properties, computation, and applications."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#overview",
+    "href": "notes/w07/lu-factorization.html#overview",
+    "title": "LU Factorization",
+    "section": "",
+    "text": "LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix \\(A\\) into the product of a lower triangular matrix \\(L\\) and an upper triangular matrix \\(U\\). This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices. This note explores LU Factorization’s definition, properties, computation, and applications."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#definition-and-decomposition",
+    "href": "notes/w07/lu-factorization.html#definition-and-decomposition",
+    "title": "LU Factorization",
+    "section": "Definition and Decomposition",
+    "text": "Definition and Decomposition\nFor a square matrix \\(A\\), LU Factorization is given by:\n\\[\nA = LU\n\\]\nwhere:\n\n\\(L\\) is a lower triangular matrix with ones on the diagonal.\n\\(U\\) is an upper triangular matrix.\n\nIf \\(A\\) cannot be decomposed directly, partial pivoting may be applied, resulting in:\n\\[\nPA = LU\n\\]\nwhere \\(P\\) is a permutation matrix that records row exchanges."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#conditions-for-lu-factorization",
+    "href": "notes/w07/lu-factorization.html#conditions-for-lu-factorization",
+    "title": "LU Factorization",
+    "section": "Conditions for LU Factorization",
+    "text": "Conditions for LU Factorization\nLU Factorization is valid when:\n\nMatrix is Square: \\(A\\) must be a square matrix.\nNon-Singular Leading Submatrices: Each leading principal submatrix (upper-left submatrix) of \\(A\\) must be non-singular.\n\nWhen these conditions are not met, row pivoting enables decomposition."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#factorization-process",
+    "href": "notes/w07/lu-factorization.html#factorization-process",
+    "title": "LU Factorization",
+    "section": "Factorization Process",
+    "text": "Factorization Process\nTo factorize \\(A\\) into \\(L\\) and \\(U\\):\n\nEliminate Elements: Perform row operations to create zeros below the main diagonal of \\(U\\).\nStore Multipliers: Record the multipliers in \\(L\\).\n\n\nExample\nGiven a \\(3 \\times 3\\) matrix:\n\\[\nA = \\begin{pmatrix} 2 & 3 & 1 \\\\ 4 & 7 & -1 \\\\ -2 & 3 & 5 \\end{pmatrix}\n\\]\n\nTransform \\(A\\) into \\(U\\) using row operations.\nRecord elimination factors in \\(L\\).\nThe result satisfies \\(A = LU\\)."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#solving-systems-with-lu-factorization",
+    "href": "notes/w07/lu-factorization.html#solving-systems-with-lu-factorization",
+    "title": "LU Factorization",
+    "section": "Solving Systems with LU Factorization",
+    "text": "Solving Systems with LU Factorization\nLU Factorization allows us to solve \\(Ax = b\\) by breaking it down into two simpler systems:\n\nSolve \\(Ly = b\\): Use forward substitution, as \\(L\\) is lower triangular.\nSolve \\(Ux = y\\): Use back substitution with \\(U\\) as an upper triangular matrix.\n\n\nEfficiency\nThis approach reduces computation time, especially when solving multiple systems with the same \\(A\\) but different \\(b\\) vectors, as the factorization needs to be computed only once."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#pivoting-and-permutation",
+    "href": "notes/w07/lu-factorization.html#pivoting-and-permutation",
+    "title": "LU Factorization",
+    "section": "Pivoting and Permutation",
+    "text": "Pivoting and Permutation\nIn cases where \\(A\\) has zeros or small values on the diagonal, partial pivoting improves numerical stability by reordering rows to place a larger element on the diagonal:\n\\[\nPA = LU\n\\]\nwhere \\(P\\) is a permutation matrix that tracks row exchanges."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#advantages-of-lu-factorization",
+    "href": "notes/w07/lu-factorization.html#advantages-of-lu-factorization",
+    "title": "LU Factorization",
+    "section": "Advantages of LU Factorization",
+    "text": "Advantages of LU Factorization\n\nEfficient Linear System Solving: Faster than Gaussian elimination for repeated systems.\nDeterminant Computation: The determinant of \\(A\\) is the product of the diagonal elements of \\(U\\).\nMatrix Inversion: LU Factorization simplifies inversion by inverting \\(L\\) and \\(U\\) separately."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#applications-of-lu-factorization",
+    "href": "notes/w07/lu-factorization.html#applications-of-lu-factorization",
+    "title": "LU Factorization",
+    "section": "Applications of LU Factorization",
+    "text": "Applications of LU Factorization\nLU Factorization is widely used across various fields due to its computational efficiency:\n\nNumerical Linear Algebra: Fundamental for solving linear systems.\nOptimization: Integral in algorithms that rely on matrix decompositions.\nComputer Graphics: Enables transformations and projections.\nScientific Computing: Common in simulations and solving differential equations."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#example-problem",
+    "href": "notes/w07/lu-factorization.html#example-problem",
+    "title": "LU Factorization",
+    "section": "Example Problem",
+    "text": "Example Problem\nProblem: For the matrix\n\\[\nA = \\begin{pmatrix} 3 & -7 & -2 \\\\ -3 & 5 & 1 \\\\ 6 & -4 & 0 \\end{pmatrix}\n\\]\n\nFactorize \\(A\\) into \\(L\\) and \\(U\\).\nSolve \\(Ax = b\\) for \\(b = \\begin{pmatrix} 5 \\\\ -1 \\\\ 3 \\end{pmatrix}\\).\n\n\nSolution Steps\n\nPerform row operations to decompose \\(A\\) into \\(L\\) and \\(U\\).\nSolve \\(Ly = b\\) via forward substitution.\nSolve \\(Ux = y\\) via back substitution."
+  },
+  {
+    "objectID": "notes/w07/lu-factorization.html#conclusion",
+    "href": "notes/w07/lu-factorization.html#conclusion",
+    "title": "LU Factorization",
+    "section": "Conclusion",
+    "text": "Conclusion\nLU Factorization is an essential tool in linear algebra, providing a simplified method to solve linear systems efficiently. By breaking matrices into triangular forms, it reduces computational complexity and lays the groundwork for more advanced numerical techniques."
+  },
+  {
+    "objectID": "notes/w07/norms/index.html",
+    "href": "notes/w07/norms/index.html",
+    "title": "NORMS",
+    "section": "",
+    "text": "Euclidean Vector Norm\nTaxicab Vector Norm\nInfinity Vector Norm\nInfinity Norm for Matrices"
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html",
+    "href": "notes/w07/norms/infinity-vector-norm.html",
+    "title": "Infinity Vector Norm",
+    "section": "",
+    "text": "The infinity norm (also called the maximum norm or \\ell_\\infty-norm) measures the size of a vector by taking the maximum absolute value of its components. Unlike the Euclidean or Taxicab norms, which involve summing components, the infinity norm focuses on the “largest step” in any single direction."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html#overview",
+    "href": "notes/w07/norms/infinity-vector-norm.html#overview",
+    "title": "Infinity Vector Norm",
+    "section": "",
+    "text": "The infinity norm (also called the maximum norm or \\ell_\\infty-norm) measures the size of a vector by taking the maximum absolute value of its components. Unlike the Euclidean or Taxicab norms, which involve summing components, the infinity norm focuses on the “largest step” in any single direction."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html#definition",
+    "href": "notes/w07/norms/infinity-vector-norm.html#definition",
+    "title": "Infinity Vector Norm",
+    "section": "Definition",
+    "text": "Definition\nFor a vector \\mathbf{v} = [v_1, v_2, \\dots, v_n] in \\mathbb{R}^n, the infinity norm is defined as:\n\n\\|\\mathbf{v}\\|_\\infty = \\max_{1 \\leq i \\leq n} |v_i|.\n\nThis norm is often used in settings where the largest component dominates or in grid-based systems where movement is limited by a single axis."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html#properties",
+    "href": "notes/w07/norms/infinity-vector-norm.html#properties",
+    "title": "Infinity Vector Norm",
+    "section": "Properties",
+    "text": "Properties\nThe infinity norm satisfies the following properties:\n\nNon-negativity: \\|\\mathbf{v}\\|_\\infty \\geq 0, and \\|\\mathbf{v}\\|_\\infty = 0 if and only if \\mathbf{v} = \\mathbf{0}.\nHomogeneity: For any scalar c, \\|c \\mathbf{v}\\|_\\infty = |c| \\|\\mathbf{v}\\|_\\infty.\nTriangle Inequality: \\|\\mathbf{u} + \\mathbf{v}\\|_\\infty \\leq \\|\\mathbf{u}\\|_\\infty + \\|\\mathbf{v}\\|_\\infty."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html#examples",
+    "href": "notes/w07/norms/infinity-vector-norm.html#examples",
+    "title": "Infinity Vector Norm",
+    "section": "Examples",
+    "text": "Examples\n\n1. 2D Example\nFor \\mathbf{v} = [3, -4]:\n\n\\|\\mathbf{v}\\|_\\infty = \\max(|3|, |-4|) = \\max(3, 4) = 4.\n\n\n\n2. 3D Example\nFor \\mathbf{v} = [1, -2, 3]:\n\n\\|\\mathbf{v}\\|_\\infty = \\max(|1|, |-2|, |3|) = \\max(1, 2, 3) = 3.\n\n\n\n3. General Case\nFor \\mathbf{v} = [v_1, v_2, \\dots, v_n]:\n\n\\|\\mathbf{v}\\|_\\infty = \\max(|v_1|, |v_2|, \\dots, |v_n|)."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html#applications",
+    "href": "notes/w07/norms/infinity-vector-norm.html#applications",
+    "title": "Infinity Vector Norm",
+    "section": "Applications",
+    "text": "Applications\n\n1. Error Analysis\nThe infinity norm is used to measure the largest error in numerical solutions, ensuring that no individual error component dominates the result.\n\n\n2. Optimization\nIn optimization problems, the infinity norm simplifies constraints by focusing on the largest deviation in variables.\n\n\n3. Machine Learning\nThe infinity norm is used in regularization techniques and as a metric in certain classification problems.\n\n\n4. Computational Efficiency\nSince the infinity norm involves only a maximum operation, it is computationally inexpensive compared to other norms."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html#visualization",
+    "href": "notes/w07/norms/infinity-vector-norm.html#visualization",
+    "title": "Infinity Vector Norm",
+    "section": "Visualization",
+    "text": "Visualization\nIn 2D, the set of points at a fixed infinity norm distance from the origin forms a square aligned with the coordinate axes. For example, all points satisfying \\|\\mathbf{v}\\|_\\infty = 3 in \\mathbb{R}^2 would form the square:\n\n\\max(|x|, |y|) = 3,\n\nor equivalently:\n\n-3 \\leq x \\leq 3, \\quad -3 \\leq y \\leq 3."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html#example-problem",
+    "href": "notes/w07/norms/infinity-vector-norm.html#example-problem",
+    "title": "Infinity Vector Norm",
+    "section": "Example Problem",
+    "text": "Example Problem\nProblem: Compute the infinity norm of \\mathbf{v} = [-3, 4, -5].\n\nSolution:\n\nTake the absolute values of the components: |-3| = 3, |4| = 4, |-5| = 5.\nFind the maximum: \\|\\mathbf{v}\\|_\\infty = \\max(3, 4, 5) = 5."
+  },
+  {
+    "objectID": "notes/w07/norms/infinity-vector-norm.html#conclusion",
+    "href": "notes/w07/norms/infinity-vector-norm.html#conclusion",
+    "title": "Infinity Vector Norm",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe infinity norm provides a simple and efficient way to measure vector size by focusing on the largest component. It is particularly useful in applications like error analysis, optimization, and machine learning where the largest deviation or influence is of primary interest."
+  },
+  {
     "objectID": "notes/w08/gram-schmidt-orthogonalization.html",
     "href": "notes/w08/gram-schmidt-orthogonalization.html",
     "title": "Gram-Schmidt Orthogonalization",
@@ -655,7 +991,7 @@
     "href": "reality-checks/rc05/rc05.html#path-equipartitioning-using-newtons-method",
     "title": "REALITY CHECK 05",
     "section": "Path Equipartitioning Using Newton’s Method",
-    "text": "Path Equipartitioning Using Newton’s Method\n\nProblem Statement\nReplace the Bisection Method in Step 2 with Newton’s Method, and repeat Steps 2 and 3. What is the derivative needed? What is a good choice for the initial guess? Is computation time decreased by this replacement?\n\n\nObjective and Approach\n\nObjective: Use Newton’s Method to locate each partition point t_i along the path, ensuring equal arc-length segments for a specified number of partitions n. Newton’s Method is expected to offer faster convergence than the Bisection Method, especially when starting with a good initial guess.\nRequired Derivative: Newton’s Method requires the derivative of the arc length function with respect to t, which is simply the arc length integrand evaluated at t:\n\nf'(t) = \\sqrt{\\left( \\frac{dx}{dt} \\right)^2 + \\left( \\frac{dy}{dt} \\right)^2}\n\nInitial Guess: A reasonable initial guess for each t_i is t_i = \\frac{i}{n}, which provides a uniformly spaced initial estimate along t, aiding the convergence of Newton’s Method.\nPerformance Comparison: To evaluate if Newton’s Method reduces computation time, we will measure the time taken by both the Bisection and Newton’s methods to achieve the same accuracy.\n\n\nWhy t_i = \\frac{i}{n} is a Good Initial Guess\n\nUniform Parameter Distribution: The parameter t varies between 0 and 1 (or the specified range of t), and \\frac{i}{n} provides evenly spaced points within this interval. This ensures that the initial guess is distributed consistently across the parameter space.\nProximity to the True Solution: For smooth and “well-behaved” curves, the true t_i values for equal arc-length segments are often near \\frac{i}{n}. This proximity ensures that Newton’s Method starts “in the ballpark” of the correct value.\nSimplicity and Efficiency: Computing \\frac{i}{n} is computationally trivial and requires no extra effort. This simplicity makes it a practical choice compared to complex initialization schemes.\nImproved Convergence: Starting close to the actual solution allows Newton’s Method to converge quadratically, reducing the number of iterations needed to achieve the desired accuracy.\n\n\n\n\nSolution Code\nThe following Python code implements Newton’s Method to find partition points and compares its performance with the Bisection Method.\n\nimport time\n\n# Newton's Method to find t for a target arc length\ndef newton_find_t(target_length, initial_guess, tol=1e-8, max_iter=100):\n    t = initial_guess\n    for _ in range(max_iter):\n        f_t = compute_arc_length(t) - target_length\n        f_prime_t = integrand(t)\n        if abs(f_t) &lt; tol:\n            return t\n        t -= f_t / f_prime_t  # Update t\n    return t\n\n# Compare performance of Bisection and Newton's methods\ndef compare_performance(target_length):\n    start_time_bisection = time.time()\n    bisection_result = bisection_find_t(target_length)\n    bisection_time = time.time() - start_time_bisection\n\n    start_time_newton = time.time()\n    newton_result = newton_find_t(target_length, initial_guess=0.5)\n    newton_time = time.time() - start_time_newton\n\n    print(f\"Bisection Method Result: {bisection_result:.9f} Time: {bisection_time:.9f} seconds\")\n    print(f\"Newton's Method Result: {newton_result:.9f} Time: {newton_time:.9f} seconds\")\n\n# Example target length (e.g., half the arc length)\ntotal_length = compute_arc_length(1)\ncompare_performance(total_length / 2)\n\nBisection Method Result: 0.800593771 Time: 0.006005287 seconds\nNewton's Method Result: 0.800593767 Time: 0.001001120 seconds\n\n\n\n\nExplanation of Solution Components\n\nNewton’s Method Implementation: The newton_find_t function applies Newton’s Method to locate the parameter t for a given arc length. It iteratively refines t by calculating f(t) and f'(t), adjusting t based on the result.\nPerformance Comparison: The compare_performance function compares the time taken by Bisection and Newton’s methods to find the target t-value. This illustrates the efficiency difference between the two methods.\n\n\n\nResults and Observations\n\nPerformance Gain: Newton’s Method generally converges faster than the Bisection Method due to its quadratic convergence rate.\nAccuracy: With an appropriately chosen initial guess, Newton’s Method efficiently reaches an accurate solution within fewer iterations.\n\n\n\nConclusion\nNewton’s Method provides a more efficient approach for finding the partition points, particularly when an initial guess is available. This reduction in computation time makes it suitable for tasks requiring high precision and quick convergence, such as real-time applications in path traversal and equipartitioning. Future explorations could involve further optimizations by dynamically refining initial guesses based on prior calculations."
+    "text": "Path Equipartitioning Using Newton’s Method\n\nProblem Statement\nReplace the Bisection Method in Step 2 with Newton’s Method, and repeat Steps 2 and 3. What is the derivative needed? What is a good choice for the initial guess? Is computation time decreased by this replacement?\n\n\nObjective and Approach\n\nObjective: Use Newton’s Method to locate each partition point t_i along the path, ensuring equal arc-length segments for a specified number of partitions n. Newton’s Method is expected to offer faster convergence than the Bisection Method, especially when starting with a good initial guess.\nRequired Derivative: Newton’s Method requires the derivative of the arc length function with respect to t, which is simply the arc length integrand evaluated at t:\n\nf'(t) = \\sqrt{\\left( \\frac{dx}{dt} \\right)^2 + \\left( \\frac{dy}{dt} \\right)^2}\n\nInitial Guess: A reasonable initial guess for each t_i is t_i = \\frac{i}{n}, which provides a uniformly spaced initial estimate along t, aiding the convergence of Newton’s Method.\nPerformance Comparison: To evaluate if Newton’s Method reduces computation time, we will measure the time taken by both the Bisection and Newton’s methods to achieve the same accuracy.\n\n\nWhy t_i = \\frac{i}{n} is a Good Initial Guess\n\nUniform Parameter Distribution: The parameter t varies between 0 and 1 (or the specified range of t), and \\frac{i}{n} provides evenly spaced points within this interval. This ensures that the initial guess is distributed consistently across the parameter space.\nProximity to the True Solution: For smooth and “well-behaved” curves, the true t_i values for equal arc-length segments are often near \\frac{i}{n}. This proximity ensures that Newton’s Method starts “in the ballpark” of the correct value.\nSimplicity and Efficiency: Computing \\frac{i}{n} is computationally trivial and requires no extra effort. This simplicity makes it a practical choice compared to complex initialization schemes.\nImproved Convergence: Starting close to the actual solution allows Newton’s Method to converge quadratically, reducing the number of iterations needed to achieve the desired accuracy.\n\n\n\n\nSolution Code\nThe following Python code implements Newton’s Method to find partition points and compares its performance with the Bisection Method.\n\nimport time\n\n# Newton's Method to find t for a target arc length\ndef newton_find_t(target_length, initial_guess, tol=1e-8, max_iter=100):\n    t = initial_guess\n    for _ in range(max_iter):\n        f_t = compute_arc_length(t) - target_length\n        f_prime_t = integrand(t)\n        if abs(f_t) &lt; tol:\n            return t\n        t -= f_t / f_prime_t  # Update t\n    return t\n\n# Compare performance of Bisection and Newton's methods\ndef compare_performance(target_length):\n    start_time_bisection = time.time()\n    bisection_result = bisection_find_t(target_length)\n    bisection_time = time.time() - start_time_bisection\n\n    start_time_newton = time.time()\n    newton_result = newton_find_t(target_length, initial_guess=0.5)\n    newton_time = time.time() - start_time_newton\n\n    print(f\"Bisection Method Result: {bisection_result:.9f} Time: {bisection_time:.9f} seconds\")\n    print(f\"Newton's Method Result: {newton_result:.9f} Time: {newton_time:.9f} seconds\")\n\n# Example target length (e.g., half the arc length)\ntotal_length = compute_arc_length(1)\ncompare_performance(total_length / 2)\n\nBisection Method Result: 0.800593771 Time: 0.007007599 seconds\nNewton's Method Result: 0.800593767 Time: 0.001000404 seconds\n\n\n\n\nExplanation of Solution Components\n\nNewton’s Method Implementation: The newton_find_t function applies Newton’s Method to locate the parameter t for a given arc length. It iteratively refines t by calculating f(t) and f'(t), adjusting t based on the result.\nPerformance Comparison: The compare_performance function compares the time taken by Bisection and Newton’s methods to find the target t-value. This illustrates the efficiency difference between the two methods.\n\n\n\nResults and Observations\n\nPerformance Gain: Newton’s Method generally converges faster than the Bisection Method due to its quadratic convergence rate.\nAccuracy: With an appropriately chosen initial guess, Newton’s Method efficiently reaches an accurate solution within fewer iterations.\n\n\n\nConclusion\nNewton’s Method provides a more efficient approach for finding the partition points, particularly when an initial guess is available. This reduction in computation time makes it suitable for tasks requiring high precision and quick convergence, such as real-time applications in path traversal and equipartitioning. Future explorations could involve further optimizations by dynamically refining initial guesses based on prior calculations."
   },
   {
     "objectID": "reality-checks/rc05/rc05.html#path-animation-at-original-and-constant-speed",
@@ -670,5 +1006,54 @@
     "title": "REALITY CHECK 05",
     "section": "Experimenting with Equipartitioning on a Custom Path",
     "text": "Experimenting with Equipartitioning on a Custom Path\n\nProblem Statement\nExperiment with equipartitioning a path of your choice. Choose a path defined by parametric equations, partition it into equal arc-length segments, and animate the traversal as demonstrated in Problem 5.\n\nChosen Equation:\n\nx(t) = 0.4 \\sin(3t + \\frac{\\pi}{2}) + 0.5\n\n\ny(t) = 0.3 \\sin(4t) + 0.5\n\n\n\n\nObjective and Approach\n\nObjective: To apply equipartitioning to the specified path, dividing it into segments of equal arc length and visualizing the traversal at constant speed.\nApproach:\n\nPath Definition: Define x(t) and y(t) based on the given equations.\nEquipartitioning: Use numerical integration and Newton’s Method to divide the path into equal-length segments.\nAnimation: Animate the traversal of the path at a constant speed along the equal arc-length segments and compare it with traversal at the original, parameter-based speed.\n\n\n\n\nSolution Code\nThe Python code below calculates the equipartitioned segments and animates traversal along the path:\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib.animation as animation\nfrom scipy.integrate import quad\n\n# Parameters for the curve\nA = 0.4\na = 3\nf = np.pi / 2\nc = 0.5\nB = 0.3\nb = 4\nD = 0.5\n\n# Maximum value of t for one full loop\nt_max = 2 * np.pi\n\n# Define the functions for x(t) and y(t)\ndef x(t):\n    return A * np.sin(a * t + f) + c\n\ndef y(t):\n    return B * np.sin(b * t) + D\n\n# Derivatives of x(t) and y(t) for arc length calculation\ndef dx_dt(t):\n    return A * a * np.cos(a * t + f)\n\ndef dy_dt(t):\n    return B * b * np.cos(b * t)\n\n# Integrand for arc length calculation\ndef integrand(t):\n    return np.sqrt(dx_dt(t)**2 + dy_dt(t)**2)\n\n# Compute arc length using numerical integration\ndef compute_arc_length(s):\n    arc_length, _ = quad(integrand, 0, s)\n    return arc_length\n\n# Equipartition function to divide path into equal arc-length segments\ndef equipartition(n):\n    total_length = compute_arc_length(2 * np.pi)\n    segment_length = total_length / n\n    partition_points = [0]\n    for i in range(1, n):\n        target_length = i * segment_length\n        partition_points.append(find_t_for_length(target_length, partition_points[-1]))\n    partition_points.append(2 * np.pi)\n    return partition_points\n\n# Find parameter t for a given arc length using Newton's Method\ndef find_t_for_length(target_length, initial_guess=0, tol=1e-8, max_iter=100):\n    t = initial_guess\n    for _ in range(max_iter):\n        f_t = compute_arc_length(t) - target_length\n        f_prime_t = integrand(t)\n        if abs(f_t) &lt; tol:\n            return t\n        t -= f_t / f_prime_t\n        t = max(0, min(2 * np.pi, t))\n    return t\n\n\n# Data for animations\nn_points = 200\nt_values_original = np.linspace(0, 2 * np.pi, n_points)\nx_original = x(t_values_original)\ny_original = y(t_values_original)\n\nt_values_constant = equipartition(n_points)\nx_constant = [x(t) for t in t_values_constant]\ny_constant = [y(t) for t in t_values_constant]\n\n# Set up the figure for side-by-side animation\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))\n\n# Original speed plot\nax1.plot(x_original, y_original, color=\"#2196F3\", linewidth=2)\npoint1, = ax1.plot([], [], 'o', color=\"#1565C0\")\nax1.set_title(\"Original Speed\")\nax1.set_xlim(0, 1)\nax1.set_ylim(0, 1)\nax1.set_aspect('equal')\nax1.grid(True, linestyle='-', alpha=0.2, color='gray')\n\n# Constant speed plot\nax2.plot(x_constant, y_constant, color=\"#2196F3\", linewidth=2)\npoint2, = ax2.plot([], [], 'go')\nax2.set_title(\"Constant Speed\")\nax2.set_xlim(0, 1)\nax2.set_ylim(0, 1)\nax2.set_aspect('equal')\nax2.grid(True, linestyle='-', alpha=0.2, color='gray')\n\n# Update functions for each animation\ndef update_original(frame):\n    point1.set_data(x_original[:frame], y_original[:frame])\n    return point1,\n\ndef update_constant(frame):\n    point2.set_data(x_constant[:frame], y_constant[:frame])\n    return point2,\n\n# Combine animations into one\nnum_frames = len(x_original)\nani = animation.FuncAnimation(\n    fig,\n    lambda frame: update_original(frame) + update_constant(frame),\n    frames=num_frames,\n    interval=100,\n    blit=True\n)\n\n# Save animation as MP4\nani.save(\"custom_path_animation.mp4\", writer=\"ffmpeg\")\n\n  Your browser does not support the video tag. \n\n\n\nExplanation of Solution Components\n\nPath Definition: The parametric equations for x(t) = 0.4 \\sin(3t + \\frac{\\pi}{2}) + 0.5 and y(t) = 0.3 \\sin(4t) + 0.5 define a periodic curve with sinusoidal behavior, creating a visually interesting pattern with symmetric, tight curves.\nArc Length Calculation: The function compute_arc_length integrates the instantaneous speed along the curve (using derivatives dx/dt and dy/dt) over the interval [0, s] to determine the total distance traveled up to a given s.\nEquipartitioning: The equipartition function divides the path into n segments of equal arc length by calculating the target length of each segment and using Newton’s Method to determine t values corresponding to each target segment length. This ensures the segments are evenly spaced along the curve.\nAnimation: The animate_path function generates side-by-side animations of path traversal at original speed (based on parameter t) and constant speed (based on equal arc-length segments).\n\n\n\nResults and Observations\nIn the animation:\n\nOriginal Speed: The left animation shows traversal based on equally spaced t values, resulting in variable speed along the curve. The point moves faster along straighter sections and slows down significantly in tighter curves.\nConstant Speed: The right animation demonstrates traversal at a constant speed along equal arc-length segments. This movement is smoother and consistent, highlighting how equipartitioning ensures a steady traversal rate even along complex paths.\n\n\n\nConclusion\nThis exercise illustrates the benefits of equipartitioning a path into equal arc-length segments for applications that require consistent speed. By reparameterizing the curve to maintain constant speed, we can avoid the variable movement speed that results from a simple, evenly spaced parameter t. This method has potential applications in animation, robotics, and automated manufacturing, where uniform movement along a path with varying curvature is essential."
+  },
+  {
+    "objectID": "notes/w07/residual-linear-systems.html",
+    "href": "notes/w07/residual-linear-systems.html",
+    "title": "Residual in Linear Systems",
+    "section": "",
+    "text": "The residual is a fundamental concept in numerical linear algebra, used to quantify how far an approximate solution \\mathbf{x_a} to a linear system A\\mathbf{x} = \\mathbf{b} is from satisfying the system. It provides a direct measure of the “error” in the system when the computed solution \\mathbf{x_a} is substituted back into the equation.\nThe residual is defined as:\n\n\\mathbf{r} = \\mathbf{b} - A\\mathbf{x_a},\n\nwhere:\n\n\\mathbf{b}: The right-hand side vector of the system.\nA\\mathbf{x_a}: The result of substituting the approximate solution \\mathbf{x_a} into the system.\n\nIf \\mathbf{r} = \\mathbf{0}, the approximate solution is exact; otherwise, \\mathbf{r} quantifies the degree of error."
+  },
+  {
+    "objectID": "notes/w07/residual-linear-systems.html#overview",
+    "href": "notes/w07/residual-linear-systems.html#overview",
+    "title": "Residual in Linear Systems",
+    "section": "",
+    "text": "The residual is a fundamental concept in numerical linear algebra, used to quantify how far an approximate solution \\mathbf{x_a} to a linear system A\\mathbf{x} = \\mathbf{b} is from satisfying the system. It provides a direct measure of the “error” in the system when the computed solution \\mathbf{x_a} is substituted back into the equation.\nThe residual is defined as:\n\n\\mathbf{r} = \\mathbf{b} - A\\mathbf{x_a},\n\nwhere:\n\n\\mathbf{b}: The right-hand side vector of the system.\nA\\mathbf{x_a}: The result of substituting the approximate solution \\mathbf{x_a} into the system.\n\nIf \\mathbf{r} = \\mathbf{0}, the approximate solution is exact; otherwise, \\mathbf{r} quantifies the degree of error."
+  },
+  {
+    "objectID": "notes/w07/residual-linear-systems.html#what-the-residual-represents",
+    "href": "notes/w07/residual-linear-systems.html#what-the-residual-represents",
+    "title": "Residual in Linear Systems",
+    "section": "What the Residual Represents",
+    "text": "What the Residual Represents\nThe residual measures how far \\mathbf{x_a} is from satisfying the system A\\mathbf{x} = \\mathbf{b}. Each component of \\mathbf{r} indicates the mismatch for the corresponding equation in the system.\n\nKey Points\n\nResidual as a Vector:\n\nThe residual \\mathbf{r} is a vector with the same dimensions as \\mathbf{b}.\nEach entry r_i measures the difference between b_i and the corresponding value of (A\\mathbf{x_a})_i.\n\nExact Solution:\n\nIf \\mathbf{x_a} = \\mathbf{x} (the exact solution), then: \n\\mathbf{r} = \\mathbf{0}.\n\n\nApproximate Solution:\n\nFor an approximate solution \\mathbf{x_a}, the residual \\mathbf{r} \\neq \\mathbf{0}."
+  },
+  {
+    "objectID": "notes/w07/residual-linear-systems.html#norm-of-the-residual",
+    "href": "notes/w07/residual-linear-systems.html#norm-of-the-residual",
+    "title": "Residual in Linear Systems",
+    "section": "Norm of the Residual",
+    "text": "Norm of the Residual\nThe size of the residual can be measured using norms, such as the infinity norm:\n\n\\|\\mathbf{r}\\|_\\infty = \\max_{i} |r_i|.\n\nThis provides a scalar measure of the largest discrepancy in the system. A smaller residual norm indicates that \\mathbf{x_a} is closer to satisfying the system."
+  },
+  {
+    "objectID": "notes/w07/residual-linear-systems.html#example",
+    "href": "notes/w07/residual-linear-systems.html#example",
+    "title": "Residual in Linear Systems",
+    "section": "Example",
+    "text": "Example\nConsider the system:\n\nA = \\begin{bmatrix} 1 & 1 \\\\ 3 & -4 \\end{bmatrix}, \\quad\n\\mathbf{b} = \\begin{bmatrix} 3 \\\\ 2 \\end{bmatrix}, \\quad\n\\mathbf{x_a} = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}.\n\n\nStep 1: Compute A\\mathbf{x_a}\nMultiply A by \\mathbf{x_a}:\n\nA\\mathbf{x_a} = \\begin{bmatrix} 1 & 1 \\\\ 3 & -4 \\end{bmatrix} \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} = \\begin{bmatrix} 2 \\\\ -1 \\end{bmatrix}.\n\n\n\nStep 2: Compute the Residual \\mathbf{r}\nSubtract A\\mathbf{x_a} from \\mathbf{b}:\n\n\\mathbf{r} = \\mathbf{b} - A\\mathbf{x_a} = \\begin{bmatrix} 3 \\\\ 2 \\end{bmatrix} - \\begin{bmatrix} 2 \\\\ -1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}.\n\nThe residual is:\n\n\\mathbf{r} = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}.\n\n\n\nStep 3: Compute the Residual Norm\nThe infinity norm of \\mathbf{r} is:\n\n\\|\\mathbf{r}\\|_\\infty = \\max(|1|, |3|) = 3.\n\nThis indicates that the largest mismatch in the system is 3."
+  },
+  {
+    "objectID": "notes/w07/residual-linear-systems.html#applications-of-the-residual",
+    "href": "notes/w07/residual-linear-systems.html#applications-of-the-residual",
+    "title": "Residual in Linear Systems",
+    "section": "Applications of the Residual",
+    "text": "Applications of the Residual\n\nError Analysis:\n\nThe residual is used to assess the accuracy of an approximate solution.\n\nIterative Methods:\n\nResiduals are central to iterative solvers, such as the Jacobi and Gauss-Seidel methods, to track convergence.\n\nNumerical Stability:\n\nA large residual often indicates instability or poor conditioning in the matrix A.\n\nRefining Solutions:\n\nResidual-based refinement techniques iteratively adjust \\mathbf{x_a} to minimize \\|\\mathbf{r}\\|."
+  },
+  {
+    "objectID": "notes/w07/residual-linear-systems.html#conclusion",
+    "href": "notes/w07/residual-linear-systems.html#conclusion",
+    "title": "Residual in Linear Systems",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe residual \\mathbf{r} = \\mathbf{b} - A\\mathbf{x_a} is a key tool in numerical linear algebra for evaluating the accuracy of an approximate solution. By analyzing the residual and its norm, we can diagnose errors, refine solutions, and ensure stability in solving linear systems."
   }
 ]
