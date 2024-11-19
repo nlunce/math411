@@ -1,8 +1,11 @@
 project:
   type: website
-  output-dir: docs
   preview:
-    port: 4200
+    port: 3000
+    browser: true
+    watch-inputs: true
+    navigate: true
+  output-dir: docs
   render:
     - '*.qmd'
     - '!exams/'
@@ -36,3 +39,5 @@ format:
 execute:
   warning: false
   message: false
+
+jupyter: python3

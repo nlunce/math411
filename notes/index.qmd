@@ -1,67 +1,142 @@
 ---
 title: 'NOTES'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 2
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show the code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
-## WEEK 1
+# **WEEK 01**
+
+::: {.callout-note icon=false collapse="true"}
+
+# ‎
 
 - [Bisection Method](./w01/bisection-method.html)
 - [Fixed-Point Iteration](./w01/fixed-point-iteration.html)
 - [Newtons's Method](./w01/newtons-method.html)
 - [Secant Method](./w01/secant-method.html)
 
-## WEEK 2
+:::
+
+# **WEEK 02**
+
+::: {.callout-note icon=false collapse="true"}
+
+# ‎
 
 - [Lagrange Interpolation](./w02/lagrange-interpolation.html)
 - [Newton’s Divided Differences](./w02/newtons-divided-differences.html)
 
-## WEEK 3
+:::
+
+# **WEEK 03**
+
+::: {.callout-note icon=false collapse="true"}
+
+# ‎
 
 - [Interpolation Error Formula](./w03/interpolation-error-formula.html)
 - [Runge Phenomenon](./w03/runge-phenomenon.html)
 - [Chebyshev Interpolation](./w03/chebyshev-interpolation.html)
 
-## WEEK 4
+:::
+
+# **WEEK 04**
+
+::: {.callout-note icon=false collapse="true"}
+
+# ‎
 
 - [Trapezoidal Rule](./w04/trapezoidal-rule.html)
 
-## WEEK 5
+:::
 
-## WEEK 6
+# **WEEK 05**
 
-## WEEK 7
+::: {.callout-note icon=false collapse="true"}
+
+# ‎
+
+:::
+
+# **WEEK 06**
+
+::: {.callout-note icon=false collapse="true"}
+
+# ‎
+
+:::
+
+# **WEEK 07**
+
+::: {.callout-note icon=false collapse="true"}
+
+# ‎
 
 - [LU Factorization](./w07/lu-factorization.html)
+- [Euclidean Vector Norm](./w07/euclidean-vector-norm.html)
 
-## WEEK 8
+:::
+
+# **WEEK 08**
+
+::: {.callout-note icon=false collapse="true"}
+
+# ‎
 
 - [Gram-Schmidt Orthogonalization](./w08/gram-schmidt-orthogonalization.html)
 
+:::
+
+# **WEEK 09**
+
 ::: {.callout-note icon=false collapse="true"}
 
-## WEEK 9
+# ‎
 
 :::
 
+# **WEEK 10**
+
 ::: {.callout-note icon=false collapse="true"}
 
-## WEEK 10
+# ‎
 
 :::
 
+# **WEEK 11**
+
 ::: {.callout-note icon=false collapse="true"}
 
-## WEEK 11
+# ‎
 
 :::
 
-::: {.callout-note icon=false collapse="true"}
-
-## WEEK 12
-
-:::
+# **WEEK 12**
 
 ::: {.callout-note icon=false collapse="true"}
 
-## WEEK
+# ‎
 
 :::

@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nathan Lunceford">
 
-<title>Runge Phenomenon – MATH411</title>
+<title>euclidean-vector-norm – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -104,35 +69,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -187,104 +123,11 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Runge Phenomenon</h1>
-</div>
 
 
 
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Nathan Lunceford </p>
-          </div>
-  </div>
-    
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The <strong>Runge Phenomenon</strong> refers to the oscillatory behavior that occurs when using high-degree polynomial interpolation on evenly spaced data points, particularly near the endpoints of an interval. The phenomenon is named after Carl Runge, who discovered this issue while studying interpolation of functions with large oscillations near the boundaries of an interval.</p>
-<section id="the-issue-with-high-degree-polynomials" class="level3">
-<h3 class="anchored" data-anchor-id="the-issue-with-high-degree-polynomials">The Issue with High-Degree Polynomials</h3>
-<p>When interpolating a smooth function using polynomials of high degree, the interpolation can become highly oscillatory near the edges of the interval, even if the function being interpolated is smooth and well-behaved. This is particularly problematic with <strong>equally spaced points</strong>, as the polynomial tries to fit too closely to the data points near the boundaries, leading to large errors.</p>
-</section>
-<section id="runges-example" class="level3">
-<h3 class="anchored" data-anchor-id="runges-example">Runge’s Example</h3>
-<p>The most famous example illustrating the Runge phenomenon is based on the <strong>Runge function</strong>:</p>
-<p><span class="math display">\[
-f(x) = \frac{1}{1 + 25x^2}
-\]</span></p>
-<p>Runge showed that using high-degree polynomial interpolation on this function with evenly spaced points over the interval <span class="math inline">\([-5, 5]\)</span> leads to significant oscillations near the edges. The interpolation error grows as the degree of the polynomial increases, especially near the endpoints of the interval.</p>
-</section>
-<section id="why-does-it-happen" class="level3">
-<h3 class="anchored" data-anchor-id="why-does-it-happen">Why Does It Happen?</h3>
-<p>The Runge phenomenon arises because high-degree polynomials tend to oscillate more as their degree increases, especially when they are forced to pass through many points. With equally spaced points, the interpolation error is concentrated near the edges of the interval, causing large deviations from the true function in those regions.</p>
-<p>Mathematically, for a function <span class="math inline">\(f(x)\)</span> interpolated at <span class="math inline">\(n\)</span> evenly spaced points using a polynomial <span class="math inline">\(P_n(x)\)</span> of degree <span class="math inline">\(n-1\)</span>, the interpolation error is given by:</p>
-<p><span class="math display">\[
-|f(x) - P_n(x)| = \frac{|f^{(n)}(c)|}{n!} \prod_{i=1}^{n}(x - x_i)
-\]</span></p>
-<p>As the number of interpolation points <span class="math inline">\(n\)</span> increases, the product term <span class="math inline">\(\prod_{i=1}^{n}(x - x_i)\)</span> becomes very large near the endpoints of the interval, causing the interpolation error to increase dramatically.</p>
-</section>
-<section id="graphical-representation" class="level3">
-<h3 class="anchored" data-anchor-id="graphical-representation">Graphical Representation</h3>
-<p>The following figure illustrates the Runge phenomenon. For the Runge function <span class="math inline">\(f(x) = \frac{1}{1 + 25x^2}\)</span>, the polynomial interpolation for large <span class="math inline">\(n\)</span> shows excessive oscillations near the interval boundaries:</p>
-<div id="6fdbae3a" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> runge_function(x):</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">25</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the x values</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the original Runge function</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.plot(x_values, runge_function(x_values), label<span class="op">=</span><span class="st">"Runge Function"</span>, color<span class="op">=</span><span class="st">"blue"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show interpolation for degree 5 and degree 10 polynomials</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Runge Phenomenon"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"f(x)"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="runge-phenomenon_files/figure-html/cell-2-output-1.png" width="663" height="523" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="chebyshev-nodes-as-a-solution" class="level3">
-<h3 class="anchored" data-anchor-id="chebyshev-nodes-as-a-solution">Chebyshev Nodes as a Solution</h3>
-<p>The <strong>Runge phenomenon</strong> can be mitigated by using <strong>Chebyshev nodes</strong> instead of equally spaced points. Chebyshev nodes distribute the points more densely near the edges of the interval, where the oscillations are most likely to occur. This results in more accurate interpolation with less oscillation near the boundaries.</p>
-<p>Chebyshev nodes <span class="math inline">\(x_i\)</span> for <span class="math inline">\(n\)</span> interpolation points on the interval <span class="math inline">\([-1, 1]\)</span> are given by:</p>
-<p><span class="math display">\[
-x_i = \cos\left(\frac{(2i - 1)\pi}{2n}\right)
-\]</span></p>
-<p>Using Chebyshev interpolation reduces the risk of large oscillations near the endpoints, providing a more stable approximation.</p>
-</section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>The <strong>Runge phenomenon</strong> highlights the dangers of using high-degree polynomials for interpolation with evenly spaced points. To avoid this issue, it is recommended to use <strong>Chebyshev interpolation</strong> or lower-degree polynomial interpolation in smaller intervals (piecewise interpolation).</p>
-
-
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
