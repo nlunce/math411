@@ -29,4 +29,6 @@ preview:
 - [Residual](./residual-linear-systems.html)
 - [Backward Error](./backward-error.html)
 - [Relative Backward Error](./relative-backward-error.html)
-- [Forward Error ](./forward-error.html)
+- [Forward Error](./forward-error.html)
+- [Relative Forward Error](./relative-forward-error.html)
+- [Error Magnification Factor (EMF)](./error-magnification-factor.html)
