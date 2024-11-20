@@ -22,11 +22,17 @@ format:
 
 # **Problem**
 
+::: {.callout-note icon=false }
+
+## **4.3.1d**
+
 Apply classical Gram–Schmidt orthogonalization to find the full QR factorization of the matrix:
 
 $$
 \mathbf{A} = \begin{bmatrix} 4 & 8 & 1 \\ 0 & 2 & -2 \\ 3 & 6 & 7 \end{bmatrix}
 $$
+
+:::
 
 # **Solution**
 
@@ -168,10 +174,14 @@ $$
 \mathbf{R} = \begin{bmatrix} \mathbf{a}_1 \cdot \mathbf{q}_1 & \mathbf{a}_2 \cdot \mathbf{q}_1 & \mathbf{a}_3 \cdot \mathbf{q}_1 \\ 0 & \mathbf{a}_2 \cdot \mathbf{q}_2 & \mathbf{a}_3 \cdot \mathbf{q}_2 \\ 0 & 0 & \mathbf{a}_3 \cdot \mathbf{q}_3 \end{bmatrix} = \begin{bmatrix} 5 & 10 & 5 \\ 0 & 2 & -2 \\ 0 & 0 & 5 \end{bmatrix}
 $$
 
-### Final Answer
+::: {.callout-tip icon=false}
+
+## **Final Answer:**
 
 The QR factorization of $\mathbf{A}$ is:
 
 $$
 \mathbf{A} = \mathbf{Q} \mathbf{R} = \begin{bmatrix} \frac{4}{5} & 0 & -\frac{3}{5} \\ 0 & 1 & 0 \\ \frac{3}{5} & 0 & \frac{4}{5} \end{bmatrix} \begin{bmatrix} 5 & 10 & 5 \\ 0 & 2 & -2 \\ 0 & 0 & 5 \end{bmatrix}
 $$
+
+:::

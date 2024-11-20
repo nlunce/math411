@@ -105,7 +105,8 @@ preview:
 
 - [(C2-P11) Exercise 2.5.2ab](#)
 - [(C2-P12) Computer Problem 2.5.2 (solve using both Jacobi and Gauss-Seidel, compare results)](#)
-- [(C4-P1) Exercise 4.1.2](#)
+- [(C4-P1) Exercise 4.1.2a](./w08/exercise4-1-2a.html)
+- [(C4-P1) Exercise 4.1.2b](#)
 - [(C4-P2) Computer Problem 4.1.5 (also use a quadratic fit and compare)](#)
 - [(C4-P3) Exercise 4.3.2](#)
 
