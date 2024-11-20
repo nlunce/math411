@@ -28,5 +28,5 @@ preview:
 
 - [Euclidean Vector Norm](./euclidean-vector-norm.html)
 - [Taxicab Vector Norm](./taxicab-vector-norm.html)
-- [Infinity Vector Norm](./euclidean-vector-norm.html)
+- [Infinity Vector Norm](./infinity-vector-norm.html)
 - [Infinity Norm for Matrices](./infinity-norm-matrices.html)

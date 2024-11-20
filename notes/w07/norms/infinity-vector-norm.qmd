@@ -36,7 +36,7 @@ The **infinity norm** (also called the maximum norm or $\ell_\infty$-norm) measu
 For a vector $\mathbf{v} = [v_1, v_2, \dots, v_n]$ in $\mathbb{R}^n$, the infinity norm is defined as:
 
 $$
-\|\mathbf{v}\|_\infty = \max_{1 \leq i \leq n} |v_i|.
+\|\mathbf{v}\|_\infty = \max_{1 \leq i \leq n} |v_i|
 $$
 
 This norm is often used in settings where the largest component dominates or in grid-based systems where movement is limited by a single axis.
@@ -56,7 +56,7 @@ The infinity norm satisfies the following properties:
 For $\mathbf{v} = [3, -4]$:
 
 $$
-\|\mathbf{v}\|_\infty = \max(|3|, |-4|) = \max(3, 4) = 4.
+\|\mathbf{v}\|_\infty = \max(|3|, |-4|) = \max(3, 4) = 4
 $$
 
 ### 2. 3D Example
@@ -64,7 +64,7 @@ $$
 For $\mathbf{v} = [1, -2, 3]$:
 
 $$
-\|\mathbf{v}\|_\infty = \max(|1|, |-2|, |3|) = \max(1, 2, 3) = 3.
+\|\mathbf{v}\|_\infty = \max(|1|, |-2|, |3|) = \max(1, 2, 3) = 3
 $$
 
 ### 3. General Case
@@ -72,7 +72,7 @@ $$
 For $\mathbf{v} = [v_1, v_2, \dots, v_n]$:
 
 $$
-\|\mathbf{v}\|_\infty = \max(|v_1|, |v_2|, \dots, |v_n|).
+\|\mathbf{v}\|_\infty = \max(|v_1|, |v_2|, \dots, |v_n|)
 $$
 
 ## Applications
@@ -98,13 +98,13 @@ Since the infinity norm involves only a maximum operation, it is computationally
 In 2D, the set of points at a fixed infinity norm distance from the origin forms a square aligned with the coordinate axes. For example, all points satisfying $\|\mathbf{v}\|_\infty = 3$ in $\mathbb{R}^2$ would form the square:
 
 $$
-\max(|x|, |y|) = 3,
+\max(|x|, |y|) = 3
 $$
 
 or equivalently:
 
 $$
--3 \leq x \leq 3, \quad -3 \leq y \leq 3.
+-3 \leq x \leq 3, \quad -3 \leq y \leq 3
 $$
 
 ## Example Problem

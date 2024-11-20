@@ -4707,6 +4707,65 @@ vertical-align: -.125em;
   }
 }</script>
 
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var head = document.getElementsByTagName("head")[0];
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
+      head.appendChild(link);
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
+      script.async = false;
+      script.addEventListener('load', function() {
+        var mathElements = document.getElementsByClassName("math");
+          var macros = [];
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == "SPAN") {
+              window.katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                macros: macros,
+                fleqn: false
+              });
+            }
+          }
+      });
+      head.appendChild(script);
+    });
+  </script>
+  
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <style type="text/css">
 </style>
@@ -4835,14 +4894,17 @@ vertical-align: -.125em;
 </section>
 <section id="week-06" class="level1">
 <h1><strong>WEEK 06</strong></h1>
+<ul>
+<li><a href="./w06/linear-systems.html">Linear Systems: <span class="math inline">A\mathbf{x} = \mathbf{b}</span></a></li>
+</ul>
 </section>
 <section id="week-07" class="level1">
 <h1><strong>WEEK 07</strong></h1>
 <ul>
+<li><a href="./w07/lu-factorization.html">LU Factorization</a></li>
 <li><a href="./w07/2-3.html">Chapter 2 Section 3 Notes</a></li>
 <li><a href="./w07/norms/index.html">Norms</a></li>
 <li><a href="./w07/errors-analysis-linear-systems/index.html">Linear System Error Analysis</a></li>
-<li><a href="./w07/lu-factorization.html">LU Factorization</a></li>
 </ul>
 </section>
 <section id="week-08" class="level1">

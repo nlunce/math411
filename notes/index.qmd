@@ -52,12 +52,14 @@ preview:
 
 # **WEEK 06**
 
+- [Linear Systems: $A\mathbf{x} = \mathbf{b}$](./w06/linear-systems.html)
+
 # **WEEK 07**
 
+- [LU Factorization](./w07/lu-factorization.html)
 - [Chapter 2 Section 3 Notes](./w07/2-3.html)
 - [Norms](./w07/norms/index.html)
 - [Linear System Error Analysis](./w07/errors-analysis-linear-systems/index.html)
-- [LU Factorization](./w07/lu-factorization.html)
 
 # **WEEK 08**
 

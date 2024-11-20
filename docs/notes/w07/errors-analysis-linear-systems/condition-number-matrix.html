@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nathan Lunceford">
 
-<title>LINEAR SYSTEM ERROR ANALYSIS – MATH411</title>
+<title>Understanding the Condition Number of a Matrix – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4707,6 +4708,65 @@ vertical-align: -.125em;
   }
 }</script>
 
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var head = document.getElementsByTagName("head")[0];
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
+      head.appendChild(link);
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
+      script.async = false;
+      script.addEventListener('load', function() {
+        var mathElements = document.getElementsByClassName("math");
+          var macros = [];
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == "SPAN") {
+              window.katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                macros: macros,
+                fleqn: false
+              });
+            }
+          }
+      });
+      head.appendChild(script);
+    });
+  </script>
+  
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <style type="text/css">
 </style>
@@ -4758,21 +4818,46 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#what-is-the-condition-number" id="toc-what-is-the-condition-number" class="nav-link" data-scroll-target="#what-is-the-condition-number">What is the Condition Number?</a>
+  <ul class="collapse">
+  <li><a href="#infinity-norm-cdot_infty" id="toc-infinity-norm-cdot_infty" class="nav-link" data-scroll-target="#infinity-norm-cdot_infty">Infinity Norm (<span class="math inline">\|\cdot\|_\infty</span>)</a></li>
+  </ul></li>
+  <li><a href="#interpreting-the-condition-number" id="toc-interpreting-the-condition-number" class="nav-link" data-scroll-target="#interpreting-the-condition-number">Interpreting the Condition Number</a></li>
+  <li><a href="#why-the-condition-number-matters" id="toc-why-the-condition-number-matters" class="nav-link" data-scroll-target="#why-the-condition-number-matters">Why the Condition Number Matters</a></li>
+  <li><a href="#a-practical-example" id="toc-a-practical-example" class="nav-link" data-scroll-target="#a-practical-example">A Practical Example</a>
+  <ul class="collapse">
+  <li><a href="#the-problem-setup" id="toc-the-problem-setup" class="nav-link" data-scroll-target="#the-problem-setup">The Problem Setup</a></li>
+  <li><a href="#step-1-compute-the-infinity-norms" id="toc-step-1-compute-the-infinity-norms" class="nav-link" data-scroll-target="#step-1-compute-the-infinity-norms">Step 1: Compute the Infinity Norms</a></li>
+  <li><a href="#step-2-compute-the-condition-number-kappa_inftya" id="toc-step-2-compute-the-condition-number-kappa_inftya" class="nav-link" data-scroll-target="#step-2-compute-the-condition-number-kappa_inftya">Step 2: Compute the Condition Number <span class="math inline">\kappa_\infty(A)</span></a></li>
+  <li><a href="#step-3-interpretation" id="toc-step-3-interpretation" class="nav-link" data-scroll-target="#step-3-interpretation">Step 3: Interpretation</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">LINEAR SYSTEM ERROR ANALYSIS</h1>
+<h1 class="title">Understanding the Condition Number of a Matrix</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
     
   
     
@@ -4783,17 +4868,117 @@ vertical-align: -.125em;
 </header>
 
 
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>In numerical linear algebra, efficiently and accurately solving systems of equations is crucial. The <strong>Condition Number</strong> of a matrix is a fundamental concept that quantifies the sensitivity of the solution of a system of linear equations to errors in the input data. Understanding the condition number helps in assessing the reliability of numerical computations and in designing stable algorithms.</p>
+<p>This note focuses on the <strong>Condition Number</strong> using the <strong>Infinity Norm</strong>, providing insights into its definition, interpretation, and practical computation.</p>
+</section>
+<section id="what-is-the-condition-number" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-condition-number">What is the Condition Number?</h2>
+<p>The <strong>Condition Number</strong> of a matrix <span class="math inline">A</span>, denoted as <span class="math inline">\kappa_\infty(A)</span>, measures how much the output value of a function can change for a small change in the input argument. In the context of linear systems, it indicates how sensitive the solution <span class="math inline">\mathbf{x}</span> of <span class="math inline">A\mathbf{x} = \mathbf{b}</span> is to changes or errors in <span class="math inline">A</span> or <span class="math inline">\mathbf{b}</span>.</p>
+<p>Mathematically, the condition number using the <strong>Infinity Norm</strong> is defined as:</p>
+<p><span class="math display">
+\kappa_\infty(A) = \|A\|_\infty \cdot \|A^{-1}\|_\infty
+</span></p>
+<p>Where:</p>
 <ul>
-<li><a href="./residual-linear-systems.html">Residual</a></li>
-<li><a href="./backward-error.html">Backward Error</a></li>
-<li><a href="./relative-backward-error.html">Relative Backward Error</a></li>
-<li><a href="./forward-error.html">Forward Error</a></li>
-<li><a href="./relative-forward-error.html">Relative Forward Error</a></li>
-<li><a href="./error-magnification-factor.html">Error Magnification Factor (EMF)</a></li>
-<li><a href="./condition-number-matrix.html">Condition Number</a></li>
+<li><span class="math inline">\|A\|_\infty</span> is the <strong>Infinity Norm</strong> of matrix <span class="math inline">A</span>, defined as the maximum absolute row sum.</li>
+<li><span class="math inline">\|A^{-1}\|_\infty</span> is the <strong>Infinity Norm</strong> of the inverse of matrix <span class="math inline">A</span>.</li>
 </ul>
+<section id="infinity-norm-cdot_infty" class="level3">
+<h3 class="anchored" data-anchor-id="infinity-norm-cdot_infty">Infinity Norm (<span class="math inline">\|\cdot\|_\infty</span>)</h3>
+<p>The <strong>Infinity Norm</strong> of a matrix <span class="math inline">A</span> is calculated as:</p>
+<p><span class="math display">
+\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^{n} |a_{ij}|
+</span></p>
+<p>Where <span class="math inline">a_{ij}</span> are the elements of matrix <span class="math inline">A</span>, and <span class="math inline">m</span> and <span class="math inline">n</span> are the number of rows and columns, respectively.</p>
+</section>
+</section>
+<section id="interpreting-the-condition-number" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-the-condition-number">Interpreting the Condition Number</h2>
+<p>The condition number provides insight into the numerical stability of solving linear systems:</p>
+<ul>
+<li><strong>Well-Conditioned Matrix</strong>: <span class="math inline">\kappa_\infty(A)</span> is close to 1.
+<ul>
+<li>Small changes in <span class="math inline">A</span> or <span class="math inline">\mathbf{b}</span> lead to small changes in <span class="math inline">\mathbf{x}</span>.</li>
+<li>Solutions are reliable and stable.</li>
+</ul></li>
+<li><strong>Ill-Conditioned Matrix</strong>: <span class="math inline">\kappa_\infty(A)</span> is large (significantly greater than 1).
+<ul>
+<li>Small changes in <span class="math inline">A</span> or <span class="math inline">\mathbf{b}</span> can cause large changes in <span class="math inline">\mathbf{x}</span>.</li>
+<li>Solutions are unreliable and sensitive to errors.</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-the-condition-number-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-condition-number-matters">Why the Condition Number Matters</h2>
+<p>Understanding the condition number is essential for several reasons:</p>
+<ul>
+<li><strong>Error Analysis</strong>: It helps predict how errors in data propagate to the solution.</li>
+<li><strong>Algorithm Selection</strong>: Guides the choice of numerical methods that are more stable for certain condition numbers.</li>
+<li><strong>Matrix Inversion</strong>: Indicates the feasibility and accuracy of computing the inverse of a matrix.</li>
+<li><strong>Optimization</strong>: Plays a role in optimization algorithms where matrix conditioning affects convergence rates.</li>
+</ul>
+</section>
+<section id="a-practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-practical-example">A Practical Example</h2>
+<p>Let’s explore a concrete example to illustrate the concept of the condition number using the <strong>Infinity Norm</strong> and its implications.</p>
+<section id="the-problem-setup" class="level3">
+<h3 class="anchored" data-anchor-id="the-problem-setup">The Problem Setup</h3>
+<p>Consider the system of equations:</p>
+<p><span class="math display">
+A\mathbf{x} = \mathbf{b}
+</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\mathbf{x} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}</span> is the <strong>true solution</strong>.</li>
+<li><span class="math inline">\mathbf{x_a} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}</span> is the <strong>approximate (computed) solution</strong>.</li>
+<li><span class="math inline">\mathbf{b} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}</span> is the <strong>input data</strong>.</li>
+<li><span class="math inline">A = \begin{bmatrix} 1 &amp; 1 \\ 3 &amp; -4 \end{bmatrix}</span> is the <strong>coefficient matrix</strong>.</li>
+</ul>
+</section>
+<section id="step-1-compute-the-infinity-norms" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-compute-the-infinity-norms">Step 1: Compute the Infinity Norms</h3>
+<p>We will compute the condition number using the <strong>Infinity Norm</strong>.</p>
+<section id="compute-a_infty" class="level4">
+<h4 class="anchored" data-anchor-id="compute-a_infty">Compute <span class="math inline">\|A\|_\infty</span></h4>
+<p><span class="math display">
+\|A\|_\infty = \max \left\{ |1| + |1|, \ |3| + |-4| \right\} = \max \{ 2, 7 \} = 7
+</span></p>
+</section>
+<section id="compute-a-1_infty" class="level4">
+<h4 class="anchored" data-anchor-id="compute-a-1_infty">Compute <span class="math inline">\|A^{-1}\|_\infty</span></h4>
+<p>First, find the inverse of <span class="math inline">A</span>:</p>
+<p><span class="math display">
+A^{-1} = \frac{1}{\det(A)} \begin{bmatrix} -4 &amp; -1 \\ -3 &amp; 1 \end{bmatrix}
+</span></p>
+<p>Compute the determinant:</p>
+<p><span class="math display">
+\det(A) = (1)(-4) - (1)(3) = -4 - 3 = -7
+</span></p>
+<p>Thus,</p>
+<p><span class="math display">
+A^{-1} = \frac{1}{-7} \begin{bmatrix} -4 &amp; -1 \\ -3 &amp; 1 \end{bmatrix} = \begin{bmatrix} \frac{4}{7} &amp; \frac{1}{7} \\ \frac{3}{7} &amp; -\frac{1}{7} \end{bmatrix}
+</span></p>
+<p>Now, compute <span class="math inline">\|A^{-1}\|_\infty</span>:</p>
+<p><span class="math display">
+\|A^{-1}\|_\infty = \max \left\{ \left| \frac{4}{7} \right| + \left| \frac{1}{7} \right|, \ \left| \frac{3}{7} \right| + \left| -\frac{1}{7} \right| \right\} = \max \left\{ \frac{5}{7}, \frac{4}{7} \right\} = \frac{5}{7} \approx 0.7143
+</span></p>
+</section>
+</section>
+<section id="step-2-compute-the-condition-number-kappa_inftya" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-compute-the-condition-number-kappa_inftya">Step 2: Compute the Condition Number <span class="math inline">\kappa_\infty(A)</span></h3>
+<p><span class="math display">
+\kappa_\infty(A) = \|A\|_\infty \cdot \|A^{-1}\|_\infty = 7 \cdot \frac{5}{7} = 5
+</span></p>
+</section>
+<section id="step-3-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-interpretation">Step 3: Interpretation</h3>
+<p>A condition number <span class="math inline">\kappa_\infty(A) = 5</span> indicates that the matrix <span class="math inline">A</span> is <strong>moderately well-conditioned</strong>. This means that the solution <span class="math inline">\mathbf{x}</span> is relatively stable with respect to small perturbations in <span class="math inline">A</span> or <span class="math inline">\mathbf{b}</span>. While some error amplification is possible, it is not excessively large, and the solution can be considered reliable for practical purposes.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
