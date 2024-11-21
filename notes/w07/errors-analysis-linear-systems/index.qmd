@@ -33,3 +33,4 @@ preview:
 - [Relative Forward Error](./relative-forward-error.html)
 - [Error Magnification Factor (EMF)](./error-magnification-factor.html)
 - [Condition Number](./condition-number-matrix.html)
+- [Swamping](./swamping.html)
