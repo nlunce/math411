@@ -6,12 +6,12 @@ format:
   html:
     self-contained: true
     page-layout: full
-    title-block-banner: true
     toc: true
     toc-depth: 1
-    toc-location: body
+    toc-location: right
     number-sections: false
     html-math-method: katex
+    embed-resources: true
     code-fold: true
     code-summary: 'Show the code'
     code-overflow: wrap
@@ -20,11 +20,15 @@ format:
       source: false
       toggle: true
       caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
-# Problem
-
----
+## **Problem:**
 
 Apply the composite Trapezoid Rule with $m = 1, 2,$ and $4$ panels to approximate the integral. Compute the error by comparing with the exact value from calculus.
 
@@ -32,11 +36,9 @@ $$
 \int_0^1 x^2 \, dx
 $$
 
-# Key Concepts
+### **Key Concepts**
 
----
-
-### Composite Trapezoidal Rule
+### **Composite Trapezoidal Rule**
 
 The formula for the composite trapezoidal rule is:
 
@@ -49,11 +51,9 @@ where:
 - $h = \frac{b - a}{m}$
 - $x_i = a + i \cdot h$ for $i = 1, 2, \ldots, m-1$
 
-# Solution
+## **Solution:**
 
----
-
-### 1. Exact Value of the Integral
+### **1. Exact Value of the Integral**
 
 We first compute the exact value of the integral:
 
@@ -61,11 +61,9 @@ $$
 \int_0^1 x^2 \, dx = \left[ \frac{x^3}{3} \right]_0^1 = \frac{1^3}{3} - \frac{0^3}{3} = \frac{1}{3} \approx 0.3333
 $$
 
----
+### **2. Approximations Using the Composite Trapezoidal Rule**
 
-### 2. Approximations Using the Composite Trapezoidal Rule
-
-#### Case $m = 1$:
+#### **Case $m = 1$:**
 
 - $h = \frac{1 - 0}{1} = 1$
 - Points: $x_0 = 0$, $x_1 = 1$
@@ -81,9 +79,7 @@ $$
 \text{Error} = \left| 0.3333 - 0.5 \right| = 0.1667
 $$
 
----
-
-#### Case $m = 2$:
+#### **Case $m = 2$:**
 
 - $h = \frac{1 - 0}{2} = 0.5$
 - Points: $x_0 = 0$, $x_1 = 0.5$, $x_2 = 1$
@@ -103,9 +99,7 @@ $$
 \text{Error} = \left| 0.3333 - 0.375 \right| = 0.0417
 $$
 
----
-
-#### Case $m = 4$:
+#### **Case $m = 4$:**
 
 - $h = \frac{1 - 0}{4} = 0.25$
 - Points: $x_0 = 0$, $x_1 = 0.25$, $x_2 = 0.5$, $x_3 = 0.75$, $x_4 = 1$
@@ -129,9 +123,7 @@ $$
 \text{Error} = \left| 0.3333 - 0.34375 \right| = 0.0104
 $$
 
----
-
-### 3. Summary of Results
+### **3. Summary of Results**
 
 | $m$ | Approximation | Error  |
 | --- | ------------- | ------ |
@@ -139,8 +131,6 @@ $$
 | 2   | 0.3750        | 0.0417 |
 | 4   | 0.3438        | 0.0104 |
 
----
-
-### 4. Conclusion
+### **4. Conclusion**
 
 As the number of panels $m$ increases, the approximation becomes more accurate, and the error decreases. This demonstrates that the composite trapezoidal rule converges to the exact value as the number of panels increases.

@@ -4775,7 +4775,7 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -4815,52 +4815,60 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Exercise 3.2.2 (C3-P4)</h1>
-            <p class="subtitle lead">MATH411</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nathan Lunceford </p>
-            </div>
-    </div>
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
-
-
-
-
-<nav id="TOC" role="doc-toc">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#question" id="toc-question">Question</a></li>
-  <li><a href="#key-concepts" id="toc-key-concepts">Key Concepts</a></li>
-  <li><a href="#solution" id="toc-solution">Solution</a></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem:</strong></a></li>
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><strong>Key Concepts</strong></a>
+  <ul class="collapse">
+  <li><a href="#error-in-polynomial-interpolation" id="toc-error-in-polynomial-interpolation" class="nav-link" data-scroll-target="#error-in-polynomial-interpolation"><strong>Error in Polynomial Interpolation:</strong></a></li>
+  </ul></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a>
+  <ul class="collapse">
+  <li><a href="#a-finding-the-degree-2-interpolating-polynomial" id="toc-a-finding-the-degree-2-interpolating-polynomial" class="nav-link" data-scroll-target="#a-finding-the-degree-2-interpolating-polynomial"><strong>(a) Finding the Degree 2 Interpolating Polynomial</strong></a></li>
+  <li><a href="#b-approximation-of-ln-3" id="toc-b-approximation-of-ln-3" class="nav-link" data-scroll-target="#b-approximation-of-ln-3"><strong>(b) Approximation of <span class="math inline">\ln 3</span></strong></a></li>
+  <li><a href="#c-error-bound-using-theorem-3.3" id="toc-c-error-bound-using-theorem-3.3" class="nav-link" data-scroll-target="#c-error-bound-using-theorem-3.3"><strong>(c) Error Bound using Theorem 3.3</strong></a></li>
+  <li><a href="#d-comparison-of-actual-error-and-error-bound" id="toc-d-comparison-of-actual-error-and-error-bound" class="nav-link" data-scroll-target="#d-comparison-of-actual-error-and-error-bound"><strong>(d) Comparison of Actual Error and Error Bound</strong></a></li>
+  </ul></li>
   </ul>
 </nav>
-<section id="question" class="level1">
-<h1>Question</h1>
-<hr>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exercise 3.2.2 (C3-P4)</h1>
+<p class="subtitle lead">MATH411</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem"><strong>Problem:</strong></h2>
 <ol type="a">
 <li>Given the data points <span class="math inline">(1, 0)</span>, <span class="math inline">(2, \ln 2)</span>, and <span class="math inline">(4, \ln 4)</span>, find the degree 2 interpolating polynomial.<br>
 </li>
@@ -4871,11 +4879,10 @@ window.Quarto = {
 <li>Compare the actual error to your error bound.</li>
 </ol>
 </section>
-<section id="key-concepts" class="level1">
-<h1>Key Concepts</h1>
-<hr>
+<section id="key-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="key-concepts"><strong>Key Concepts</strong></h2>
 <section id="error-in-polynomial-interpolation" class="level3">
-<h3 class="anchored" data-anchor-id="error-in-polynomial-interpolation">Error in Polynomial Interpolation:</h3>
+<h3 class="anchored" data-anchor-id="error-in-polynomial-interpolation"><strong>Error in Polynomial Interpolation:</strong></h3>
 <p>The error between the actual function <span class="math inline">f(x)</span> and the interpolated polynomial <span class="math inline">P_{n-1}(x)</span> is given by the following bound:</p>
 <p><span class="math display">
 |f(x) - P_{n-1}(x)| \leq \left| \frac{(x - x_0)(x - x_1) \dots (x - x_n)}{n!} f^{(n)}(c) \right|
@@ -4888,14 +4895,13 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="solution" class="level1">
-<h1>Solution</h1>
-<hr>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution"><strong>Solution</strong></h2>
 <section id="a-finding-the-degree-2-interpolating-polynomial" class="level3">
-<h3 class="anchored" data-anchor-id="a-finding-the-degree-2-interpolating-polynomial">(a) Finding the Degree 2 Interpolating Polynomial</h3>
+<h3 class="anchored" data-anchor-id="a-finding-the-degree-2-interpolating-polynomial"><strong>(a) Finding the Degree 2 Interpolating Polynomial</strong></h3>
 <p>Given the points <span class="math inline">(1, 0)</span>, <span class="math inline">(2, \ln 2)</span>, and <span class="math inline">(4, \ln 4)</span>, we apply the Lagrange interpolation formula.</p>
 <section id="lagrange-basis-polynomials" class="level4">
-<h4 class="anchored" data-anchor-id="lagrange-basis-polynomials">Lagrange Basis Polynomials:</h4>
+<h4 class="anchored" data-anchor-id="lagrange-basis-polynomials"><strong>Lagrange Basis Polynomials:</strong></h4>
 <ol type="1">
 <li><p><strong><span class="math inline">L_0(x)</span>:</strong></p>
 <p><span class="math display">
@@ -4911,7 +4917,7 @@ L_2(x) = \frac{(x - 1)(x - 2)}{(4 - 1)(4 - 2)} = \frac{(x - 1)(x - 2)}{6}
 </ol>
 </section>
 <section id="polynomial-construction" class="level4">
-<h4 class="anchored" data-anchor-id="polynomial-construction">Polynomial Construction:</h4>
+<h4 class="anchored" data-anchor-id="polynomial-construction"><strong>Polynomial Construction:</strong></h4>
 <p>Now, the interpolating polynomial becomes:</p>
 <p><span class="math display">
 P(x) = y_0 L_0(x) + y_1 L_1(x) + y_2 L_2(x)
@@ -4927,7 +4933,7 @@ P(x) = \ln 2 \cdot \left(-\frac{(x - 1)(x - 4)}{2} + \frac{(x - 1)(x - 2)}{3}\ri
 </section>
 </section>
 <section id="b-approximation-of-ln-3" class="level3">
-<h3 class="anchored" data-anchor-id="b-approximation-of-ln-3">(b) Approximation of <span class="math inline">\ln 3</span></h3>
+<h3 class="anchored" data-anchor-id="b-approximation-of-ln-3"><strong>(b) Approximation of <span class="math inline">\ln 3</span></strong></h3>
 <p>To approximate <span class="math inline">\ln 3</span>, substitute <span class="math inline">x = 3</span> into the polynomial:</p>
 <p><span class="math display">
 P(3) = \ln 2 \cdot \left(-\frac{(3 - 1)(3 - 4)}{2} + \frac{(3 - 1)(3 - 2)}{3}\right)
@@ -4946,7 +4952,7 @@ P(3) \approx 1.1552
 </span></p>
 </section>
 <section id="c-error-bound-using-theorem-3.3" class="level3">
-<h3 class="anchored" data-anchor-id="c-error-bound-using-theorem-3.3">(c) Error Bound using Theorem 3.3</h3>
+<h3 class="anchored" data-anchor-id="c-error-bound-using-theorem-3.3"><strong>(c) Error Bound using Theorem 3.3</strong></h3>
 <p>The error formula for degree 2 interpolation is:</p>
 <p><span class="math display">
 |f(x) - P(x)| \leq \left| \frac{(x - x_0)(x - x_1)(x - x_2)}{3!} f^{(3)}(c) \right|
@@ -4962,7 +4968,7 @@ E(3) = \frac{(3 - 1)(3 - 2)(3 - 4)}{6} \cdot 2 = \frac{(2)(1)(-1)}{6} \cdot 2 = 
 <p>Therefore, the error bound is approximately <span class="math inline">-\frac{2}{3} \approx -0.6667</span>.</p>
 </section>
 <section id="d-comparison-of-actual-error-and-error-bound" class="level3">
-<h3 class="anchored" data-anchor-id="d-comparison-of-actual-error-and-error-bound">(d) Comparison of Actual Error and Error Bound</h3>
+<h3 class="anchored" data-anchor-id="d-comparison-of-actual-error-and-error-bound"><strong>(d) Comparison of Actual Error and Error Bound</strong></h3>
 <p>The actual value of <span class="math inline">\ln 3</span> is approximately:</p>
 <p><span class="math display">
 \ln 3 \approx 1.0986

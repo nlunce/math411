@@ -6,12 +6,12 @@ format:
   html:
     self-contained: true
     page-layout: full
-    title-block-banner: true
     toc: true
-    toc-depth: 3
-    toc-location: body
+    toc-depth: 1
+    toc-location: right
     number-sections: false
     html-math-method: katex
+    embed-resources: true
     code-fold: true
     code-summary: 'Show the code'
     code-overflow: wrap
@@ -20,6 +20,12 @@ format:
       source: false
       toggle: true
       caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
 ```{python}
@@ -29,11 +35,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-## Question
+## **Question**
 
-**Use Newton's Divided Differences to find a polynomial that passes through the points $(0, 1)$, $(2, 3)$, $(3, 0)$.**
+**Use [Newton's Divided Differences](../../notes/w02/newtons-divided-differences.html) to find a polynomial that passes through the points $(0, 1)$, $(2, 3)$, $(3, 0)$.**
 
-### Step-by-step calculation:
+### **Step-by-step calculation:**
 
 The points are:
 
@@ -43,7 +49,7 @@ The points are:
 
 We will first construct the **divided differences table** and use it to construct the Newton interpolating polynomial.
 
-### 1. Divided Difference Table
+### **1. Divided Difference Table**
 
 | $x$ | $f[x]$ | $f[x_1, x_2]$ | $f[x_1, x_2, x_3]$ |
 | --- | ------ | ------------- | ------------------ |
@@ -51,7 +57,7 @@ We will first construct the **divided differences table** and use it to construc
 | 2   | 3      | 1             |                    |
 | 3   | 0      | -3            | -$\frac{4}{3}$     |
 
-### Explanation:
+### **Explanation:**
 
 1. **Zeroth order divided differences**:
 
@@ -67,7 +73,7 @@ We will first construct the **divided differences table** and use it to construc
 
    $$ f[x_1, x_2, x_3] = \frac{f[x_2, x_3] - f[x_1, x_2]}{x_3 - x_1} = \frac{-3 - 1}{3 - 0} = \frac{-4}{3} $$
 
-### 2. Newton Interpolating Polynomial
+### **2. Newton Interpolating Polynomial**
 
 The Newton polynomial is given by:
 
@@ -108,6 +114,7 @@ This is the Newton interpolating polynomial for the points $(0, 1)$, $(2, 3)$, a
 ```{python}
 #| label: Graph
 #| code-summary: Create graph with resulting polynomial
+
 # Define the Newton interpolating polynomial
 def newton_polynomial(x):
     return (-4 * x**2 + 11 * x + 3) / 3

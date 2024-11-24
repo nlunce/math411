@@ -27,9 +27,9 @@ preview:
   navigate: true
 ---
 
-**Newton’s Divided Differences** is an efficient method for computing an interpolating polynomial for a given set of data points. This method builds the polynomial iteratively and offers better efficiency for incremental data points compared to **Lagrange interpolation**.
+**Newton’s Divided Differences** is an efficient method for computing an interpolating polynomial for a given set of data points. This method builds the polynomial iteratively and offers better efficiency for incremental data points compared to [**Lagrange interpolation**](./lagrange-interpolation.html).
 
-## The Newton Divided Difference Formula
+## **The Newton Divided Difference Formula**
 
 Given $n$ data points $(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)$, the **Newton divided difference** interpolating polynomial $P(x)$ can be expressed as:
 
@@ -53,7 +53,7 @@ $$
 
 And so on for higher orders of divided differences.
 
-### Recursive Formula for Divided Differences
+### **Recursive Formula for Divided Differences**
 
 The divided differences are computed recursively. For the first-order difference between two points, the formula is:
 
@@ -69,7 +69,7 @@ $$
 
 This recursive approach continues for higher orders of differences.
 
-### Step-by-Step Construction of the Newton Polynomial
+### **Step-by-Step Construction of the Newton Polynomial**
 
 1. **Start with the first point** $(x_1, y_1)$, where $f[x_1] = y_1$.
 2. **First-order divided difference** between $(x_1, y_1)$ and $(x_2, y_2)$ is:
@@ -88,7 +88,7 @@ $$
 
 Here’s the corrected example in the same format as your original:
 
-### Example
+### **Example**
 
 Let's consider the data points $(1, 1)$, $(2, 4)$, $(3, 9)$, and $(4, 16)$. The goal is to find the interpolating polynomial using Newton's divided differences.
 
@@ -152,7 +152,7 @@ $$
 P(x) = x^2
 $$
 
-### General Properties of Newton's Divided Differences
+### **General Properties of Newton's Divided Differences**
 
 1. **Efficiency**: Newton’s divided differences offer better computational efficiency when adding new points to the data set compared to Lagrange interpolation because earlier divided differences can be reused.
 
@@ -160,24 +160,24 @@ $$
 
 3. **Iterative Construction**: The method allows for iterative construction, which is useful when dealing with real-time updates or adding new data points.
 
-### Applications of Newton’s Divided Differences
+### **Applications of Newton’s Divided Differences**
 
 - **Polynomial Interpolation**: Newton’s divided differences are commonly used to find an interpolating polynomial for a given set of data points.
 - **Numerical Differentiation**: The method is used to approximate derivatives of functions when analytical differentiation is not feasible.
 - **Curve Fitting**: It is used in applications requiring curve fitting, especially in scientific computing and data analysis.
 
-### Advantages of Newton’s Divided Differences
+### **Advantages of Newton’s Divided Differences**
 
 1. **Efficient for Incremental Data**: If you need to add a new data point, you don’t have to recompute the entire polynomial. Only the new divided differences need to be computed.
 
 2. **Easy to Implement**: The recursive approach to finding divided differences makes this method easy to implement in code.
 
-### Limitations of Newton’s Divided Differences
+### **Limitations of Newton’s Divided Differences**
 
 1. **Numerical Stability**: Like other polynomial interpolation methods, Newton’s divided differences can suffer from numerical instability, especially with large datasets or unevenly spaced data.
 
-2. **Oscillations**: High-degree interpolating polynomials may oscillate significantly between data points, especially if the data is not well-distributed (similar to **Runge's phenomenon**).
+2. **Oscillations**: High-degree interpolating polynomials may oscillate significantly between data points, especially if the data is not well-distributed (similar to [**Runge's phenomenon**](../w03/runge-phenomenon.html)).
 
-### Conclusion
+### **Conclusion**
 
 Newton’s Divided Differences is a powerful method for constructing interpolating polynomials, especially when efficiency and incremental data updates are needed. Its recursive nature allows for fast updates when new data points are added, making it useful in applications such as numerical analysis, interpolation, and curve fitting.

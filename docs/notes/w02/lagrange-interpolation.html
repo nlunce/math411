@@ -4851,7 +4851,7 @@ window.Quarto = {
 
 <p><strong>Lagrange Interpolation</strong> is a method of constructing a polynomial that passes through a given set of points. It is particularly useful when you have a small number of data points and want to determine the polynomial function that exactly fits those points.</p>
 <section id="the-lagrange-interpolating-polynomial" class="level2">
-<h2 class="anchored" data-anchor-id="the-lagrange-interpolating-polynomial">The Lagrange Interpolating Polynomial</h2>
+<h2 class="anchored" data-anchor-id="the-lagrange-interpolating-polynomial"><strong>The Lagrange Interpolating Polynomial</strong></h2>
 <p>Given <span class="math inline">n</span> distinct data points <span class="math inline">(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)</span>, the Lagrange interpolating polynomial is the polynomial <span class="math inline">P(x)</span> of degree at most <span class="math inline">n-1</span> that passes through all the points, meaning:</p>
 <p><span class="math display">
 P(x_i) = y_i \quad \text{for each} \ i = 1, 2, ..., n
@@ -4884,7 +4884,7 @@ L_3(x) = \frac{(x - x_1)(x - x_2)}{(x_3 - x_1)(x_3 - x_2)}
 <p>By evaluating these expressions and plugging in the values of <span class="math inline">y_1</span>, <span class="math inline">y_2</span>, and <span class="math inline">y_3</span>, we obtain the polynomial <span class="math inline">P(x)</span> that passes through all the given points.</p>
 </section>
 <section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
+<h3 class="anchored" data-anchor-id="example"><strong>Example</strong></h3>
 <p>Let’s go through an example where we are given three points: <span class="math inline">(1, 2)</span>, <span class="math inline">(2, 3)</span>, and <span class="math inline">(3, 5)</span>.</p>
 <ol type="1">
 <li><p><strong>Points</strong>:<br>
@@ -4915,15 +4915,15 @@ P(x) = 2 \cdot \frac{(x - 2)(x - 3)}{2} + 3 \cdot \frac{(x - 1)(x - 3)}{-1} + 5 
 <p>Simplifying this expression will give you the final polynomial <span class="math inline">P(x)</span> that passes through all three points.</p>
 </section>
 <section id="general-properties-of-lagrange-interpolation" class="level3">
-<h3 class="anchored" data-anchor-id="general-properties-of-lagrange-interpolation">General Properties of Lagrange Interpolation</h3>
+<h3 class="anchored" data-anchor-id="general-properties-of-lagrange-interpolation"><strong>General Properties of Lagrange Interpolation</strong></h3>
 <ol type="1">
 <li><p><strong>Uniqueness</strong>: There is exactly one polynomial of degree <span class="math inline">n-1</span> that interpolates <span class="math inline">n</span> points. This is guaranteed by the <strong>fundamental theorem of algebra</strong>, which states that a polynomial of degree <span class="math inline">n-1</span> is uniquely determined by <span class="math inline">n</span> distinct points.</p></li>
-<li><p><strong>Efficiency</strong>: Lagrange interpolation is not the most computationally efficient method for large datasets, because each term depends on all the data points, making the calculation costly for large <span class="math inline">n</span>. Methods like <strong>Newton’s divided differences</strong> are generally preferred for interpolation with larger datasets.</p></li>
-<li><p><strong>Accuracy</strong>: Interpolation works well if the points are well-distributed and the function is smooth. However, for unevenly spaced points or functions with high curvature, the interpolation polynomial may oscillate significantly, a phenomenon known as <strong>Runge’s phenomenon</strong>.</p></li>
+<li><p><strong>Efficiency</strong>: Lagrange interpolation is not the most computationally efficient method for large datasets, because each term depends on all the data points, making the calculation costly for large <span class="math inline">n</span>. Methods like <a href="./newtons-divided-differences.html"><strong>Newton’s divided differences</strong></a> are generally preferred for interpolation with larger datasets.</p></li>
+<li><p><strong>Accuracy</strong>: Interpolation works well if the points are well-distributed and the function is smooth. However, for unevenly spaced points or functions with high curvature, the interpolation polynomial may oscillate significantly, a phenomenon known as <a href="../w03/runge-phenomenon.html"><strong>Runge’s phenomenon</strong></a>.</p></li>
 </ol>
 </section>
 <section id="applications-of-lagrange-interpolation" class="level3">
-<h3 class="anchored" data-anchor-id="applications-of-lagrange-interpolation">Applications of Lagrange Interpolation</h3>
+<h3 class="anchored" data-anchor-id="applications-of-lagrange-interpolation"><strong>Applications of Lagrange Interpolation</strong></h3>
 <ul>
 <li><strong>Curve Fitting</strong>: Lagrange interpolation can be used to construct a polynomial that exactly fits a given set of data points.</li>
 <li><strong>Numerical Integration</strong>: The interpolating polynomial can be used to approximate integrals through methods such as Newton-Cotes formulas.</li>
@@ -4932,14 +4932,14 @@ P(x) = 2 \cdot \frac{(x - 2)(x - 3)}{2} + 3 \cdot \frac{(x - 1)(x - 3)}{-1} + 5 
 </ul>
 </section>
 <section id="drawbacks" class="level3">
-<h3 class="anchored" data-anchor-id="drawbacks">Drawbacks</h3>
+<h3 class="anchored" data-anchor-id="drawbacks"><strong>Drawbacks</strong></h3>
 <ul>
 <li><strong>Runge’s Phenomenon</strong>: Lagrange interpolation can lead to significant oscillation, especially when interpolating over large intervals with a high degree polynomial.</li>
 <li><strong>Not Easily Updateable</strong>: If a new point is added, the entire Lagrange polynomial must be recalculated. In contrast, methods like <strong>Newton’s divided differences</strong> allow for easier updates when new points are added.</li>
 </ul>
 </section>
 <section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<h3 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h3>
 <p>Lagrange interpolation is a powerful tool for constructing polynomials that pass through a set of points, but it can suffer from inefficiencies and oscillations for large datasets. It’s important to understand its benefits and limitations to use it effectively in applications.</p>
 
 

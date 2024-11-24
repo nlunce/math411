@@ -4851,11 +4851,11 @@ window.Quarto = {
 
 <p><strong>Bisection Method</strong> is one of the simplest and most reliable numerical methods for finding a root of a continuous function <span class="math inline">f(x) = 0</span> over a closed interval <span class="math inline">[a, b]</span>. The method works by repeatedly bisecting the interval and then selecting the subinterval in which the function changes sign, ensuring that a root lies within that subinterval.</p>
 <section id="the-bisection-method-formula" class="level2">
-<h2 class="anchored" data-anchor-id="the-bisection-method-formula">The Bisection Method Formula</h2>
+<h2 class="anchored" data-anchor-id="the-bisection-method-formula"><strong>The Bisection Method Formula</strong></h2>
 <p>The Bisection Method requires that the function <span class="math inline">f(x)</span> be continuous over the interval <span class="math inline">[a, b]</span>, and that the function has opposite signs at the endpoints <span class="math inline">a</span> and <span class="math inline">b</span>, i.e., <span class="math inline">f(a) \cdot f(b) &lt; 0</span>. This guarantees that there is at least one root in the interval by the <strong>Intermediate Value Theorem</strong>.</p>
 <p>The basic idea of the method is to repeatedly bisect the interval and check the sign of <span class="math inline">f(x)</span> at the midpoint to determine the subinterval containing the root.</p>
 <section id="algorithm" class="level3">
-<h3 class="anchored" data-anchor-id="algorithm">Algorithm</h3>
+<h3 class="anchored" data-anchor-id="algorithm"><strong>Algorithm</strong></h3>
 <ol type="1">
 <li><strong>Initial Guess</strong>: Choose an interval <span class="math inline">[a_0, b_0]</span> such that <span class="math inline">f(a_0) \cdot f(b_0) &lt; 0</span>.</li>
 <li><strong>Midpoint Calculation</strong>: Compute the midpoint <span class="math inline">c_k = \frac{a_k + b_k}{2}</span> of the interval <span class="math inline">[a_k, b_k]</span>.</li>
@@ -4873,7 +4873,7 @@ x^* = \frac{a_k + b_k}{2}
 </span></p>
 </section>
 <section id="convergence" class="level3">
-<h3 class="anchored" data-anchor-id="convergence">Convergence</h3>
+<h3 class="anchored" data-anchor-id="convergence"><strong>Convergence</strong></h3>
 <p>The Bisection Method converges <strong>linearly</strong>. The length of the interval halves at each iteration, ensuring that the method always converges to a solution (if one exists) within the interval.</p>
 <p>The number of iterations <span class="math inline">n</span> required to achieve an accuracy of <span class="math inline">\epsilon</span> can be estimated by:</p>
 <p><span class="math display">
@@ -4881,7 +4881,7 @@ n \geq \frac{\log \left( \frac{b_0 - a_0}{\epsilon} \right)}{\log 2}
 </span></p>
 </section>
 <section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
+<h3 class="anchored" data-anchor-id="example"><strong>Example</strong></h3>
 <p>Let’s solve the equation <span class="math inline">f(x) = x^3 - x - 2 = 0</span> in the interval <span class="math inline">[1, 2]</span>.</p>
 <ol type="1">
 <li><p><strong>Initial Interval</strong>:<br>
@@ -4901,7 +4901,7 @@ Repeat the process until the interval width is smaller than the desired toleranc
 </ol>
 </section>
 <section id="general-properties-of-the-bisection-method" class="level3">
-<h3 class="anchored" data-anchor-id="general-properties-of-the-bisection-method">General Properties of the Bisection Method</h3>
+<h3 class="anchored" data-anchor-id="general-properties-of-the-bisection-method"><strong>General Properties of the Bisection Method</strong></h3>
 <ol type="1">
 <li><p><strong>Guaranteed Convergence</strong>: The method is guaranteed to converge to a root if <span class="math inline">f(a) \cdot f(b) &lt; 0</span> and <span class="math inline">f(x)</span> is continuous on <span class="math inline">[a, b]</span>.</p></li>
 <li><p><strong>Rate of Convergence</strong>: The Bisection Method has linear convergence, meaning the error decreases by a constant factor with each iteration. This makes the method slower than other methods like <strong>Newton’s Method</strong>, but much more reliable.</p></li>
@@ -4909,7 +4909,7 @@ Repeat the process until the interval width is smaller than the desired toleranc
 </ol>
 </section>
 <section id="applications-of-the-bisection-method" class="level3">
-<h3 class="anchored" data-anchor-id="applications-of-the-bisection-method">Applications of the Bisection Method</h3>
+<h3 class="anchored" data-anchor-id="applications-of-the-bisection-method"><strong>Applications of the Bisection Method</strong></h3>
 <ul>
 <li><strong>Root Finding</strong>: The Bisection Method is used in various fields, including physics, engineering, and mathematics, to find roots of non-linear equations.</li>
 <li><strong>Modeling and Simulation</strong>: It is used when precise solutions are needed and the function is known to be continuous over the interval.</li>
@@ -4917,7 +4917,7 @@ Repeat the process until the interval width is smaller than the desired toleranc
 </ul>
 </section>
 <section id="advantages-of-the-bisection-method" class="level3">
-<h3 class="anchored" data-anchor-id="advantages-of-the-bisection-method">Advantages of the Bisection Method</h3>
+<h3 class="anchored" data-anchor-id="advantages-of-the-bisection-method"><strong>Advantages of the Bisection Method</strong></h3>
 <ol type="1">
 <li><strong>Guaranteed Convergence</strong>: The method always converges if the initial interval contains a root.</li>
 <li><strong>No Derivatives Needed</strong>: Unlike Newton’s Method, the Bisection Method does not require the computation of derivatives.</li>
@@ -4925,7 +4925,7 @@ Repeat the process until the interval width is smaller than the desired toleranc
 </ol>
 </section>
 <section id="limitations-of-the-bisection-method" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-of-the-bisection-method">Limitations of the Bisection Method</h3>
+<h3 class="anchored" data-anchor-id="limitations-of-the-bisection-method"><strong>Limitations of the Bisection Method</strong></h3>
 <ol type="1">
 <li><p><strong>Slow Convergence</strong>: The method converges linearly, which makes it slower compared to methods like Newton’s Method, which has quadratic convergence.</p></li>
 <li><p><strong>Only One Root</strong>: The Bisection Method only finds one root in the interval. If multiple roots exist, it cannot find them all without running the method on different intervals.</p></li>
@@ -4933,7 +4933,7 @@ Repeat the process until the interval width is smaller than the desired toleranc
 </ol>
 </section>
 <section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<h3 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h3>
 <p>The Bisection Method is a reliable and simple method for finding roots of continuous functions, especially when no derivative information is available. While slower than other root-finding algorithms, its guaranteed convergence and robustness make it a valuable tool in numerical analysis.</p>
 
 

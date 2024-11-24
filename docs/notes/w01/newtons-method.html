@@ -4851,7 +4851,7 @@ window.Quarto = {
 
 <p><strong>Newton’s Method</strong>, also known as the <strong>Newton-Raphson Method</strong>, is a widely used numerical method for finding successively better approximations to the roots (or zeros) of a real-valued function. It is particularly efficient when the initial guess is close to the actual root and when the function is well-behaved (smooth and differentiable).</p>
 <section id="the-newtons-method-formula" class="level2">
-<h2 class="anchored" data-anchor-id="the-newtons-method-formula">The Newton’s Method Formula</h2>
+<h2 class="anchored" data-anchor-id="the-newtons-method-formula"><strong>The Newton’s Method Formula</strong></h2>
 <p>Newton’s Method is based on using the tangent line at an approximation of the root to generate a better approximation. The formula for generating the next approximation <span class="math inline">x_{k+1}</span> from the current approximation <span class="math inline">x_k</span> is given by:</p>
 <p><span class="math display">
 x_{k+1} = x_k - \frac{f(x_k)}{f&#39;(x_k)}
@@ -4863,11 +4863,11 @@ x_{k+1} = x_k - \frac{f(x_k)}{f&#39;(x_k)}
 <li><span class="math inline">x_k</span> is the current approximation, and <span class="math inline">x_{k+1}</span> is the next approximation.</li>
 </ul>
 <section id="geometrical-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="geometrical-interpretation">Geometrical Interpretation</h3>
+<h3 class="anchored" data-anchor-id="geometrical-interpretation"><strong>Geometrical Interpretation</strong></h3>
 <p>Newton’s Method can be interpreted geometrically: given an approximation <span class="math inline">x_k</span>, the tangent line to the curve <span class="math inline">y = f(x)</span> at the point $ (x*k, f(x_k)) $ is used to estimate where the curve crosses the x-axis, which provides the next approximation <span class="math inline">x*{k+1}</span>.</p>
 </section>
 <section id="convergence-criteria" class="level3">
-<h3 class="anchored" data-anchor-id="convergence-criteria">Convergence Criteria</h3>
+<h3 class="anchored" data-anchor-id="convergence-criteria"><strong>Convergence Criteria</strong></h3>
 <p>Newton’s Method converges <strong>quadratically</strong> under certain conditions, which means that the number of correct digits roughly doubles with each iteration. However, this fast convergence occurs only if:</p>
 <ol type="1">
 <li>The function <span class="math inline">f(x)</span> is continuous and differentiable in the vicinity of the root.</li>
@@ -4877,7 +4877,7 @@ x_{k+1} = x_k - \frac{f(x_k)}{f&#39;(x_k)}
 <p>If the initial guess is too far from the root, Newton’s Method may fail to converge or may converge very slowly.</p>
 </section>
 <section id="step-by-step-procedure" class="level3">
-<h3 class="anchored" data-anchor-id="step-by-step-procedure">Step-by-Step Procedure</h3>
+<h3 class="anchored" data-anchor-id="step-by-step-procedure"><strong>Step-by-Step Procedure</strong></h3>
 <ol type="1">
 <li><strong>Initial Guess</strong>: Choose an initial approximation <span class="math inline">x_0</span>.</li>
 <li><strong>Iteration Formula</strong>: Compute successive approximations using the formula:</li>
@@ -4890,7 +4890,7 @@ x_{k+1} = x_k - \frac{f(x_k)}{f&#39;(x_k)}
 </ol>
 </section>
 <section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
+<h3 class="anchored" data-anchor-id="example"><strong>Example</strong></h3>
 <p>Let’s solve the equation <span class="math inline">f(x) = x^2 - 2 = 0</span> using Newton’s Method, which has a root at <span class="math inline">x = \sqrt{2}</span>.</p>
 <ol type="1">
 <li><p><strong>Function and Derivative</strong>:</p>
@@ -4914,7 +4914,7 @@ x_2 = x_1 - \frac{f(x_1)}{f&#39;(x_1)} = 1.4167 - \frac{1.4167^2 - 2}{2(1.4167)}
 <p>In this case, after just a few iterations, we have a highly accurate approximation of <span class="math inline">\sqrt{2}</span>.</p>
 </section>
 <section id="general-properties-of-newtons-method" class="level3">
-<h3 class="anchored" data-anchor-id="general-properties-of-newtons-method">General Properties of Newton’s Method</h3>
+<h3 class="anchored" data-anchor-id="general-properties-of-newtons-method"><strong>General Properties of Newton’s Method</strong></h3>
 <ol type="1">
 <li><p><strong>Quadratic Convergence</strong>: When close to the root, Newton’s Method converges quadratically, meaning that the error decreases roughly as the square of the previous error.</p></li>
 <li><p><strong>Requires Derivatives</strong>: Unlike the Bisection Method, Newton’s Method requires that the derivative <span class="math inline">f&#39;(x)</span> be known and be non-zero at the root.</p></li>
@@ -4922,7 +4922,7 @@ x_2 = x_1 - \frac{f(x_1)}{f&#39;(x_1)} = 1.4167 - \frac{1.4167^2 - 2}{2(1.4167)}
 </ol>
 </section>
 <section id="applications-of-newtons-method" class="level3">
-<h3 class="anchored" data-anchor-id="applications-of-newtons-method">Applications of Newton’s Method</h3>
+<h3 class="anchored" data-anchor-id="applications-of-newtons-method"><strong>Applications of Newton’s Method</strong></h3>
 <ul>
 <li><strong>Root Finding</strong>: Newton’s Method is widely used to find roots of non-linear equations in mathematics, physics, engineering, and economics.</li>
 <li><strong>Optimization</strong>: Newton’s Method is the basis of <strong>Newton’s optimization method</strong>, which is used to find local minima or maxima of differentiable functions by solving <span class="math inline">f&#39;(x) = 0</span>.</li>
@@ -4930,7 +4930,7 @@ x_2 = x_1 - \frac{f(x_1)}{f&#39;(x_1)} = 1.4167 - \frac{1.4167^2 - 2}{2(1.4167)}
 </ul>
 </section>
 <section id="advantages-of-newtons-method" class="level3">
-<h3 class="anchored" data-anchor-id="advantages-of-newtons-method">Advantages of Newton’s Method</h3>
+<h3 class="anchored" data-anchor-id="advantages-of-newtons-method"><strong>Advantages of Newton’s Method</strong></h3>
 <ol type="1">
 <li><strong>Fast Convergence</strong>: When it converges, Newton’s Method is extremely fast due to its quadratic convergence rate.</li>
 <li><strong>Simple Iterative Formula</strong>: The iteration formula is straightforward and easy to implement.</li>
@@ -4938,7 +4938,7 @@ x_2 = x_1 - \frac{f(x_1)}{f&#39;(x_1)} = 1.4167 - \frac{1.4167^2 - 2}{2(1.4167)}
 </ol>
 </section>
 <section id="limitations-of-newtons-method" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-of-newtons-method">Limitations of Newton’s Method</h3>
+<h3 class="anchored" data-anchor-id="limitations-of-newtons-method"><strong>Limitations of Newton’s Method</strong></h3>
 <ol type="1">
 <li><p><strong>Requires Derivatives</strong>: The method requires that <span class="math inline">f(x)</span> is differentiable, and that the derivative <span class="math inline">f&#39;(x)</span> can be computed analytically or numerically.</p></li>
 <li><p><strong>Risk of Divergence</strong>: If the initial guess is too far from the root or if <span class="math inline">f&#39;(x)</span> is zero or near zero, the method may diverge or fail to converge.</p></li>
@@ -4946,7 +4946,7 @@ x_2 = x_1 - \frac{f(x_1)}{f&#39;(x_1)} = 1.4167 - \frac{1.4167^2 - 2}{2(1.4167)}
 </ol>
 </section>
 <section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<h3 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h3>
 <p>Newton’s Method is a powerful and efficient tool for finding roots of equations, especially when the initial guess is close to the solution. While it requires the calculation of derivatives, its fast convergence makes it a preferred method when applicable. However, care must be taken with the choice of initial guess to avoid issues with divergence or slow convergence.</p>
 
 

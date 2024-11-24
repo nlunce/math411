@@ -4809,7 +4809,7 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -4849,58 +4849,46 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <div class="quarto-title-block"><div><h1 class="title">Exercise 3.1.2a (C3-P2)</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> See code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
-            <p class="subtitle lead">MATH411</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nathan Lunceford </p>
-            </div>
-    </div>
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Exercise 3.1.2a (C3-P2)</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> See code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+<p class="subtitle lead">MATH411</p>
+</div>
 
 
 
+<div class="quarto-title-meta column-page">
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#question" id="toc-question">Question</a>
-  <ul>
-  <li><a href="#step-by-step-calculation" id="toc-step-by-step-calculation">Step-by-step calculation:</a></li>
-  <li><a href="#divided-difference-table" id="toc-divided-difference-table">1. Divided Difference Table</a></li>
-  <li><a href="#explanation" id="toc-explanation">Explanation:</a></li>
-  <li><a href="#newton-interpolating-polynomial" id="toc-newton-interpolating-polynomial">2. Newton Interpolating Polynomial</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <section id="question" class="level2">
-<h2 class="anchored" data-anchor-id="question">Question</h2>
-<p><strong>Use Newton’s Divided Differences to find a polynomial that passes through the points <span class="math inline">(0, 1)</span>, <span class="math inline">(2, 3)</span>, <span class="math inline">(3, 0)</span>.</strong></p>
+<h2 class="anchored" data-anchor-id="question"><strong>Question</strong></h2>
+<p><strong>Use <a href="../../notes/w02/newtons-divided-differences.html">Newton’s Divided Differences</a> to find a polynomial that passes through the points <span class="math inline">(0, 1)</span>, <span class="math inline">(2, 3)</span>, <span class="math inline">(3, 0)</span>.</strong></p>
 <section id="step-by-step-calculation" class="level3">
-<h3 class="anchored" data-anchor-id="step-by-step-calculation">Step-by-step calculation:</h3>
+<h3 class="anchored" data-anchor-id="step-by-step-calculation"><strong>Step-by-step calculation:</strong></h3>
 <p>The points are:</p>
 <ul>
 <li><span class="math inline">(x_1, y_1) = (0, 1)</span></li>
@@ -4910,7 +4898,7 @@ window.Quarto = {
 <p>We will first construct the <strong>divided differences table</strong> and use it to construct the Newton interpolating polynomial.</p>
 </section>
 <section id="divided-difference-table" class="level3">
-<h3 class="anchored" data-anchor-id="divided-difference-table">1. Divided Difference Table</h3>
+<h3 class="anchored" data-anchor-id="divided-difference-table"><strong>1. Divided Difference Table</strong></h3>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -4943,7 +4931,7 @@ window.Quarto = {
 </table>
 </section>
 <section id="explanation" class="level3">
-<h3 class="anchored" data-anchor-id="explanation">Explanation:</h3>
+<h3 class="anchored" data-anchor-id="explanation"><strong>Explanation:</strong></h3>
 <ol type="1">
 <li><p><strong>Zeroth order divided differences</strong>:</p>
 <p><span class="math display"> f[x_1] = y_1 = 1, \quad f[x_2] = y_2 = 3, \quad f[x_3] = y_3 = 0 </span></p></li>
@@ -4955,7 +4943,7 @@ window.Quarto = {
 </ol>
 </section>
 <section id="newton-interpolating-polynomial" class="level3">
-<h3 class="anchored" data-anchor-id="newton-interpolating-polynomial">2. Newton Interpolating Polynomial</h3>
+<h3 class="anchored" data-anchor-id="newton-interpolating-polynomial"><strong>2. Newton Interpolating Polynomial</strong></h3>
 <p>The Newton polynomial is given by:</p>
 <p><span class="math display">
 P(x) = f[x_1] + f[x_1, x_2](x - x_1) + f[x_1, x_2, x_3](x - x_1)(x - x_2)

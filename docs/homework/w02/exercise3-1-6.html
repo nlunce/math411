@@ -4775,7 +4775,7 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -4815,74 +4815,58 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Exercise 3.1.6 (C3-P6)</h1>
-            <p class="subtitle lead">MATH411</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nathan Lunceford </p>
-            </div>
-    </div>
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exercise 3.1.6 (C3-P6)</h1>
+<p class="subtitle lead">MATH411</p>
+</div>
 
 
 
+<div class="quarto-title-meta column-page">
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#question" id="toc-question">Question</a>
-  <ul>
-  <li><a href="#key-concepts" id="toc-key-concepts">Key Concepts</a></li>
-  <li><a href="#using-newtons-divided-differences" id="toc-using-newtons-divided-differences">Using Newton’s Divided Differences</a></li>
-  <li><a href="#construct-the-newton-divided-difference-table" id="toc-construct-the-newton-divided-difference-table">1. Construct the Newton Divided Difference Table:</a></li>
-  <li><a href="#construct-the-degree-3-polynomial-p_3x" id="toc-construct-the-degree-3-polynomial-p_3x">2. Construct the Degree 3 Polynomial <span class="math inline">P_3(x)</span>:</a></li>
-  <li><a href="#extend-to-degree-5-polynomial-p_5x" id="toc-extend-to-degree-5-polynomial-p_5x">3. Extend to Degree 5 Polynomial <span class="math inline">P_5(x)</span>:</a></li>
-  <li><a href="#does-the-value-of-c-matter" id="toc-does-the-value-of-c-matter">4. Does the Value of <span class="math inline">c</span> Matter?</a></li>
-  <li><a href="#final-degree-5-polynomial" id="toc-final-degree-5-polynomial">Final Degree 5 Polynomial</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <section id="question" class="level2">
-<h2 class="anchored" data-anchor-id="question">Question</h2>
+<h2 class="anchored" data-anchor-id="question"><strong>Question</strong></h2>
 <p><strong>How do we construct a polynomial of degree exactly 5 that interpolates four points?</strong></p>
-<p>Given four points <span class="math inline">(1, 1)</span>, <span class="math inline">(2, 3)</span>, <span class="math inline">(3, 3)</span>, and <span class="math inline">(4, 4)</span>, the standard interpolation methods (such as Newton’s or Lagrange’s methods) would give us a unique polynomial of degree 3. However, constructing a polynomial of degree exactly 5 requires a different approach.</p>
+<p>Given four points <span class="math inline">(1, 1)</span>, <span class="math inline">(2, 3)</span>, <span class="math inline">(3, 3)</span>, and <span class="math inline">(4, 4)</span>, the standard interpolation methods (such as <a href="../../notes/w02/newtons-divided-differences.html"><strong>Newton’s</strong></a> or <a href="../../notes/w02/lagrange-interpolation.html"><strong>Lagrange’s</strong></a> methods) would give us a unique polynomial of degree 3. However, constructing a polynomial of degree exactly 5 requires a different approach.</p>
 <section id="key-concepts" class="level3">
-<h3 class="anchored" data-anchor-id="key-concepts">Key Concepts</h3>
+<h3 class="anchored" data-anchor-id="key-concepts"><strong>Key Concepts</strong></h3>
 <ol type="1">
 <li><strong>Theorem 3.2</strong> (Main Theorem of Polynomial Interpolation) guarantees that a unique polynomial of degree <span class="math inline">n-1</span> exists for <span class="math inline">n</span> distinct points.</li>
 <li>To create a polynomial of degree 5 when you only have 4 points, you need to add an <strong>extra term</strong> that still passes through all the original points but elevates the polynomial’s degree.</li>
 </ol>
-<hr>
 </section>
 <section id="using-newtons-divided-differences" class="level3">
-<h3 class="anchored" data-anchor-id="using-newtons-divided-differences">Using Newton’s Divided Differences</h3>
+<h3 class="anchored" data-anchor-id="using-newtons-divided-differences"><strong>Using Newton’s Divided Differences</strong></h3>
 <p>We will use Newton’s divided differences to first construct the degree 3 polynomial, and then extend it to a degree 5 polynomial.</p>
 </section>
 <section id="construct-the-newton-divided-difference-table" class="level3">
-<h3 class="anchored" data-anchor-id="construct-the-newton-divided-difference-table">1. Construct the Newton Divided Difference Table:</h3>
+<h3 class="anchored" data-anchor-id="construct-the-newton-divided-difference-table"><strong>1. Construct the Newton Divided Difference Table:</strong></h3>
 <p>We will use the given points <span class="math inline">(x_1, y_1) = (1, 1)</span>, <span class="math inline">(x_2, y_2) = (2, 3)</span>, <span class="math inline">(x_3, y_3) = (3, 3)</span>, and <span class="math inline">(x_4, y_4) = (4, 4)</span> to compute the divided differences and build the polynomial.</p>
 <table class="caption-top table">
 <colgroup>
@@ -4934,7 +4918,7 @@ window.Quarto = {
 </table>
 </section>
 <section id="construct-the-degree-3-polynomial-p_3x" class="level3">
-<h3 class="anchored" data-anchor-id="construct-the-degree-3-polynomial-p_3x">2. Construct the Degree 3 Polynomial <span class="math inline">P_3(x)</span>:</h3>
+<h3 class="anchored" data-anchor-id="construct-the-degree-3-polynomial-p_3x"><strong>2. Construct the Degree 3 Polynomial <span class="math inline">P_3(x)</span>:</strong></h3>
 <p>The Newton’s divided difference form of the interpolating polynomial is:</p>
 <p><span class="math display">
 P_3(x) = f[x_1] + f[x_1, x_2](x - x_1) + f[x_1, x_2, x_3](x - x_1)(x - x_2) + f[x_1, x_2, x_3, x_4](x - x_1)(x - x_2)(x - x_3)
@@ -4945,7 +4929,7 @@ P_3(x) = 1 + 2(x - 1) - (x - 1)(x - 2) + \frac{1}{2}(x - 1)(x - 2)(x - 3)
 </span></p>
 </section>
 <section id="extend-to-degree-5-polynomial-p_5x" class="level3">
-<h3 class="anchored" data-anchor-id="extend-to-degree-5-polynomial-p_5x">3. Extend to Degree 5 Polynomial <span class="math inline">P_5(x)</span>:</h3>
+<h3 class="anchored" data-anchor-id="extend-to-degree-5-polynomial-p_5x"><strong>3. Extend to Degree 5 Polynomial <span class="math inline">P_5(x)</span>:</strong></h3>
 <p>To create a degree 5 polynomial, we add an extra term <span class="math inline">c(x - 1)(x - 2)(x - 3)(x - 4)</span>, which evaluates to zero at the given points:</p>
 <p><span class="math display">
 P_5(x) = P_3(x) + c(x - 1)(x - 2)(x - 3)(x - 4)
@@ -4956,13 +4940,12 @@ P_5(x) = 1 + 2(x - 1) - (x - 1)(x - 2) + \frac{1}{2}(x - 1)(x - 2)(x - 3) + c(x 
 </span></p>
 </section>
 <section id="does-the-value-of-c-matter" class="level3">
-<h3 class="anchored" data-anchor-id="does-the-value-of-c-matter">4. Does the Value of <span class="math inline">c</span> Matter?</h3>
+<h3 class="anchored" data-anchor-id="does-the-value-of-c-matter"><strong>4. Does the Value of <span class="math inline">c</span> Matter?</strong></h3>
 <p>The value of <span class="math inline">c</span> does not affect the polynomial at the given points. The additional term evaluates to 0 at <span class="math inline">x = 1, 2, 3, 4</span>, so no matter what <span class="math inline">c</span> is, the polynomial will pass through the points <span class="math inline">(1, 1), (2, 3), (3, 3), (4, 4)</span>.</p>
 <p>However, changing <span class="math inline">c</span> will affect the polynomial’s behavior outside the given points. For different values of <span class="math inline">c</span>, the polynomial will look different outside the interpolation points.</p>
-<hr>
 </section>
 <section id="final-degree-5-polynomial" class="level3">
-<h3 class="anchored" data-anchor-id="final-degree-5-polynomial">Final Degree 5 Polynomial</h3>
+<h3 class="anchored" data-anchor-id="final-degree-5-polynomial"><strong>Final Degree 5 Polynomial</strong></h3>
 <p>Thus, the degree 5 polynomial is:</p>
 <p><span class="math display">
 P_5(x) = 1 + 2(x - 1) - (x - 1)(x - 2) + \frac{1}{2}(x - 1)(x - 2)(x - 3) + c(x - 1)(x - 2)(x - 3)(x - 4)

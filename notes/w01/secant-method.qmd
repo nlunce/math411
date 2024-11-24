@@ -27,9 +27,9 @@ preview:
   navigate: true
 ---
 
-The **Secant Method** is a numerical method for finding roots of a nonlinear equation $f(x) = 0$. It is similar to **Newton's Method**, but it does not require the computation of the derivative $f'(x)$. Instead, the Secant Method approximates the derivative using a secant line through two points on the function.
+The **Secant Method** is a numerical method for finding roots of a nonlinear equation $f(x) = 0$. It is similar to [**Newton's Method**](./newtons-method.html), but it does not require the computation of the derivative $f'(x)$. Instead, the Secant Method approximates the derivative using a secant line through two points on the function.
 
-## The Secant Method Formula
+## **The Secant Method Formula**
 
 Given two initial approximations $x_{k-1}$ and $x_k$, the next approximation $x_{k+1}$ is computed using the secant line through these points. The formula is:
 
@@ -45,7 +45,7 @@ $$
 
 The main advantage of the Secant Method is that it avoids the need to compute the derivative $f'(x)$, making it useful for functions where the derivative is difficult to compute or does not exist.
 
-### Algorithm
+### **Algorithm**
 
 1. **Initial Guesses**: Start with two initial approximations $x_0$ and $x_1$.
 2. **Iteration Formula**: Compute successive approximations using the formula:
@@ -56,11 +56,11 @@ $$
 
 3. **Repeat**: Continue iterating until the difference between successive approximations is less than a specified tolerance $\epsilon$, or until $|f(x_k)| < \epsilon$.
 
-### Convergence
+### **Convergence**
 
-The Secant Method typically converges faster than the **Bisection Method** but slower than **Newton's Method**. It has a convergence rate of approximately $1.618$, known as **superlinear convergence**. This is faster than the linear convergence of the Bisection Method, but slower than the quadratic convergence of Newton's Method.
+The Secant Method typically converges faster than the [**Bisection Method**](./bisection-method.thml) but slower than [**Newton's Method**](./newtons-method.html). It has a convergence rate of approximately $1.618$, known as **superlinear convergence**. This is faster than the linear convergence of the Bisection Method, but slower than the quadratic convergence of Newton's Method.
 
-### Example
+### **Example**
 
 Let’s solve the equation $f(x) = x^2 - 4 = 0$ using the Secant Method, which has roots at $x = \pm 2$.
 
@@ -82,7 +82,7 @@ Let’s solve the equation $f(x) = x^2 - 4 = 0$ using the Secant Method, which h
 
 In this case, after just two iterations, we are already very close to the root $x = 2$.
 
-### General Properties of the Secant Method
+### **General Properties of the Secant Method**
 
 1. **No Derivatives Needed**: Unlike Newton's Method, the Secant Method does not require the computation of the derivative $f'(x)$, making it useful for functions that are not differentiable or where computing the derivative is expensive.
 
@@ -90,18 +90,18 @@ In this case, after just two iterations, we are already very close to the root $
 
 3. **Requires Two Initial Guesses**: The method requires two initial approximations, $x_0$ and $x_1$, unlike Newton's Method, which only needs one initial guess.
 
-### Applications of the Secant Method
+### **Applications of the Secant Method**
 
 - **Root Finding**: The Secant Method is widely used to find roots of non-linear equations, especially in cases where the derivative is not available or is costly to compute.
 - **Optimization**: It can be used in optimization problems where the objective is to minimize or maximize a function without requiring the calculation of the derivative.
 
-### Advantages of the Secant Method
+### **Advantages of the Secant Method**
 
 1. **No Derivatives**: The method does not require the calculation of $f'(x)$, making it easier to apply in situations where the derivative is not known.
 
 2. **Faster than Bisection**: The Secant Method generally converges more quickly than the Bisection Method, especially when the initial guesses are close to the root.
 
-### Limitations of the Secant Method
+### **Limitations of the Secant Method**
 
 1. **Slower than Newton's Method**: While it converges faster than the Bisection Method, the Secant Method typically converges more slowly than Newton's Method, which has quadratic convergence.
 

@@ -4775,7 +4775,7 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -4815,65 +4815,54 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Exercise 3.3.3 (C3-P10)</h1>
-            <p class="subtitle lead">MATH411</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nathan Lunceford </p>
-            </div>
-    </div>
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exercise 3.3.3 (C3-P10)</h1>
+<p class="subtitle lead">MATH411</p>
+</div>
 
 
 
+<div class="quarto-title-meta column-page">
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#question" id="toc-question">Question</a>
-  <ul>
-  <li><a href="#solution" id="toc-solution">Solution</a></li>
-  <li><a href="#steps" id="toc-steps">Steps:</a></li>
-  </ul></li>
-  </ul>
-</nav>
-<section id="question" class="level2">
-<h2 class="anchored" data-anchor-id="question">Question</h2>
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem"><strong>Problem:</strong></h2>
 <p><strong>Assume that Chebyshev interpolation is used to find a fifth-degree interpolating polynomial <span class="math inline">Q_5(x)</span> on the interval <span class="math inline">[-1, 1]</span> for the function <span class="math inline">f(x) = e^x</span>. Use the interpolation error formula to find a worst-case estimate for the error <span class="math inline">|e^x - Q_5(x)|</span> that is valid for <span class="math inline">x</span> throughout the interval <span class="math inline">[-1, 1]</span>. How many digits after the decimal point will be correct when <span class="math inline">Q_5(x)</span> is used to approximate <span class="math inline">e^x</span>?</strong></p>
-<hr>
-<section id="solution" class="level3">
-<h3 class="anchored" data-anchor-id="solution">Solution</h3>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution"><strong>Solution:</strong></h2>
 <p>We need to compute the worst-case error for the interpolation of <span class="math inline">f(x) = e^x</span> using a Chebyshev interpolating polynomial <span class="math inline">Q_5(x)</span>. We will use the interpolation error formula:</p>
 <p><span class="math display">
 |f(x) - P(x)| \leq \frac{M}{(n+1)!} \cdot \max_{x \in [-1,1]} |(x - x_1)(x - x_2) \cdots (x - x_n)|
 </span></p>
 <p>Where <span class="math inline">M</span> is an upper bound on the <span class="math inline">6</span>th derivative of <span class="math inline">f(x) = e^x</span> over <span class="math inline">[-1, 1]</span>, and <span class="math inline">x_1, x_2, \dots, x_n</span> are the Chebyshev nodes.</p>
-</section>
 <section id="steps" class="level3">
-<h3 class="anchored" data-anchor-id="steps">Steps:</h3>
+<h3 class="anchored" data-anchor-id="steps"><strong>Steps:</strong></h3>
 <ol type="1">
 <li><p><strong>Chebyshev Node Bound:</strong> For Chebyshev interpolation on the interval <span class="math inline">[-1, 1]</span>, the product <span class="math inline">(x - x_1)(x - x_2) \cdots (x - x_n)</span> is bounded by <span class="math inline">\frac{1}{2^n}</span>. For <span class="math inline">n = 5</span>, this becomes:</p>
 <p><span class="math display">

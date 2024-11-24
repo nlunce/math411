@@ -29,13 +29,13 @@ preview:
 
 **Bisection Method** is one of the simplest and most reliable numerical methods for finding a root of a continuous function $f(x) = 0$ over a closed interval $[a, b]$. The method works by repeatedly bisecting the interval and then selecting the subinterval in which the function changes sign, ensuring that a root lies within that subinterval.
 
-## The Bisection Method Formula
+## **The Bisection Method Formula**
 
 The Bisection Method requires that the function $f(x)$ be continuous over the interval $[a, b]$, and that the function has opposite signs at the endpoints $a$ and $b$, i.e., $f(a) \cdot f(b) < 0$. This guarantees that there is at least one root in the interval by the **Intermediate Value Theorem**.
 
 The basic idea of the method is to repeatedly bisect the interval and check the sign of $f(x)$ at the midpoint to determine the subinterval containing the root.
 
-### Algorithm
+### **Algorithm**
 
 1. **Initial Guess**: Choose an interval $[a_0, b_0]$ such that $f(a_0) \cdot f(b_0) < 0$.
 2. **Midpoint Calculation**: Compute the midpoint $c_k = \frac{a_k + b_k}{2}$ of the interval $[a_k, b_k]$.
@@ -51,7 +51,7 @@ $$
 x^* = \frac{a_k + b_k}{2}
 $$
 
-### Convergence
+### **Convergence**
 
 The Bisection Method converges **linearly**. The length of the interval halves at each iteration, ensuring that the method always converges to a solution (if one exists) within the interval.
 
@@ -61,7 +61,7 @@ $$
 n \geq \frac{\log \left( \frac{b_0 - a_0}{\epsilon} \right)}{\log 2}
 $$
 
-### Example
+### **Example**
 
 Let’s solve the equation $f(x) = x^3 - x - 2 = 0$ in the interval $[1, 2]$.
 
@@ -83,7 +83,7 @@ Let’s solve the equation $f(x) = x^3 - x - 2 = 0$ in the interval $[1, 2]$.
 4. **Further Iterations**:  
    Repeat the process until the interval width is smaller than the desired tolerance $\epsilon$.
 
-### General Properties of the Bisection Method
+### **General Properties of the Bisection Method**
 
 1. **Guaranteed Convergence**: The method is guaranteed to converge to a root if $f(a) \cdot f(b) < 0$ and $f(x)$ is continuous on $[a, b]$.
 
@@ -91,25 +91,25 @@ Let’s solve the equation $f(x) = x^3 - x - 2 = 0$ in the interval $[1, 2]$.
 
 3. **Robustness**: The method is very robust as it does not require the derivative of the function and is insensitive to the initial guesses, provided the condition $f(a) \cdot f(b) < 0$ holds.
 
-### Applications of the Bisection Method
+### **Applications of the Bisection Method**
 
 - **Root Finding**: The Bisection Method is used in various fields, including physics, engineering, and mathematics, to find roots of non-linear equations.
 - **Modeling and Simulation**: It is used when precise solutions are needed and the function is known to be continuous over the interval.
 - **Initial Root Estimates**: The Bisection Method is often used to find a good initial approximation for more efficient methods like **Newton’s Method** or the **Secant Method**.
 
-### Advantages of the Bisection Method
+### **Advantages of the Bisection Method**
 
 1. **Guaranteed Convergence**: The method always converges if the initial interval contains a root.
 2. **No Derivatives Needed**: Unlike Newton’s Method, the Bisection Method does not require the computation of derivatives.
 3. **Simplicity**: The method is easy to understand and implement.
 
-### Limitations of the Bisection Method
+### **Limitations of the Bisection Method**
 
 1. **Slow Convergence**: The method converges linearly, which makes it slower compared to methods like Newton’s Method, which has quadratic convergence.
 2. **Only One Root**: The Bisection Method only finds one root in the interval. If multiple roots exist, it cannot find them all without running the method on different intervals.
 
 3. **Initial Interval Requirement**: The method requires an initial interval $[a, b]$ where the function changes sign, which may not always be easy to determine.
 
-### Conclusion
+### **Conclusion**
 
 The Bisection Method is a reliable and simple method for finding roots of continuous functions, especially when no derivative information is available. While slower than other root-finding algorithms, its guaranteed convergence and robustness make it a valuable tool in numerical analysis.

@@ -29,7 +29,7 @@ preview:
 
 **Lagrange Interpolation** is a method of constructing a polynomial that passes through a given set of points. It is particularly useful when you have a small number of data points and want to determine the polynomial function that exactly fits those points.
 
-## The Lagrange Interpolating Polynomial
+## **The Lagrange Interpolating Polynomial**
 
 Given $n$ distinct data points $(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)$, the Lagrange interpolating polynomial is the polynomial $P(x)$ of degree at most $n-1$ that passes through all the points, meaning:
 
@@ -75,7 +75,7 @@ $$
 
 By evaluating these expressions and plugging in the values of $y_1$, $y_2$, and $y_3$, we obtain the polynomial $P(x)$ that passes through all the given points.
 
-### Example
+### **Example**
 
 Let’s go through an example where we are given three points: $(1, 2)$, $(2, 3)$, and $(3, 5)$.
 
@@ -112,26 +112,26 @@ $$
 
 Simplifying this expression will give you the final polynomial $P(x)$ that passes through all three points.
 
-### General Properties of Lagrange Interpolation
+### **General Properties of Lagrange Interpolation**
 
 1. **Uniqueness**: There is exactly one polynomial of degree $n-1$ that interpolates $n$ points. This is guaranteed by the **fundamental theorem of algebra**, which states that a polynomial of degree $n-1$ is uniquely determined by $n$ distinct points.
 
-2. **Efficiency**: Lagrange interpolation is not the most computationally efficient method for large datasets, because each term depends on all the data points, making the calculation costly for large $n$. Methods like **Newton’s divided differences** are generally preferred for interpolation with larger datasets.
+2. **Efficiency**: Lagrange interpolation is not the most computationally efficient method for large datasets, because each term depends on all the data points, making the calculation costly for large $n$. Methods like [**Newton’s divided differences**](./newtons-divided-differences.html) are generally preferred for interpolation with larger datasets.
 
-3. **Accuracy**: Interpolation works well if the points are well-distributed and the function is smooth. However, for unevenly spaced points or functions with high curvature, the interpolation polynomial may oscillate significantly, a phenomenon known as **Runge's phenomenon**.
+3. **Accuracy**: Interpolation works well if the points are well-distributed and the function is smooth. However, for unevenly spaced points or functions with high curvature, the interpolation polynomial may oscillate significantly, a phenomenon known as [**Runge's phenomenon**](../w03/runge-phenomenon.html).
 
-### Applications of Lagrange Interpolation
+### **Applications of Lagrange Interpolation**
 
 - **Curve Fitting**: Lagrange interpolation can be used to construct a polynomial that exactly fits a given set of data points.
 - **Numerical Integration**: The interpolating polynomial can be used to approximate integrals through methods such as Newton-Cotes formulas.
 - **Graphics and Animation**: In computer graphics, Lagrange interpolation is used to smoothly interpolate between keyframes in animations.
 - **Signal Processing**: It is used in digital signal processing for reconstructing missing samples from a set of known data points.
 
-### Drawbacks
+### **Drawbacks**
 
 - **Runge’s Phenomenon**: Lagrange interpolation can lead to significant oscillation, especially when interpolating over large intervals with a high degree polynomial.
 - **Not Easily Updateable**: If a new point is added, the entire Lagrange polynomial must be recalculated. In contrast, methods like **Newton's divided differences** allow for easier updates when new points are added.
 
-### Conclusion
+### **Conclusion**
 
 Lagrange interpolation is a powerful tool for constructing polynomials that pass through a set of points, but it can suffer from inefficiencies and oscillations for large datasets. It’s important to understand its benefits and limitations to use it effectively in applications.

@@ -4884,14 +4884,14 @@ window.Quarto = {
 
 
 <section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<h2 class="anchored" data-anchor-id="introduction"><strong>Introduction</strong></h2>
 <p>The <strong>Runge Phenomenon</strong> refers to the oscillatory behavior that occurs when using high-degree polynomial interpolation on evenly spaced data points, particularly near the endpoints of an interval. The phenomenon is named after Carl Runge, who discovered this issue while studying interpolation of functions with large oscillations near the boundaries of an interval.</p>
 <section id="the-issue-with-high-degree-polynomials" class="level3">
-<h3 class="anchored" data-anchor-id="the-issue-with-high-degree-polynomials">The Issue with High-Degree Polynomials</h3>
+<h3 class="anchored" data-anchor-id="the-issue-with-high-degree-polynomials"><strong>The Issue with High-Degree Polynomials</strong></h3>
 <p>When interpolating a smooth function using polynomials of high degree, the interpolation can become highly oscillatory near the edges of the interval, even if the function being interpolated is smooth and well-behaved. This is particularly problematic with <strong>equally spaced points</strong>, as the polynomial tries to fit too closely to the data points near the boundaries, leading to large errors.</p>
 </section>
 <section id="runges-example" class="level3">
-<h3 class="anchored" data-anchor-id="runges-example">Runge’s Example</h3>
+<h3 class="anchored" data-anchor-id="runges-example"><strong>Runge’s Example</strong></h3>
 <p>The most famous example illustrating the Runge phenomenon is based on the <strong>Runge function</strong>:</p>
 <p><span class="math display">
 f(x) = \frac{1}{1 + 25x^2}
@@ -4899,7 +4899,7 @@ f(x) = \frac{1}{1 + 25x^2}
 <p>Runge showed that using high-degree polynomial interpolation on this function with evenly spaced points over the interval <span class="math inline">[-5, 5]</span> leads to significant oscillations near the edges. The interpolation error grows as the degree of the polynomial increases, especially near the endpoints of the interval.</p>
 </section>
 <section id="why-does-it-happen" class="level3">
-<h3 class="anchored" data-anchor-id="why-does-it-happen">Why Does It Happen?</h3>
+<h3 class="anchored" data-anchor-id="why-does-it-happen"><strong>Why Does It Happen?</strong></h3>
 <p>The Runge phenomenon arises because high-degree polynomials tend to oscillate more as their degree increases, especially when they are forced to pass through many points. With equally spaced points, the interpolation error is concentrated near the edges of the interval, causing large deviations from the true function in those regions.</p>
 <p>Mathematically, for a function <span class="math inline">f(x)</span> interpolated at <span class="math inline">n</span> evenly spaced points using a polynomial <span class="math inline">P_n(x)</span> of degree <span class="math inline">n-1</span>, the interpolation error is given by:</p>
 <p><span class="math display">
@@ -4908,9 +4908,9 @@ f(x) = \frac{1}{1 + 25x^2}
 <p>As the number of interpolation points <span class="math inline">n</span> increases, the product term <span class="math inline">\prod_{i=1}^{n}(x - x_i)</span> becomes very large near the endpoints of the interval, causing the interpolation error to increase dramatically.</p>
 </section>
 <section id="graphical-representation" class="level3">
-<h3 class="anchored" data-anchor-id="graphical-representation">Graphical Representation</h3>
+<h3 class="anchored" data-anchor-id="graphical-representation"><strong>Graphical Representation</strong></h3>
 <p>The following figure illustrates the Runge phenomenon. For the Runge function <span class="math inline">f(x) = \frac{1}{1 + 25x^2}</span>, the polynomial interpolation for large <span class="math inline">n</span> shows excessive oscillations near the interval boundaries:</p>
-<div id="5b0c17f8" class="cell" data-execution_count="1">
+<div id="40c18605" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -4919,20 +4919,17 @@ f(x) = \frac{1}{1 + 25x^2}
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> runge_function(x):</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> <span class="dv">25</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the x values</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the original Runge function</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.plot(x_values, runge_function(x_values), label<span class="op">=</span><span class="st">&quot;Runge Function&quot;</span>, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Show interpolation for degree 5 and degree 10 polynomials</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Runge Phenomenon&quot;</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;x&quot;</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;f(x)&quot;</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x_values <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">1000</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>plt.plot(x_values, runge_function(x_values), label<span class="op">=</span><span class="st">&quot;Runge Function&quot;</span>, color<span class="op">=</span><span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&quot;Runge Phenomenon&quot;</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;x&quot;</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;f(x)&quot;</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -4944,8 +4941,8 @@ f(x) = \frac{1}{1 + 25x^2}
 </div>
 </section>
 <section id="chebyshev-nodes-as-a-solution" class="level3">
-<h3 class="anchored" data-anchor-id="chebyshev-nodes-as-a-solution">Chebyshev Nodes as a Solution</h3>
-<p>The <strong>Runge phenomenon</strong> can be mitigated by using <strong>Chebyshev nodes</strong> instead of equally spaced points. Chebyshev nodes distribute the points more densely near the edges of the interval, where the oscillations are most likely to occur. This results in more accurate interpolation with less oscillation near the boundaries.</p>
+<h3 class="anchored" data-anchor-id="chebyshev-nodes-as-a-solution"><strong>Chebyshev Nodes as a Solution</strong></h3>
+<p>The <strong>Runge phenomenon</strong> can be mitigated by using <a href="./chebyshev-interpolation.html"><strong>Chebyshev nodes</strong></a> instead of equally spaced points. Chebyshev nodes distribute the points more densely near the edges of the interval, where the oscillations are most likely to occur. This results in more accurate interpolation with less oscillation near the boundaries.</p>
 <p>Chebyshev nodes <span class="math inline">x_i</span> for <span class="math inline">n</span> interpolation points on the interval <span class="math inline">[-1, 1]</span> are given by:</p>
 <p><span class="math display">
 x_i = \cos\left(\frac{(2i - 1)\pi}{2n}\right)
@@ -4953,7 +4950,7 @@ x_i = \cos\left(\frac{(2i - 1)\pi}{2n}\right)
 <p>Using Chebyshev interpolation reduces the risk of large oscillations near the endpoints, providing a more stable approximation.</p>
 </section>
 <section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<h3 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h3>
 <p>The <strong>Runge phenomenon</strong> highlights the dangers of using high-degree polynomials for interpolation with evenly spaced points. To avoid this issue, it is recommended to use <strong>Chebyshev interpolation</strong> or lower-degree polynomial interpolation in smaller intervals (piecewise interpolation).</p>
 
 

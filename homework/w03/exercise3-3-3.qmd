@@ -6,12 +6,12 @@ format:
   html:
     self-contained: true
     page-layout: full
-    title-block-banner: true
     toc: true
-    toc-depth: 3
-    toc-location: body
+    toc-depth: 1
+    toc-location: right
     number-sections: false
     html-math-method: katex
+    embed-resources: true
     code-fold: true
     code-summary: 'Show the code'
     code-overflow: wrap
@@ -20,15 +20,19 @@ format:
       source: false
       toggle: true
       caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
-## Question
+## **Problem:**
 
 **Assume that Chebyshev interpolation is used to find a fifth-degree interpolating polynomial $Q_5(x)$ on the interval $[-1, 1]$ for the function $f(x) = e^x$. Use the interpolation error formula to find a worst-case estimate for the error $|e^x - Q_5(x)|$ that is valid for $x$ throughout the interval $[-1, 1]$. How many digits after the decimal point will be correct when $Q_5(x)$ is used to approximate $e^x$?**
 
----
-
-### Solution
+## **Solution:**
 
 We need to compute the worst-case error for the interpolation of $f(x) = e^x$ using a Chebyshev interpolating polynomial $Q_5(x)$. We will use the interpolation error formula:
 
@@ -38,7 +42,7 @@ $$
 
 Where $M$ is an upper bound on the $6$th derivative of $f(x) = e^x$ over $[-1, 1]$, and $x_1, x_2, \dots, x_n$ are the Chebyshev nodes.
 
-### Steps:
+### **Steps:**
 
 1. **Chebyshev Node Bound:**
    For Chebyshev interpolation on the interval $[-1, 1]$, the product $(x - x_1)(x - x_2) \cdots (x - x_n)$ is bounded by $\frac{1}{2^n}$. For $n = 5$, this becomes:

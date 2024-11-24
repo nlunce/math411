@@ -4849,9 +4849,9 @@ window.Quarto = {
 </header>
 
 
-<p>The <strong>Secant Method</strong> is a numerical method for finding roots of a nonlinear equation <span class="math inline">f(x) = 0</span>. It is similar to <strong>Newton’s Method</strong>, but it does not require the computation of the derivative <span class="math inline">f&#39;(x)</span>. Instead, the Secant Method approximates the derivative using a secant line through two points on the function.</p>
+<p>The <strong>Secant Method</strong> is a numerical method for finding roots of a nonlinear equation <span class="math inline">f(x) = 0</span>. It is similar to <a href="./newtons-method.html"><strong>Newton’s Method</strong></a>, but it does not require the computation of the derivative <span class="math inline">f&#39;(x)</span>. Instead, the Secant Method approximates the derivative using a secant line through two points on the function.</p>
 <section id="the-secant-method-formula" class="level2">
-<h2 class="anchored" data-anchor-id="the-secant-method-formula">The Secant Method Formula</h2>
+<h2 class="anchored" data-anchor-id="the-secant-method-formula"><strong>The Secant Method Formula</strong></h2>
 <p>Given two initial approximations <span class="math inline">x_{k-1}</span> and <span class="math inline">x_k</span>, the next approximation <span class="math inline">x_{k+1}</span> is computed using the secant line through these points. The formula is:</p>
 <p><span class="math display">
 x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
@@ -4862,7 +4862,7 @@ f&#39;(x_k) \approx \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}
 </span></p>
 <p>The main advantage of the Secant Method is that it avoids the need to compute the derivative <span class="math inline">f&#39;(x)</span>, making it useful for functions where the derivative is difficult to compute or does not exist.</p>
 <section id="algorithm" class="level3">
-<h3 class="anchored" data-anchor-id="algorithm">Algorithm</h3>
+<h3 class="anchored" data-anchor-id="algorithm"><strong>Algorithm</strong></h3>
 <ol type="1">
 <li><strong>Initial Guesses</strong>: Start with two initial approximations <span class="math inline">x_0</span> and <span class="math inline">x_1</span>.</li>
 <li><strong>Iteration Formula</strong>: Compute successive approximations using the formula:</li>
@@ -4875,11 +4875,11 @@ x_{k+1} = x_k - \frac{f(x_k)(x_k - x_{k-1})}{f(x_k) - f(x_{k-1})}
 </ol>
 </section>
 <section id="convergence" class="level3">
-<h3 class="anchored" data-anchor-id="convergence">Convergence</h3>
-<p>The Secant Method typically converges faster than the <strong>Bisection Method</strong> but slower than <strong>Newton’s Method</strong>. It has a convergence rate of approximately <span class="math inline">1.618</span>, known as <strong>superlinear convergence</strong>. This is faster than the linear convergence of the Bisection Method, but slower than the quadratic convergence of Newton’s Method.</p>
+<h3 class="anchored" data-anchor-id="convergence"><strong>Convergence</strong></h3>
+<p>The Secant Method typically converges faster than the <a href="./bisection-method.thml"><strong>Bisection Method</strong></a> but slower than <a href="./newtons-method.html"><strong>Newton’s Method</strong></a>. It has a convergence rate of approximately <span class="math inline">1.618</span>, known as <strong>superlinear convergence</strong>. This is faster than the linear convergence of the Bisection Method, but slower than the quadratic convergence of Newton’s Method.</p>
 </section>
 <section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
+<h3 class="anchored" data-anchor-id="example"><strong>Example</strong></h3>
 <p>Let’s solve the equation <span class="math inline">f(x) = x^2 - 4 = 0</span> using the Secant Method, which has roots at <span class="math inline">x = \pm 2</span>.</p>
 <ol type="1">
 <li><p><strong>Initial Guesses</strong>: Let <span class="math inline">x_0 = 3</span> and <span class="math inline">x_1 = 2.5</span>.</p></li>
@@ -4896,7 +4896,7 @@ x_3 = x_2 - \frac{f(x_2)(x_2 - x_1)}{f(x_2) - f(x_1)} = 2.05 - \frac{(2.05^2 - 4
 <p>In this case, after just two iterations, we are already very close to the root <span class="math inline">x = 2</span>.</p>
 </section>
 <section id="general-properties-of-the-secant-method" class="level3">
-<h3 class="anchored" data-anchor-id="general-properties-of-the-secant-method">General Properties of the Secant Method</h3>
+<h3 class="anchored" data-anchor-id="general-properties-of-the-secant-method"><strong>General Properties of the Secant Method</strong></h3>
 <ol type="1">
 <li><p><strong>No Derivatives Needed</strong>: Unlike Newton’s Method, the Secant Method does not require the computation of the derivative <span class="math inline">f&#39;(x)</span>, making it useful for functions that are not differentiable or where computing the derivative is expensive.</p></li>
 <li><p><strong>Superlinear Convergence</strong>: The Secant Method converges faster than the Bisection Method but slower than Newton’s Method. Its convergence rate is superlinear with a rate of approximately <span class="math inline">1.618</span>.</p></li>
@@ -4904,21 +4904,21 @@ x_3 = x_2 - \frac{f(x_2)(x_2 - x_1)}{f(x_2) - f(x_1)} = 2.05 - \frac{(2.05^2 - 4
 </ol>
 </section>
 <section id="applications-of-the-secant-method" class="level3">
-<h3 class="anchored" data-anchor-id="applications-of-the-secant-method">Applications of the Secant Method</h3>
+<h3 class="anchored" data-anchor-id="applications-of-the-secant-method"><strong>Applications of the Secant Method</strong></h3>
 <ul>
 <li><strong>Root Finding</strong>: The Secant Method is widely used to find roots of non-linear equations, especially in cases where the derivative is not available or is costly to compute.</li>
 <li><strong>Optimization</strong>: It can be used in optimization problems where the objective is to minimize or maximize a function without requiring the calculation of the derivative.</li>
 </ul>
 </section>
 <section id="advantages-of-the-secant-method" class="level3">
-<h3 class="anchored" data-anchor-id="advantages-of-the-secant-method">Advantages of the Secant Method</h3>
+<h3 class="anchored" data-anchor-id="advantages-of-the-secant-method"><strong>Advantages of the Secant Method</strong></h3>
 <ol type="1">
 <li><p><strong>No Derivatives</strong>: The method does not require the calculation of <span class="math inline">f&#39;(x)</span>, making it easier to apply in situations where the derivative is not known.</p></li>
 <li><p><strong>Faster than Bisection</strong>: The Secant Method generally converges more quickly than the Bisection Method, especially when the initial guesses are close to the root.</p></li>
 </ol>
 </section>
 <section id="limitations-of-the-secant-method" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-of-the-secant-method">Limitations of the Secant Method</h3>
+<h3 class="anchored" data-anchor-id="limitations-of-the-secant-method"><strong>Limitations of the Secant Method</strong></h3>
 <ol type="1">
 <li><p><strong>Slower than Newton’s Method</strong>: While it converges faster than the Bisection Method, the Secant Method typically converges more slowly than Newton’s Method, which has quadratic convergence.</p></li>
 <li><p><strong>Convergence is Not Guaranteed</strong>: The Secant Method does not always converge, especially if the initial guesses are not close to the actual root. If <span class="math inline">f(x_k) = f(x_{k-1})</span>, the method will fail due to division by zero.</p></li>

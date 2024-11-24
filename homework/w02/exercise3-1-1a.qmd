@@ -6,12 +6,12 @@ format:
   html:
     self-contained: true
     page-layout: full
-    title-block-banner: true
     toc: true
-    toc-depth: 3
-    toc-location: body
+    toc-depth: 1
+    toc-location: right
     number-sections: false
     html-math-method: katex
+    embed-resources: true
     code-fold: true
     code-summary: 'Show the code'
     code-overflow: wrap
@@ -20,6 +20,12 @@ format:
       source: false
       toggle: true
       caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
 ```{python}
@@ -29,9 +35,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-## Question
+## **Question**
 
-**Use Lagrange interpolation to find a polynomial that passes through the points $(0, 1), (2, 3), (3, 0)$.**
+**Use [Lagrange interpolation](../../notes/w02/lagrange-interpolation.html) to find a polynomial that passes through the points $(0, 1), (2, 3), (3, 0)$.**
 
 The Lagrange interpolation polynomial for three points $(x_1, y_1), (x_2, y_2),$ and $(x_3, y_3)$ is given by the formula:
 
@@ -43,7 +49,7 @@ The points are:
 - $(x_2, y_2) = (2, 3)$
 - $(x_3, y_3) = (3, 0)$
 
-### Step-by-step calculation:
+### **Step-by-step calculation:**
 
 1. **First term** (corresponding to $(x_1, y_1) = (0, 1)$):
 
@@ -63,13 +69,13 @@ $$
 0 \cdot \frac{(x - 0)(x - 2)}{(3 - 0)(3 - 2)} = 0
 $$
 
-### Combine the terms:
+### **Combine the terms:**
 
 $$
 P(x) = \frac{(x - 2)(x - 3)}{6} - \frac{3x(x - 3)}{2}
 $$
 
-### Simplify:
+### **Simplify:**
 
 First term:
 
@@ -116,6 +122,7 @@ This is the interpolating polynomial that passes through the points $(0, 1)$, $(
 ```{python}
 #| label: Graph
 #| code-summary: Create graph with resulting polynomial
+
 # Define the Lagrange interpolating polynomial
 def lagrange_polynomial(x):
     return (-4 * x**2 + 11 * x + 3) / 3

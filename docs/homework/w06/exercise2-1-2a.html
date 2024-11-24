@@ -4824,7 +4824,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem:</strong></a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution:</strong></a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution:</strong></a>
+  <ul class="collapse">
+  <li><a href="#representing-the-system-in-augmented-matrix-form" id="toc-representing-the-system-in-augmented-matrix-form" class="nav-link" data-scroll-target="#representing-the-system-in-augmented-matrix-form"><strong>Representing the System in Augmented Matrix Form</strong></a></li>
+  <li><a href="#row-operations-for-gaussian-elimination" id="toc-row-operations-for-gaussian-elimination" class="nav-link" data-scroll-target="#row-operations-for-gaussian-elimination"><strong>Row Operations for Gaussian Elimination</strong></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -4856,8 +4860,8 @@ window.Quarto = {
 </header>
 
 
-<section id="problem" class="level1">
-<h1><strong>Problem:</strong></h1>
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem"><strong>Problem:</strong></h2>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4879,8 +4883,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="solution" class="level1">
-<h1><strong>Solution:</strong></h1>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution"><strong>Solution:</strong></h2>
 <section id="representing-the-system-in-augmented-matrix-form" class="level3">
 <h3 class="anchored" data-anchor-id="representing-the-system-in-augmented-matrix-form"><strong>Representing the System in Augmented Matrix Form</strong></h3>
 <p>The system can be written in augmented matrix form as:</p>
@@ -4906,7 +4910,7 @@ window.Quarto = {
 </span></p>
 </section>
 <section id="eliminate-the-first-column-in-rows-2-and-3" class="level4">
-<h4 class="anchored" data-anchor-id="eliminate-the-first-column-in-rows-2-and-3">Eliminate the First Column in Rows 2 and 3</h4>
+<h4 class="anchored" data-anchor-id="eliminate-the-first-column-in-rows-2-and-3"><strong>Eliminate the First Column in Rows 2 and 3</strong></h4>
 <ul>
 <li><span class="math inline">R_2 \to R_2 - 4 \cdot R_1</span></li>
 <li><span class="math inline">R_3 \to R_3 + 2 \cdot R_1</span></li>
@@ -4920,7 +4924,7 @@ window.Quarto = {
 </span></p>
 </section>
 <section id="normalize-row-2" class="level4">
-<h4 class="anchored" data-anchor-id="normalize-row-2">Normalize Row 2</h4>
+<h4 class="anchored" data-anchor-id="normalize-row-2"><strong>Normalize Row 2</strong></h4>
 <p>Divide Row 2 by 5:</p>
 <p><span class="math display">
 \begin{bmatrix}
@@ -4931,7 +4935,7 @@ window.Quarto = {
 </span></p>
 </section>
 <section id="eliminate-the-second-column-in-rows-1-and-3" class="level4">
-<h4 class="anchored" data-anchor-id="eliminate-the-second-column-in-rows-1-and-3">Eliminate the Second Column in Rows 1 and 3</h4>
+<h4 class="anchored" data-anchor-id="eliminate-the-second-column-in-rows-1-and-3"><strong>Eliminate the Second Column in Rows 1 and 3</strong></h4>
 <ul>
 <li><span class="math inline">R_1 \to R_1 + R_2</span></li>
 <li><span class="math inline">R_3 \to R_3 + R_2</span></li>
@@ -4945,7 +4949,7 @@ window.Quarto = {
 </span></p>
 </section>
 <section id="normalize-row-3" class="level4">
-<h4 class="anchored" data-anchor-id="normalize-row-3">Normalize Row 3</h4>
+<h4 class="anchored" data-anchor-id="normalize-row-3"><strong>Normalize Row 3</strong></h4>
 <p>Divide Row 3 by <span class="math inline">-\frac{13}{5}</span>:</p>
 <p><span class="math display">
 \begin{bmatrix}
@@ -4956,7 +4960,7 @@ window.Quarto = {
 </span></p>
 </section>
 <section id="back-substitution" class="level4">
-<h4 class="anchored" data-anchor-id="back-substitution">Back Substitution</h4>
+<h4 class="anchored" data-anchor-id="back-substitution"><strong>Back Substitution</strong></h4>
 <ul>
 <li>Update <span class="math inline">R_2</span>: <span class="math inline">R_2 \to R_2 + \frac{3}{5} \cdot R_3</span></li>
 <li>Update <span class="math inline">R_1</span>: <span class="math inline">R_1 \to R_1 + \frac{7}{10} \cdot R_3</span></li>

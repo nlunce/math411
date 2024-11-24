@@ -6,12 +6,12 @@ format:
   html:
     self-contained: true
     page-layout: full
-    title-block-banner: true
     toc: true
     toc-depth: 3
-    toc-location: body
+    toc-location: right
     number-sections: false
     html-math-method: katex
+    embed-resources: true
     code-fold: true
     code-summary: 'Show the code'
     code-overflow: wrap
@@ -20,6 +20,12 @@ format:
       source: false
       toggle: true
       caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
 ```{python}
@@ -36,6 +42,7 @@ import matplotlib.pyplot as plt
 ```{python}
 #| label: Function
 #| code-summary: Create function and figure
+
 # Define the function
 def plot_triangle(points, save_path='triangle_plot.png'):
     """
@@ -94,7 +101,7 @@ test_points = [(1, 2), (2, 1), (2, 3)]
 plot_triangle(test_points, save_path='triangle_plot.png')
 ```
 
-### Explanation:
+### **Explanation:**
 
 1. **Function Definition:**
 
@@ -119,7 +126,7 @@ plot_triangle(test_points, save_path='triangle_plot.png')
    - The plot is saved as a `.png` file with a resolution of 300 DPI.
    - The plot window is then displayed using `plt.show()`.
 
-### Result:
+### **Result:**
 
 After running the function with the test points `(1, 2)`, `(2, 1)`, and `(2, 3)`, the resulting triangle will be saved as `triangle_plot.png` and displayed as shown below:
 

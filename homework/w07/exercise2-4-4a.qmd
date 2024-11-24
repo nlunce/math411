@@ -1,9 +1,33 @@
 ---
 title: 'Exercise 2.4.4a (C2-P9)'
 author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show the code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
-# **Problem**
+## **Problem:**
 
 Solve the system by finding the $PA = LU$ factorization and then carrying out the two-step back substitution:
 
@@ -11,9 +35,9 @@ $$
 \begin{pmatrix} 4 & 2 & 0 \\ 4 & 4 & 2 \\ 2 & 2 & 3 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \\ x_3 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \\ 6 \end{pmatrix}
 $$
 
-# **Solution**
+## **Solution:**
 
-## LU Factorization with Partial Pivoting
+### **LU Factorization with Partial Pivoting**
 
 **Step 1: First Column**
 
@@ -90,7 +114,7 @@ $$
   P = I \quad (\text{identity matrix, since no row swaps were performed})
   $$
 
-## Forward Substitution: Solve $Ly = b$
+### **Forward Substitution: Solve $Ly = b$**
 
 $$
 L \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix} = \begin{pmatrix} 2 \\ 4 \\ 6 \end{pmatrix}

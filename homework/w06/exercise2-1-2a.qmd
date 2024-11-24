@@ -6,7 +6,7 @@ format:
     self-contained: true
     page-layout: full
     toc: true
-    toc-depth: 1
+    toc-depth: 3
     toc-location: right
     number-sections: false
     html-math-method: katex
@@ -27,7 +27,7 @@ preview:
   navigate: true
 ---
 
-# **Problem:**
+## **Problem:**
 
 ::: {.callout-note icon=false }
 
@@ -45,7 +45,7 @@ $$
 
 :::
 
-# **Solution:**
+## **Solution:**
 
 ### **Representing the System in Augmented Matrix Form**
 
@@ -73,7 +73,7 @@ $$
 \end{bmatrix}.
 $$
 
-#### Eliminate the First Column in Rows 2 and 3
+#### **Eliminate the First Column in Rows 2 and 3**
 
 - $R_2 \to R_2 - 4 \cdot R_1$
 - $R_3 \to R_3 + 2 \cdot R_1$
@@ -86,7 +86,7 @@ $$
 \end{bmatrix}.
 $$
 
-#### Normalize Row 2
+#### **Normalize Row 2**
 
 Divide Row 2 by 5:
 
@@ -98,7 +98,7 @@ $$
 \end{bmatrix}.
 $$
 
-#### Eliminate the Second Column in Rows 1 and 3
+#### **Eliminate the Second Column in Rows 1 and 3**
 
 - $R_1 \to R_1 + R_2$
 - $R_3 \to R_3 + R_2$
@@ -111,7 +111,7 @@ $$
 \end{bmatrix}.
 $$
 
-#### Normalize Row 3
+#### **Normalize Row 3**
 
 Divide Row 3 by $-\frac{13}{5}$:
 
@@ -123,7 +123,7 @@ $$
 \end{bmatrix}.
 $$
 
-#### Back Substitution
+#### **Back Substitution**
 
 - Update $R_2$: $R_2 \to R_2 + \frac{3}{5} \cdot R_3$
 - Update $R_1$: $R_1 \to R_1 + \frac{7}{10} \cdot R_3$

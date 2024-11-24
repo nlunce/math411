@@ -6,12 +6,12 @@ format:
   html:
     self-contained: true
     page-layout: full
-    title-block-banner: true
     toc: true
-    toc-depth: 2
-    toc-location: body
+    toc-depth: 3
+    toc-location: right
     number-sections: false
     html-math-method: katex
+    embed-resources: true
     code-fold: true
     code-summary: 'Show the code'
     code-overflow: wrap
@@ -20,22 +20,24 @@ format:
       source: false
       toggle: true
       caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
-# Question
-
----
+## **Problem:**
 
 (a) Given the data points $(1, 0)$, $(2, \ln 2)$, and $(4, \ln 4)$, find the degree 2 interpolating polynomial.  
 (b) Use the result of (a) to approximate $\ln 3$.  
 (c) Use Theorem 3.3 to give an error bound for the approximation in part (b).  
 (d) Compare the actual error to your error bound.
 
-# Key Concepts
+## **Key Concepts**
 
----
-
-### Error in Polynomial Interpolation:
+### **Error in Polynomial Interpolation:**
 
 The error between the actual function $f(x)$ and the interpolated polynomial $P_{n-1}(x)$ is given by the following bound:
 
@@ -49,15 +51,13 @@ where:
 - $x_0, x_1, \dots, x_n$ are the known data points.
 - $f^{(n)}(c)$ is the $n$-th derivative of the actual function $f(x)$, evaluated at some point $c$ in the interval $[x_0, x_n]$.
 
-# Solution
+## **Solution**
 
----
-
-### (a) Finding the Degree 2 Interpolating Polynomial
+### **(a) Finding the Degree 2 Interpolating Polynomial**
 
 Given the points $(1, 0)$, $(2, \ln 2)$, and $(4, \ln 4)$, we apply the Lagrange interpolation formula.
 
-#### Lagrange Basis Polynomials:
+#### **Lagrange Basis Polynomials:**
 
 1. **$L_0(x)$:**
 
@@ -76,7 +76,7 @@ Given the points $(1, 0)$, $(2, \ln 2)$, and $(4, \ln 4)$, we apply the Lagrange
    L_2(x) = \frac{(x - 1)(x - 2)}{(4 - 1)(4 - 2)} = \frac{(x - 1)(x - 2)}{6}
    $$
 
-#### Polynomial Construction:
+#### **Polynomial Construction:**
 
 Now, the interpolating polynomial becomes:
 
@@ -96,7 +96,7 @@ $$
 P(x) = \ln 2 \cdot \left(-\frac{(x - 1)(x - 4)}{2} + \frac{(x - 1)(x - 2)}{3}\right)
 $$
 
-### (b) Approximation of $\ln 3$
+### **(b) Approximation of $\ln 3$**
 
 To approximate $\ln 3$, substitute $x = 3$ into the polynomial:
 
@@ -122,7 +122,7 @@ $$
 P(3) \approx 1.1552
 $$
 
-### (c) Error Bound using Theorem 3.3
+### **(c) Error Bound using Theorem 3.3**
 
 The error formula for degree 2 interpolation is:
 
@@ -144,7 +144,7 @@ $$
 
 Therefore, the error bound is approximately $-\frac{2}{3} \approx -0.6667$.
 
-### (d) Comparison of Actual Error and Error Bound
+### **(d) Comparison of Actual Error and Error Bound**
 
 The actual value of $\ln 3$ is approximately:
 

@@ -4775,7 +4775,7 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -4815,67 +4815,67 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page">
-      <h1 class="title">Exercise 3.1.6 (C3-P6)</h1>
-            <p class="subtitle lead">MATH411</p>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page">
-
-      <div>
-      <div class="quarto-title-meta-heading">Author</div>
-      <div class="quarto-title-meta-contents">
-               <p>Nathan Lunceford </p>
-            </div>
-    </div>
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-    </div>
-<!-- main -->
-<main class="content quarto-banner-title-block column-page" id="quarto-document-content">
-
-
-
-
-<nav id="TOC" role="doc-toc">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#question" id="toc-question">Question</a>
-  <ul>
-  <li><a href="#key-concepts" id="toc-key-concepts">Key Concepts</a></li>
-  <li><a href="#solution" id="toc-solution">Solution</a></li>
-  <li><a href="#final-degree-5-polynomial" id="toc-final-degree-5-polynomial">Final Degree 5 Polynomial</a></li>
-  <li><a href="#example" id="toc-example">Example</a></li>
-  <li><a href="#does-the-value-of-c-matter" id="toc-does-the-value-of-c-matter">Does the Value of <span class="math inline">c</span> Matter?</a></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem:</strong></a>
+  <ul class="collapse">
+  <li><a href="#key-concepts" id="toc-key-concepts" class="nav-link" data-scroll-target="#key-concepts"><strong>Key Concepts</strong></a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution:</strong></a></li>
+  <li><a href="#final-degree-5-polynomial" id="toc-final-degree-5-polynomial" class="nav-link" data-scroll-target="#final-degree-5-polynomial"><strong>Final Degree 5 Polynomial</strong></a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><strong>Example</strong></a></li>
+  <li><a href="#does-the-value-of-c-matter" id="toc-does-the-value-of-c-matter" class="nav-link" data-scroll-target="#does-the-value-of-c-matter"><strong>Does the Value of <span class="math inline">c</span> Matter?</strong></a></li>
   </ul></li>
   </ul>
 </nav>
-<section id="question" class="level2">
-<h2 class="anchored" data-anchor-id="question">Question</h2>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Exercise 3.1.6 (C3-P6)</h1>
+<p class="subtitle lead">MATH411</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem"><strong>Problem:</strong></h2>
 <p><strong>How do we construct a polynomial of degree exactly 5 that interpolates four points?</strong></p>
 <p>Given four points <span class="math inline">(1, 1)</span>, <span class="math inline">(2, 3)</span>, <span class="math inline">(3, 3)</span>, and <span class="math inline">(4, 4)</span>, the standard interpolation methods (such as Newton’s or Lagrange’s methods) would give us a unique polynomial of degree 3. However, constructing a polynomial of degree exactly 5 requires a different approach.</p>
 <section id="key-concepts" class="level3">
-<h3 class="anchored" data-anchor-id="key-concepts">Key Concepts</h3>
+<h3 class="anchored" data-anchor-id="key-concepts"><strong>Key Concepts</strong></h3>
 <ol type="1">
 <li><strong>Theorem 3.2</strong> (Main Theorem of Polynomial Interpolation) guarantees that a unique polynomial of degree <span class="math inline">n-1</span> exists for <span class="math inline">n</span> distinct points.</li>
 <li>To create a polynomial of degree 5 when you only have 4 points, you need to add an <strong>extra term</strong> that still passes through all the original points but elevates the polynomial’s degree.</li>
 </ol>
 </section>
 <section id="solution" class="level3">
-<h3 class="anchored" data-anchor-id="solution">Solution</h3>
+<h3 class="anchored" data-anchor-id="solution"><strong>Solution:</strong></h3>
 <p>To create a degree 5 polynomial that still passes through all four points <span class="math inline">(1, 1)</span>, <span class="math inline">(2, 3)</span>, <span class="math inline">(3, 3)</span>, and <span class="math inline">(4, 4)</span>, follow these steps:</p>
 <ol type="1">
 <li><p><strong>Find the degree 3 polynomial <span class="math inline">P_3(x)</span>:</strong></p>
@@ -4893,7 +4893,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="final-degree-5-polynomial" class="level3">
-<h3 class="anchored" data-anchor-id="final-degree-5-polynomial">Final Degree 5 Polynomial</h3>
+<h3 class="anchored" data-anchor-id="final-degree-5-polynomial"><strong>Final Degree 5 Polynomial</strong></h3>
 <p>Thus, the degree 5 polynomial is given by:</p>
 <p><span class="math display">P_5(x) = P_3(x) + c(x - 1)(x - 2)(x - 3)(x - 4)</span></p>
 <ul>
@@ -4902,14 +4902,14 @@ window.Quarto = {
 </ul>
 </section>
 <section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
+<h3 class="anchored" data-anchor-id="example"><strong>Example</strong></h3>
 <p>Let’s assume the degree 3 polynomial <span class="math inline">P_3(x)</span> through the points <span class="math inline">(1, 1)</span>, <span class="math inline">(2, 3)</span>, <span class="math inline">(3, 3)</span>, <span class="math inline">(4, 4)</span> is:</p>
 <p><span class="math display">P_3(x) = 1 + 2(x - 1) + 3(x - 1)(x - 2)</span></p>
 <p>Then the degree 5 polynomial becomes:</p>
 <p><span class="math display">P_5(x) = P_3(x) + c(x - 1)(x - 2)(x - 3)(x - 4)</span></p>
 </section>
 <section id="does-the-value-of-c-matter" class="level3">
-<h3 class="anchored" data-anchor-id="does-the-value-of-c-matter">Does the Value of <span class="math inline">c</span> Matter?</h3>
+<h3 class="anchored" data-anchor-id="does-the-value-of-c-matter"><strong>Does the Value of <span class="math inline">c</span> Matter?</strong></h3>
 <p>No, the value of <span class="math inline">c</span> does not affect the interpolation at the given points. Since the additional term evaluates to 0 at <span class="math inline">x = 1, 2, 3, 4</span>, the polynomial will still pass through the points, regardless of <span class="math inline">c</span>.</p>
 <p>However, changing <span class="math inline">c</span> affects the behavior of the polynomial <strong>outside</strong> the interpolation points. For different values of <span class="math inline">c</span>, the polynomial will look different beyond the four points, but it will still pass through <span class="math inline">(1, 1)</span>, $(2, 3) $, $ (3, 3) $, and $ (4, 4)$.</p>
 
