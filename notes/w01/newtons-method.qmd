@@ -1,6 +1,30 @@
 ---
 title: "Newton's Method"
 author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 1
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show the code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
 **Newton's Method**, also known as the **Newton-Raphson Method**, is a widely used numerical method for finding successively better approximations to the roots (or zeros) of a real-valued function. It is particularly efficient when the initial guess is close to the actual root and when the function is well-behaved (smooth and differentiable).

@@ -27,7 +27,7 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
 The **forward error** is a critical concept in numerical linear algebra, measuring the difference between the approximate solution $\mathbf{x_a}$ and the true solution $\mathbf{x}$ of a linear system $A\mathbf{x} = \mathbf{b}$. It quantifies how far the computed solution is from the exact solution, providing insight into the accuracy of numerical methods.
 
@@ -41,9 +41,9 @@ where:
 
 - $\mathbf{x}$: The **true solution** of the system $A\mathbf{x} = \mathbf{b}$,
 - $\mathbf{x_a}$: The **approximate solution**,
-- $\|\cdot\|_\infty$: The infinity norm, measuring the maximum absolute entry of the vector.
+- $\|\cdot\|_\infty$: The [**infinity norm**](../norms/infinity-vector-norm.html), measuring the maximum absolute entry of the vector.
 
-## What Forward Error Represents
+## **What Forward Error Represents**
 
 1. **Solution Accuracy**:
 
@@ -61,7 +61,7 @@ where:
      \text{FE} = 0
      $$
 
-## Why Forward Error Matters
+## **Why Forward Error Matters**
 
 - **Assessing Solution Quality**:
 
@@ -75,7 +75,7 @@ where:
 
   - A small forward error indicates that the numerical method is producing reliable results.
 
-## Example
+## **Example**
 
 To enhance the visualization, we'll adjust the approximate solution $\mathbf{x_a}$ so that the differences in both components are whole numbers but **not equal**, providing a clearer depiction of forward error in multiple dimensions.
 
@@ -88,7 +88,7 @@ A = \begin{bmatrix} 1 & 1 \\ 3 & -4 \end{bmatrix}, \quad
 \mathbf{x_a} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}
 $$
 
-### Step 1: Verify the True Solution
+### **Step 1: Verify the True Solution**
 
 Check that $\mathbf{x}$ satisfies $A\mathbf{x} = \mathbf{b}$:
 
@@ -96,7 +96,7 @@ $$
 A\mathbf{x} = \begin{bmatrix} 1 \times 2 + 1 \times 1 \\ 3 \times 2 + (-4) \times 1 \end{bmatrix} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} = \mathbf{b}
 $$
 
-### Step 2: Compute the Forward Error
+### **Step 2: Compute the Forward Error**
 
 Compute the difference between $\mathbf{x}$ and $\mathbf{x_a}$:
 
@@ -110,12 +110,12 @@ $$
 \text{FE} = \|\mathbf{e}\|_\infty = \max(|1|, |2|) = 2
 $$
 
-### Step 3: Interpretation
+### **Step 3: Interpretation**
 
 - The maximum deviation between the true and approximate solutions is $2$, occurring in the second component.
 - The approximate solution $\mathbf{x_a}$ differs from $\mathbf{x}$ by $1$ in the $x$-component and $2$ in the $y$-component.
 
-## Visualization of Forward Error
+## **Visualization of Forward Error**
 
 To illustrate the forward error, we will visualize the true solution $\mathbf{x}$ and the approximate solution $\mathbf{x_a}$, along with the error vector $\mathbf{e} = \mathbf{x} - \mathbf{x_a}$. By plotting these vectors, we can see how the approximate solution deviates from the true solution in both components.
 
@@ -131,33 +131,27 @@ To illustrate the forward error, we will visualize the true solution $\mathbf{x}
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Define true solution, approximate solution, and error
 x_true = np.array([2, 1])
 x_a = np.array([1, -1])
 e = x_true - x_a
 
-# Create the plot
 plt.figure(figsize=(12, 8))
 origin = np.zeros(2)
 
-# Plot vectors with high zorder to appear above the grid
 plt.quiver(*origin, *x_true, color='black', angles='xy', scale_units='xy', scale=1, label=r'$\mathbf{x}$ (True Solution)', width=0.01, zorder=5)
 plt.quiver(*origin, *x_a, color='gray', angles='xy', scale_units='xy', scale=1, label=r'$\mathbf{x}_a$ (Approximate Solution)', width=0.01, zorder=5)
 plt.quiver(*x_a, *e, color='orange', angles='xy', scale_units='xy', scale=1, label=r'$\mathbf{e} = \mathbf{x} - \mathbf{x}_a$', width=0.01, zorder=5)
 plt.quiver(*x_a, e[0], 0, color='red', angles='xy', scale_units='xy', scale=1, label=r'$\mathbf{e_1}$', width=0.01, zorder=5)
 plt.quiver(x_a[0] + e[0], x_a[1], 0, e[1], color='purple', angles='xy', scale_units='xy', scale=1, label=r'$\mathbf{e_2}$', width=0.01, zorder=5)
 
-# Annotate vectors with high zorder
 plt.annotate(r'$\mathbf{x}_a$', (x_a[0], x_a[1]), textcoords="offset points", xytext=(-30, -15), ha='center', color='gray', fontsize=14, zorder=6)
 plt.annotate(r'$\mathbf{x}$', (x_true[0], x_true[1]), textcoords="offset points", xytext=(0, 10), ha='center', color='black', fontsize=14, zorder=6)
 plt.annotate(r'$\mathbf{e}$', (x_a[0] + e[0]/2, x_a[1] + e[1]/2), textcoords="offset points", xytext=(15, -15), ha='center', color='orange', fontsize=14, zorder=6)
 plt.annotate(r'$\mathbf{e_1}$', (x_a[0] + e[0]/2, x_a[1] - 0.2), textcoords="offset points", xytext=(0, -20), ha='center', color='red', fontsize=14, zorder=6)
 plt.annotate(r'$\mathbf{e_2}$', (x_a[0] + e[0] + 0.1, x_a[1] + e[1]/2), textcoords="offset points", xytext=(20, 0), ha='center', color='purple', fontsize=14, zorder=6)
 
-# Highlight the maximum component of the error
 plt.text(x_a[0] + e[0] + 0.3, x_a[1] + e[1] + 0.3, r'$\max(|\mathbf{e_1}|, |\mathbf{e_2}|) = |\mathbf{e_2}| = 2$', color='purple', fontsize=14, zorder=6)
 
-# Graph details
 plt.plot([x_a[0], x_true[0]], [x_a[1], x_true[1]], color='orange', linewidth=1.5, zorder=4)  # Keep the connecting line below vectors
 plt.xlim(-1, 5)
 plt.ylim(-2, 3)
@@ -172,7 +166,7 @@ plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
 ```
 
-### Explanation of the Visualization
+### E**xplanation of the Visualization**
 
 - **Vector Addition**:
 
@@ -204,7 +198,7 @@ plt.show()
 
   - The largest error is in the $y$-component, which determines the forward error.
 
-## Conclusion
+## **Conclusion**
 
 - **Forward Error Significance**:
 

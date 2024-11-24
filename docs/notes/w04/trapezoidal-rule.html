@@ -180,12 +180,10 @@ window.Quarto = {
 
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<hr>
 <p>The trapezoidal rule is a <strong>numerical method</strong> for approximating definite integrals. It works by dividing the interval of integration into sub-intervals and approximating the area under the curve as a series of <strong>trapezoids</strong>. This method is particularly useful for complex functions or when an analytical solution is not feasible.</p>
 </section>
 <section id="general-formula" class="level1">
 <h1>General Formula</h1>
-<hr>
 <p>Given the integral:</p>
 <p><span class="math display">\[
 \int_a^b f(x) \, dx
@@ -194,7 +192,6 @@ window.Quarto = {
 </section>
 <section id="equal-sub-intervals-uniform-spacing" class="level1">
 <h1>Equal Sub-Intervals (Uniform Spacing)</h1>
-<hr>
 <p>When the interval <span class="math inline">\([a, b]\)</span> is divided into <span class="math inline">\(n\)</span> <strong>equal sub-intervals</strong> of width:</p>
 <p><span class="math display">\[
 \Delta x = \frac{b - a}{n}
@@ -231,7 +228,6 @@ T_n = \frac{\Delta x}{2} \left( f(x_0) + 2 \sum_{i=1}^{n-1} f(x_i) + f(x_n) \rig
 </section>
 <section id="unequal-sub-intervals-non-uniform-spacing" class="level1">
 <h1>Unequal Sub-Intervals (Non-Uniform Spacing)</h1>
-<hr>
 <p>When the sub-intervals are <strong>not equally spaced</strong>, the formula adjusts to account for varying widths <span class="math inline">\(\Delta x_i\)</span> between points. The <strong>non-uniform trapezoidal rule</strong> becomes:</p>
 <p><span class="math display">\[
 T = \sum_{i=1}^{n} \frac{\Delta x_i}{2} \left( f(x_{i-1}) + f(x_i) \right)

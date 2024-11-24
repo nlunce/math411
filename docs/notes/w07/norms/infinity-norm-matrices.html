@@ -4823,20 +4823,20 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><strong>Definition</strong></a>
   <ul class="collapse">
-  <li><a href="#geometric-interpretation" id="toc-geometric-interpretation" class="nav-link" data-scroll-target="#geometric-interpretation">Geometric Interpretation</a></li>
+  <li><a href="#geometric-interpretation" id="toc-geometric-interpretation" class="nav-link" data-scroll-target="#geometric-interpretation"><strong>Geometric Interpretation</strong></a></li>
   </ul></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
-  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem">Example Problem</a>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties"><strong>Properties</strong></a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><strong>Example</strong></a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><strong>Applications</strong></a></li>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><strong>Visualization</strong></a></li>
+  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem"><strong>Example Problem</strong></a>
   <ul class="collapse">
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution:</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution:</strong></a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4869,23 +4869,23 @@ window.Quarto = {
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
 <p>The <strong>infinity norm</strong> (or maximum row sum norm) of a matrix is a measure of its size, calculated as the maximum absolute row sum. It is often used to analyze the stability of numerical algorithms and the behavior of matrices in linear transformations. The infinity norm provides an upper bound on the effect a matrix can have on a vector in terms of row-wise contributions.</p>
 </section>
 <section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition">Definition</h2>
+<h2 class="anchored" data-anchor-id="definition"><strong>Definition</strong></h2>
 <p>For a matrix <span class="math inline">A = [a_{ij}]</span> of size <span class="math inline">m \times n</span>, the infinity norm is defined as:</p>
 <p><span class="math display">
-\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|.
+\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|
 </span></p>
 <p>This is equivalent to finding the largest sum of absolute values of the elements in any row of the matrix.</p>
 <section id="geometric-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="geometric-interpretation">Geometric Interpretation</h3>
+<h3 class="anchored" data-anchor-id="geometric-interpretation"><strong>Geometric Interpretation</strong></h3>
 <p>The infinity norm quantifies the maximum influence of a row of the matrix when applied to a vector. It answers the question: “What is the largest total contribution of any single row?”</p>
 </section>
 </section>
 <section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<h2 class="anchored" data-anchor-id="properties"><strong>Properties</strong></h2>
 <p>The infinity norm satisfies the following key properties:</p>
 <ol type="1">
 <li><strong>Non-negativity</strong>: <span class="math inline">\|A\|_\infty \geq 0</span>, and <span class="math inline">\|A\|_\infty = 0</span> if and only if <span class="math inline">A = 0</span> (a zero matrix).</li>
@@ -4894,14 +4894,14 @@ window.Quarto = {
 </ol>
 </section>
 <section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
+<h2 class="anchored" data-anchor-id="example"><strong>Example</strong></h2>
 <p>Given a matrix <span class="math inline">A</span>:</p>
 <p><span class="math display">
 A = \begin{pmatrix}
 1 &amp; -2 &amp; 3 \\
 -4 &amp; 5 &amp; -6 \\
 7 &amp; -8 &amp; 9
-\end{pmatrix},
+\end{pmatrix}
 </span></p>
 <ol type="1">
 <li><p>Compute the row sums:</p>
@@ -4911,13 +4911,13 @@ A = \begin{pmatrix}
 <li>Row 3: <span class="math inline">|7| + |-8| + |9| = 7 + 8 + 9 = 24</span>.</li>
 </ul></li>
 <li><p>Find the maximum row sum: <span class="math display">
-\|A\|_\infty = \max(6, 15, 24) = 24.
+\|A\|_\infty = \max(6, 15, 24) = 24
 </span></p></li>
 </ol>
 <p>Thus, the infinity norm of <span class="math inline">A</span> is 24.</p>
 </section>
 <section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<h2 class="anchored" data-anchor-id="applications"><strong>Applications</strong></h2>
 <ol type="1">
 <li><p><strong>Numerical Stability</strong>:</p>
 <ul>
@@ -4938,20 +4938,20 @@ A = \begin{pmatrix}
 </ol>
 </section>
 <section id="visualization" class="level2">
-<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<h2 class="anchored" data-anchor-id="visualization"><strong>Visualization</strong></h2>
 <p>For a matrix, the infinity norm represents the largest “row weight” when summing all the absolute values of the row’s entries. It gives insight into the matrix’s effect along the rows.</p>
 </section>
 <section id="example-problem" class="level2">
-<h2 class="anchored" data-anchor-id="example-problem">Example Problem</h2>
+<h2 class="anchored" data-anchor-id="example-problem"><strong>Example Problem</strong></h2>
 <p><strong>Problem:</strong> Compute the infinity norm of:</p>
 <p><span class="math display">
 A = \begin{pmatrix}
 2 &amp; -1 \\
 -3 &amp; 4
-\end{pmatrix}.
+\end{pmatrix}
 </span></p>
 <section id="solution" class="level3">
-<h3 class="anchored" data-anchor-id="solution">Solution:</h3>
+<h3 class="anchored" data-anchor-id="solution"><strong>Solution:</strong></h3>
 <ol type="1">
 <li><p>Compute the row sums:</p>
 <ul>
@@ -4959,14 +4959,14 @@ A = \begin{pmatrix}
 <li>Row 2: <span class="math inline">|-3| + |4| = 3 + 4 = 7</span>.</li>
 </ul></li>
 <li><p>Find the maximum row sum: <span class="math display">
-\|A\|_\infty = \max(3, 7) = 7.
+\|A\|_\infty = \max(3, 7) = 7
 </span></p></li>
 </ol>
 <p>Thus, <span class="math inline">\|A\|_\infty = 7</span>.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
 <p>The infinity norm provides a simple yet powerful way to measure the row-wise magnitude of a matrix. Its computational simplicity and relevance to numerical analysis make it an essential tool in matrix computations.</p>
 
 

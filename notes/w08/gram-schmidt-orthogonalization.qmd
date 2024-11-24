@@ -29,7 +29,7 @@ preview:
 
 ## Overview
 
-The Gram-Schmidt Orthogonalization process is a fundamental technique in linear algebra for transforming a set of linearly independent vectors into an orthogonal (or orthonormal) set that spans the same subspace. This method is widely used in applications such as QR factorization, solving least squares problems, and numerical linear algebra. This note explores the definition, properties, computation, and applications of the Gram-Schmidt process.
+The Gram-Schmidt Orthogonalization process is a fundamental technique in linear algebra for transforming a set of linearly independent vectors into an orthogonal (or orthonormal) set that spans the same subspace. This method is widely used in applications such as QR factorization, solving [**least squares problems**](./least-squares.html), and numerical linear algebra. This note explores the definition, properties, computation, and applications of the Gram-Schmidt process.
 
 ## Definition and Process
 
@@ -93,7 +93,7 @@ Given vectors $A_1$ and $A_2$, the Gram-Schmidt process works as follows:
 Gram-Schmidt orthogonalization is widely applied in various fields due to its utility in creating orthogonal bases:
 
 - **QR Factorization**: Used to decompose a matrix into an orthogonal matrix $Q$ and an upper triangular matrix $R$.
-- **Least Squares Problems**: Assists in minimizing the error in fitting data to a model by creating orthogonal projections.
+- [**Least Squares Problems**](./least-squares.html): Assists in minimizing the error in fitting data to a model by creating orthogonal projections.
 - **Signal Processing and Data Compression**: Forms the foundation for methods that reduce redundancy by representing data in orthogonal bases.
 - **Machine Learning and Statistics**: Simplifies computations by projecting data onto orthogonal components.
 

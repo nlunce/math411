@@ -1,109 +1,126 @@
 ---
 title: 'Fixed-Point Iteration'
 author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show Code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
-**Fixed-Point Iteration** is a simple numerical method used to solve equations of the form $x = g(x)$. The method is based on the idea that a root of the equation $f(x) = 0$ can be found by rewriting it as $x = g(x)$, and then iterating the function $g(x)$ until the sequence of values converges to a solution.
+## **Overview**
 
-## The Fixed-Point Iteration Formula
+**Fixed-Point Iteration** is a simple numerical method for solving equations of the form $x = g(x)$. It is based on the idea of iteratively applying a function $g(x)$ to approximate a fixed point $x^*$, where $x^* = g(x^*)$. This method is commonly used in numerical root-finding and optimization.
 
-The fixed-point iteration method involves the recursive formula:
+## **Fixed-Point Iteration Formula**
 
-$$
-x_{k+1} = g(x_k)
-$$
-
-Here, $x_k$ is the $k$-th approximation of the root, and $g(x)$ is a function chosen such that the equation $x = g(x)$ has the same solution as $f(x) = 0$. The sequence $x_k$ is expected to converge to the fixed point $x^*$, where $x^* = g(x^*)$.
-
-### Convergence Criteria
-
-For fixed-point iteration to converge, certain conditions must be met:
-
-1. **The function $g(x)$ must be continuous** in the interval around the fixed point.
-2. **The derivative $g'(x)$** must satisfy the following condition for convergence at the fixed point $x^*$:
-
-$$
-|g'(x^*)| < 1
-$$
-
-If $|g'(x^*)| \geq 1$, the iteration may not converge.
-
-### Step-by-Step Procedure
-
-1. Choose an initial guess $x_0$.
-2. Apply the recursive formula:
+The fixed-point iteration method uses the recursive formula:
 
 $$
 x_{k+1} = g(x_k)
 $$
 
-3. Repeat the iteration until the difference between successive approximations is sufficiently small (i.e., $|x_{k+1} - x_k| < \epsilon$, where $\epsilon$ is a small tolerance value).
+where $x_k$ is the $k$-th approximation of the solution. Starting from an initial guess $x_0$, the sequence of approximations is generated iteratively, and convergence is expected when $|x_{k+1} - x_k|$ becomes sufficiently small.
 
-4. The value of $x_k$ is the approximate solution to the equation.
+## **Convergence Criteria**
 
-### Example
+For the fixed-point iteration to converge, certain conditions must be met:
 
-Let's go through an example where we solve the equation $x^2 - 2 = 0$, which has a solution at $x = \sqrt{2}$. We can rewrite this equation in the form $x = g(x)$ as:
+1. The function $g(x)$ must be continuous.
+2. The derivative $g'(x)$ at the fixed point $x^*$ must satisfy:
+   $$
+   |g'(x^*)| < 1
+   $$
+
+If $|g'(x^*)| \geq 1$, the method may fail to converge.
+
+## **Step-by-Step Procedure**
+
+1. Rewrite the given equation $f(x) = 0$ in the form $x = g(x)$.
+2. Choose an initial guess $x_0$.
+3. Apply the iteration formula:
+   $$
+   x_{k+1} = g(x_k)
+   $$
+4. Repeat the iteration until $|x_{k+1} - x_k| < \epsilon$, where $\epsilon$ is the tolerance.
+5. The final $x_k$ is an approximate solution.
+
+## **Example**
+
+Consider the equation:
+
+$$
+x^2 - 2 = 0
+$$
+
+Rewriting it as $x = g(x)$:
 
 $$
 g(x) = \frac{2}{x}
 $$
 
-1. **Initial guess**: Let $x_0 = 1.5$.
+### **Iterative Steps**
 
-2. **First iteration**: Using the recursive formula $x_{k+1} = g(x_k)$:
+1. **Initial Guess**: $x_0 = 1.5$.
+2. **First Iteration**:
+   $$
+   x_1 = g(x_0) = \frac{2}{1.5} = 1.3333
+   $$
+3. **Second Iteration**:
+   $$
+   x_2 = g(x_1) = \frac{2}{1.3333} \approx 1.5
+   $$
+4. **Third Iteration**:
+   $$
+   x_3 = g(x_2) = \frac{2}{1.5} \approx 1.3333
+   $$
 
-$$
-x_1 = g(x_0) = \frac{2}{1.5} = 1.3333
-$$
+The values oscillate around the solution $\sqrt{2}$. With more iterations and a smaller tolerance $\epsilon$, the method converges to the actual solution.
 
-3. **Second iteration**:
+## **Convergence and Stability**
 
-$$
-x_2 = g(x_1) = \frac{2}{1.3333} = 1.5
-$$
+For fixed-point iteration to converge:
 
-4. **Third iteration**:
+- $|g'(x^*)| < 1$ ensures stability near the fixed point.
+- Poorly chosen $g(x)$ or initial guesses can lead to divergence or slow convergence.
 
-$$
-x_3 = g(x_2) = \frac{2}{1.5} = 1.3333
-$$
+### **Example of Divergence**
 
-In this case, the iterations quickly begin to oscillate around the solution. Further iterations will converge to $\sqrt{2}$, depending on the tolerance value.
+If $g(x)$ is poorly chosen such that $|g'(x^*)| > 1$, the method may fail to converge. For instance, using $g(x) = x^2$ for the same equation would cause the iteration to diverge.
 
-### Convergence and Stability
+## **Applications**
 
-The method converges when the derivative $|g'(x^*)| < 1$, ensuring that the successive values get closer to the actual solution. If $|g'(x)| > 1$ near the fixed point, the iterations may diverge, oscillate, or converge very slowly.
+- **Root-Finding**: Solve equations like $f(x) = 0$.
+- **Dynamical Systems**: Analyze equilibrium points.
+- **Optimization**: Solve constraints arising in optimization problems.
 
-### Acceleration Techniques
+## **Advantages and Limitations**
 
-1. **Aitken's $\Delta^2$-Process**: This method accelerates convergence by extrapolating the sequence of approximations.
-2. **Relaxation Methods**: Modifying the iterative formula to include a relaxation parameter $\lambda$, such as in **under-relaxation** and **over-relaxation**, to speed up convergence:
+### **Advantages**
 
-$$
-x_{k+1} = (1 - \lambda)x_k + \lambda g(x_k)
-$$
+1. **Simple Implementation**: Requires minimal computation.
+2. **Versatile**: Applicable to a wide range of problems.
 
-Where $\lambda \in (0,1)$ for under-relaxation and $\lambda > 1$ for over-relaxation.
+### **Limitations**
 
-### Applications of Fixed-Point Iteration
-
-- **Root-Finding**: It is commonly used to find roots of non-linear equations.
-- **Dynamical Systems**: Fixed-point iterations are used to model and analyze the behavior of dynamical systems that stabilize at an equilibrium point.
-- **Optimization**: In optimization problems, fixed-point methods can help solve systems of equations that arise from optimization constraints.
-
-### Advantages of Fixed-Point Iteration
-
-- **Simple Implementation**: The method is easy to implement and requires only basic operations.
-- **Applicable to Various Problems**: It can be applied to a wide range of equations and is useful in many scientific and engineering applications.
-
-### Limitations of Fixed-Point Iteration
-
-1. **Slow Convergence**: Fixed-point iteration may converge slowly, especially if the function $g(x)$ is poorly chosen.
-2. **Sensitive to Initial Guess**: The success and speed of convergence depend heavily on the choice of the initial guess. A poor initial guess can lead to divergence.
-
-3. **Not Always Convergent**: If $|g'(x)| \geq 1$, the method may not converge to a solution, and alternative methods like **Newton’s Method** or **Bisection Method** may be preferred.
-
-### Conclusion
-
-Fixed-point iteration is a fundamental and simple numerical method for finding roots of equations. However, it is essential to ensure the proper choice of function $g(x)$ and initial guess to ensure convergence. While it is not always the fastest method, its simplicity makes it a good starting point for solving non-linear equations.
+1. **Convergence Issues**: Sensitive to $g(x)$ and initial guess.
+2. **Slow Convergence**: May require many iterations for highly accurate solutions.

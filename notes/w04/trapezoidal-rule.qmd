@@ -5,13 +5,9 @@ author: 'Nathan Lunceford'
 
 # Overview
 
----
-
 The trapezoidal rule is a **numerical method** for approximating definite integrals. It works by dividing the interval of integration into sub-intervals and approximating the area under the curve as a series of **trapezoids**. This method is particularly useful for complex functions or when an analytical solution is not feasible.
 
 # General Formula
-
----
 
 Given the integral:
 
@@ -22,8 +18,6 @@ $$
 The trapezoidal rule estimates the integral by approximating the region under the curve with trapezoids.
 
 # Equal Sub-Intervals (Uniform Spacing)
-
----
 
 When the interval $[a, b]$ is divided into $n$ **equal sub-intervals** of width:
 
@@ -66,8 +60,6 @@ where:
 - The summation accounts for the contributions of interior points.
 
 # Unequal Sub-Intervals (Non-Uniform Spacing)
-
----
 
 When the sub-intervals are **not equally spaced**, the formula adjusts to account for varying widths $\Delta x_i$ between points. The **non-uniform trapezoidal rule** becomes:
 

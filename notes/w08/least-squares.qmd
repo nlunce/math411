@@ -33,7 +33,7 @@ The least squares solution minimizes the distance between the vector $\mathbf{b}
 
 This distance corresponds to the residual $\|\mathbf{b} - \mathbf{\hat{b}}\|$, where $\mathbf{\hat{b}} = A\mathbf{\hat{x}}$ is the projection of $\mathbf{b}$ onto $\mathrm{Col}(A)$.
 
-## Visualizing the Least Squares Solution
+## **Visualizing the Least Squares Solution**
 
 The figure below illustrates how the least squares solution $\mathbf{\hat{x}}$ projects $\mathbf{b}$ onto $\mathrm{Col}(A)$, which is spanned by the columns of $A$. The vector $\mathbf{r} = \mathbf{b} - \mathbf{\hat{b}}$ is orthogonal to $\mathrm{Col}(A)$.
 
@@ -88,7 +88,7 @@ $$
 
 The projection $\mathbf{\hat{b}}$ lies in $\mathrm{Col}(A)$, and the residual $\mathbf{r} = \mathbf{b} - \mathbf{\hat{b}}$ is orthogonal to this space. This makes $\mathbf{\hat{b}}$ the closest vector in $\mathrm{Col}(A)$ to $\mathbf{b}$.
 
-## Summary
+## **Summary**
 
 The least squares method projects $\mathbf{b}$ onto $\mathrm{Col}(A)$, solving the equation:
 

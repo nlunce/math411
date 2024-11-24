@@ -29,196 +29,146 @@ preview:
 
 ## **Overview**
 
-The **Jacobi Method** is an iterative algorithm used to solve linear systems of the form $A\mathbf{x} = \mathbf{b}$, where $A$ is a square matrix, $\mathbf{x}$ is the vector of unknowns, and $\mathbf{b}$ is the right-hand side vector. This method is particularly useful for large, sparse systems where direct methods like Gaussian elimination may be computationally expensive.
+The **Jacobi Method** is a type of [**fixed-point iteration**](../../w01/fixed-point-iteration.html) specifically designed for solving [**systems of linear equations**](../../w06/linear-systems.html). The approach involves rewriting each equation to solve for one variable at a time and iterating over these equations to approximate the solution.
 
-In this document, we will explore the mechanics of the Jacobi Method, its convergence criteria, and an example application.
+For a system of equations $A\mathbf{x} = \mathbf{b}$, the Jacobi Method works by isolating the $i$-th variable in the $i$-th equation, updating its value based on the other variables' values from the previous iteration.
 
-## **The Algorithm**
+## **The Jacobi Method**
 
-The Jacobi Method iteratively refines an initial guess for $\mathbf{x}$ by solving for each component of $\mathbf{x}$ using the equations of the linear system. The algorithm assumes that the diagonal entries of $A$ are non-zero.
+Consider the system of equations:
 
-### **Step-by-Step Procedure**
+$$
+A\mathbf{x} = \mathbf{b}
+$$
 
-1. Rewrite the system $A\mathbf{x} = \mathbf{b}$ in a form suitable for iteration.  
-   For $A = [a_{ij}]$, $\mathbf{x} = [x_j]$, and $\mathbf{b} = [b_i]$, the system can be rewritten as:
+Let $A$ be decomposed into three parts:
+
+- $D$: The diagonal components of $A$.
+- $L$: The strictly lower triangular components of $A$.
+- $U$: The strictly upper triangular components of $A$.
+
+Thus,
+
+$$
+A = D + L + U
+$$
+
+Rewriting $A\mathbf{x} = \mathbf{b}$, we have:
+
+$$
+D\mathbf{x} = \mathbf{b} - (L + U)\mathbf{x}
+$$
+
+Solving for $\mathbf{x}$:
+
+$$
+\mathbf{x} = D^{-1} \left( \mathbf{b} - (L + U)\mathbf{x} \right)
+$$
+
+The Jacobi Method then iteratively updates the values of $\mathbf{x}$ as:
+
+$$
+\mathbf{x}^{(k+1)} = D^{-1} \left( \mathbf{b} - (L + U)\mathbf{x}^{(k)} \right)
+$$
+
+where $k$ denotes the iteration step.
+
+## **Example**
+
+### **System of Equations**
+
+Consider the system:
+
+$$
+3u + v = 5, \quad u + 2v = 5
+$$
+
+### **Step 1: Rearrange Equations**
+
+Rewrite each equation to isolate the variables:
+
+$$
+u = \frac{5 - v}{3}, \quad v = \frac{5 - u}{2}
+$$
+
+### **Step 2: Iterative Updates**
+
+Start with an initial guess $\mathbf{x}^{(0)} = \begin{bmatrix} u_0 \\ v_0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$. The iterations proceed as follows:
+
+1. **Iteration 1 ($k = 1$):**
 
    $$
-   x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij} x_j^{(k)} \right)
+   u_1 = \frac{5 - v_0}{3} = \frac{5 - 0}{3} = \frac{5}{3}, \quad v_1 = \frac{5 - u_0}{2} = \frac{5 - 0}{2} = \frac{5}{2}
    $$
 
-   where $x_i^{(k+1)}$ is the updated value of $x_i$ in the $(k+1)$-th iteration.
+   Thus, $\mathbf{x}^{(1)} = \begin{bmatrix} \frac{5}{3} \\ \frac{5}{2} \end{bmatrix}$.
 
-2. Choose an initial guess $\mathbf{x}^{(0)}$.
+2. **Iteration 2 ($k = 2$):**
 
-3. Update each component of $\mathbf{x}$ iteratively using the formula above.
+   $$
+   u_2 = \frac{5 - v_1}{3} = \frac{5 - \frac{5}{2}}{3} = \frac{5}{6}, \quad v_2 = \frac{5 - u_1}{2} = \frac{5 - \frac{5}{3}}{2} = \frac{5}{3}
+   $$
 
-4. Stop when the solution converges, i.e., when $\|\mathbf{x}^{(k+1)} - \mathbf{x}^{(k)}\|$ is smaller than a predefined tolerance.
+   Thus, $\mathbf{x}^{(2)} = \begin{bmatrix} \frac{5}{6} \\ \frac{5}{3} \end{bmatrix}$.
 
-## **Convergence Criteria**
+3. **Iteration 3 ($k = 3$):**
 
-The Jacobi Method converges if the matrix $A$ is **diagonally dominant** or **symmetric positive definite**.
+   $$
+   u_3 = \frac{5 - v_2}{3} = \frac{5 - \frac{5}{3}}{3} = \frac{10}{9}, \quad v_3 = \frac{5 - u_2}{2} = \frac{5 - \frac{5}{6}}{2} = \frac{25}{12}
+   $$
 
-### **Diagonal Dominance**
+   Thus, $\mathbf{x}^{(3)} = \begin{bmatrix} \frac{10}{9} \\ \frac{25}{12} \end{bmatrix}$.
 
-A matrix $A = [a_{ij}]$ is diagonally dominant if:
+### **Convergence**
+
+The iterative updates show convergence to the solution $\mathbf{x} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$.
+
+## **Convergence Conditions**
+
+The Jacobi Method converges if the matrix $A$ is **strictly diagonally dominant**, meaning:
 
 $$
 |a_{ii}| > \sum_{j \neq i} |a_{ij}|
 $$
 
-for all $i$.
+for all rows $i$. Alternatively, if $A$ is **symmetric positive definite**, the Jacobi Method is also guaranteed to converge.
 
-### **Symmetric Positive Definiteness**
+## **Limitations**
 
-A matrix $A$ is symmetric positive definite if it is symmetric ($A = A^\top$) and all its eigenvalues are positive.
+In cases where $A$ is not strictly diagonally dominant or symmetric positive definite, the Jacobi Method may fail to converge.
 
-## **Advantages and Disadvantages**
+### **Example of Divergence**
 
-### **Advantages**
-
-- Simple and easy to implement.
-- Suitable for parallel computation since each $x_i^{(k+1)}$ depends only on values from the previous iteration.
-- Works well for sparse systems.
-
-### **Disadvantages**
-
-- May converge slowly for some systems.
-- Requires $A$ to satisfy certain properties (e.g., diagonal dominance) for guaranteed convergence.
-
-## **A Practical Example**
-
-Consider solving the system:
+Consider the system:
 
 $$
-\begin{bmatrix}
-4 & 1 & 2 \\
-3 & 5 & 1 \\
-1 & 1 & 3
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\
-x_2 \\
-x_3
-\end{bmatrix}
-=
-\begin{bmatrix}
-4 \\
-7 \\
-3
-\end{bmatrix}
+u + 2v = 5, \quad 3u + v = 5
 $$
 
-### **Step 1: Rewrite for Iteration**
-
-From the formula:
+Rewriting:
 
 $$
-x_1^{(k+1)} = \frac{1}{4} \left( 4 - x_2^{(k)} - 2x_3^{(k)} \right)
+u = 5 - 2v, \quad v = 5 - 3u
 $$
 
-$$
-x_2^{(k+1)} = \frac{1}{5} \left( 7 - 3x_1^{(k)} - x_3^{(k)} \right)
-$$
+Starting with $\mathbf{x}^{(0)} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}$, the iterations diverge:
 
-$$
-x_3^{(k+1)} = \frac{1}{3} \left( 3 - x_1^{(k)} - x_2^{(k)} \right)
-$$
+1. **Iteration 1 ($k = 1$):**
 
-### **Step 2: Choose Initial Guess**
+   $$
+   u_1 = 5 - 2v_0 = 5, \quad v_1 = 5 - 3u_0 = 5
+   $$
 
-Let the initial guess be:
+   $\mathbf{x}^{(1)} = \begin{bmatrix} 5 \\ 5 \end{bmatrix}$.
 
-$$
-\mathbf{x}^{(0)} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
-$$
+2. **Iteration 2 ($k = 2$):**
+   $$
+   u_2 = 5 - 2v_1 = -5, \quad v_2 = 5 - 3u_1 = -10
+   $$
+   $\mathbf{x}^{(2)} = \begin{bmatrix} -5 \\ -10 \end{bmatrix}$
 
-### **Step 3: Iterative Updates**
-
-#### **Iteration 1:**
-
-Using $\mathbf{x}^{(0)} = [0, 0, 0]$:
-
-$$
-x_1^{(1)} = \frac{1}{4} (4 - 0 - 0) = 1
-$$
-
-$$
-x_2^{(1)} = \frac{1}{5} (7 - 0 - 0) = 1.4
-$$
-
-$$
-x_3^{(1)} = \frac{1}{3} (3 - 0 - 0) = 1
-$$
-
-$$
-\mathbf{x}^{(1)} = \begin{bmatrix} 1 \\ 1.4 \\ 1 \end{bmatrix}
-$$
-
-#### **Iteration 2:**
-
-Using $\mathbf{x}^{(1)} = [1, 1.4, 1]$:
-
-$$
-x_1^{(2)} = \frac{1}{4} (4 - 1.4 - 2(1)) = 0.4
-$$
-
-$$
-x_2^{(2)} = \frac{1}{5} (7 - 3(1) - 1) = 0.6
-$$
-
-$$
-x_3^{(2)} = \frac{1}{3} (3 - 1 - 0.6) = 0.8
-$$
-
-$$
-\mathbf{x}^{(2)} = \begin{bmatrix} 0.4 \\ 0.6 \\ 0.8 \end{bmatrix}
-$$
-
-### **Step 4: Convergence**
-
-Continue iterations until $\|\mathbf{x}^{(k+1)} - \mathbf{x}^{(k)}\| < \text{tolerance}$.
-
-### **Final Solution**
-
-The final solution is:
-
-$$
-\mathbf{x} = \begin{bmatrix} 0.5 \\ 1 \\ 0.75 \end{bmatrix}
-$$
-
-after sufficient iterations, to within the desired tolerance.
-
-## **Code Implementation**
-
-```python
-import numpy as np
-
-# Matrix A and vector b
-A = np.array([[4, 1, 2],
-              [3, 5, 1],
-              [1, 1, 3]])
-b = np.array([4, 7, 3])
-
-# Initial guess
-x = np.zeros_like(b, dtype=float)
-
-# Iteration parameters
-tolerance = 1e-5
-max_iterations = 100
-
-# Jacobi Method
-for k in range(max_iterations):
-    x_new = np.zeros_like(x)
-    for i in range(A.shape[0]):
-        s = sum(A[i, j] * x[j] for j in range(A.shape[1]) if j != i)
-        x_new[i] = (b[i] - s) / A[i, i]
-    if np.linalg.norm(x_new - x, ord=np.inf) < tolerance:
-        break
-    x = x_new
-
-print(f"Solution: {x}")
-```
+The divergence occurs because the matrix is not strictly diagonally dominant.
 
 ## **Summary**
 
-The Jacobi Method is a fundamental tool in numerical linear algebra. By understanding its workings and limitations, one can effectively apply it to solve linear systems, especially in scenarios where direct methods are infeasible. However, ensuring convergence through appropriate system properties is crucial for reliable results.
+The Jacobi Method is a simple and effective iterative technique for solving linear systems, particularly when the system matrix is strictly diagonally dominant or symmetric positive definite. However, it is sensitive to the properties of the matrix $A$ and may not converge for all systems.

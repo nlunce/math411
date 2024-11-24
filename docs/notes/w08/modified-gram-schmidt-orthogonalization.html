@@ -4823,16 +4823,16 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#definition-and-process" id="toc-definition-and-process" class="nav-link" data-scroll-target="#definition-and-process">Definition and Process</a></li>
-  <li><a href="#steps-of-the-modified-gram-schmidt-process" id="toc-steps-of-the-modified-gram-schmidt-process" class="nav-link" data-scroll-target="#steps-of-the-modified-gram-schmidt-process">Steps of the Modified Gram-Schmidt Process</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
+  <li><a href="#definition-and-process" id="toc-definition-and-process" class="nav-link" data-scroll-target="#definition-and-process"><strong>Definition and Process</strong></a></li>
+  <li><a href="#steps-of-the-modified-gram-schmidt-process" id="toc-steps-of-the-modified-gram-schmidt-process" class="nav-link" data-scroll-target="#steps-of-the-modified-gram-schmidt-process"><strong>Steps of the Modified Gram-Schmidt Process</strong></a></li>
   <li><a href="#differences-between-classical-and-modified-gram-schmidt" id="toc-differences-between-classical-and-modified-gram-schmidt" class="nav-link" data-scroll-target="#differences-between-classical-and-modified-gram-schmidt">Differences Between Classical and Modified Gram-Schmidt</a></li>
-  <li><a href="#properties-of-modified-gram-schmidt-orthogonalization" id="toc-properties-of-modified-gram-schmidt-orthogonalization" class="nav-link" data-scroll-target="#properties-of-modified-gram-schmidt-orthogonalization">Properties of Modified Gram-Schmidt Orthogonalization</a></li>
-  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem">Example Problem</a>
+  <li><a href="#properties-of-modified-gram-schmidt-orthogonalization" id="toc-properties-of-modified-gram-schmidt-orthogonalization" class="nav-link" data-scroll-target="#properties-of-modified-gram-schmidt-orthogonalization"><strong>Properties of Modified Gram-Schmidt Orthogonalization</strong></a></li>
+  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem"><strong>Example Problem</strong></a>
   <ul class="collapse">
-  <li><a href="#solution-steps" id="toc-solution-steps" class="nav-link" data-scroll-target="#solution-steps">Solution Steps</a></li>
+  <li><a href="#solution-steps" id="toc-solution-steps" class="nav-link" data-scroll-target="#solution-steps"><strong>Solution Steps</strong></a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4865,11 +4865,11 @@ window.Quarto = {
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <strong>Modified Gram-Schmidt Orthogonalization (MGS)</strong> is a variation of the classical Gram-Schmidt process that improves numerical stability during computations. While it produces the same mathematical results as the classical process, MGS incrementally updates the working vector, avoiding the accumulation of rounding errors. This is especially beneficial when working with floating-point arithmetic in machine computations.</p>
+<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
+<p>The <strong>Modified Gram-Schmidt Orthogonalization (MGS)</strong> is a variation of the <a href="./gram-schmidt-orthogonalization.html"><strong>classical Gram-Schmidt process</strong></a> that improves numerical stability during computations. While it produces the same mathematical results as the classical process, MGS incrementally updates the working vector, avoiding the accumulation of rounding errors. This is especially beneficial when working with floating-point arithmetic in machine computations.</p>
 </section>
 <section id="definition-and-process" class="level2">
-<h2 class="anchored" data-anchor-id="definition-and-process">Definition and Process</h2>
+<h2 class="anchored" data-anchor-id="definition-and-process"><strong>Definition and Process</strong></h2>
 <p>Given a set of linearly independent vectors <span class="math inline">A_1, A_2, \dots, A_n</span>, the Modified Gram-Schmidt process produces an orthogonal (or orthonormal) set of vectors <span class="math inline">q_1, q_2, \dots, q_n</span> such that:</p>
 <ol type="1">
 <li>Each vector <span class="math inline">q_i</span> is orthogonal to the previous vectors <span class="math inline">q_1, q_2, \dots, q_{i-1}</span>.</li>
@@ -4878,7 +4878,7 @@ window.Quarto = {
 <p>The primary distinction of MGS is its incremental update of the working vector <span class="math inline">y</span>, ensuring orthogonality is preserved at every step.</p>
 </section>
 <section id="steps-of-the-modified-gram-schmidt-process" class="level2">
-<h2 class="anchored" data-anchor-id="steps-of-the-modified-gram-schmidt-process">Steps of the Modified Gram-Schmidt Process</h2>
+<h2 class="anchored" data-anchor-id="steps-of-the-modified-gram-schmidt-process"><strong>Steps of the Modified Gram-Schmidt Process</strong></h2>
 <ol type="1">
 <li><p><strong>Initialize with the First Vector</strong>: Normalize <span class="math inline">A_1</span> to obtain <span class="math inline">q_1</span>:</p>
 <p><span class="math display">
@@ -4981,7 +4981,7 @@ Preferred for numerical applications and large-scale computations.
 </tbody></table>
 </section>
 <section id="properties-of-modified-gram-schmidt-orthogonalization" class="level2">
-<h2 class="anchored" data-anchor-id="properties-of-modified-gram-schmidt-orthogonalization">Properties of Modified Gram-Schmidt Orthogonalization</h2>
+<h2 class="anchored" data-anchor-id="properties-of-modified-gram-schmidt-orthogonalization"><strong>Properties of Modified Gram-Schmidt Orthogonalization</strong></h2>
 <ul>
 <li><strong>Orthogonality</strong>: Each vector <span class="math inline">q_i</span> is orthogonal to all previously generated vectors <span class="math inline">q_1, \dots, q_{i-1}</span>.</li>
 <li><strong>Span Preservation</strong>: The set <span class="math inline">\{q_1, q_2, \dots, q_n\}</span> spans the same subspace as <span class="math inline">\{A_1, A_2, \dots, A_n\}</span>.</li>
@@ -4989,7 +4989,7 @@ Preferred for numerical applications and large-scale computations.
 </ul>
 </section>
 <section id="example-problem" class="level2">
-<h2 class="anchored" data-anchor-id="example-problem">Example Problem</h2>
+<h2 class="anchored" data-anchor-id="example-problem"><strong>Example Problem</strong></h2>
 <p><strong>Problem:</strong> Given the matrix</p>
 <p><span class="math display">
 \mathbf{A} =
@@ -5002,7 +5002,7 @@ Preferred for numerical applications and large-scale computations.
 </span></p>
 <p>find the orthonormal basis <span class="math inline">Q = [q_1, q_2, q_3]</span> using the Modified Gram-Schmidt process.</p>
 <section id="solution-steps" class="level3">
-<h3 class="anchored" data-anchor-id="solution-steps">Solution Steps</h3>
+<h3 class="anchored" data-anchor-id="solution-steps"><strong>Solution Steps</strong></h3>
 <ol type="1">
 <li><p><strong>Compute <span class="math inline">q_1</span>:</strong> Normalize <span class="math inline">A_1</span>:</p>
 <p><span class="math display">
@@ -5074,7 +5074,7 @@ q_3 = \frac{1}{\|y\|} \begin{bmatrix} 0 \\ -\frac{\delta}{2} \\ -\frac{\delta}{2
 </section>
 </section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
 <p>Modified Gram-Schmidt is a more stable alternative to the classical process, particularly when dealing with small or near-parallel vectors. By incrementally updating the working vector <span class="math inline">y</span>, MGS ensures numerical stability and maintains orthogonality even in the presence of rounding errors. It is especially useful in applications like QR factorization and solving least squares problems in computational settings.</p>
 
 

@@ -27,17 +27,17 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
 In the realm of numerical computations, precision and accuracy are paramount. However, various phenomena can undermine these qualities, leading to erroneous results. One such phenomenon is **swamping**, a term that describes the masking or overwhelming of smaller errors by larger ones, making it difficult to detect or mitigate the underlying issues. Understanding swamping is essential for developing robust numerical algorithms and ensuring the reliability of computational results.
 
-## What is Swamping?
+## **What is Swamping?**
 
 **Swamping** refers to the scenario where smaller errors or perturbations in a numerical computation are obscured or dominated by larger errors. This can occur in various contexts, such as solving linear systems, eigenvalue computations, or iterative algorithms. When swamping happens, it becomes challenging to identify and correct minor inaccuracies, potentially leading to significant deviations in the final outcome.
 
 Mathematically, consider a computation where multiple sources of errors are present. If one error component is significantly larger than others, it can overshadow the smaller ones, effectively "swamping" them. This makes it difficult to assess the cumulative effect of all errors accurately.
 
-## Causes of Swamping
+## **Causes of Swamping**
 
 Swamping can arise from several factors in numerical computations:
 
@@ -48,7 +48,7 @@ Swamping can arise from several factors in numerical computations:
 
 2. **Ill-Conditioned Systems:**
 
-   - Systems with a high condition number are sensitive to perturbations. Small errors in input data or intermediate computations can lead to large errors in the solution, causing swamping.
+   - Systems with a high [**condition number**](./condition-number-matrix.html) are sensitive to perturbations. Small errors in input data or intermediate computations can lead to large errors in the solution, causing swamping.
 
 3. **Algorithmic Instabilities:**
 
@@ -57,7 +57,7 @@ Swamping can arise from several factors in numerical computations:
 4. **Data Noise:**
    - In data-driven computations, high levels of noise can mask underlying signals, making it difficult to detect subtle patterns or trends.
 
-## Implications of Swamping
+## **Implications of Swamping**
 
 Swamping has several critical implications for numerical computations:
 
@@ -66,7 +66,7 @@ Swamping has several critical implications for numerical computations:
 - **Algorithm Reliability:** Algorithms susceptible to swamping may produce unreliable results, undermining their applicability in sensitive applications.
 - **Difficulty in Debugging:** Identifying and isolating the sources of errors becomes challenging when swamping occurs, complicating the debugging process.
 
-## Detecting and Mitigating Swamping
+## **Detecting and Mitigating Swamping**
 
 Effective detection and mitigation strategies are essential to manage swamping in numerical computations:
 
@@ -77,7 +77,7 @@ Effective detection and mitigation strategies are essential to manage swamping i
 
 ### 2. **Condition Number Assessment:**
 
-- **Compute Condition Numbers:** Evaluate the condition number of matrices involved using appropriate norms (e.g., Infinity Norm) to gauge sensitivity.
+- **Compute Condition Numbers:** Evaluate the condition number of matrices involved using appropriate norms (e.g., [**Infinity Norm**](../norms/infinity-vector-norm.html)) to gauge sensitivity.
 - **Well-Conditioned vs. Ill-Conditioned:** Prefer algorithms and formulations that minimize the condition number to reduce susceptibility to swamping.
 
 ### 3. **Algorithm Selection and Improvement:**
@@ -95,11 +95,11 @@ Effective detection and mitigation strategies are essential to manage swamping i
 - **Tikhonov Regularization:** Introduce regularization terms to stabilize solutions, especially in ill-posed problems.
 - **Noise Filtering:** Apply filtering techniques to data to reduce noise levels and prevent swamping of subtle signals.
 
-## A Practical Example
+## **A Practical Example**
 
 To illustrate swamping, let's consider the problem of solving a linear system using Gaussian elimination without pivoting, which can be susceptible to error amplification in ill-conditioned systems.
 
-### The Problem Setup
+### **The Problem Setup**
 
 Consider the system:
 
@@ -129,7 +129,7 @@ $$
 \end{bmatrix}
 $$
 
-### Step 1: Compute the Condition Number $\kappa_\infty(A)$
+### **Step 1: Compute the Condition Number $\kappa_\infty(A)$**
 
 Using the **Infinity Norm**:
 
@@ -165,7 +165,7 @@ $$
 
 A condition number of approximately **40004** indicates that the matrix $A$ is **ill-conditioned**, making the system highly sensitive to perturbations.
 
-### Step 2: Solve the System Using Gaussian Elimination Without Pivoting
+### **Step 2: Solve the System Using Gaussian Elimination Without Pivoting**
 
 Performing Gaussian elimination:
 
@@ -189,7 +189,7 @@ Performing Gaussian elimination:
 
 The computed solution is $\mathbf{x} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$, which matches the true solution. However, this accuracy is contingent on the precision of computations and the absence of rounding errors.
 
-### Step 3: Introduce Perturbations to Simulate Swamping
+### **Step 3: Introduce Perturbations to Simulate Swamping**
 
 Now, let's introduce a more **realistic perturbation** that simulates how a computer might **round off** numbers during computations.
 
@@ -203,7 +203,7 @@ Computers represent numbers with finite precision, typically using floating-poin
 
 This small change is akin to a computer rounding **2.0001** down to **2**, illustrating how precision limitations can lead to significant deviations.
 
-### Step 4: Solving the Perturbed System
+### **Step 4: Solving the Perturbed System**
 
 With the perturbed equation, the system becomes:
 
@@ -240,7 +240,7 @@ Reapplying Gaussian elimination:
 
 The computed solution is $\mathbf{x} = \begin{bmatrix} 2 \\ 0 \end{bmatrix}$, which **deviates significantly** from the true solution $\begin{bmatrix} 1 \\ 1 \end{bmatrix}$.
 
-### Step 5: Analyzing the Impact
+### **Step 5: Analyzing the Impact**
 
 - **Original Solution:** $(x, y) = (1, 1)$
 - **After Rounding Error:** $(x, y) = (2, 0)$
@@ -248,6 +248,6 @@ The computed solution is $\mathbf{x} = \begin{bmatrix} 2 \\ 0 \end{bmatrix}$, wh
 **Observation:**  
 A **minuscule rounding error** in the constant term of the second equation (from 2.0001 to 2) caused the solution to shift dramatically from $(1, 1)$ to $(2, 0)$.
 
-### Step 6: Interpretation
+### **Step 6: Interpretation**
 
 The small perturbation in $\mathbf{b}$ led to a substantial error in the solution, illustrating how swamping can occur in ill-conditioned systems. The large condition number amplified the minor change in $\mathbf{b}$, resulting in a significant deviation in $\mathbf{x}$.

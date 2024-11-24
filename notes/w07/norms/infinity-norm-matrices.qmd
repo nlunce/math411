@@ -27,25 +27,25 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
 The **infinity norm** (or maximum row sum norm) of a matrix is a measure of its size, calculated as the maximum absolute row sum. It is often used to analyze the stability of numerical algorithms and the behavior of matrices in linear transformations. The infinity norm provides an upper bound on the effect a matrix can have on a vector in terms of row-wise contributions.
 
-## Definition
+## **Definition**
 
 For a matrix $A = [a_{ij}]$ of size $m \times n$, the infinity norm is defined as:
 
 $$
-\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|.
+\|A\|_\infty = \max_{1 \leq i \leq m} \sum_{j=1}^n |a_{ij}|
 $$
 
 This is equivalent to finding the largest sum of absolute values of the elements in any row of the matrix.
 
-### Geometric Interpretation
+### **Geometric Interpretation**
 
 The infinity norm quantifies the maximum influence of a row of the matrix when applied to a vector. It answers the question: "What is the largest total contribution of any single row?"
 
-## Properties
+## **Properties**
 
 The infinity norm satisfies the following key properties:
 
@@ -53,7 +53,7 @@ The infinity norm satisfies the following key properties:
 2. **Homogeneity**: For any scalar $c$, $\|cA\|_\infty = |c| \|A\|_\infty$.
 3. **Triangle Inequality**: $\|A + B\|_\infty \leq \|A\|_\infty + \|B\|_\infty$.
 
-## Example
+## **Example**
 
 Given a matrix $A$:
 
@@ -62,7 +62,7 @@ A = \begin{pmatrix}
 1 & -2 & 3 \\
 -4 & 5 & -6 \\
 7 & -8 & 9
-\end{pmatrix},
+\end{pmatrix}
 $$
 
 1. Compute the row sums:
@@ -73,12 +73,12 @@ $$
 
 2. Find the maximum row sum:
    $$
-   \|A\|_\infty = \max(6, 15, 24) = 24.
+   \|A\|_\infty = \max(6, 15, 24) = 24
    $$
 
 Thus, the infinity norm of $A$ is 24.
 
-## Applications
+## **Applications**
 
 1. **Numerical Stability**:
    - The infinity norm is often used to measure the sensitivity of solutions to changes in the matrix.
@@ -93,11 +93,11 @@ Thus, the infinity norm of $A$ is 24.
 4. **Optimization**:
    - It appears in optimization problems where constraints are defined by row-wise contributions.
 
-## Visualization
+## **Visualization**
 
 For a matrix, the infinity norm represents the largest "row weight" when summing all the absolute values of the row's entries. It gives insight into the matrix's effect along the rows.
 
-## Example Problem
+## **Example Problem**
 
 **Problem:** Compute the infinity norm of:
 
@@ -105,10 +105,10 @@ $$
 A = \begin{pmatrix}
 2 & -1 \\
 -3 & 4
-\end{pmatrix}.
+\end{pmatrix}
 $$
 
-### Solution:
+### **Solution:**
 
 1. Compute the row sums:
 
@@ -117,11 +117,11 @@ $$
 
 2. Find the maximum row sum:
    $$
-   \|A\|_\infty = \max(3, 7) = 7.
+   \|A\|_\infty = \max(3, 7) = 7
    $$
 
 Thus, $\|A\|_\infty = 7$.
 
-## Conclusion
+## **Conclusion**
 
 The infinity norm provides a simple yet powerful way to measure the row-wise magnitude of a matrix. Its computational simplicity and relevance to numerical analysis make it an essential tool in matrix computations.

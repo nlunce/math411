@@ -1,6 +1,30 @@
 ---
 title: 'Newton’s Divided Differences'
 author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 1
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show the code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
 **Newton’s Divided Differences** is an efficient method for computing an interpolating polynomial for a given set of data points. This method builds the polynomial iteratively and offers better efficiency for incremental data points compared to **Lagrange interpolation**.
@@ -64,11 +88,9 @@ $$
 
 Here’s the corrected example in the same format as your original:
 
----
-
 ### Example
 
-Let's consider the data points \( (1, 1) \), \( (2, 4) \), \( (3, 9) \), and \( (4, 16) \). The goal is to find the interpolating polynomial using Newton's divided differences.
+Let's consider the data points $(1, 1)$, $(2, 4)$, $(3, 9)$, and $(4, 16)$. The goal is to find the interpolating polynomial using Newton's divided differences.
 
 1. **First point**:
 

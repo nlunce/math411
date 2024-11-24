@@ -1,6 +1,30 @@
 ---
 title: 'Chebyshev Interpolation'
 author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 1
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show the code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
 Chebyshev Interpolation is a powerful technique in numerical analysis used to approximate functions with polynomials, particularly minimizing errors and avoiding issues like Runge's phenomenon. This note provides an overview of Chebyshev Interpolation, including its definition, properties, advantages, and practical implementation.
@@ -8,8 +32,6 @@ Chebyshev Interpolation is a powerful technique in numerical analysis used to ap
 ## Introduction
 
 Interpolation involves approximating a function $f(x)$ using a polynomial $P_n(x)$ that passes through a set of points (nodes). While polynomial interpolation is straightforward, selecting appropriate nodes is crucial to ensure accuracy and stability. Chebyshev Interpolation leverages Chebyshev nodes to construct interpolating polynomials that minimize the maximum error across the interpolation interval.
-
----
 
 ## Chebyshev Polynomials
 
@@ -73,8 +95,6 @@ $$
 
 Using Chebyshev nodes instead of equally spaced nodes helps in minimizing the oscillatory behavior (Runge's phenomenon) and ensures better convergence properties of the interpolating polynomial.
 
----
-
 ## Interpolation Process
 
 The Chebyshev Interpolation process involves the following steps:
@@ -101,8 +121,6 @@ $$
 w_k = (-1)^k \sin\left( \frac{(2k + 1)\pi}{2n + 2} \right)
 $$
 
----
-
 ## Advantages of Chebyshev Interpolation
 
 - **Minimized Error**: Chebyshev nodes minimize the maximum error (uniform convergence) of the interpolating polynomial.
@@ -112,8 +130,6 @@ $$
 - **Efficient Computation**: The barycentric interpolation formula allows for efficient and stable computation of interpolating polynomials.
 
 - **Orthogonality**: Leveraging the orthogonality of Chebyshev polynomials aids in various approximation and numerical integration techniques.
-
----
 
 ## Error Analysis
 
@@ -145,8 +161,6 @@ $$
 
 An error bound of approximately $1.18 \times 10^{-4}$ implies that at least three decimal digits of the approximation $Q_5(x)$ are accurate across the interval $[-1, 1]$.
 
----
-
 ## Example
 
 **Problem:** Approximate $f(x) = e^x$ on $[-1, 1]$ using a fifth-degree Chebyshev interpolating polynomial $Q_5(x)$. Estimate the worst-case error and determine the number of correct decimal digits in the approximation.
@@ -169,8 +183,6 @@ An error bound of approximately $1.18 \times 10^{-4}$ implies that at least thre
 
 **Conclusion:** The fifth-degree Chebyshev interpolating polynomial $Q_5(x)$ approximates $e^x$ with an error less than $0.00012$, ensuring at least three correct decimal digits across $[-1, 1]$.
 
----
-
 ## Applications
 
 Chebyshev Interpolation is widely used in various fields due to its robustness and efficiency:
@@ -185,16 +197,6 @@ Chebyshev Interpolation is widely used in various fields due to its robustness a
 
 - **Scientific Computing:** Enhances the accuracy of simulations and numerical solutions to differential equations.
 
----
-
 ## Conclusion
 
 Chebyshev Interpolation offers a reliable method for polynomial approximation, leveraging Chebyshev nodes to minimize interpolation errors and avoid common pitfalls like Runge's phenomenon. Its mathematical foundations, combined with practical computational techniques, make it an essential tool in numerical analysis and various applied disciplines.
-
----
-
-## References
-
-- Trefethen, L. N. (2000). _Approximation Theory and Approximation Practice_. SIAM.
-- Press, W. H., Teukolsky, S. A., Vetterling, W. T., & Flannery, B. P. (2007). _Numerical Recipes: The Art of Scientific Computing_. Cambridge University Press.
-- Olver, F. W. J., & Townsend, C. T. (2013). _A First Course in Chebyshev and Fourier Spectral Methods_. Cambridge University Press.

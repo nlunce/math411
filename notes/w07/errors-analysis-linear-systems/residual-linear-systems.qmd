@@ -27,7 +27,7 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
 The **residual** is a fundamental concept in numerical linear algebra, used to quantify how far an approximate solution $\mathbf{x_a}$ to a linear system $A\mathbf{x} = \mathbf{b}$ is from satisfying the system. It provides a direct measure of the "error" in the system when the computed solution $\mathbf{x_a}$ is substituted back into the equation.
 
@@ -44,11 +44,11 @@ where:
 
 If $\mathbf{r} = \mathbf{0}$, the approximate solution is exact; otherwise, $\mathbf{r}$ quantifies the degree of error.
 
-## What the Residual Represents
+## **What the Residual Represents**
 
 The residual measures how far $\mathbf{x_a}$ is from satisfying the system $A\mathbf{x} = \mathbf{b}$. Each component of $\mathbf{r}$ indicates the mismatch for the corresponding equation in the system.
 
-### Key Points
+### **Key Points**
 
 1. **Residual as a Vector**:
 
@@ -65,9 +65,9 @@ The residual measures how far $\mathbf{x_a}$ is from satisfying the system $A\ma
 3. **Approximate Solution**:
    - For an approximate solution $\mathbf{x_a}$, the residual $\mathbf{r} \neq \mathbf{0}$.
 
-## Norm of the Residual
+## **Norm of the Residual**
 
-The size of the residual can be measured using norms, such as the infinity norm:
+The size of the residual can be measured using [**norms**](../norms/index.html), such as the [**infinity norm**](../norms/infinity-vector-norm.html):
 
 $$
 \|\mathbf{r}\|_\infty = \max_{i} |r_i|
@@ -75,7 +75,7 @@ $$
 
 This provides a scalar measure of the largest discrepancy in the system. A smaller residual norm indicates that $\mathbf{x_a}$ is closer to satisfying the system.
 
-## Example
+## **Example**
 
 Consider the system:
 
@@ -85,7 +85,7 @@ A = \begin{bmatrix} 1 & 1 \\ 3 & -4 \end{bmatrix}, \quad
 \mathbf{x_a} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}
 $$
 
-### Step 1: Compute $A\mathbf{x_a}$
+### **Step 1: Compute $A\mathbf{x_a}$**
 
 Multiply $A$ by $\mathbf{x_a}$:
 
@@ -93,7 +93,7 @@ $$
 A\mathbf{x_a} = \begin{bmatrix} 1 & 1 \\ 3 & -4 \end{bmatrix} \begin{bmatrix} 1 \\ 1 \end{bmatrix} = \begin{bmatrix} 2 \\ -1 \end{bmatrix}
 $$
 
-### Step 2: Compute the Residual $\mathbf{r}$
+### **Step 2: Compute the Residual $\mathbf{r}$**
 
 Subtract $A\mathbf{x_a}$ from $\mathbf{b}$:
 
@@ -107,7 +107,7 @@ $$
 \mathbf{r} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}
 $$
 
-### Step 3: Compute the Residual Norm
+### **Step 3: Compute the Residual Norm**
 
 The infinity norm of $\mathbf{r}$ is:
 
@@ -117,19 +117,19 @@ $$
 
 This indicates that the largest mismatch in the system is $3$.
 
-## Applications of the Residual
+## **Applications of the Residual**
 
 1. **Error Analysis**:
 
    - The residual is used to assess the accuracy of an approximate solution.
 
-2. **Iterative Methods**:
+2. [**Iterative Methods**](../ax-b-iterative-methods/index.html):
 
-   - Residuals are central to iterative solvers, such as the Jacobi and Gauss-Seidel methods, to track convergence.
+   - Residuals are central to iterative solvers, such as the [**Jacobi**](../ax-b-iterative-methods/jacobi-method.html) and [**Gauss-Seidel**](../ax-b-iterative-methods/gauss-seidel-method.html) methods, to track convergence.
 
 3. **Numerical Stability**:
 
-   - A large residual often indicates instability or poor conditioning in the matrix $A$.
+   - A large residual often indicates instability or poor [**conditioning**](./condition-number-matrix.html) in the matrix $A$.
 
 4. **Refining Solutions**:
    - Residual-based refinement techniques iteratively adjust $\mathbf{x_a}$ to minimize $\|\mathbf{r}\|$.

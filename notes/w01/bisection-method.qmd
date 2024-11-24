@@ -1,6 +1,30 @@
 ---
 title: 'Bisection Method'
 author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 1
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show the code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
 ---
 
 **Bisection Method** is one of the simplest and most reliable numerical methods for finding a root of a continuous function $f(x) = 0$ over a closed interval $[a, b]$. The method works by repeatedly bisecting the interval and then selecting the subinterval in which the function changes sign, ensuring that a root lies within that subinterval.

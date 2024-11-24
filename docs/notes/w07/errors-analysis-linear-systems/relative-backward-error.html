@@ -4823,17 +4823,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#what-relative-backward-error-represents" id="toc-what-relative-backward-error-represents" class="nav-link" data-scroll-target="#what-relative-backward-error-represents">What Relative Backward Error Represents</a></li>
-  <li><a href="#why-relative-backward-error-matters" id="toc-why-relative-backward-error-matters" class="nav-link" data-scroll-target="#why-relative-backward-error-matters">Why Relative Backward Error Matters</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
+  <li><a href="#what-relative-backward-error-represents" id="toc-what-relative-backward-error-represents" class="nav-link" data-scroll-target="#what-relative-backward-error-represents"><strong>What Relative Backward Error Represents</strong></a></li>
+  <li><a href="#why-relative-backward-error-matters" id="toc-why-relative-backward-error-matters" class="nav-link" data-scroll-target="#why-relative-backward-error-matters"><strong>Why Relative Backward Error Matters</strong></a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><strong>Example</strong></a>
   <ul class="collapse">
-  <li><a href="#step-1-compute-amathbfx_a" id="toc-step-1-compute-amathbfx_a" class="nav-link" data-scroll-target="#step-1-compute-amathbfx_a">Step 1: Compute <span class="math inline">A\mathbf{x_a}</span></a></li>
-  <li><a href="#step-2-compute-the-residual-mathbfr" id="toc-step-2-compute-the-residual-mathbfr" class="nav-link" data-scroll-target="#step-2-compute-the-residual-mathbfr">Step 2: Compute the Residual <span class="math inline">\mathbf{r}</span></a></li>
-  <li><a href="#step-3-compute-the-relative-backward-error" id="toc-step-3-compute-the-relative-backward-error" class="nav-link" data-scroll-target="#step-3-compute-the-relative-backward-error">Step 3: Compute the Relative Backward Error</a></li>
-  <li><a href="#step-4-interpretation" id="toc-step-4-interpretation" class="nav-link" data-scroll-target="#step-4-interpretation">Step 4: Interpretation</a></li>
+  <li><a href="#step-1-compute-amathbfx_a" id="toc-step-1-compute-amathbfx_a" class="nav-link" data-scroll-target="#step-1-compute-amathbfx_a"><strong>Step 1: Compute <span class="math inline">A\mathbf{x_a}</span></strong></a></li>
+  <li><a href="#step-2-compute-the-residual-mathbfr" id="toc-step-2-compute-the-residual-mathbfr" class="nav-link" data-scroll-target="#step-2-compute-the-residual-mathbfr"><strong>Step 2: Compute the Residual <span class="math inline">\mathbf{r}</span></strong></a></li>
+  <li><a href="#step-3-compute-the-relative-backward-error" id="toc-step-3-compute-the-relative-backward-error" class="nav-link" data-scroll-target="#step-3-compute-the-relative-backward-error"><strong>Step 3: Compute the Relative Backward Error</strong></a></li>
+  <li><a href="#step-4-interpretation" id="toc-step-4-interpretation" class="nav-link" data-scroll-target="#step-4-interpretation"><strong>Step 4: Interpretation</strong></a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4866,20 +4866,20 @@ window.Quarto = {
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <strong>relative backward error</strong> is a normalized version of the backward error. It measures how large the residual vector <span class="math inline">\mathbf{r} = \mathbf{b} - A\mathbf{x_a}</span> is relative to the size of the right-hand side vector <span class="math inline">\mathbf{b}</span>. This normalization ensures the backward error is interpreted in the context of the magnitude of the original problem.</p>
+<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
+<p>The <strong>relative backward error</strong> is a normalized version of the backward error. It measures how large the <a href="./residual-linear-systems.html"><strong>residual</strong></a> vector <span class="math inline">\mathbf{r} = \mathbf{b} - A\mathbf{x_a}</span> is relative to the size of the right-hand side vector <span class="math inline">\mathbf{b}</span>. This normalization ensures the backward error is interpreted in the context of the magnitude of the original problem.</p>
 <p>The relative backward error is defined as:</p>
 <p><span class="math display">
-\text{RBE} = \frac{\|\mathbf{r}\|_\infty}{\|\mathbf{b}\|_\infty},
+\text{RBE} = \frac{\|\mathbf{r}\|_\infty}{\|\mathbf{b}\|_\infty}
 </span></p>
 <p>where:</p>
 <ul>
-<li><span class="math inline">\|\mathbf{r}\|_\infty</span>: The infinity norm of the residual vector, <span class="math inline">\mathbf{r} = \mathbf{b} - A\mathbf{x_a}</span>,</li>
+<li><span class="math inline">\|\mathbf{r}\|_\infty</span>: The <a href="../norms/infinity-vector-norm.html"><strong>infinity norm</strong></a> of the residual vector, <span class="math inline">\mathbf{r} = \mathbf{b} - A\mathbf{x_a}</span>,</li>
 <li><span class="math inline">\|\mathbf{b}\|_\infty</span>: The infinity norm of the right-hand side vector <span class="math inline">\mathbf{b}</span>.</li>
 </ul>
 </section>
 <section id="what-relative-backward-error-represents" class="level2">
-<h2 class="anchored" data-anchor-id="what-relative-backward-error-represents">What Relative Backward Error Represents</h2>
+<h2 class="anchored" data-anchor-id="what-relative-backward-error-represents"><strong>What Relative Backward Error Represents</strong></h2>
 <ol type="1">
 <li><p><strong>Scale-Invariant Error</strong>:</p>
 <ul>
@@ -4889,7 +4889,7 @@ window.Quarto = {
 <ul>
 <li><p>If <span class="math inline">\mathbf{x_a}</span> is the exact solution, then the residual <span class="math inline">\mathbf{r} = \mathbf{0}</span>, and:</p>
 <p><span class="math display">
-\text{RBE} = 0.
+\text{RBE} = 0
 </span></p></li>
 </ul></li>
 <li><p><strong>Error Normalization</strong>:</p>
@@ -4899,7 +4899,7 @@ window.Quarto = {
 </ol>
 </section>
 <section id="why-relative-backward-error-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-relative-backward-error-matters">Why Relative Backward Error Matters</h2>
+<h2 class="anchored" data-anchor-id="why-relative-backward-error-matters"><strong>Why Relative Backward Error Matters</strong></h2>
 <ul>
 <li><p><strong>Assessing Solution Quality</strong>:</p>
 <ul>
@@ -4912,29 +4912,29 @@ window.Quarto = {
 </ul>
 </section>
 <section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
+<h2 class="anchored" data-anchor-id="example"><strong>Example</strong></h2>
 <p>Consider the system:</p>
 <p><span class="math display">
 A = \begin{bmatrix} 1 &amp; 1 \\ 3 &amp; -4 \end{bmatrix}, \quad
 \mathbf{b} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}, \quad
-\mathbf{x_a} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}.
+\mathbf{x_a} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}
 </span></p>
 <section id="step-1-compute-amathbfx_a" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-compute-amathbfx_a">Step 1: Compute <span class="math inline">A\mathbf{x_a}</span></h3>
+<h3 class="anchored" data-anchor-id="step-1-compute-amathbfx_a"><strong>Step 1: Compute <span class="math inline">A\mathbf{x_a}</span></strong></h3>
 <p>Multiply <span class="math inline">A</span> by <span class="math inline">\mathbf{x_a}</span>:</p>
 <p><span class="math display">
-A\mathbf{x_a} = \begin{bmatrix} 1 \times 1 + 1 \times 1 \\ 3 \times 1 + (-4) \times 1 \end{bmatrix} = \begin{bmatrix} 2 \\ -1 \end{bmatrix}.
+A\mathbf{x_a} = \begin{bmatrix} 1 \times 1 + 1 \times 1 \\ 3 \times 1 + (-4) \times 1 \end{bmatrix} = \begin{bmatrix} 2 \\ -1 \end{bmatrix}
 </span></p>
 </section>
 <section id="step-2-compute-the-residual-mathbfr" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-compute-the-residual-mathbfr">Step 2: Compute the Residual <span class="math inline">\mathbf{r}</span></h3>
+<h3 class="anchored" data-anchor-id="step-2-compute-the-residual-mathbfr"><strong>Step 2: Compute the Residual <span class="math inline">\mathbf{r}</span></strong></h3>
 <p>Subtract <span class="math inline">A\mathbf{x_a}</span> from <span class="math inline">\mathbf{b}</span>:</p>
 <p><span class="math display">
-\mathbf{r} = \mathbf{b} - A\mathbf{x_a} = \begin{bmatrix} 3 - 2 \\ 2 - (-1) \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}.
+\mathbf{r} = \mathbf{b} - A\mathbf{x_a} = \begin{bmatrix} 3 - 2 \\ 2 - (-1) \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}
 </span></p>
 </section>
 <section id="step-3-compute-the-relative-backward-error" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-compute-the-relative-backward-error">Step 3: Compute the Relative Backward Error</h3>
+<h3 class="anchored" data-anchor-id="step-3-compute-the-relative-backward-error"><strong>Step 3: Compute the Relative Backward Error</strong></h3>
 <ol type="1">
 <li><p>Compute the infinity norms:</p>
 <ul>
@@ -4943,19 +4943,19 @@ A\mathbf{x_a} = \begin{bmatrix} 1 \times 1 + 1 \times 1 \\ 3 \times 1 + (-4) \ti
 </ul></li>
 <li><p>Calculate the relative backward error:</p>
 <p><span class="math display">
-\text{RBE} = \frac{\|\mathbf{r}\|_\infty}{\|\mathbf{b}\|_\infty} = \frac{3}{3} = 1.
+\text{RBE} = \frac{\|\mathbf{r}\|_\infty}{\|\mathbf{b}\|_\infty} = \frac{3}{3} = 1
 </span></p></li>
 </ol>
 </section>
 <section id="step-4-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-interpretation">Step 4: Interpretation</h3>
+<h3 class="anchored" data-anchor-id="step-4-interpretation"><strong>Step 4: Interpretation</strong></h3>
 <ul>
 <li>A relative backward error of <span class="math inline">1</span> indicates that the residual <span class="math inline">\mathbf{r}</span> is as large as the largest component of <span class="math inline">\mathbf{b}</span>.</li>
 </ul>
 </section>
 </section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
 <ul>
 <li>The <strong>relative backward error</strong> provides a normalized measure of how much the right-hand side <span class="math inline">\mathbf{b}</span> must be perturbed for <span class="math inline">\mathbf{x_a}</span> to satisfy the system exactly.</li>
 <li>By comparing the size of <span class="math inline">\mathbf{r}</span> to <span class="math inline">\mathbf{b}</span>, the relative backward error allows for consistent error analysis across problems of different scales.</li>

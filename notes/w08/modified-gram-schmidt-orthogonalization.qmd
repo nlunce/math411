@@ -27,11 +27,11 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
-The **Modified Gram-Schmidt Orthogonalization (MGS)** is a variation of the classical Gram-Schmidt process that improves numerical stability during computations. While it produces the same mathematical results as the classical process, MGS incrementally updates the working vector, avoiding the accumulation of rounding errors. This is especially beneficial when working with floating-point arithmetic in machine computations.
+The **Modified Gram-Schmidt Orthogonalization (MGS)** is a variation of the [**classical Gram-Schmidt process**](./gram-schmidt-orthogonalization.html) that improves numerical stability during computations. While it produces the same mathematical results as the classical process, MGS incrementally updates the working vector, avoiding the accumulation of rounding errors. This is especially beneficial when working with floating-point arithmetic in machine computations.
 
-## Definition and Process
+## **Definition and Process**
 
 Given a set of linearly independent vectors $A_1, A_2, \dots, A_n$, the Modified Gram-Schmidt process produces an orthogonal (or orthonormal) set of vectors $q_1, q_2, \dots, q_n$ such that:
 
@@ -40,7 +40,7 @@ Given a set of linearly independent vectors $A_1, A_2, \dots, A_n$, the Modified
 
 The primary distinction of MGS is its incremental update of the working vector $y$, ensuring orthogonality is preserved at every step.
 
-## Steps of the Modified Gram-Schmidt Process
+## **Steps of the Modified Gram-Schmidt Process**
 
 1. **Initialize with the First Vector**: Normalize $A_1$ to obtain $q_1$:
 
@@ -112,13 +112,13 @@ The primary distinction of MGS is its incremental update of the working vector $
     </tr>
 </table>
 
-## Properties of Modified Gram-Schmidt Orthogonalization
+## **Properties of Modified Gram-Schmidt Orthogonalization**
 
 - **Orthogonality**: Each vector $q_i$ is orthogonal to all previously generated vectors $q_1, \dots, q_{i-1}$.
 - **Span Preservation**: The set $\{q_1, q_2, \dots, q_n\}$ spans the same subspace as $\{A_1, A_2, \dots, A_n\}$.
 - **Numerical Stability**: Incremental updates reduce the impact of rounding errors, making it more robust in practice.
 
-## Example Problem
+## **Example Problem**
 
 **Problem:** Given the matrix
 
@@ -134,7 +134,7 @@ $$
 
 find the orthonormal basis $Q = [q_1, q_2, q_3]$ using the Modified Gram-Schmidt process.
 
-### Solution Steps
+### **Solution Steps**
 
 1. **Compute $q_1$:**
    Normalize $A_1$:
@@ -213,6 +213,6 @@ find the orthonormal basis $Q = [q_1, q_2, q_3]$ using the Modified Gram-Schmidt
      \end{bmatrix}
      $$
 
-## Conclusion
+## **Conclusion**
 
 Modified Gram-Schmidt is a more stable alternative to the classical process, particularly when dealing with small or near-parallel vectors. By incrementally updating the working vector $y$, MGS ensures numerical stability and maintains orthogonality even in the presence of rounding errors. It is especially useful in applications like QR factorization and solving least squares problems in computational settings.

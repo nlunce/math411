@@ -27,11 +27,11 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
-The **infinity norm** (also called the maximum norm or $\ell_\infty$-norm) measures the size of a vector by taking the maximum absolute value of its components. Unlike the Euclidean or Taxicab norms, which involve summing components, the infinity norm focuses on the "largest step" in any single direction.
+The **infinity norm** (also called the maximum norm or $\ell_\infty$-norm) measures the size of a vector by taking the maximum absolute value of its components. Unlike the [**Euclidean**](./euclidean-vector-norm.html) or [**Taxicab**](./taxicab-vector-norm.html) norms, which involve summing components, the infinity norm focuses on the "largest step" in any single direction.
 
-## Definition
+## **Definition**
 
 For a vector $\mathbf{v} = [v_1, v_2, \dots, v_n]$ in $\mathbb{R}^n$, the infinity norm is defined as:
 
@@ -41,7 +41,7 @@ $$
 
 This norm is often used in settings where the largest component dominates or in grid-based systems where movement is limited by a single axis.
 
-## Properties
+## **Properties**
 
 The infinity norm satisfies the following properties:
 
@@ -49,9 +49,9 @@ The infinity norm satisfies the following properties:
 2. **Homogeneity**: For any scalar $c$, $\|c \mathbf{v}\|_\infty = |c| \|\mathbf{v}\|_\infty$.
 3. **Triangle Inequality**: $\|\mathbf{u} + \mathbf{v}\|_\infty \leq \|\mathbf{u}\|_\infty + \|\mathbf{v}\|_\infty$.
 
-## Examples
+## **Examples**
 
-### 1. 2D Example
+### **1. 2D Example**
 
 For $\mathbf{v} = [3, -4]$:
 
@@ -59,7 +59,7 @@ $$
 \|\mathbf{v}\|_\infty = \max(|3|, |-4|) = \max(3, 4) = 4
 $$
 
-### 2. 3D Example
+### **2. 3D Example**
 
 For $\mathbf{v} = [1, -2, 3]$:
 
@@ -67,7 +67,7 @@ $$
 \|\mathbf{v}\|_\infty = \max(|1|, |-2|, |3|) = \max(1, 2, 3) = 3
 $$
 
-### 3. General Case
+### **3. General Case**
 
 For $\mathbf{v} = [v_1, v_2, \dots, v_n]$:
 
@@ -75,25 +75,25 @@ $$
 \|\mathbf{v}\|_\infty = \max(|v_1|, |v_2|, \dots, |v_n|)
 $$
 
-## Applications
+## **Applications**
 
-### 1. Error Analysis
+### **1. Error Analysis**
 
 The infinity norm is used to measure the largest error in numerical solutions, ensuring that no individual error component dominates the result.
 
-### 2. Optimization
+### **2. Optimization**
 
 In optimization problems, the infinity norm simplifies constraints by focusing on the largest deviation in variables.
 
-### 3. Machine Learning
+### **3. Machine Learning**
 
 The infinity norm is used in regularization techniques and as a metric in certain classification problems.
 
-### 4. Computational Efficiency
+### **4. Computational Efficiency**
 
 Since the infinity norm involves only a maximum operation, it is computationally inexpensive compared to other norms.
 
-## Visualization
+## **Visualization**
 
 In 2D, the set of points at a fixed infinity norm distance from the origin forms a square aligned with the coordinate axes. For example, all points satisfying $\|\mathbf{v}\|_\infty = 3$ in $\mathbb{R}^2$ would form the square:
 
@@ -107,15 +107,15 @@ $$
 -3 \leq x \leq 3, \quad -3 \leq y \leq 3
 $$
 
-## Example Problem
+## **Example Problem**
 
 **Problem:** Compute the infinity norm of $\mathbf{v} = [-3, 4, -5]$.
 
-### Solution:
+### **Solution:**
 
 1. Take the absolute values of the components: $|-3| = 3$, $|4| = 4$, $|-5| = 5$.
 2. Find the maximum: $\|\mathbf{v}\|_\infty = \max(3, 4, 5) = 5$.
 
-## Conclusion
+## **Conclusion**
 
 The infinity norm provides a simple and efficient way to measure vector size by focusing on the largest component. It is particularly useful in applications like error analysis, optimization, and machine learning where the largest deviation or influence is of primary interest.

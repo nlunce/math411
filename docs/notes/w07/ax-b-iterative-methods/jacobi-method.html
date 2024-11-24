@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
 }
-
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -4858,29 +4824,19 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
-  <li><a href="#the-algorithm" id="toc-the-algorithm" class="nav-link" data-scroll-target="#the-algorithm"><strong>The Algorithm</strong></a>
+  <li><a href="#the-jacobi-method" id="toc-the-jacobi-method" class="nav-link" data-scroll-target="#the-jacobi-method"><strong>The Jacobi Method</strong></a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><strong>Example</strong></a>
   <ul class="collapse">
-  <li><a href="#step-by-step-procedure" id="toc-step-by-step-procedure" class="nav-link" data-scroll-target="#step-by-step-procedure"><strong>Step-by-Step Procedure</strong></a></li>
+  <li><a href="#system-of-equations" id="toc-system-of-equations" class="nav-link" data-scroll-target="#system-of-equations"><strong>System of Equations</strong></a></li>
+  <li><a href="#step-1-rearrange-equations" id="toc-step-1-rearrange-equations" class="nav-link" data-scroll-target="#step-1-rearrange-equations"><strong>Step 1: Rearrange Equations</strong></a></li>
+  <li><a href="#step-2-iterative-updates" id="toc-step-2-iterative-updates" class="nav-link" data-scroll-target="#step-2-iterative-updates"><strong>Step 2: Iterative Updates</strong></a></li>
+  <li><a href="#convergence" id="toc-convergence" class="nav-link" data-scroll-target="#convergence"><strong>Convergence</strong></a></li>
   </ul></li>
-  <li><a href="#convergence-criteria" id="toc-convergence-criteria" class="nav-link" data-scroll-target="#convergence-criteria"><strong>Convergence Criteria</strong></a>
+  <li><a href="#convergence-conditions" id="toc-convergence-conditions" class="nav-link" data-scroll-target="#convergence-conditions"><strong>Convergence Conditions</strong></a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><strong>Limitations</strong></a>
   <ul class="collapse">
-  <li><a href="#diagonal-dominance" id="toc-diagonal-dominance" class="nav-link" data-scroll-target="#diagonal-dominance"><strong>Diagonal Dominance</strong></a></li>
-  <li><a href="#symmetric-positive-definiteness" id="toc-symmetric-positive-definiteness" class="nav-link" data-scroll-target="#symmetric-positive-definiteness"><strong>Symmetric Positive Definiteness</strong></a></li>
+  <li><a href="#example-of-divergence" id="toc-example-of-divergence" class="nav-link" data-scroll-target="#example-of-divergence"><strong>Example of Divergence</strong></a></li>
   </ul></li>
-  <li><a href="#advantages-and-disadvantages" id="toc-advantages-and-disadvantages" class="nav-link" data-scroll-target="#advantages-and-disadvantages"><strong>Advantages and Disadvantages</strong></a>
-  <ul class="collapse">
-  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages"><strong>Advantages</strong></a></li>
-  <li><a href="#disadvantages" id="toc-disadvantages" class="nav-link" data-scroll-target="#disadvantages"><strong>Disadvantages</strong></a></li>
-  </ul></li>
-  <li><a href="#a-practical-example" id="toc-a-practical-example" class="nav-link" data-scroll-target="#a-practical-example"><strong>A Practical Example</strong></a>
-  <ul class="collapse">
-  <li><a href="#step-1-rewrite-for-iteration" id="toc-step-1-rewrite-for-iteration" class="nav-link" data-scroll-target="#step-1-rewrite-for-iteration"><strong>Step 1: Rewrite for Iteration</strong></a></li>
-  <li><a href="#step-2-choose-initial-guess" id="toc-step-2-choose-initial-guess" class="nav-link" data-scroll-target="#step-2-choose-initial-guess"><strong>Step 2: Choose Initial Guess</strong></a></li>
-  <li><a href="#step-3-iterative-updates" id="toc-step-3-iterative-updates" class="nav-link" data-scroll-target="#step-3-iterative-updates"><strong>Step 3: Iterative Updates</strong></a></li>
-  <li><a href="#step-4-convergence" id="toc-step-4-convergence" class="nav-link" data-scroll-target="#step-4-convergence"><strong>Step 4: Convergence</strong></a></li>
-  <li><a href="#final-solution" id="toc-final-solution" class="nav-link" data-scroll-target="#final-solution"><strong>Final Solution</strong></a></li>
-  </ul></li>
-  <li><a href="#code-implementation" id="toc-code-implementation" class="nav-link" data-scroll-target="#code-implementation"><strong>Code Implementation</strong></a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><strong>Summary</strong></a></li>
   </ul>
 </nav>
@@ -4915,182 +4871,119 @@ window.Quarto = {
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
-<p>The <strong>Jacobi Method</strong> is an iterative algorithm used to solve linear systems of the form <span class="math inline">A\mathbf{x} = \mathbf{b}</span>, where <span class="math inline">A</span> is a square matrix, <span class="math inline">\mathbf{x}</span> is the vector of unknowns, and <span class="math inline">\mathbf{b}</span> is the right-hand side vector. This method is particularly useful for large, sparse systems where direct methods like Gaussian elimination may be computationally expensive.</p>
-<p>In this document, we will explore the mechanics of the Jacobi Method, its convergence criteria, and an example application.</p>
+<p>The <strong>Jacobi Method</strong> is a type of <a href="../../w01/fixed-point-iteration.html"><strong>fixed-point iteration</strong></a> specifically designed for solving <a href="../../w06/linear-systems.html"><strong>systems of linear equations</strong></a>. The approach involves rewriting each equation to solve for one variable at a time and iterating over these equations to approximate the solution.</p>
+<p>For a system of equations <span class="math inline">A\mathbf{x} = \mathbf{b}</span>, the Jacobi Method works by isolating the <span class="math inline">i</span>-th variable in the <span class="math inline">i</span>-th equation, updating its value based on the other variables’ values from the previous iteration.</p>
 </section>
-<section id="the-algorithm" class="level2">
-<h2 class="anchored" data-anchor-id="the-algorithm"><strong>The Algorithm</strong></h2>
-<p>The Jacobi Method iteratively refines an initial guess for <span class="math inline">\mathbf{x}</span> by solving for each component of <span class="math inline">\mathbf{x}</span> using the equations of the linear system. The algorithm assumes that the diagonal entries of <span class="math inline">A</span> are non-zero.</p>
-<section id="step-by-step-procedure" class="level3">
-<h3 class="anchored" data-anchor-id="step-by-step-procedure"><strong>Step-by-Step Procedure</strong></h3>
-<ol type="1">
-<li><p>Rewrite the system <span class="math inline">A\mathbf{x} = \mathbf{b}</span> in a form suitable for iteration.<br>
-For <span class="math inline">A = [a_{ij}]</span>, <span class="math inline">\mathbf{x} = [x_j]</span>, and <span class="math inline">\mathbf{b} = [b_i]</span>, the system can be rewritten as:</p>
+<section id="the-jacobi-method" class="level2">
+<h2 class="anchored" data-anchor-id="the-jacobi-method"><strong>The Jacobi Method</strong></h2>
+<p>Consider the system of equations:</p>
 <p><span class="math display">
-x_i^{(k+1)} = \frac{1}{a_{ii}} \left( b_i - \sum_{j \neq i} a_{ij} x_j^{(k)} \right)
+A\mathbf{x} = \mathbf{b}
 </span></p>
-<p>where <span class="math inline">x_i^{(k+1)}</span> is the updated value of <span class="math inline">x_i</span> in the <span class="math inline">(k+1)</span>-th iteration.</p></li>
-<li><p>Choose an initial guess <span class="math inline">\mathbf{x}^{(0)}</span>.</p></li>
-<li><p>Update each component of <span class="math inline">\mathbf{x}</span> iteratively using the formula above.</p></li>
-<li><p>Stop when the solution converges, i.e., when <span class="math inline">\|\mathbf{x}^{(k+1)} - \mathbf{x}^{(k)}\|</span> is smaller than a predefined tolerance.</p></li>
+<p>Let <span class="math inline">A</span> be decomposed into three parts:</p>
+<ul>
+<li><span class="math inline">D</span>: The diagonal components of <span class="math inline">A</span>.</li>
+<li><span class="math inline">L</span>: The strictly lower triangular components of <span class="math inline">A</span>.</li>
+<li><span class="math inline">U</span>: The strictly upper triangular components of <span class="math inline">A</span>.</li>
+</ul>
+<p>Thus,</p>
+<p><span class="math display">
+A = D + L + U
+</span></p>
+<p>Rewriting <span class="math inline">A\mathbf{x} = \mathbf{b}</span>, we have:</p>
+<p><span class="math display">
+D\mathbf{x} = \mathbf{b} - (L + U)\mathbf{x}
+</span></p>
+<p>Solving for <span class="math inline">\mathbf{x}</span>:</p>
+<p><span class="math display">
+\mathbf{x} = D^{-1} \left( \mathbf{b} - (L + U)\mathbf{x} \right)
+</span></p>
+<p>The Jacobi Method then iteratively updates the values of <span class="math inline">\mathbf{x}</span> as:</p>
+<p><span class="math display">
+\mathbf{x}^{(k+1)} = D^{-1} \left( \mathbf{b} - (L + U)\mathbf{x}^{(k)} \right)
+</span></p>
+<p>where <span class="math inline">k</span> denotes the iteration step.</p>
+</section>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example"><strong>Example</strong></h2>
+<section id="system-of-equations" class="level3">
+<h3 class="anchored" data-anchor-id="system-of-equations"><strong>System of Equations</strong></h3>
+<p>Consider the system:</p>
+<p><span class="math display">
+3u + v = 5, \quad u + 2v = 5
+</span></p>
+</section>
+<section id="step-1-rearrange-equations" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-rearrange-equations"><strong>Step 1: Rearrange Equations</strong></h3>
+<p>Rewrite each equation to isolate the variables:</p>
+<p><span class="math display">
+u = \frac{5 - v}{3}, \quad v = \frac{5 - u}{2}
+</span></p>
+</section>
+<section id="step-2-iterative-updates" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-iterative-updates"><strong>Step 2: Iterative Updates</strong></h3>
+<p>Start with an initial guess <span class="math inline">\mathbf{x}^{(0)} = \begin{bmatrix} u_0 \\ v_0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}</span>. The iterations proceed as follows:</p>
+<ol type="1">
+<li><p><strong>Iteration 1 (<span class="math inline">k = 1</span>):</strong></p>
+<p><span class="math display">
+u_1 = \frac{5 - v_0}{3} = \frac{5 - 0}{3} = \frac{5}{3}, \quad v_1 = \frac{5 - u_0}{2} = \frac{5 - 0}{2} = \frac{5}{2}
+</span></p>
+<p>Thus, <span class="math inline">\mathbf{x}^{(1)} = \begin{bmatrix} \frac{5}{3} \\ \frac{5}{2} \end{bmatrix}</span>.</p></li>
+<li><p><strong>Iteration 2 (<span class="math inline">k = 2</span>):</strong></p>
+<p><span class="math display">
+u_2 = \frac{5 - v_1}{3} = \frac{5 - \frac{5}{2}}{3} = \frac{5}{6}, \quad v_2 = \frac{5 - u_1}{2} = \frac{5 - \frac{5}{3}}{2} = \frac{5}{3}
+</span></p>
+<p>Thus, <span class="math inline">\mathbf{x}^{(2)} = \begin{bmatrix} \frac{5}{6} \\ \frac{5}{3} \end{bmatrix}</span>.</p></li>
+<li><p><strong>Iteration 3 (<span class="math inline">k = 3</span>):</strong></p>
+<p><span class="math display">
+u_3 = \frac{5 - v_2}{3} = \frac{5 - \frac{5}{3}}{3} = \frac{10}{9}, \quad v_3 = \frac{5 - u_2}{2} = \frac{5 - \frac{5}{6}}{2} = \frac{25}{12}
+</span></p>
+<p>Thus, <span class="math inline">\mathbf{x}^{(3)} = \begin{bmatrix} \frac{10}{9} \\ \frac{25}{12} \end{bmatrix}</span>.</p></li>
 </ol>
 </section>
+<section id="convergence" class="level3">
+<h3 class="anchored" data-anchor-id="convergence"><strong>Convergence</strong></h3>
+<p>The iterative updates show convergence to the solution <span class="math inline">\mathbf{x} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}</span>.</p>
 </section>
-<section id="convergence-criteria" class="level2">
-<h2 class="anchored" data-anchor-id="convergence-criteria"><strong>Convergence Criteria</strong></h2>
-<p>The Jacobi Method converges if the matrix <span class="math inline">A</span> is <strong>diagonally dominant</strong> or <strong>symmetric positive definite</strong>.</p>
-<section id="diagonal-dominance" class="level3">
-<h3 class="anchored" data-anchor-id="diagonal-dominance"><strong>Diagonal Dominance</strong></h3>
-<p>A matrix <span class="math inline">A = [a_{ij}]</span> is diagonally dominant if:</p>
+</section>
+<section id="convergence-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="convergence-conditions"><strong>Convergence Conditions</strong></h2>
+<p>The Jacobi Method converges if the matrix <span class="math inline">A</span> is <strong>strictly diagonally dominant</strong>, meaning:</p>
 <p><span class="math display">
 |a_{ii}| &gt; \sum_{j \neq i} |a_{ij}|
 </span></p>
-<p>for all <span class="math inline">i</span>.</p>
+<p>for all rows <span class="math inline">i</span>. Alternatively, if <span class="math inline">A</span> is <strong>symmetric positive definite</strong>, the Jacobi Method is also guaranteed to converge.</p>
 </section>
-<section id="symmetric-positive-definiteness" class="level3">
-<h3 class="anchored" data-anchor-id="symmetric-positive-definiteness"><strong>Symmetric Positive Definiteness</strong></h3>
-<p>A matrix <span class="math inline">A</span> is symmetric positive definite if it is symmetric (<span class="math inline">A = A^\top</span>) and all its eigenvalues are positive.</p>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations"><strong>Limitations</strong></h2>
+<p>In cases where <span class="math inline">A</span> is not strictly diagonally dominant or symmetric positive definite, the Jacobi Method may fail to converge.</p>
+<section id="example-of-divergence" class="level3">
+<h3 class="anchored" data-anchor-id="example-of-divergence"><strong>Example of Divergence</strong></h3>
+<p>Consider the system:</p>
+<p><span class="math display">
+u + 2v = 5, \quad 3u + v = 5
+</span></p>
+<p>Rewriting:</p>
+<p><span class="math display">
+u = 5 - 2v, \quad v = 5 - 3u
+</span></p>
+<p>Starting with <span class="math inline">\mathbf{x}^{(0)} = \begin{bmatrix} 0 \\ 0 \end{bmatrix}</span>, the iterations diverge:</p>
+<ol type="1">
+<li><p><strong>Iteration 1 (<span class="math inline">k = 1</span>):</strong></p>
+<p><span class="math display">
+u_1 = 5 - 2v_0 = 5, \quad v_1 = 5 - 3u_0 = 5
+</span></p>
+<p><span class="math inline">\mathbf{x}^{(1)} = \begin{bmatrix} 5 \\ 5 \end{bmatrix}</span>.</p></li>
+<li><p><strong>Iteration 2 (<span class="math inline">k = 2</span>):</strong> <span class="math display">
+u_2 = 5 - 2v_1 = -5, \quad v_2 = 5 - 3u_1 = -10
+</span> <span class="math inline">\mathbf{x}^{(2)} = \begin{bmatrix} -5 \\ -10 \end{bmatrix}</span></p></li>
+</ol>
+<p>The divergence occurs because the matrix is not strictly diagonally dominant.</p>
 </section>
-</section>
-<section id="advantages-and-disadvantages" class="level2">
-<h2 class="anchored" data-anchor-id="advantages-and-disadvantages"><strong>Advantages and Disadvantages</strong></h2>
-<section id="advantages" class="level3">
-<h3 class="anchored" data-anchor-id="advantages"><strong>Advantages</strong></h3>
-<ul>
-<li>Simple and easy to implement.</li>
-<li>Suitable for parallel computation since each <span class="math inline">x_i^{(k+1)}</span> depends only on values from the previous iteration.</li>
-<li>Works well for sparse systems.</li>
-</ul>
-</section>
-<section id="disadvantages" class="level3">
-<h3 class="anchored" data-anchor-id="disadvantages"><strong>Disadvantages</strong></h3>
-<ul>
-<li>May converge slowly for some systems.</li>
-<li>Requires <span class="math inline">A</span> to satisfy certain properties (e.g., diagonal dominance) for guaranteed convergence.</li>
-</ul>
-</section>
-</section>
-<section id="a-practical-example" class="level2">
-<h2 class="anchored" data-anchor-id="a-practical-example"><strong>A Practical Example</strong></h2>
-<p>Consider solving the system:</p>
-<p><span class="math display">
-\begin{bmatrix}
-4 &amp; 1 &amp; 2 \\
-3 &amp; 5 &amp; 1 \\
-1 &amp; 1 &amp; 3
-\end{bmatrix}
-\begin{bmatrix}
-x_1 \\
-x_2 \\
-x_3
-\end{bmatrix}
-=
-\begin{bmatrix}
-4 \\
-7 \\
-3
-\end{bmatrix}
-</span></p>
-<section id="step-1-rewrite-for-iteration" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-rewrite-for-iteration"><strong>Step 1: Rewrite for Iteration</strong></h3>
-<p>From the formula:</p>
-<p><span class="math display">
-x_1^{(k+1)} = \frac{1}{4} \left( 4 - x_2^{(k)} - 2x_3^{(k)} \right)
-</span></p>
-<p><span class="math display">
-x_2^{(k+1)} = \frac{1}{5} \left( 7 - 3x_1^{(k)} - x_3^{(k)} \right)
-</span></p>
-<p><span class="math display">
-x_3^{(k+1)} = \frac{1}{3} \left( 3 - x_1^{(k)} - x_2^{(k)} \right)
-</span></p>
-</section>
-<section id="step-2-choose-initial-guess" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-choose-initial-guess"><strong>Step 2: Choose Initial Guess</strong></h3>
-<p>Let the initial guess be:</p>
-<p><span class="math display">
-\mathbf{x}^{(0)} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}
-</span></p>
-</section>
-<section id="step-3-iterative-updates" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-iterative-updates"><strong>Step 3: Iterative Updates</strong></h3>
-<section id="iteration-1" class="level4">
-<h4 class="anchored" data-anchor-id="iteration-1"><strong>Iteration 1:</strong></h4>
-<p>Using <span class="math inline">\mathbf{x}^{(0)} = [0, 0, 0]</span>:</p>
-<p><span class="math display">
-x_1^{(1)} = \frac{1}{4} (4 - 0 - 0) = 1
-</span></p>
-<p><span class="math display">
-x_2^{(1)} = \frac{1}{5} (7 - 0 - 0) = 1.4
-</span></p>
-<p><span class="math display">
-x_3^{(1)} = \frac{1}{3} (3 - 0 - 0) = 1
-</span></p>
-<p><span class="math display">
-\mathbf{x}^{(1)} = \begin{bmatrix} 1 \\ 1.4 \\ 1 \end{bmatrix}
-</span></p>
-</section>
-<section id="iteration-2" class="level4">
-<h4 class="anchored" data-anchor-id="iteration-2"><strong>Iteration 2:</strong></h4>
-<p>Using <span class="math inline">\mathbf{x}^{(1)} = [1, 1.4, 1]</span>:</p>
-<p><span class="math display">
-x_1^{(2)} = \frac{1}{4} (4 - 1.4 - 2(1)) = 0.4
-</span></p>
-<p><span class="math display">
-x_2^{(2)} = \frac{1}{5} (7 - 3(1) - 1) = 0.6
-</span></p>
-<p><span class="math display">
-x_3^{(2)} = \frac{1}{3} (3 - 1 - 0.6) = 0.8
-</span></p>
-<p><span class="math display">
-\mathbf{x}^{(2)} = \begin{bmatrix} 0.4 \\ 0.6 \\ 0.8 \end{bmatrix}
-</span></p>
-</section>
-</section>
-<section id="step-4-convergence" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-convergence"><strong>Step 4: Convergence</strong></h3>
-<p>Continue iterations until <span class="math inline">\|\mathbf{x}^{(k+1)} - \mathbf{x}^{(k)}\| &lt; \text{tolerance}</span>.</p>
-</section>
-<section id="final-solution" class="level3">
-<h3 class="anchored" data-anchor-id="final-solution"><strong>Final Solution</strong></h3>
-<p>The final solution is:</p>
-<p><span class="math display">
-\mathbf{x} = \begin{bmatrix} 0.5 \\ 1 \\ 0.75 \end{bmatrix}
-</span></p>
-<p>after sufficient iterations, to within the desired tolerance.</p>
-</section>
-</section>
-<section id="code-implementation" class="level2">
-<h2 class="anchored" data-anchor-id="code-implementation"><strong>Code Implementation</strong></h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix A and vector b</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">2</span>],</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">1</span>],</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>]])</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>])</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial guess</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.zeros_like(b, dtype<span class="op">=</span><span class="bu">float</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Iteration parameters</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>tolerance <span class="op">=</span> <span class="fl">1e-5</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>max_iterations <span class="op">=</span> <span class="dv">100</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Jacobi Method</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(max_iterations):</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    x_new <span class="op">=</span> np.zeros_like(x)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(A.shape[<span class="dv">0</span>]):</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        s <span class="op">=</span> <span class="bu">sum</span>(A[i, j] <span class="op">*</span> x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(A.shape[<span class="dv">1</span>]) <span class="cf">if</span> j <span class="op">!=</span> i)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        x_new[i] <span class="op">=</span> (b[i] <span class="op">-</span> s) <span class="op">/</span> A[i, i]</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> np.linalg.norm(x_new <span class="op">-</span> x, <span class="bu">ord</span><span class="op">=</span>np.inf) <span class="op">&lt;</span> tolerance:</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> x_new</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Solution: </span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary"><strong>Summary</strong></h2>
-<p>The Jacobi Method is a fundamental tool in numerical linear algebra. By understanding its workings and limitations, one can effectively apply it to solve linear systems, especially in scenarios where direct methods are infeasible. However, ensuring convergence through appropriate system properties is crucial for reliable results.</p>
+<p>The Jacobi Method is a simple and effective iterative technique for solving linear systems, particularly when the system matrix is strictly diagonally dominant or symmetric positive definite. However, it is sensitive to the properties of the matrix <span class="math inline">A</span> and may not converge for all systems.</p>
 
 
 </section>

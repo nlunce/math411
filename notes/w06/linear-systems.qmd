@@ -27,11 +27,11 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
 In the realm of linear algebra, the equation $A\mathbf{x} = \mathbf{b}$ serves as a foundational representation of a system of linear equations. Understanding the components of this equation is crucial for solving linear systems, analyzing their properties, and applying them to real-world problems. This note delves into the **inputs** of the equation $A\mathbf{x} = \mathbf{b}$, elucidating their roles, characteristics, and significance in the context of linear systems.
 
-## Components of $A\mathbf{x} = \mathbf{b}$
+## **Components of $A\mathbf{x} = \mathbf{b}$**
 
 To comprehensively grasp the inputs of the equation $A\mathbf{x} = \mathbf{b}$, it's essential to break down each component:
 
@@ -73,14 +73,14 @@ To comprehensively grasp the inputs of the equation $A\mathbf{x} = \mathbf{b}$, 
      \end{bmatrix}
      $$
 
-## Identifying the Inputs
+## **Identifying the Inputs**
 
 In the equation $A\mathbf{x} = \mathbf{b}$:
 
 - **Inputs:** $A$ and $\mathbf{b}$
 - **Output (Solution):** $\mathbf{x}$
 
-### 1. **Matrix $A$ as an Input**
+### **1. Matrix $A$ as an Input**
 
 - **Purpose:** Defines the relationships between the variables in the system. Each row of $A$ corresponds to an equation, and each column corresponds to a variable.
 - **Example Interpretation:**
@@ -103,7 +103,7 @@ In the equation $A\mathbf{x} = \mathbf{b}$:
   \end{cases}
   $$
 
-### 2. **Vector $\mathbf{b}$ as an Input**
+### **2. Vector $\mathbf{b}$ as an Input**
 
 - **Purpose:** Provides the constants against which the linear combinations of variables (as defined by $A$) are measured. Essentially, $\mathbf{b}$ represents the desired outcomes or targets for each equation.
 
@@ -127,11 +127,11 @@ In the equation $A\mathbf{x} = \mathbf{b}$:
   \end{cases}
   $$
 
-## The Role of Inputs in Solving $A\mathbf{x} = \mathbf{b}$
+## **The Role of Inputs in Solving $A\mathbf{x} = \mathbf{b}$**
 
 The inputs $A$ and $\mathbf{b}$ determine the nature of the system and influence the methods used to find the solution $\mathbf{x}$. Here's how:
 
-### 1. **System Properties Influenced by $A$ and $\mathbf{b}$**
+### **1. System Properties Influenced by $A$ and $\mathbf{b}$**
 
 - **Uniqueness of Solution:**
 
@@ -142,27 +142,27 @@ The inputs $A$ and $\mathbf{b}$ determine the nature of the system and influence
   - The system is **consistent** if at least one solution exists.
   - It is **inconsistent** if no solution satisfies all equations simultaneously.
 
-### 2. **Influence on Solution Methods**
+### **2. Influence on Solution Methods**
 
 - **Direct Methods:**
 
   - Applicable when $A$ is well-conditioned and invertible.
   - Examples include Gaussian elimination and matrix inversion.
 
-- **Iterative Methods:**
+- [**Iterative Methods:**](../w07/ax-b-iterative-methods/index.html)
 
   - Useful for large or sparse systems where direct methods are computationally expensive.
-  - Examples include Jacobi, Gauss-Seidel, and Conjugate Gradient methods.
+  - Examples include [**Jacobi**](../w07/ax-b-iterative-methods/jacobi-method.html), [**Gauss-Seidel**](../w07/ax-b-iterative-methods/gauss-seidel-method.html), and Conjugate Gradient methods.
 
-- **Least Squares:**
+- [**Least Squares:**](../w08/least-squares.html)
   - Employed when the system is overdetermined (more equations than variables) and **no exact solution** exists.
-  - Seeks to minimize the residual $\|\mathbf{b} - A\mathbf{x}\|$.
+  - Seeks to minimize the [**residual**](../w07/errors-analysis-linear-systems/residual-linear-systems.html) $\|\mathbf{b} - A\mathbf{x}\|$.
 
-## A Practical Example
+## **A Practical Example**
 
 To solidify the understanding of inputs in $A\mathbf{x} = \mathbf{b}$, let's walk through a concrete example.
 
-### The Problem Setup
+### **The Problem Setup**
 
 Consider the following system of linear equations:
 
@@ -196,7 +196,7 @@ x_2 \\
 \end{bmatrix}
 $$
 
-### Step 1: Define the Inputs
+### **Step 1: Define the Inputs**
 
 - **Coefficient Matrix $A$:**
 
@@ -216,7 +216,7 @@ $$
   \end{bmatrix}
   $$
 
-### Step 2: Analyze the Inputs
+### **Step 2: Analyze the Inputs**
 
 - **Invertibility of $A$:**
 
@@ -228,7 +228,7 @@ $$
 
   Since $\det(A) \neq 0$, $A$ is **invertible**, and the system has a **unique solution**.
 
-### Step 3: Solve for $\mathbf{x}$
+### **Step 3: Solve for $\mathbf{x}$**
 
 Using the inverse of $A$:
 
@@ -281,7 +281,7 @@ $$
 \end{bmatrix} \implies x_1 = 1, \quad x_2 = 2
 $$
 
-### Step 4: Interpretation of Inputs and Solution
+### **Step 4: Interpretation of Inputs and Solution**
 
 - **Inputs $A$ and $\mathbf{b}$:**
 
@@ -292,11 +292,11 @@ $$
   - Represents the values that satisfy both equations simultaneously.
   - In this case, $x_1 = 1$ and $x_2 = 2$ are the unique values that make both equations true.
 
-## Geometric Interpretation
+## **Geometric Interpretation**
 
 Visualizing $A\mathbf{x} = \mathbf{b}$ can enhance comprehension, especially in two dimensions.
 
-### Example Visualization
+### E**xample Visualization**
 
 Consider the system:
 
@@ -320,7 +320,7 @@ Graphically, each equation represents a line in the $x_1$-$x_2$ plane.
 
 The unique solution $(1, 2)$ is the intersection point of these two lines.
 
-### Visual Representation
+### **Visual Representation**
 
 ```{python}
 #| label: geometric-interpretation
@@ -329,14 +329,10 @@ The unique solution $(1, 2)$ is the intersection point of these two lines.
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Define the range for x1
 x1 = np.linspace(-1, 4, 400)
 
-# Define the two equations
-# Equation 1: x1 + 2x2 = 5 => x2 = (5 - x1)/2
 x2_eq1 = (5 - x1) / 2
 
-# Equation 2: 3x1 + 4x2 = 11 => x2 = (11 - 3x1)/4
 x2_eq2 = (11 - 3*x1) / 4
 
 # Create the plot
@@ -344,15 +340,11 @@ plt.figure(figsize=(8, 6))
 plt.plot(x1, x2_eq1, label=r'$1x_1 + 2x_2 = 5$', color='blue')
 plt.plot(x1, x2_eq2, label=r'$3x_1 + 4x_2 = 11$', color='green')
 
-# Plot the solution point
 plt.plot(1, 2, 'ro', label=r'Solution $(1, 2)$')
 
-
-# Set plot limits
 plt.xlim(-1, 4)
 plt.ylim(-1, 4)
 
-# Add grid, labels, and title
 plt.grid(True, linestyle='--', alpha=0.7)
 plt.xlabel(r'$x_1$', fontsize=12)
 plt.ylabel(r'$x_2$', fontsize=12)
@@ -363,7 +355,7 @@ plt.axvline(0, color='black', linewidth=1)
 plt.show()
 ```
 
-### Explanation of the Visualization
+### **Explanation of the Visualization**
 
 - **Blue Line:** Represents the equation $1x_1 + 2x_2 = 5$.
 - **Green Line:** Represents the equation $3x_1 + 4x_2 = 11$.
@@ -371,7 +363,7 @@ plt.show()
 
 This visualization underscores how the inputs $A$ and $\mathbf{b}$ define the system's structure and determine the solution's existence and uniqueness.
 
-## Importance of Understanding Inputs
+## **Importance of Understanding Inputs**
 
 Grasping the role and nature of inputs in $A\mathbf{x} = \mathbf{b}$ is pivotal for several reasons:
 
@@ -390,7 +382,7 @@ Grasping the role and nature of inputs in $A\mathbf{x} = \mathbf{b}$ is pivotal 
 4. **Performance Optimization:**
    - Understanding the size and sparsity of $A$ can guide the selection of efficient algorithms for large-scale systems.
 
-## Conclusion
+## **Conclusion**
 
 In the linear system $A\mathbf{x} = \mathbf{b}$:
 

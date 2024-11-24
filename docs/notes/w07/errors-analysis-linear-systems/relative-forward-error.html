@@ -4823,17 +4823,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#what-relative-forward-error-represents" id="toc-what-relative-forward-error-represents" class="nav-link" data-scroll-target="#what-relative-forward-error-represents">What Relative Forward Error Represents</a></li>
-  <li><a href="#why-relative-forward-error-matters" id="toc-why-relative-forward-error-matters" class="nav-link" data-scroll-target="#why-relative-forward-error-matters">Why Relative Forward Error Matters</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
+  <li><a href="#what-relative-forward-error-represents" id="toc-what-relative-forward-error-represents" class="nav-link" data-scroll-target="#what-relative-forward-error-represents"><strong>What Relative Forward Error Represents</strong></a></li>
+  <li><a href="#why-relative-forward-error-matters" id="toc-why-relative-forward-error-matters" class="nav-link" data-scroll-target="#why-relative-forward-error-matters"><strong>Why Relative Forward Error Matters</strong></a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><strong>Example</strong></a>
   <ul class="collapse">
-  <li><a href="#step-1-verify-the-true-solution" id="toc-step-1-verify-the-true-solution" class="nav-link" data-scroll-target="#step-1-verify-the-true-solution">Step 1: Verify the True Solution</a></li>
-  <li><a href="#step-2-compute-the-forward-error" id="toc-step-2-compute-the-forward-error" class="nav-link" data-scroll-target="#step-2-compute-the-forward-error">Step 2: Compute the Forward Error</a></li>
-  <li><a href="#step-3-compute-the-relative-forward-error" id="toc-step-3-compute-the-relative-forward-error" class="nav-link" data-scroll-target="#step-3-compute-the-relative-forward-error">Step 3: Compute the Relative Forward Error</a></li>
-  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation">Interpretation</a></li>
+  <li><a href="#step-1-verify-the-true-solution" id="toc-step-1-verify-the-true-solution" class="nav-link" data-scroll-target="#step-1-verify-the-true-solution"><strong>Step 1: Verify the True Solution</strong></a></li>
+  <li><a href="#step-2-compute-the-forward-error" id="toc-step-2-compute-the-forward-error" class="nav-link" data-scroll-target="#step-2-compute-the-forward-error"><strong>Step 2: Compute the Forward Error</strong></a></li>
+  <li><a href="#step-3-compute-the-relative-forward-error" id="toc-step-3-compute-the-relative-forward-error" class="nav-link" data-scroll-target="#step-3-compute-the-relative-forward-error"><strong>Step 3: Compute the Relative Forward Error</strong></a></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><strong>Interpretation</strong></a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4866,7 +4866,7 @@ window.Quarto = {
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
 <p>The <strong>relative forward error</strong> measures the ratio of the forward error to the norm of the true solution <span class="math inline">\mathbf{x}</span>. This concept provides a normalized metric for quantifying the error relative to the magnitude of the true solution, making it particularly useful for comparing errors across solutions of different scales.</p>
 <p>The relative forward error is defined as:</p>
 <p><span class="math display">
@@ -4876,11 +4876,11 @@ window.Quarto = {
 <ul>
 <li><span class="math inline">\mathbf{x}</span>: The <strong>true solution</strong> of the system <span class="math inline">A\mathbf{x} = \mathbf{b}</span>,</li>
 <li><span class="math inline">\mathbf{x_a}</span>: The <strong>approximate solution</strong>,</li>
-<li><span class="math inline">\|\cdot\|_\infty</span>: The infinity norm, measuring the maximum absolute entry of a vector.</li>
+<li><span class="math inline">\|\cdot\|_\infty</span>: The <a href="../norms/infinity-vector-norm.html"><strong>infinity norm</strong></a>, measuring the maximum absolute entry of a vector.</li>
 </ul>
 </section>
 <section id="what-relative-forward-error-represents" class="level2">
-<h2 class="anchored" data-anchor-id="what-relative-forward-error-represents">What Relative Forward Error Represents</h2>
+<h2 class="anchored" data-anchor-id="what-relative-forward-error-represents"><strong>What Relative Forward Error Represents</strong></h2>
 <ol type="1">
 <li><p><strong>Normalized Accuracy</strong>:</p>
 <ul>
@@ -4900,7 +4900,7 @@ window.Quarto = {
 </ol>
 </section>
 <section id="why-relative-forward-error-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-relative-forward-error-matters">Why Relative Forward Error Matters</h2>
+<h2 class="anchored" data-anchor-id="why-relative-forward-error-matters"><strong>Why Relative Forward Error Matters</strong></h2>
 <ul>
 <li><p><strong>Comparing Errors Across Scales</strong>:</p>
 <ul>
@@ -4917,52 +4917,52 @@ window.Quarto = {
 </ul>
 </section>
 <section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
+<h2 class="anchored" data-anchor-id="example"><strong>Example</strong></h2>
 <p>Consider the system:</p>
 <p><span class="math display">
 A = \begin{bmatrix} 1 &amp; 1 \\ 3 &amp; -4 \end{bmatrix}, \quad
 \mathbf{b} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}, \quad
 \mathbf{x} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}, \quad
-\mathbf{x_a} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}.
+\mathbf{x_a} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}
 </span></p>
 <section id="step-1-verify-the-true-solution" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-verify-the-true-solution">Step 1: Verify the True Solution</h3>
+<h3 class="anchored" data-anchor-id="step-1-verify-the-true-solution"><strong>Step 1: Verify the True Solution</strong></h3>
 <p>Check that <span class="math inline">\mathbf{x}</span> satisfies <span class="math inline">A\mathbf{x} = \mathbf{b}</span>:</p>
 <p><span class="math display">
-A\mathbf{x} = \begin{bmatrix} 1 \times 2 + 1 \times 1 \\ 3 \times 2 + (-4) \times 1 \end{bmatrix} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} = \mathbf{b}.
+A\mathbf{x} = \begin{bmatrix} 1 \times 2 + 1 \times 1 \\ 3 \times 2 + (-4) \times 1 \end{bmatrix} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} = \mathbf{b}
 </span></p>
 </section>
 <section id="step-2-compute-the-forward-error" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-compute-the-forward-error">Step 2: Compute the Forward Error</h3>
+<h3 class="anchored" data-anchor-id="step-2-compute-the-forward-error"><strong>Step 2: Compute the Forward Error</strong></h3>
 <p>Compute the difference between <span class="math inline">\mathbf{x}</span> and <span class="math inline">\mathbf{x_a}</span>:</p>
 <p><span class="math display">
-\mathbf{e} = \mathbf{x} - \mathbf{x_a} = \begin{bmatrix} 2 - 1 \\ 1 - (-1) \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}.
+\mathbf{e} = \mathbf{x} - \mathbf{x_a} = \begin{bmatrix} 2 - 1 \\ 1 - (-1) \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}
 </span></p>
 <p>The forward error is the infinity norm of <span class="math inline">\mathbf{e}</span>:</p>
 <p><span class="math display">
-\text{FE} = \|\mathbf{e}\|_\infty = \max(|1|, |2|) = 2.
+\text{FE} = \|\mathbf{e}\|_\infty = \max(|1|, |2|) = 2
 </span></p>
 </section>
 <section id="step-3-compute-the-relative-forward-error" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-compute-the-relative-forward-error">Step 3: Compute the Relative Forward Error</h3>
+<h3 class="anchored" data-anchor-id="step-3-compute-the-relative-forward-error"><strong>Step 3: Compute the Relative Forward Error</strong></h3>
 <p>Compute the norm of the true solution <span class="math inline">\mathbf{x}</span>:</p>
 <p><span class="math display">
-\|\mathbf{x}\|_\infty = \max(|2|, |1|) = 2.
+\|\mathbf{x}\|_\infty = \max(|2|, |1|) = 2
 </span></p>
 <p>The relative forward error is:</p>
 <p><span class="math display">
-\text{RFE} = \frac{\|\mathbf{e}\|_\infty}{\|\mathbf{x}\|_\infty} = \frac{2}{2} = 1.
+\text{RFE} = \frac{\|\mathbf{e}\|_\infty}{\|\mathbf{x}\|_\infty} = \frac{2}{2} = 1
 </span></p>
 </section>
 <section id="interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="interpretation">Interpretation</h3>
+<h3 class="anchored" data-anchor-id="interpretation"><strong>Interpretation</strong></h3>
 <ul>
 <li>The relative forward error indicates that the forward error is equal to the size of the largest component of the true solution.</li>
 </ul>
 </section>
 </section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
 <ul>
 <li><p><strong>Relative Forward Error Significance</strong>:</p>
 <ul>

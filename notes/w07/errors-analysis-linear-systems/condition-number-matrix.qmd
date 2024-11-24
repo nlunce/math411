@@ -27,13 +27,13 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
 In numerical linear algebra, efficiently and accurately solving systems of equations is crucial. The **Condition Number** of a matrix is a fundamental concept that quantifies the sensitivity of the solution of a system of linear equations to errors in the input data. Understanding the condition number helps in assessing the reliability of numerical computations and in designing stable algorithms.
 
 This note focuses on the **Condition Number** using the **Infinity Norm**, providing insights into its definition, interpretation, and practical computation.
 
-## What is the Condition Number?
+## **What is the Condition Number?**
 
 The **Condition Number** of a matrix $A$, denoted as $\kappa_\infty(A)$, measures how much the output value of a function can change for a small change in the input argument. In the context of linear systems, it indicates how sensitive the solution $\mathbf{x}$ of $A\mathbf{x} = \mathbf{b}$ is to changes or errors in $A$ or $\mathbf{b}$.
 
@@ -48,7 +48,7 @@ Where:
 - $\|A\|_\infty$ is the **Infinity Norm** of matrix $A$, defined as the maximum absolute row sum.
 - $\|A^{-1}\|_\infty$ is the **Infinity Norm** of the inverse of matrix $A$.
 
-### Infinity Norm ($\|\cdot\|_\infty$)
+### **Infinity Norm ($\|\cdot\|_\infty$)**
 
 The **Infinity Norm** of a matrix $A$ is calculated as:
 
@@ -58,7 +58,7 @@ $$
 
 Where $a_{ij}$ are the elements of matrix $A$, and $m$ and $n$ are the number of rows and columns, respectively.
 
-## Interpreting the Condition Number
+## **Interpreting the Condition Number**
 
 The condition number provides insight into the numerical stability of solving linear systems:
 
@@ -69,7 +69,7 @@ The condition number provides insight into the numerical stability of solving li
   - Small changes in $A$ or $\mathbf{b}$ can cause large changes in $\mathbf{x}$.
   - Solutions are unreliable and sensitive to errors.
 
-## Why the Condition Number Matters
+## **Why the Condition Number Matters**
 
 Understanding the condition number is essential for several reasons:
 
@@ -78,11 +78,11 @@ Understanding the condition number is essential for several reasons:
 - **Matrix Inversion**: Indicates the feasibility and accuracy of computing the inverse of a matrix.
 - **Optimization**: Plays a role in optimization algorithms where matrix conditioning affects convergence rates.
 
-## A Practical Example
+## **A Practical Example**
 
 Let's explore a concrete example to illustrate the concept of the condition number using the **Infinity Norm** and its implications.
 
-### The Problem Setup
+### **The Problem Setup**
 
 Consider the system of equations:
 
@@ -97,17 +97,17 @@ Where:
 - $\mathbf{b} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}$ is the **input data**.
 - $A = \begin{bmatrix} 1 & 1 \\ 3 & -4 \end{bmatrix}$ is the **coefficient matrix**.
 
-### Step 1: Compute the Infinity Norms
+### **Step 1: Compute the Infinity Norms**
 
 We will compute the condition number using the **Infinity Norm**.
 
-#### Compute $\|A\|_\infty$
+#### **Compute $\|A\|_\infty$**
 
 $$
 \|A\|_\infty = \max \left\{ |1| + |1|, \ |3| + |-4| \right\} = \max \{ 2, 7 \} = 7
 $$
 
-#### Compute $\|A^{-1}\|_\infty$
+#### **Compute $\|A^{-1}\|_\infty$**
 
 First, find the inverse of $A$:
 
@@ -133,12 +133,12 @@ $$
 \|A^{-1}\|_\infty = \max \left\{ \left| \frac{4}{7} \right| + \left| \frac{1}{7} \right|, \ \left| \frac{3}{7} \right| + \left| -\frac{1}{7} \right| \right\} = \max \left\{ \frac{5}{7}, \frac{4}{7} \right\} = \frac{5}{7} \approx 0.7143
 $$
 
-### Step 2: Compute the Condition Number $\kappa_\infty(A)$
+### **Step 2: Compute the Condition Number $\kappa_\infty(A)$**
 
 $$
 \kappa_\infty(A) = \|A\|_\infty \cdot \|A^{-1}\|_\infty = 7 \cdot \frac{5}{7} = 5
 $$
 
-### Step 3: Interpretation
+### **Step 3: Interpretation**
 
 A condition number $\kappa_\infty(A) = 5$ indicates that the matrix $A$ is **moderately well-conditioned**. This means that the solution $\mathbf{x}$ is relatively stable with respect to small perturbations in $A$ or $\mathbf{b}$. While some error amplification is possible, it is not excessively large, and the solution can be considered reliable for practical purposes.

@@ -4857,19 +4857,17 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#what-backward-error-represents" id="toc-what-backward-error-represents" class="nav-link" data-scroll-target="#what-backward-error-represents">What Backward Error Represents</a></li>
-  <li><a href="#why-backward-error-matters" id="toc-why-backward-error-matters" class="nav-link" data-scroll-target="#why-backward-error-matters">Why Backward Error Matters</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
+  <li><a href="#what-backward-error-represents" id="toc-what-backward-error-represents" class="nav-link" data-scroll-target="#what-backward-error-represents"><strong>What Backward Error Represents</strong></a></li>
+  <li><a href="#why-backward-error-matters" id="toc-why-backward-error-matters" class="nav-link" data-scroll-target="#why-backward-error-matters"><strong>Why Backward Error Matters</strong></a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><strong>Example</strong></a>
   <ul class="collapse">
-  <li><a href="#step-1-compute-amathbfx_a" id="toc-step-1-compute-amathbfx_a" class="nav-link" data-scroll-target="#step-1-compute-amathbfx_a">Step 1: Compute <span class="math inline">A\mathbf{x_a}</span></a></li>
-  <li><a href="#step-2-compute-the-residual-mathbfr" id="toc-step-2-compute-the-residual-mathbfr" class="nav-link" data-scroll-target="#step-2-compute-the-residual-mathbfr">Step 2: Compute the Residual <span class="math inline">\mathbf{r}</span></a></li>
-  <li><a href="#step-3-compute-the-backward-error" id="toc-step-3-compute-the-backward-error" class="nav-link" data-scroll-target="#step-3-compute-the-backward-error">Step 3: Compute the Backward Error</a></li>
-  <li><a href="#step-4-interpretation" id="toc-step-4-interpretation" class="nav-link" data-scroll-target="#step-4-interpretation">Step 4: Interpretation</a></li>
+  <li><a href="#step-1-compute-amathbfx_a" id="toc-step-1-compute-amathbfx_a" class="nav-link" data-scroll-target="#step-1-compute-amathbfx_a"><strong>Step 1: Compute <span class="math inline">A\mathbf{x_a}</span></strong></a></li>
+  <li><a href="#step-2-compute-the-residual-mathbfr" id="toc-step-2-compute-the-residual-mathbfr" class="nav-link" data-scroll-target="#step-2-compute-the-residual-mathbfr"><strong>Step 2: Compute the Residual <span class="math inline">\mathbf{r}</span></strong></a></li>
+  <li><a href="#step-3-compute-the-backward-error" id="toc-step-3-compute-the-backward-error" class="nav-link" data-scroll-target="#step-3-compute-the-backward-error"><strong>Step 3: Compute the Backward Error</strong></a></li>
+  <li><a href="#step-4-interpretation" id="toc-step-4-interpretation" class="nav-link" data-scroll-target="#step-4-interpretation"><strong>Step 4: Interpretation</strong></a></li>
   </ul></li>
-  <li><a href="#visualization-of-backward-error" id="toc-visualization-of-backward-error" class="nav-link" data-scroll-target="#visualization-of-backward-error">Visualization of Backward Error</a></li>
-  <li><a href="#explanation-of-the-visualization" id="toc-explanation-of-the-visualization" class="nav-link" data-scroll-target="#explanation-of-the-visualization">Explanation of the Visualization</a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#visualization-of-backward-error" id="toc-visualization-of-backward-error" class="nav-link" data-scroll-target="#visualization-of-backward-error"><strong>Visualization of Backward Error</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4902,7 +4900,7 @@ window.Quarto = {
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
 <p>The <strong>backward error</strong> is a crucial concept in numerical linear algebra, measuring the smallest perturbation in the right-hand side <span class="math inline">\mathbf{b}</span> that would make the approximate solution <span class="math inline">\mathbf{x_a}</span> satisfy the linear system <span class="math inline">A\mathbf{x} = \mathbf{b}</span> exactly. In other words, it quantifies how much we need to adjust <span class="math inline">\mathbf{b}</span> so that <span class="math inline">\mathbf{x_a}</span> becomes an exact solution to a slightly modified system. This concept helps us understand the sensitivity of solutions and the reliability of numerical methods.</p>
 <p>The backward error is defined as:</p>
 <p><span class="math display">
@@ -4911,11 +4909,11 @@ window.Quarto = {
 <p>where:</p>
 <ul>
 <li><span class="math inline">\mathbf{r}</span>: The <strong>residual vector</strong>, <span class="math inline">\mathbf{r} = \mathbf{b} - A\mathbf{x_a}</span>,</li>
-<li><span class="math inline">\|\cdot\|_\infty</span>: The infinity norm, measuring the maximum absolute entry of the residual.</li>
+<li><span class="math inline">\|\cdot\|_\infty</span>: The <a href="../norms/infinity-vector-norm.html"><strong>infinity norm</strong></a>, measuring the maximum absolute entry of the residual.</li>
 </ul>
 </section>
 <section id="what-backward-error-represents" class="level2">
-<h2 class="anchored" data-anchor-id="what-backward-error-represents">What Backward Error Represents</h2>
+<h2 class="anchored" data-anchor-id="what-backward-error-represents"><strong>What Backward Error Represents</strong></h2>
 <ol type="1">
 <li><p><strong>Residual Perspective</strong>:</p>
 <ul>
@@ -4935,7 +4933,7 @@ window.Quarto = {
 </ol>
 </section>
 <section id="why-backward-error-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-backward-error-matters">Why Backward Error Matters</h2>
+<h2 class="anchored" data-anchor-id="why-backward-error-matters"><strong>Why Backward Error Matters</strong></h2>
 <ul>
 <li><p><strong>Assessing Solution Quality</strong>:</p>
 <ul>
@@ -4952,7 +4950,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
+<h2 class="anchored" data-anchor-id="example"><strong>Example</strong></h2>
 <p>Consider the system:</p>
 <p><span class="math display">
 A = \begin{bmatrix} 1 &amp; 1 \\ 3 &amp; -4 \end{bmatrix}, \quad
@@ -4960,21 +4958,21 @@ A = \begin{bmatrix} 1 &amp; 1 \\ 3 &amp; -4 \end{bmatrix}, \quad
 \mathbf{x_a} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}
 </span></p>
 <section id="step-1-compute-amathbfx_a" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-compute-amathbfx_a">Step 1: Compute <span class="math inline">A\mathbf{x_a}</span></h3>
+<h3 class="anchored" data-anchor-id="step-1-compute-amathbfx_a"><strong>Step 1: Compute <span class="math inline">A\mathbf{x_a}</span></strong></h3>
 <p>Multiply <span class="math inline">A</span> by <span class="math inline">\mathbf{x_a}</span>:</p>
 <p><span class="math display">
 A\mathbf{x_a} = \begin{bmatrix} 1 \times 1 + 1 \times 1 \\ 3 \times 1 + (-4) \times 1 \end{bmatrix} = \begin{bmatrix} 2 \\ -1 \end{bmatrix}
 </span></p>
 </section>
 <section id="step-2-compute-the-residual-mathbfr" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-compute-the-residual-mathbfr">Step 2: Compute the Residual <span class="math inline">\mathbf{r}</span></h3>
+<h3 class="anchored" data-anchor-id="step-2-compute-the-residual-mathbfr"><strong>Step 2: Compute the <a href="./residual-linear-systems.html">Residual</a> <span class="math inline">\mathbf{r}</span></strong></h3>
 <p>Subtract <span class="math inline">A\mathbf{x_a}</span> from <span class="math inline">\mathbf{b}</span>:</p>
 <p><span class="math display">
 \mathbf{r} = \mathbf{b} - A\mathbf{x_a} = \begin{bmatrix} 3 - 2 \\ 2 - (-1) \end{bmatrix} = \begin{bmatrix} 1 \\ 3 \end{bmatrix}
 </span></p>
 </section>
 <section id="step-3-compute-the-backward-error" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-compute-the-backward-error">Step 3: Compute the Backward Error</h3>
+<h3 class="anchored" data-anchor-id="step-3-compute-the-backward-error"><strong>Step 3: Compute the Backward Error</strong></h3>
 <p>The backward error is the infinity norm of the residual:</p>
 <p><span class="math display">
 \text{BE} = \|\mathbf{r}\|_\infty = \max(|1|, |3|) = 3
@@ -4982,7 +4980,7 @@ A\mathbf{x_a} = \begin{bmatrix} 1 \times 1 + 1 \times 1 \\ 3 \times 1 + (-4) \ti
 <p>This means the largest adjustment needed in <span class="math inline">\mathbf{b}</span> is <span class="math inline">3</span>, making <span class="math inline">\mathbf{x_a}</span> an exact solution for the perturbed system <span class="math inline">A\mathbf{x_a} = \mathbf{b}&#39;</span>, where <span class="math inline">\mathbf{b}&#39; = A\mathbf{x_a}</span>.</p>
 </section>
 <section id="step-4-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-interpretation">Step 4: Interpretation</h3>
+<h3 class="anchored" data-anchor-id="step-4-interpretation"><strong>Step 4: Interpretation</strong></h3>
 <ul>
 <li><p><strong>Residual Components</strong>:</p>
 <ul>
@@ -5000,7 +4998,7 @@ A\mathbf{x_a} = \begin{bmatrix} 1 \times 1 + 1 \times 1 \\ 3 \times 1 + (-4) \ti
 </section>
 </section>
 <section id="visualization-of-backward-error" class="level2">
-<h2 class="anchored" data-anchor-id="visualization-of-backward-error">Visualization of Backward Error</h2>
+<h2 class="anchored" data-anchor-id="visualization-of-backward-error"><strong>Visualization of Backward Error</strong></h2>
 <p>The graph below illustrates the backward error:</p>
 <ul>
 <li><strong>Blue Vector</strong> (<span class="math inline">\mathbf{b}</span>): The target vector in the system.</li>
@@ -5014,55 +5012,46 @@ A\mathbf{x_a} = \begin{bmatrix} 1 \times 1 + 1 \times 1 \\ 3 \times 1 + (-4) \ti
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Example setup for visualizing backward error</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">3</span>, <span class="op">-</span><span class="dv">4</span>]])</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">2</span>])</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x_a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">1</span>])  <span class="co"># Approximate solution</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Ax_a and residual</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Ax_a <span class="op">=</span> A <span class="op">@</span> x_a</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> b <span class="op">-</span> Ax_a</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Improved visualization to prevent label overlap</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> np.zeros(<span class="dv">2</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot vectors</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="op">*</span>origin, <span class="op">*</span>b, color<span class="op">=</span><span class="st">&#39;blue&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$\mathbf</span><span class="sc">{b}</span><span class="vs">$&#39;</span>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="op">*</span>origin, <span class="op">*</span>Ax_a, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$A\mathbf</span><span class="sc">{x}</span><span class="vs">_a$&#39;</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="op">*</span>Ax_a, <span class="op">*</span>r, color<span class="op">=</span><span class="st">&#39;red&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$\mathbf</span><span class="sc">{r}</span><span class="vs"> = \mathbf</span><span class="sc">{b}</span><span class="vs"> - A\mathbf</span><span class="sc">{x}</span><span class="vs">_a$&#39;</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate vectors with offset positions to avoid overlap</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$A\mathbf</span><span class="sc">{x}</span><span class="vs">_a$&#39;</span>, (Ax_a[<span class="dv">0</span>], Ax_a[<span class="dv">1</span>]), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="op">-</span><span class="dv">60</span>,<span class="dv">10</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$\mathbf</span><span class="sc">{b}</span><span class="vs">$&#39;</span>, (b[<span class="dv">0</span>], b[<span class="dv">1</span>]), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">15</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;blue&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$\mathbf</span><span class="sc">{r}</span><span class="vs">$&#39;</span>, (Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span>, Ax_a[<span class="dv">1</span>] <span class="op">+</span> r[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span>), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">0</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;red&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Show vector addition</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.plot([Ax_a[<span class="dv">0</span>], b[<span class="dv">0</span>]], [Ax_a[<span class="dv">1</span>], b[<span class="dv">1</span>]], <span class="st">&#39;r--&#39;</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot residual components</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="op">*</span>Ax_a, r[<span class="dv">0</span>], <span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;orange&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$\mathbf</span><span class="sc">{r_1}</span><span class="vs">$&#39;</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>plt.quiver(Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>], Ax_a[<span class="dv">1</span>], <span class="dv">0</span>, r[<span class="dv">1</span>], color<span class="op">=</span><span class="st">&#39;purple&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$\mathbf</span><span class="sc">{r_2}</span><span class="vs">$&#39;</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Annotate residual components with adjusted offsets</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$\mathbf</span><span class="sc">{r_1}</span><span class="vs">$&#39;</span>, (Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span>, Ax_a[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">0.2</span>), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="dv">0</span>,<span class="op">-</span><span class="dv">10</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;orange&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$\mathbf</span><span class="sc">{r_2}</span><span class="vs">$&#39;</span>, (Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">0.1</span>, Ax_a[<span class="dv">1</span>] <span class="op">+</span> r[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span>), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">0</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;purple&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Highlight the maximum component of the residual</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.text(Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">0.1</span>, Ax_a[<span class="dv">1</span>] <span class="op">+</span> r[<span class="dv">1</span>] <span class="op">-</span><span class="fl">0.3</span>, <span class="vs">r&#39;$\max(|\mathbf</span><span class="sc">{r_1}</span><span class="vs">|, |\mathbf</span><span class="sc">{r_2}</span><span class="vs">|) = |\mathbf</span><span class="sc">{r_2}</span><span class="vs">| = 3$&#39;</span>, color<span class="op">=</span><span class="st">&#39;purple&#39;</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Graph details</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">5</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">5</span>)</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;black&#39;</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;black&#39;</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>plt.grid(color<span class="op">=</span><span class="st">&#39;gray&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;--&#39;</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;upper left&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Visualization of Backward Error with Residual Components&#39;</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;x-axis&#39;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;y-axis&#39;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">&#39;equal&#39;</span>, adjustable<span class="op">=</span><span class="st">&#39;box&#39;</span>)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">3</span>, <span class="op">-</span><span class="dv">4</span>]])</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">2</span>])</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x_a <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Ax_a <span class="op">=</span> A <span class="op">@</span> x_a</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> b <span class="op">-</span> Ax_a</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>origin <span class="op">=</span> np.zeros(<span class="dv">2</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="op">*</span>origin, <span class="op">*</span>b, color<span class="op">=</span><span class="st">&#39;blue&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$\mathbf</span><span class="sc">{b}</span><span class="vs">$&#39;</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="op">*</span>origin, <span class="op">*</span>Ax_a, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$A\mathbf</span><span class="sc">{x}</span><span class="vs">_a$&#39;</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="op">*</span>Ax_a, <span class="op">*</span>r, color<span class="op">=</span><span class="st">&#39;red&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$\mathbf</span><span class="sc">{r}</span><span class="vs"> = \mathbf</span><span class="sc">{b}</span><span class="vs"> - A\mathbf</span><span class="sc">{x}</span><span class="vs">_a$&#39;</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$A\mathbf</span><span class="sc">{x}</span><span class="vs">_a$&#39;</span>, (Ax_a[<span class="dv">0</span>], Ax_a[<span class="dv">1</span>]), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="op">-</span><span class="dv">60</span>,<span class="dv">10</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;green&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$\mathbf</span><span class="sc">{b}</span><span class="vs">$&#39;</span>, (b[<span class="dv">0</span>], b[<span class="dv">1</span>]), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="op">-</span><span class="dv">20</span>,<span class="dv">15</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;blue&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$\mathbf</span><span class="sc">{r}</span><span class="vs">$&#39;</span>, (Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span>, Ax_a[<span class="dv">1</span>] <span class="op">+</span> r[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span>), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">0</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;red&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.plot([Ax_a[<span class="dv">0</span>], b[<span class="dv">0</span>]], [Ax_a[<span class="dv">1</span>], b[<span class="dv">1</span>]], <span class="st">&#39;r--&#39;</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.quiver(<span class="op">*</span>Ax_a, r[<span class="dv">0</span>], <span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;orange&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$\mathbf</span><span class="sc">{r_1}</span><span class="vs">$&#39;</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.quiver(Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>], Ax_a[<span class="dv">1</span>], <span class="dv">0</span>, r[<span class="dv">1</span>], color<span class="op">=</span><span class="st">&#39;purple&#39;</span>, angles<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale_units<span class="op">=</span><span class="st">&#39;xy&#39;</span>, scale<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="vs">r&#39;$\mathbf</span><span class="sc">{r_2}</span><span class="vs">$&#39;</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$\mathbf</span><span class="sc">{r_1}</span><span class="vs">$&#39;</span>, (Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>]<span class="op">/</span><span class="dv">2</span>, Ax_a[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">0.2</span>), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="dv">0</span>,<span class="op">-</span><span class="dv">10</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;orange&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.annotate(<span class="vs">r&#39;$\mathbf</span><span class="sc">{r_2}</span><span class="vs">$&#39;</span>, (Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">0.1</span>, Ax_a[<span class="dv">1</span>] <span class="op">+</span> r[<span class="dv">1</span>]<span class="op">/</span><span class="dv">2</span>), textcoords<span class="op">=</span><span class="st">&quot;offset points&quot;</span>, xytext<span class="op">=</span>(<span class="dv">10</span>,<span class="dv">0</span>), ha<span class="op">=</span><span class="st">&#39;center&#39;</span>, color<span class="op">=</span><span class="st">&#39;purple&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.text(Ax_a[<span class="dv">0</span>] <span class="op">+</span> r[<span class="dv">0</span>] <span class="op">+</span> <span class="fl">0.1</span>, Ax_a[<span class="dv">1</span>] <span class="op">+</span> r[<span class="dv">1</span>] <span class="op">-</span><span class="fl">0.3</span>, <span class="vs">r&#39;$\max(|\mathbf</span><span class="sc">{r_1}</span><span class="vs">|, |\mathbf</span><span class="sc">{r_2}</span><span class="vs">|) = |\mathbf</span><span class="sc">{r_2}</span><span class="vs">| = 3$&#39;</span>, color<span class="op">=</span><span class="st">&#39;purple&#39;</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">5</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">2</span>, <span class="dv">5</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>plt.axhline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;black&#39;</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>plt.axvline(<span class="dv">0</span>, color<span class="op">=</span><span class="st">&#39;black&#39;</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>plt.grid(color<span class="op">=</span><span class="st">&#39;gray&#39;</span>, linestyle<span class="op">=</span><span class="st">&#39;--&#39;</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;upper left&#39;</span>, fontsize<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Visualization of Backward Error with Residual Components&#39;</span>, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;x-axis&#39;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;y-axis&#39;</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">&#39;equal&#39;</span>, adjustable<span class="op">=</span><span class="st">&#39;box&#39;</span>)</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -5072,50 +5061,6 @@ A\mathbf{x_a} = \begin{bmatrix} 1 \times 1 + 1 \times 1 \\ 3 \times 1 + (-4) \ti
 </div>
 </div>
 </div>
-</section>
-<section id="explanation-of-the-visualization" class="level2">
-<h2 class="anchored" data-anchor-id="explanation-of-the-visualization">Explanation of the Visualization</h2>
-<ul>
-<li><p><strong>Vector Addition</strong>:</p>
-<ul>
-<li><p>The residual vector <span class="math inline">\mathbf{r}</span> is drawn starting from <span class="math inline">A\mathbf{x_a}</span> and pointing towards <span class="math inline">\mathbf{b}</span>. This visually demonstrates that:</p>
-<p><span class="math display">
-A\mathbf{x_a} + \mathbf{r} = \mathbf{b}
-</span></p></li>
-</ul></li>
-<li><p><strong>Residual Components</strong>:</p>
-<ul>
-<li><p>The residual vector <span class="math inline">\mathbf{r}</span> is decomposed into its <span class="math inline">x</span>-component <span class="math inline">r_1</span> (orange vector) and <span class="math inline">y</span>-component <span class="math inline">r_2</span> (purple vector).</p></li>
-<li><p>The <span class="math inline">x</span>-component <span class="math inline">r_1 = 1</span> and the <span class="math inline">y</span>-component <span class="math inline">r_2 = 3</span>.</p></li>
-</ul></li>
-<li><p><strong>Infinity Norm Highlighted</strong>:</p>
-<ul>
-<li><p>The maximum absolute component of the residual is <span class="math inline">|r_2| = 3</span>, which is the backward error <span class="math inline">\text{BE} = \|\mathbf{r}\|_\infty</span>.</p></li>
-<li><p>This is emphasized in the graph with a text annotation.</p></li>
-</ul></li>
-<li><p><strong>Understanding the Residual Norm</strong>:</p>
-<ul>
-<li><p>By showing the components, we can see that the backward error is determined by the largest adjustment needed in any coordinate.</p></li>
-<li><p>In this case, the adjustment in the <span class="math inline">y</span>-direction dominates the backward error.</p></li>
-</ul></li>
-</ul>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<ul>
-<li><p><strong>Backward Error Significance</strong>:</p>
-<ul>
-<li>The backward error provides valuable insight into the accuracy of an approximate solution from the perspective of the input data <span class="math inline">\mathbf{b}</span>. A small backward error implies that the approximate solution is highly reliable.</li>
-</ul></li>
-<li><p><strong>Visualization Enhancements</strong>:</p>
-<ul>
-<li>By decomposing the residual vector into its components and highlighting the infinity norm, we gain a clearer understanding of how the backward error is calculated.</li>
-</ul></li>
-<li><p><strong>Practical Implications</strong>:</p>
-<ul>
-<li>In applications where data may have inherent uncertainties, a small backward error ensures that the solution is valid for a slightly perturbed problem, which is often acceptable.</li>
-</ul></li>
-</ul>
 
 
 </section>

@@ -4823,28 +4823,28 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition">Definition</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><strong>Definition</strong></a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties"><strong>Properties</strong></a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><strong>Examples</strong></a>
   <ul class="collapse">
-  <li><a href="#d-vector" id="toc-d-vector" class="nav-link" data-scroll-target="#d-vector">1. 2D Vector</a></li>
-  <li><a href="#d-vector-1" id="toc-d-vector-1" class="nav-link" data-scroll-target="#d-vector-1">2. 3D Vector</a></li>
-  <li><a href="#general-case" id="toc-general-case" class="nav-link" data-scroll-target="#general-case">3. General Case</a></li>
+  <li><a href="#d-vector" id="toc-d-vector" class="nav-link" data-scroll-target="#d-vector"><strong>1. 2D Vector</strong></a></li>
+  <li><a href="#d-vector-1" id="toc-d-vector-1" class="nav-link" data-scroll-target="#d-vector-1"><strong>2. 3D Vector</strong></a></li>
+  <li><a href="#general-case" id="toc-general-case" class="nav-link" data-scroll-target="#general-case"><strong>3. General Case</strong></a></li>
   </ul></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><strong>Applications</strong></a>
   <ul class="collapse">
-  <li><a href="#measuring-distance" id="toc-measuring-distance" class="nav-link" data-scroll-target="#measuring-distance">1. Measuring Distance</a></li>
-  <li><a href="#normalizing-vectors" id="toc-normalizing-vectors" class="nav-link" data-scroll-target="#normalizing-vectors">2. Normalizing Vectors</a></li>
-  <li><a href="#error-measurement" id="toc-error-measurement" class="nav-link" data-scroll-target="#error-measurement">3. Error Measurement</a></li>
-  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning">4. Machine Learning</a></li>
+  <li><a href="#measuring-distance" id="toc-measuring-distance" class="nav-link" data-scroll-target="#measuring-distance"><strong>1. Measuring Distance</strong></a></li>
+  <li><a href="#normalizing-vectors" id="toc-normalizing-vectors" class="nav-link" data-scroll-target="#normalizing-vectors"><strong>2. Normalizing Vectors</strong></a></li>
+  <li><a href="#error-measurement" id="toc-error-measurement" class="nav-link" data-scroll-target="#error-measurement"><strong>3. Error Measurement</strong></a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning"><strong>4. Machine Learning</strong></a></li>
   </ul></li>
-  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization">Visualization</a></li>
-  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem">Example Problem</a>
+  <li><a href="#visualization" id="toc-visualization" class="nav-link" data-scroll-target="#visualization"><strong>Visualization</strong></a></li>
+  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem"><strong>Example Problem</strong></a>
   <ul class="collapse">
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution:</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution:</strong></a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4877,19 +4877,19 @@ window.Quarto = {
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
 <p>The <strong>Euclidean vector norm</strong> (or 2-norm) is a measure of the magnitude (or length) of a vector in Euclidean space. It is widely used in mathematics, physics, and engineering for calculating distances, measuring error, and normalizing vectors. This note covers the definition, properties, computation, and applications of the Euclidean norm.</p>
 </section>
 <section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition">Definition</h2>
+<h2 class="anchored" data-anchor-id="definition"><strong>Definition</strong></h2>
 <p>For a vector <span class="math inline">\mathbf{v} = [v_1, v_2, \dots, v_n]</span> in <span class="math inline">\mathbb{R}^n</span>, the Euclidean norm is defined as:</p>
 <p><span class="math display">
-\|\mathbf{v}\|_2 = \sqrt{\sum_{i=1}^n v_i^2}.
+\|\mathbf{v}\|_2 = \sqrt{\sum_{i=1}^n v_i^2}
 </span></p>
 <p>This formula calculates the straight-line distance from the origin to the point represented by <span class="math inline">\mathbf{v}</span> in <span class="math inline">n</span>-dimensional space.</p>
 </section>
 <section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<h2 class="anchored" data-anchor-id="properties"><strong>Properties</strong></h2>
 <p>The Euclidean norm satisfies several key properties:</p>
 <ol type="1">
 <li><strong>Non-negativity</strong>: <span class="math inline">\|\mathbf{v}\|_2 \geq 0</span>, and <span class="math inline">\|\mathbf{v}\|_2 = 0</span> if and only if <span class="math inline">\mathbf{v} = \mathbf{0}</span>.</li>
@@ -4898,63 +4898,63 @@ window.Quarto = {
 </ol>
 </section>
 <section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
+<h2 class="anchored" data-anchor-id="examples"><strong>Examples</strong></h2>
 <section id="d-vector" class="level3">
-<h3 class="anchored" data-anchor-id="d-vector">1. 2D Vector</h3>
+<h3 class="anchored" data-anchor-id="d-vector"><strong>1. 2D Vector</strong></h3>
 <p>For <span class="math inline">\mathbf{v} = [3, 4]</span>:</p>
 <p><span class="math display">
-\|\mathbf{v}\|_2 = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = 5.
+\|\mathbf{v}\|_2 = \sqrt{3^2 + 4^2} = \sqrt{9 + 16} = 5
 </span></p>
 </section>
 <section id="d-vector-1" class="level3">
-<h3 class="anchored" data-anchor-id="d-vector-1">2. 3D Vector</h3>
+<h3 class="anchored" data-anchor-id="d-vector-1"><strong>2. 3D Vector</strong></h3>
 <p>For <span class="math inline">\mathbf{v} = [1, 2, 3]</span>:</p>
 <p><span class="math display">
-\|\mathbf{v}\|_2 = \sqrt{1^2 + 2^2 + 3^2} = \sqrt{1 + 4 + 9} = \sqrt{14}.
+\|\mathbf{v}\|_2 = \sqrt{1^2 + 2^2 + 3^2} = \sqrt{1 + 4 + 9} = \sqrt{14}
 </span></p>
 </section>
 <section id="general-case" class="level3">
-<h3 class="anchored" data-anchor-id="general-case">3. General Case</h3>
+<h3 class="anchored" data-anchor-id="general-case"><strong>3. General Case</strong></h3>
 <p>For <span class="math inline">\mathbf{v} = [v_1, v_2, \dots, v_n]</span>:</p>
 <p><span class="math display">
-\|\mathbf{v}\|_2 = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}.
+\|\mathbf{v}\|_2 = \sqrt{v_1^2 + v_2^2 + \cdots + v_n^2}
 </span></p>
 </section>
 </section>
 <section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<h2 class="anchored" data-anchor-id="applications"><strong>Applications</strong></h2>
 <section id="measuring-distance" class="level3">
-<h3 class="anchored" data-anchor-id="measuring-distance">1. Measuring Distance</h3>
+<h3 class="anchored" data-anchor-id="measuring-distance"><strong>1. Measuring Distance</strong></h3>
 <p>The Euclidean norm is used to calculate the distance between two points <span class="math inline">\mathbf{u}</span> and <span class="math inline">\mathbf{v}</span> in space:</p>
 <p><span class="math display">
-\|\mathbf{u} - \mathbf{v}\|_2 = \sqrt{\sum_{i=1}^n (u_i - v_i)^2}.
+\|\mathbf{u} - \mathbf{v}\|_2 = \sqrt{\sum_{i=1}^n (u_i - v_i)^2}
 </span></p>
 </section>
 <section id="normalizing-vectors" class="level3">
-<h3 class="anchored" data-anchor-id="normalizing-vectors">2. Normalizing Vectors</h3>
+<h3 class="anchored" data-anchor-id="normalizing-vectors"><strong>2. Normalizing Vectors</strong></h3>
 <p>To convert a vector to unit length, divide it by its Euclidean norm:</p>
 <p><span class="math display">
-\mathbf{u} = \frac{\mathbf{v}}{\|\mathbf{v}\|_2}.
+\mathbf{u} = \frac{\mathbf{v}}{\|\mathbf{v}\|_2}
 </span></p>
 </section>
 <section id="error-measurement" class="level3">
-<h3 class="anchored" data-anchor-id="error-measurement">3. Error Measurement</h3>
+<h3 class="anchored" data-anchor-id="error-measurement"><strong>3. Error Measurement</strong></h3>
 <p>In numerical analysis, the Euclidean norm measures the error or residual of a solution.</p>
 </section>
 <section id="machine-learning" class="level3">
-<h3 class="anchored" data-anchor-id="machine-learning">4. Machine Learning</h3>
+<h3 class="anchored" data-anchor-id="machine-learning"><strong>4. Machine Learning</strong></h3>
 <p>The Euclidean norm underpins metrics like the Euclidean distance, used in clustering and regression.</p>
 </section>
 </section>
 <section id="visualization" class="level2">
-<h2 class="anchored" data-anchor-id="visualization">Visualization</h2>
+<h2 class="anchored" data-anchor-id="visualization"><strong>Visualization</strong></h2>
 <p>In two-dimensional space, the Euclidean norm corresponds to the length of the hypotenuse of a right triangle formed by the vector’s components. This is equivalent to the straight-line distance from the origin to the point represented by the vector.</p>
 </section>
 <section id="example-problem" class="level2">
-<h2 class="anchored" data-anchor-id="example-problem">Example Problem</h2>
+<h2 class="anchored" data-anchor-id="example-problem"><strong>Example Problem</strong></h2>
 <p><strong>Problem:</strong> Compute the Euclidean norm of <span class="math inline">\mathbf{v} = [2, -3, 6]</span>.</p>
 <section id="solution" class="level3">
-<h3 class="anchored" data-anchor-id="solution">Solution:</h3>
+<h3 class="anchored" data-anchor-id="solution"><strong>Solution:</strong></h3>
 <ol type="1">
 <li>Square each component: <span class="math inline">2^2 = 4</span>, <span class="math inline">(-3)^2 = 9</span>, <span class="math inline">6^2 = 36</span>.</li>
 <li>Sum the squares: <span class="math inline">4 + 9 + 36 = 49</span>.</li>
@@ -4963,7 +4963,7 @@ window.Quarto = {
 </section>
 </section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
 <p>The Euclidean vector norm is an essential concept in mathematics and its applications, providing a straightforward measure of vector magnitude. Its simplicity and intuitive geometric interpretation make it a fundamental tool across diverse fields such as physics, engineering, and machine learning.</p>
 
 

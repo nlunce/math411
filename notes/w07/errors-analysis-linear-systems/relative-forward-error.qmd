@@ -27,7 +27,7 @@ preview:
   navigate: true
 ---
 
-## Overview
+## **Overview**
 
 The **relative forward error** measures the ratio of the forward error to the norm of the true solution $\mathbf{x}$. This concept provides a normalized metric for quantifying the error relative to the magnitude of the true solution, making it particularly useful for comparing errors across solutions of different scales.
 
@@ -41,9 +41,9 @@ where:
 
 - $\mathbf{x}$: The **true solution** of the system $A\mathbf{x} = \mathbf{b}$,
 - $\mathbf{x_a}$: The **approximate solution**,
-- $\|\cdot\|_\infty$: The infinity norm, measuring the maximum absolute entry of a vector.
+- $\|\cdot\|_\infty$: The [**infinity norm**](../norms/infinity-vector-norm.html), measuring the maximum absolute entry of a vector.
 
-## What Relative Forward Error Represents
+## **What Relative Forward Error Represents**
 
 1. **Normalized Accuracy**:
 
@@ -61,7 +61,7 @@ where:
      \text{RFE} = 0
      $$
 
-## Why Relative Forward Error Matters
+## **Why Relative Forward Error Matters**
 
 - **Comparing Errors Across Scales**:
 
@@ -75,7 +75,7 @@ where:
 
   - By minimizing the relative forward error, algorithms can be optimized for consistent accuracy.
 
-## Example
+## **Example**
 
 Consider the system:
 
@@ -83,50 +83,50 @@ $$
 A = \begin{bmatrix} 1 & 1 \\ 3 & -4 \end{bmatrix}, \quad
 \mathbf{b} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}, \quad
 \mathbf{x} = \begin{bmatrix} 2 \\ 1 \end{bmatrix}, \quad
-\mathbf{x_a} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}.
+\mathbf{x_a} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}
 $$
 
-### Step 1: Verify the True Solution
+### **Step 1: Verify the True Solution**
 
 Check that $\mathbf{x}$ satisfies $A\mathbf{x} = \mathbf{b}$:
 
 $$
-A\mathbf{x} = \begin{bmatrix} 1 \times 2 + 1 \times 1 \\ 3 \times 2 + (-4) \times 1 \end{bmatrix} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} = \mathbf{b}.
+A\mathbf{x} = \begin{bmatrix} 1 \times 2 + 1 \times 1 \\ 3 \times 2 + (-4) \times 1 \end{bmatrix} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} = \mathbf{b}
 $$
 
-### Step 2: Compute the Forward Error
+### **Step 2: Compute the Forward Error**
 
 Compute the difference between $\mathbf{x}$ and $\mathbf{x_a}$:
 
 $$
-\mathbf{e} = \mathbf{x} - \mathbf{x_a} = \begin{bmatrix} 2 - 1 \\ 1 - (-1) \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}.
+\mathbf{e} = \mathbf{x} - \mathbf{x_a} = \begin{bmatrix} 2 - 1 \\ 1 - (-1) \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix}
 $$
 
 The forward error is the infinity norm of $\mathbf{e}$:
 
 $$
-\text{FE} = \|\mathbf{e}\|_\infty = \max(|1|, |2|) = 2.
+\text{FE} = \|\mathbf{e}\|_\infty = \max(|1|, |2|) = 2
 $$
 
-### Step 3: Compute the Relative Forward Error
+### **Step 3: Compute the Relative Forward Error**
 
 Compute the norm of the true solution $\mathbf{x}$:
 
 $$
-\|\mathbf{x}\|_\infty = \max(|2|, |1|) = 2.
+\|\mathbf{x}\|_\infty = \max(|2|, |1|) = 2
 $$
 
 The relative forward error is:
 
 $$
-\text{RFE} = \frac{\|\mathbf{e}\|_\infty}{\|\mathbf{x}\|_\infty} = \frac{2}{2} = 1.
+\text{RFE} = \frac{\|\mathbf{e}\|_\infty}{\|\mathbf{x}\|_\infty} = \frac{2}{2} = 1
 $$
 
-### Interpretation
+### **Interpretation**
 
 - The relative forward error indicates that the forward error is equal to the size of the largest component of the true solution.
 
-## Conclusion
+## **Conclusion**
 
 - **Relative Forward Error Significance**:
 
