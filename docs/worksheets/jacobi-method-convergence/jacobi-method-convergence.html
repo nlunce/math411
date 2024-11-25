@@ -4907,10 +4907,10 @@ A = L + D + U,
 <p>Given any vector <span class="math inline">\mathbf{x}</span>, we can create a scaled version of <span class="math inline">\mathbf{x}</span>, say <span class="math inline">\mathbf{v}</span>, as <span class="math inline">\mathbf{v} = \frac{\mathbf{x}}{c}</span>. What value of <span class="math inline">c</span> will guarantee that <span class="math inline">\|\mathbf{v}\|_\infty = 1</span>?</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <strong>Answer</strong>
@@ -4955,10 +4955,10 @@ c = \|\mathbf{x}\|_\infty = \max_{1 \leq i \leq n} |x_i|
 </span></p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <strong>Answer</strong>
@@ -5011,10 +5011,10 @@ r_{m,1} &amp; r_{m,2} &amp; \cdots &amp; r_{m,m-1} &amp; 0 &amp; r_{m,m+1} &amp;
 <p>Now, explain why the absolute value of the <span class="math inline">m</span>-th row of <span class="math inline">\lambda D \mathbf{v}</span> is <span class="math inline">|\lambda| |d_{m,m}|</span>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <strong>Answer</strong>
@@ -5070,6 +5070,146 @@ d_{n,n} v_n
 \left| \left( \lambda D \mathbf{v} \right)_m \right| = |\lambda| |d_{m,m}|
 </span></p>
 <p>Thus, the absolute value of the <span class="math inline">m</span>-th row of <span class="math inline">\lambda D \mathbf{v}</span> is determined by <span class="math inline">|\lambda|</span>, the eigenvalue, and <span class="math inline">|d_{m,m}|</span>, the diagonal entry of <span class="math inline">D</span> at row <span class="math inline">m</span>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong><em>EQUATION 1</em></strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Combining steps (2) and (3), we can write:</strong></p>
+<p><span class="math display">
+|\lambda||d_{m,m}| = |r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n|
+</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>4. Explain why:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">
+|r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n| \leq \sum_{j \neq m} |r_{m,j}|
+</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>5. Explain why:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">
+\sum_{j \neq m} |r_{m,j}| &lt; |d_{m,m}|
+</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>6. Use the results from Steps (4) and (5) with <em>EQUATION 1</em> to show show that:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">
+|\lambda||d_{m,m}| &lt; |d_{m,m}|
+</span></p>
+<p>What does this say about <span class="math inline">|\lambda|</span>?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>7. Final Conclusion</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Since <span class="math inline">\lambda</span> is an arbitrary eigenvalue, then <span class="math inline">|\lambda|_{\text{max}} &lt; 1</span>. In other words, the spectral radius <span class="math inline">\rho(D^{-1}R) &lt; 1</span>. Thus, by the <strong>Spectral Radius Convergence Theorem</strong> (Theorem A.7), the Jacobi Method (iteration with <span class="math inline">A = D - D^{-1}R</span>) converges for any starting point <span class="math inline">\mathbf{x}_0</span>.</p>
+<p>Let <span class="math inline">\mathbf{x}_* = \lim_{k \to \infty} \mathbf{x}_k</span>, and show that <span class="math inline">\mathbf{x}_*</span> is the solution to <span class="math inline">A \mathbf{x} = \mathbf{b}</span>, so <span class="math inline">A</span> must be nonsingular. This completes the proof of the <strong>Diagonal Dominance Convergence Theorem</strong> (Theorem 2.10).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
 </div>
 </div>
 </div>

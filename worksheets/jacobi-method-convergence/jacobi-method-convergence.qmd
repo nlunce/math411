@@ -82,7 +82,7 @@ What value of $c$ will guarantee that $\|\mathbf{v}\|_\infty = 1$?
 
 :::
 
-::: {.callout-tip icon=false collapse="true"}
+::: {.callout-tip collapse="true"}
 
 ## **Answer**
 
@@ -129,7 +129,7 @@ $$
 
 :::
 
-::: {.callout-tip icon=false collapse="true"}
+::: {.callout-tip collapse="true"}
 
 ## **Answer**
 
@@ -181,7 +181,7 @@ Now, explain why the absolute value of the $m$-th row of $\lambda D \mathbf{v}$ 
 
 :::
 
-::: {.callout-tip icon=false collapse="true"}
+::: {.callout-tip collapse="true"}
 
 ## **Answer**
 
@@ -246,4 +246,82 @@ $$
 $$
 
 Thus, the absolute value of the $m$-th row of $\lambda D \mathbf{v}$ is determined by $|\lambda|$, the eigenvalue, and $|d_{m,m}|$, the diagonal entry of $D$ at row $m$.
+:::
+
+::: {.callout-tip icon=false appearance="simple"}
+
+# **_EQUATION 1_**
+
+**Combining steps (2) and (3), we can write:**
+
+$$
+|\lambda||d_{m,m}| = |r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n|
+$$
+
+:::
+
+::: {.callout-note icon=false}
+
+## **4. Explain why:**
+
+$$
+|r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n| \leq \sum_{j \neq m} |r_{m,j}|
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **5. Explain why:**
+
+$$
+\sum_{j \neq m} |r_{m,j}| < |d_{m,m}|
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **6. Use the results from Steps (4) and (5) with _EQUATION 1_ to show show that:**
+
+$$
+|\lambda||d_{m,m}| < |d_{m,m}|
+$$
+
+What does this say about $|\lambda|$?
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **7. Final Conclusion**
+
+Since $\lambda$ is an arbitrary eigenvalue, then $|\lambda|_{\text{max}} < 1$. In other words, the spectral radius $\rho(D^{-1}R) < 1$. Thus, by the **Spectral Radius Convergence Theorem** (Theorem A.7), the Jacobi Method (iteration with $A = D - D^{-1}R$) converges for any starting point $\mathbf{x}_0$.
+
+Let $\mathbf{x}_* = \lim_{k \to \infty} \mathbf{x}_k$, and show that $\mathbf{x}_*$ is the solution to $A \mathbf{x} = \mathbf{b}$, so $A$ must be nonsingular. This completes the proof of the **Diagonal Dominance Convergence Theorem** (Theorem 2.10).
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
 :::
