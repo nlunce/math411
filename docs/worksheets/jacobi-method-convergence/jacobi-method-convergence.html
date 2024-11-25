@@ -5023,7 +5023,53 @@ r_{m,1} &amp; r_{m,2} &amp; \cdots &amp; r_{m,m-1} &amp; 0 &amp; r_{m,m+1} &amp;
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>To explain why the absolute value of the <span class="math inline">m</span>-th row of <span class="math inline">\lambda D \mathbf{v}</span> is <span class="math inline">|\lambda| |d_{m,m}|</span>, begin by recalling the structure of <span class="math inline">D</span>, the diagonal matrix of <span class="math inline">A</span>:</p>
+<p><span class="math display">
+D =
+\begin{bmatrix}
+d_{1,1} &amp; 0 &amp; \cdots &amp; 0 \\
+0 &amp; d_{2,2} &amp; \cdots &amp; 0 \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+0 &amp; 0 &amp; \cdots &amp; d_{n,n}
+\end{bmatrix}
+</span></p>
+<p>When <span class="math inline">D</span> is multiplied by the eigenvector <span class="math inline">\mathbf{v}</span>, the result is:</p>
+<p><span class="math display">
+D \mathbf{v} =
+\begin{bmatrix}
+d_{1,1} v_1 \\
+d_{2,2} v_2 \\
+\vdots \\
+d_{n,n} v_n
+\end{bmatrix}
+</span></p>
+<p>Now multiply by <span class="math inline">\lambda</span>, giving:</p>
+<p><span class="math display">
+\lambda D \mathbf{v} =
+\begin{bmatrix}
+\lambda d_{1,1} v_1 \\
+\lambda d_{2,2} v_2 \\
+\vdots \\
+\lambda d_{n,n} v_n
+\end{bmatrix}
+</span></p>
+<p>The <span class="math inline">m</span>-th row of this result is:</p>
+<p><span class="math display">
+\left( \lambda D \mathbf{v} \right)_m = \lambda d_{m,m} v_m
+</span></p>
+<p>Taking the absolute value:</p>
+<p><span class="math display">
+\left| \left( \lambda D \mathbf{v} \right)_m \right| = |\lambda| |d_{m,m}| |v_m|
+</span></p>
+<p>Since <span class="math inline">\|\mathbf{v}\|_\infty = 1</span>, we know:</p>
+<p><span class="math display">
+|v_i| \leq 1 \quad \text{for all } i, \quad \text{and} \quad |v_m| = 1
+</span></p>
+<p>Substitute <span class="math inline">|v_m| = 1</span>:</p>
+<p><span class="math display">
+\left| \left( \lambda D \mathbf{v} \right)_m \right| = |\lambda| |d_{m,m}|
+</span></p>
+<p>Thus, the absolute value of the <span class="math inline">m</span>-th row of <span class="math inline">\lambda D \mathbf{v}</span> is determined by <span class="math inline">|\lambda|</span>, the eigenvalue, and <span class="math inline">|d_{m,m}|</span>, the diagonal entry of <span class="math inline">D</span> at row <span class="math inline">m</span>.</p>
 </div>
 </div>
 </div>
