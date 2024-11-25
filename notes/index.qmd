@@ -53,6 +53,7 @@ preview:
 # **WEEK 06**
 
 - [Linear Systems: $A\mathbf{x} = \mathbf{b}$](./w06/linear-systems.html)
+- [Spectral Radius](./w06/spectral-radius.htmlz)
 
 # **WEEK 07**
 

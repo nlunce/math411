@@ -1,0 +1,188 @@
+---
+title: 'Jacobi Method - Convergence Proof'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show Code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
+---
+
+## **Diagonal Dominance Convergence Theorem**
+
+_Theorem 2.10 (p. 107)_
+
+If the $n \times n$ matrix $A$ is strictly diagonally dominant, then:
+
+- $A$ is a nonsingular matrix.
+- For every vector $b$ and every starting guess, the [**Jacobi Method**](../notes/w07/ax-b-iterative-methods/jacobi-method.html) applied to $A \mathbf{x} = \mathbf{b}$ converges to the (unique) solution.
+
+## **Spectral Radius Convergence Theorem**
+
+_Theorem A.7 (p. 588)_
+
+If the $n \times n$ matrix $A$ has spectral radius $\rho(A) < 1$, and $\mathbf{b}$ is arbitrary, then, for any vector $\mathbf{x}_0$, the iteration $\mathbf{x}_{k+1} = A \mathbf{x}_k + \mathbf{b}$ converges. In fact, there exists a unique $\mathbf{x}$, such that $\lim_{k \to \infty} \mathbf{x}_k = \mathbf{x}$, and $\mathbf{x} = A \mathbf{x} + \mathbf{b}$.
+
+## **Definitions**
+
+- [**Spectral radius**](../notes/w06/spectral-radius.html):  
+  The spectral radius $\rho(A)$ of a square matrix $A$ is the maximum magnitude of its eigenvalues.
+
+- [**Infinity or max norm**](../notes/w07/norms/infinity-vector-norm.html):  
+  For a vector $\mathbf{x} \in \mathbb{R}^n$, the infinity norm is $\|\mathbf{x}\|_\infty = \max_{1 \leq i \leq n} |x_i|$.
+
+## **Proof**
+
+Recall that the Jacobi Method for solving $A \mathbf{x} = \mathbf{b}$ is
+
+$$
+\mathbf{x}_{k+1} = -D^{-1}(L + U) \mathbf{x}_k + D^{-1} \mathbf{b},
+$$
+
+where
+
+$$
+A = L + D + U,
+$$
+
+$L$ is the lower triangular part of $A$, $D$ is the diagonal part of $A$, and $U$ is the upper triangular part of $A$.
+
+We will apply _Theorem A.7_ by showing that the spectral radius of $-D^{-1}(L + U)$ is less than 1:
+
+$$
+\rho(D^{-1}(L + U)) < 1
+$$
+
+For notational convenience, let $R = L + U$ denote the non-diagonal part of the matrix $A$. Then we must show that $\rho(D^{-1}R) < 1$.
+
+::: {.callout-note icon=false}
+
+## **1. Scaled Vector $\mathbf{v}$:**
+
+Given any vector $\mathbf{x}$, we can create a scaled version of $\mathbf{x}$, say $\mathbf{v}$, as $\mathbf{v} = \frac{\mathbf{x}}{c}$.
+What value of $c$ will guarantee that $\|\mathbf{v}\|_\infty = 1$?
+
+:::
+
+::: {.callout-tip icon=false collapse="true"}
+
+## **Answer**
+
+To ensure $\|\mathbf{v}\|_\infty = 1$, define $\mathbf{v} = \frac{\mathbf{x}}{c}$, where $c$ is a scalar.
+
+The infinity norm of $\mathbf{v}$ is:
+
+$$
+\|\mathbf{v}\|_\infty = \max_{1 \leq i \leq n} \left| \frac{x_i}{c} \right|
+$$
+
+Set $\|\mathbf{v}\|_\infty = 1$, so:
+
+$$
+\frac{\max_{1 \leq i \leq n} |x_i|}{c} = 1
+$$
+
+Solve for $c$:
+
+$$
+c = \|\mathbf{x}\|_\infty = \max_{1 \leq i \leq n} |x_i|
+$$
+
+Thus, scaling $\mathbf{x}$ by $c = \|\mathbf{x}\|_\infty$ guarantees $\|\mathbf{v}\|_\infty = 1$.
+
+:::
+
+::: {.callout-note icon=false}
+
+## **2. Eigenvalue Analysis:**
+
+Let $\lambda$ represent an arbitrary eigenvalue of $D^{-1}R$ with corresponding eigenvector $\mathbf{v}$. Then $D^{-1}R \mathbf{v} = \lambda \mathbf{v}$, or $R \mathbf{v} = \lambda D \mathbf{v}$.
+
+Why?
+
+We’ll look at each side of this equation in turn.
+Suppose we scale the eigenvector $\mathbf{v}$ such that $\|\mathbf{v}\|_\infty = 1$. Then $|v_i| \leq 1$ for every index $i$, $1 \leq i \leq n$, and $|v_m| = 1$ for at least one index $m$, $1 \leq m \leq n$.
+
+Using this index $m$, explain why the absolute value of the $m$-th row of $R \mathbf{v}$ is:
+
+$$
+|r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n|
+$$
+
+:::
+
+::: {.callout-tip icon=false collapse="true"}
+
+## **Answer**
+
+To analyze the absolute value of the $m$-th row of $R \mathbf{v}$, start with the eigenvalue equation:
+
+$$
+D^{-1} R \mathbf{v} = \lambda \mathbf{v}
+$$
+
+Multiply through by $D$ to rewrite it as:
+
+$$
+R \mathbf{v} = \lambda D \mathbf{v}
+$$
+
+Here:
+
+- $R = L + U$, where $L$ is the strictly lower triangular part of $A$ and $U$ is the strictly upper triangular part of $A$.
+- $D$ is the diagonal part of $A$.
+- $\mathbf{v}$ is an eigenvector scaled such that $\|\mathbf{v}\|_\infty = 1$, meaning $|v_i| \leq 1$ for all $i$, and $|v_m| = 1$ for at least one $m$.
+
+The $m$-th row of $R$ is:
+
+$$
+\begin{bmatrix}
+r_{m,1} & r_{m,2} & \cdots & r_{m,m-1} & 0 & r_{m,m+1} & \cdots & r_{m,n}
+\end{bmatrix}
+$$
+
+Multiplying this row by the vector $\mathbf{v}$, the $m$-th entry of $R \mathbf{v}$ is:
+
+$$
+\left( R \mathbf{v} \right)_m = \sum_{i=1}^n r_{m,i} v_i
+$$
+
+Since $r_{m,m} = 0$ (as $R = L + U$ excludes the diagonal), this simplifies to:
+
+$$
+\left( R \mathbf{v} \right)_m = \sum_{i=1, i \neq m}^n r_{m,i} v_i
+$$
+
+:::
+
+::: {.callout-note icon=false}
+
+## **3. Scaling with $D$:**
+
+Now, explain why the absolute value of the $m$-th row of $\lambda D \mathbf{v}$ is $|\lambda| |d_{m,m}|$.
+
+:::
+
+::: {.callout-tip icon=false collapse="true"}
+
+## **Answer**
+
+:::

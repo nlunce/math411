@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nathan Lunceford">
 
-<title>LINEAR SYSTEM ERROR ANALYSIS – MATH411</title>
+<title>Spectral Radius – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1667,7 +1668,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="../../../">
+<meta name="quarto:offset" content="../../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4707,6 +4708,65 @@ vertical-align: -.125em;
   }
 }</script>
 
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var head = document.getElementsByTagName("head")[0];
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
+      head.appendChild(link);
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
+      script.async = false;
+      script.addEventListener('load', function() {
+        var mathElements = document.getElementsByClassName("math");
+          var macros = [];
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == "SPAN") {
+              window.katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                macros: macros,
+                fleqn: false
+              });
+            }
+          }
+      });
+      head.appendChild(script);
+    });
+  </script>
+  
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <style type="text/css">
 </style>
@@ -4719,7 +4779,7 @@ vertical-align: -.125em;
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4730,23 +4790,23 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../.././homework/index.html"> 
+    <a class="nav-link" href="../.././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../.././reality-checks/index.html"> 
+    <a class="nav-link" href="../.././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../.././worksheets/inex.html"> 
+    <a class="nav-link" href="../.././worksheets/inex.html"> 
 <span class="menu-text">WORKSHEETS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../.././notes/index.html"> 
+    <a class="nav-link" href="../.././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../.././index.html"> 
+    <a class="nav-link" href="../.././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4762,21 +4822,47 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
+  <li><a href="#definition-of-spectral-radius" id="toc-definition-of-spectral-radius" class="nav-link" data-scroll-target="#definition-of-spectral-radius"><strong>Definition of Spectral Radius</strong></a></li>
+  <li><a href="#properties-of-the-spectral-radius" id="toc-properties-of-the-spectral-radius" class="nav-link" data-scroll-target="#properties-of-the-spectral-radius"><strong>Properties of the Spectral Radius</strong></a></li>
+  <li><a href="#importance-in-iterative-methods" id="toc-importance-in-iterative-methods" class="nav-link" data-scroll-target="#importance-in-iterative-methods"><strong>Importance in Iterative Methods</strong></a>
+  <ul class="collapse">
+  <li><a href="#convergence-criterion" id="toc-convergence-criterion" class="nav-link" data-scroll-target="#convergence-criterion"><strong>Convergence Criterion</strong></a></li>
+  </ul></li>
+  <li><a href="#example-computing-the-spectral-radius" id="toc-example-computing-the-spectral-radius" class="nav-link" data-scroll-target="#example-computing-the-spectral-radius"><strong>Example: Computing the Spectral Radius</strong></a>
+  <ul class="collapse">
+  <li><a href="#step-1-find-eigenvalues" id="toc-step-1-find-eigenvalues" class="nav-link" data-scroll-target="#step-1-find-eigenvalues"><strong>Step 1: Find Eigenvalues</strong></a></li>
+  <li><a href="#step-2-compute-spectral-radius" id="toc-step-2-compute-spectral-radius" class="nav-link" data-scroll-target="#step-2-compute-spectral-radius"><strong>Step 2: Compute Spectral Radius</strong></a></li>
+  </ul></li>
+  <li><a href="#geometric-interpretation" id="toc-geometric-interpretation" class="nav-link" data-scroll-target="#geometric-interpretation"><strong>Geometric Interpretation</strong></a></li>
+  <li><a href="#applications-of-spectral-radius" id="toc-applications-of-spectral-radius" class="nav-link" data-scroll-target="#applications-of-spectral-radius"><strong>Applications of Spectral Radius</strong></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">LINEAR SYSTEM ERROR ANALYSIS</h1>
+<h1 class="title">Spectral Radius</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
     
   
     
@@ -4787,18 +4873,122 @@ vertical-align: -.125em;
 </header>
 
 
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
+<p>The spectral radius is a fundamental concept in linear algebra and matrix analysis, particularly in understanding the behavior of <a href="../w07/ax-b-iterative-methods/index.html"><strong>iterative methods</strong></a> like the <a href="../w07/ax-b-iterative-methods/jacobi-method.html"><strong>Jacobi Method</strong></a> for solving linear systems.</p>
+</section>
+<section id="definition-of-spectral-radius" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-spectral-radius"><strong>Definition of Spectral Radius</strong></h2>
+<p>The <strong>spectral radius</strong> of a square matrix <span class="math inline">A</span> is defined as the largest absolute value of its eigenvalues:</p>
+<p><span class="math display">
+\rho(A) = \max \{ |\lambda| : \lambda \text{ is an eigenvalue of } A \}
+</span></p>
 <ul>
-<li><a href="./residual-linear-systems.html">Residual</a></li>
-<li><a href="./backward-error.html">Backward Error</a></li>
-<li><a href="./relative-backward-error.html">Relative Backward Error</a></li>
-<li><a href="./forward-error.html">Forward Error</a></li>
-<li><a href="./relative-forward-error.html">Relative Forward Error</a></li>
-<li><a href="./error-magnification-factor.html">Error Magnification Factor (EMF)</a></li>
-<li><a href="./condition-number-matrix.html">Condition Number</a></li>
-<li><a href="./swamping.html">Swamping</a></li>
+<li><strong>Interpretation:</strong> It measures the “largest influence” of the eigenvalues of <span class="math inline">A</span>, which governs the convergence properties of matrix-related iterative processes.</li>
 </ul>
+</section>
+<section id="properties-of-the-spectral-radius" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-the-spectral-radius"><strong>Properties of the Spectral Radius</strong></h2>
+<ol type="1">
+<li><p><strong>Non-Negativity:</strong></p>
+<p><span class="math display">
+\rho(A) \geq 0
+</span></p>
+<p>since the spectral radius is the maximum of the absolute values of eigenvalues.</p></li>
+<li><p><strong>Behavior Under Similarity Transformations:</strong> If <span class="math inline">B = P^{-1}AP</span>, then:</p>
+<p><span class="math display">
+\rho(B) = \rho(A)
+</span></p>
+<p>because eigenvalues are invariant under similarity transformations.</p></li>
+<li><p><strong>Norm Relationship:</strong> The spectral radius is related to matrix norms but generally satisfies: <span class="math display">
+\rho(A) \leq \|A\|
+</span> for certain matrix norms. Equality holds in some cases, such as the spectral norm for symmetric matrices.</p></li>
+</ol>
+</section>
+<section id="importance-in-iterative-methods" class="level2">
+<h2 class="anchored" data-anchor-id="importance-in-iterative-methods"><strong>Importance in Iterative Methods</strong></h2>
+<p>The spectral radius plays a key role in determining the <strong>convergence</strong> of iterative methods for solving systems of linear equations.</p>
+<section id="convergence-criterion" class="level3">
+<h3 class="anchored" data-anchor-id="convergence-criterion"><strong>Convergence Criterion</strong></h3>
+<p>For an iterative method defined by:</p>
+<p><span class="math display">
+x_{k+1} = Gx_k + c
+</span></p>
+<p>where <span class="math inline">G</span> is the iteration matrix, the method converges if and only if:</p>
+<p><span class="math display">
+\rho(G) &lt; 1
+</span></p>
+<ul>
+<li><strong>Explanation:</strong> This ensures that successive iterations diminish in magnitude, eventually converging to the solution.</li>
+</ul>
+</section>
+</section>
+<section id="example-computing-the-spectral-radius" class="level2">
+<h2 class="anchored" data-anchor-id="example-computing-the-spectral-radius"><strong>Example: Computing the Spectral Radius</strong></h2>
+<p>Consider the matrix:</p>
+<p><span class="math display">
+A = \begin{bmatrix}
+2 &amp; 1 \\
+1 &amp; 3
+\end{bmatrix}
+</span></p>
+<section id="step-1-find-eigenvalues" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-find-eigenvalues"><strong>Step 1: Find Eigenvalues</strong></h3>
+<p>Solve <span class="math inline">\det(A - \lambda I) = 0</span>:</p>
+<p><span class="math display">
+\det\left(\begin{bmatrix}
+2-\lambda &amp; 1 \\
+1 &amp; 3-\lambda
+\end{bmatrix}\right) = 0
+</span></p>
+<p>Expanding the determinant:</p>
+<p><span class="math display">
+(2-\lambda)(3-\lambda) - 1 = \lambda^2 - 5\lambda + 5 = 0
+</span></p>
+<p>The eigenvalues are:</p>
+<p><span class="math display">
+\lambda = \frac{5 \pm \sqrt{5}}{2}
+</span></p>
+</section>
+<section id="step-2-compute-spectral-radius" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-compute-spectral-radius"><strong>Step 2: Compute Spectral Radius</strong></h3>
+<p>The eigenvalues are approximately:</p>
+<p><span class="math display">
+\lambda_1 \approx 4.618, \quad \lambda_2 \approx 0.382
+</span></p>
+<p>Thus, the spectral radius is:</p>
+<p><span class="math display">
+\rho(A) = \max(|\lambda_1|, |\lambda_2|) = 4.618
+</span></p>
+</section>
+</section>
+<section id="geometric-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="geometric-interpretation"><strong>Geometric Interpretation</strong></h2>
+<p>The spectral radius represents the largest “stretching factor” of a matrix when applied to a vector. For a square matrix <span class="math inline">A</span>, eigenvectors corresponding to the eigenvalue with the largest magnitude indicate the direction in which <span class="math inline">A</span> has the most influence.</p>
+</section>
+<section id="applications-of-spectral-radius" class="level2">
+<h2 class="anchored" data-anchor-id="applications-of-spectral-radius"><strong>Applications of Spectral Radius</strong></h2>
+<ol type="1">
+<li><p><strong>Iterative Solvers:</strong></p>
+<ul>
+<li>Determines the convergence of methods like <a href="../w07/ax-b-iterative-methods/jacobi-method.html"><strong>Jacobi</strong></a> and <a href="../w07/ax-b-iterative-methods/gauss-seidel-method.html"><strong>Gauss-Seidel</strong></a>.</li>
+</ul></li>
+<li><p><strong>Stability Analysis:</strong></p>
+<ul>
+<li>Used in analyzing the stability of dynamical systems where <span class="math inline">A</span> represents a system’s state transition.</li>
+</ul></li>
+<li><p><strong>Network Analysis:</strong></p>
+<ul>
+<li>In graph theory, the spectral radius of adjacency matrices provides insights into network properties.</li>
+</ul></li>
+</ol>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
+<p>The spectral radius is a powerful tool for understanding the properties of matrices, particularly in the context of iterative methods and stability analysis. Mastering this concept is essential for applications ranging from solving linear systems to analyzing complex networks and dynamical systems.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

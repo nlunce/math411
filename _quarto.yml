@@ -24,6 +24,8 @@ website:
         text: HOMEWORK
       - href: ./reality-checks/index.html
         text: REALITY CHECKS
+      - href: ./worksheets/inex.html
+        text: WORKSHEETS
       - href: ./notes/index.html
         text: NOTES
       - href: ./index.html

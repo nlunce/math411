@@ -168,6 +168,41 @@
     "text": "Conclusion\nIn the linear system A\\mathbf{x} = \\mathbf{b}:\n\nInputs:\n\nMatrix A: Defines the coefficients and relationships between variables.\nVector \\mathbf{b}: Specifies the target outcomes or constants for each equation.\n\nOutput:\n\nVector \\mathbf{x}: The solution that satisfies all equations in the system.\n\n\nRecognizing and comprehending the roles of A and \\mathbf{b} are fundamental for effectively solving linear systems, analyzing their properties, and applying them to diverse practical scenarios. Mastery of these concepts equips mathematicians, engineers, and scientists with the tools necessary to tackle complex problems with confidence and precision."
   },
   {
+    "objectID": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html",
+    "href": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html",
+    "title": "Jacobi Method - Convergence Proof",
+    "section": "",
+    "text": "Theorem 2.10 (p. 107)\nIf the n \\times n matrix A is strictly diagonally dominant, then:\n\nA is a nonsingular matrix.\nFor every vector b and every starting guess, the Jacobi Method applied to A \\mathbf{x} = \\mathbf{b} converges to the (unique) solution."
+  },
+  {
+    "objectID": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html#diagonal-dominance-convergence-theorem",
+    "href": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html#diagonal-dominance-convergence-theorem",
+    "title": "Jacobi Method - Convergence Proof",
+    "section": "",
+    "text": "Theorem 2.10 (p. 107)\nIf the n \\times n matrix A is strictly diagonally dominant, then:\n\nA is a nonsingular matrix.\nFor every vector b and every starting guess, the Jacobi Method applied to A \\mathbf{x} = \\mathbf{b} converges to the (unique) solution."
+  },
+  {
+    "objectID": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html#spectral-radius-convergence-theorem",
+    "href": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html#spectral-radius-convergence-theorem",
+    "title": "Jacobi Method - Convergence Proof",
+    "section": "Spectral Radius Convergence Theorem",
+    "text": "Spectral Radius Convergence Theorem\nTheorem A.7 (p. 588)\nIf the n \\times n matrix A has spectral radius \\rho(A) &lt; 1, and \\mathbf{b} is arbitrary, then, for any vector \\mathbf{x}_0, the iteration \\mathbf{x}_{k+1} = A \\mathbf{x}_k + \\mathbf{b} converges. In fact, there exists a unique \\mathbf{x}, such that \\lim_{k \\to \\infty} \\mathbf{x}_k = \\mathbf{x}, and \\mathbf{x} = A \\mathbf{x} + \\mathbf{b}."
+  },
+  {
+    "objectID": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html#definitions",
+    "href": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html#definitions",
+    "title": "Jacobi Method - Convergence Proof",
+    "section": "Definitions",
+    "text": "Definitions\n\nSpectral radius:\nThe spectral radius \\rho(A) of a square matrix A is the maximum magnitude of its eigenvalues.\nInfinity or max norm:\nFor a vector \\mathbf{x} \\in \\mathbb{R}^n, the infinity norm is \\|\\mathbf{x}\\|_\\infty = \\max_{1 \\leq i \\leq n} |x_i|."
+  },
+  {
+    "objectID": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html#proof",
+    "href": "worksheets/jacobi-method-convergence/jacobi-method-convergence.html#proof",
+    "title": "Jacobi Method - Convergence Proof",
+    "section": "Proof",
+    "text": "Proof\nRecall that the Jacobi Method for solving A \\mathbf{x} = \\mathbf{b} is\n\n\\mathbf{x}_{k+1} = -D^{-1}(L + U) \\mathbf{x}_k + D^{-1} \\mathbf{b},\n\nwhere\n\nA = L + D + U,\n\nL is the lower triangular part of A, D is the diagonal part of A, and U is the upper triangular part of A.\nWe will apply Theorem A.7 by showing that the spectral radius of -D^{-1}(L + U) is less than 1:\n\n\\rho(D^{-1}(L + U)) &lt; 1\n\nFor notational convenience, let R = L + U denote the non-diagonal part of the matrix A. Then we must show that \\rho(D^{-1}R) &lt; 1.\n\n\n\n\n\n\n1. Scaled Vector \\mathbf{v}:\n\n\n\nGiven any vector \\mathbf{x}, we can create a scaled version of \\mathbf{x}, say \\mathbf{v}, as \\mathbf{v} = \\frac{\\mathbf{x}}{c}. What value of c will guarantee that \\|\\mathbf{v}\\|_\\infty = 1?\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nTo ensure \\|\\mathbf{v}\\|_\\infty = 1, define \\mathbf{v} = \\frac{\\mathbf{x}}{c}, where c is a scalar.\nThe infinity norm of \\mathbf{v} is:\n\n\\|\\mathbf{v}\\|_\\infty = \\max_{1 \\leq i \\leq n} \\left| \\frac{x_i}{c} \\right|\n\nSet \\|\\mathbf{v}\\|_\\infty = 1, so:\n\n\\frac{\\max_{1 \\leq i \\leq n} |x_i|}{c} = 1\n\nSolve for c:\n\nc = \\|\\mathbf{x}\\|_\\infty = \\max_{1 \\leq i \\leq n} |x_i|\n\nThus, scaling \\mathbf{x} by c = \\|\\mathbf{x}\\|_\\infty guarantees \\|\\mathbf{v}\\|_\\infty = 1.\n\n\n\n\n\n\n\n\n\n2. Eigenvalue Analysis:\n\n\n\nLet \\lambda represent an arbitrary eigenvalue of D^{-1}R with corresponding eigenvector \\mathbf{v}. Then D^{-1}R \\mathbf{v} = \\lambda \\mathbf{v}, or R \\mathbf{v} = \\lambda D \\mathbf{v}.\nWhy?\nWe’ll look at each side of this equation in turn. Suppose we scale the eigenvector \\mathbf{v} such that \\|\\mathbf{v}\\|_\\infty = 1. Then |v_i| \\leq 1 for every index i, 1 \\leq i \\leq n, and |v_m| = 1 for at least one index m, 1 \\leq m \\leq n.\nUsing this index m, explain why the absolute value of the m-th row of R \\mathbf{v} is:\n\n|r_{m,1}v_1 + r_{m,2}v_2 + \\cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \\cdots + r_{m,n}v_n|\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nTo analyze the absolute value of the m-th row of R \\mathbf{v}, start with the eigenvalue equation:\n\nD^{-1} R \\mathbf{v} = \\lambda \\mathbf{v}\n\nMultiply through by D to rewrite it as:\n\nR \\mathbf{v} = \\lambda D \\mathbf{v}\n\nHere:\n\nR = L + U, where L is the strictly lower triangular part of A and U is the strictly upper triangular part of A.\nD is the diagonal part of A.\n\\mathbf{v} is an eigenvector scaled such that \\|\\mathbf{v}\\|_\\infty = 1, meaning |v_i| \\leq 1 for all i, and |v_m| = 1 for at least one m.\n\nThe m-th row of R is:\n\n\\begin{bmatrix}\nr_{m,1} & r_{m,2} & \\cdots & r_{m,m-1} & 0 & r_{m,m+1} & \\cdots & r_{m,n}\n\\end{bmatrix}\n\nMultiplying this row by the vector \\mathbf{v}, the m-th entry of R \\mathbf{v} is:\n\n\\left( R \\mathbf{v} \\right)_m = \\sum_{i=1}^n r_{m,i} v_i\n\nSince r_{m,m} = 0 (as R = L + U excludes the diagonal), this simplifies to:\n\n\\left( R \\mathbf{v} \\right)_m = \\sum_{i=1, i \\neq m}^n r_{m,i} v_i\n\n\n\n\n\n\n\n\n\n\n3. Scaling with D:\n\n\n\nNow, explain why the absolute value of the m-th row of \\lambda D \\mathbf{v} is |\\lambda| |d_{m,m}|.\n\n\n\n\n\n\n\n\nAnswer"
+  },
+  {
     "objectID": "reality-checks/index.html",
     "href": "reality-checks/index.html",
     "title": "REALITY CHECKS",
@@ -546,6 +581,83 @@
     "text": "Summary\nThe Jacobi Method is a simple and effective iterative technique for solving linear systems, particularly when the system matrix is strictly diagonally dominant or symmetric positive definite. However, it is sensitive to the properties of the matrix A and may not converge for all systems."
   },
   {
+    "objectID": "notes/w07/2-3.html",
+    "href": "notes/w07/2-3.html",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "",
+    "text": "When solving linear systems of the form A\\mathbf{x} = \\mathbf{b}, two significant issues may arise:\n\nControllable Errors: Errors due to computational methods, which we can manage or minimize.\nUncontrollable Errors: Errors inherent to the problem’s nature, which we cannot eliminate but need to understand.\n\nThis document explores vector and matrix norms, their importance in numerical computations, and how they relate to error analysis and condition numbers when solving A\\mathbf{x} = \\mathbf{b}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#overview",
+    "href": "notes/w07/2-3.html#overview",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "",
+    "text": "When solving linear systems of the form A\\mathbf{x} = \\mathbf{b}, two significant issues may arise:\n\nControllable Errors: Errors due to computational methods, which we can manage or minimize.\nUncontrollable Errors: Errors inherent to the problem’s nature, which we cannot eliminate but need to understand.\n\nThis document explores vector and matrix norms, their importance in numerical computations, and how they relate to error analysis and condition numbers when solving A\\mathbf{x} = \\mathbf{b}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#vector-norms",
+    "href": "notes/w07/2-3.html#vector-norms",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Vector Norms",
+    "text": "Vector Norms\nA norm is a function that assigns a non-negative length or size to vectors in a vector space. Norms help measure the magnitude of vectors, which is essential in analyzing algorithms and numerical stability.\nFor a vector \\mathbf{v} = [v_1, v_2, \\dots, v_n]^T, common norms include:\n\n1. \\ell_2-Norm (Euclidean Norm)\nMeasures the straight-line distance from the origin to the point \\mathbf{v}:\n\n\\|\\mathbf{v}\\|_2 = \\sqrt{v_1^2 + v_2^2 + \\dots + v_n^2}\n\n\n\n2. \\ell_1-Norm (Taxicab or Manhattan Norm)\nSums the absolute values of the vector components:\n\n\\|\\mathbf{v}\\|_1 = |v_1| + |v_2| + \\dots + |v_n|\n\n\n\n3. \\ell_\\infty-Norm (Maximum or Infinity Norm)\nTakes the maximum absolute value among the components:\n\n\\|\\mathbf{v}\\|_\\infty = \\max_{1 \\leq i \\leq n} |v_i|\n\nAlso expressed as:\n\n\\|\\mathbf{v}\\|_\\infty = \\lim_{p \\to \\infty} \\left( \\sum_{i=1}^n |v_i|^p \\right)^{1/p}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#matrix-norms",
+    "href": "notes/w07/2-3.html#matrix-norms",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Matrix Norms",
+    "text": "Matrix Norms\nMatrix norms measure the “size” of matrices and help understand how matrices affect vector norms when used as linear transformations.\nCommon matrix norms include:\n\n1. Spectral Norm (\\|A\\|_2)\nInvolves the largest singular value of A:\n\n\\|A\\|_2 = \\sqrt{\\lambda_{\\text{max}}(A^TA)},\n\nwhere \\lambda_{\\text{max}} is the largest eigenvalue of A^TA.\n\n\n2. Maximum Column Sum Norm (\\|A\\|_1)\nThe largest sum of absolute values in any column:\n\n\\|A\\|_1 = \\max_j \\sum_i |a_{ij}|\n\n\n\n3. Maximum Row Sum Norm (\\|A\\|_\\infty)\nThe largest sum of absolute values in any row:\n\n\\|A\\|_\\infty = \\max_i \\sum_j |a_{ij}|"
+  },
+  {
+    "objectID": "notes/w07/2-3.html#the-matrix-infinity-norm-and-row-sums",
+    "href": "notes/w07/2-3.html#the-matrix-infinity-norm-and-row-sums",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "The Matrix Infinity Norm and Row Sums",
+    "text": "The Matrix Infinity Norm and Row Sums\n\nDefinition of \\|A\\|_\\infty\nFormally defined as:\n\n\\|A\\|_\\infty = \\sup_{\\mathbf{x} \\neq 0} \\frac{\\|A\\mathbf{x}\\|_\\infty}{\\|\\mathbf{x}\\|_\\infty} = \\sup_{\\|\\mathbf{x}\\|_\\infty = 1} \\|A\\mathbf{x}\\|_\\infty\n\n\n\nKey Insight\n\nThe infinity norm of A is equal to the maximum row sum of A.\nIt represents the maximum effect A can have on any vector \\mathbf{x} with \\|\\mathbf{x}\\|_\\infty = 1."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#proof-a_infty-maximum-row-sum-of-a",
+    "href": "notes/w07/2-3.html#proof-a_infty-maximum-row-sum-of-a",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Proof: \\|A\\|_\\infty = Maximum Row Sum of A",
+    "text": "Proof: \\|A\\|_\\infty = Maximum Row Sum of A\nFor matrix A:\n\n\\|A\\|_\\infty = \\max_i \\sum_j |a_{ij}|.\n\n\nExample\nConsider:\n\nA = \\begin{bmatrix}\n-1 & -2 & 3 \\\\\n3 & -4 & -5 \\\\\n-2 & 3 & -4\n\\end{bmatrix}\n\n\nCompute Row Sums\n\nRow 1: |-1| + |-2| + |3| = 6\nRow 2: |3| + |-4| + |-5| = 12\nRow 3: |-2| + |3| + |-4| = 9\n\nMaximum Row Sum: 12 (Row 2)\nTherefore, \\|A\\|_\\infty = 12.\n\n\n\nChoosing \\mathbf{\\hat{x}}\nTo achieve \\|A\\mathbf{\\hat{x}}\\|_\\infty = \\|A\\|_\\infty, select \\mathbf{\\hat{x}} with \\|\\mathbf{\\hat{x}}\\|_\\infty = 1 that aligns with the signs of Row 2:\n\n\\mathbf{\\hat{x}} = \\begin{bmatrix}\n1 \\\\\n-1 \\\\\n-1\n\\end{bmatrix}\n\n\nCompute A\\mathbf{\\hat{x}}:\n\nA\\mathbf{\\hat{x}} = \\begin{bmatrix}\n-1(1) + -2(-1) + 3(-1) \\\\\n3(1) + -4(-1) + -5(-1) \\\\\n-2(1) + 3(-1) + -4(-1)\n\\end{bmatrix} = \\begin{bmatrix}\n-2 \\\\\n12 \\\\\n-1\n\\end{bmatrix}\n\n\n\nCompute \\|A\\mathbf{\\hat{x}}\\|_\\infty:\n\n\\|A\\mathbf{\\hat{x}}\\|_\\infty = \\max(|-2|, |12|, |-1|) = 12 = \\|A\\|_\\infty\n\n\n\n\nConclusion\nIt is not possible to find \\mathbf{\\hat{x}} such that \\|A\\mathbf{\\hat{x}}\\|_\\infty &gt; \\|A\\|_\\infty when \\|\\mathbf{\\hat{x}}\\|_\\infty = 1, because \\|A\\|_\\infty is the supremum of \\|A\\mathbf{x}\\|_\\infty over all such \\mathbf{x}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#error-analysis-and-condition-numbers",
+    "href": "notes/w07/2-3.html#error-analysis-and-condition-numbers",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Error Analysis and Condition Numbers",
+    "text": "Error Analysis and Condition Numbers\n\nWhy Care About Errors in A\\mathbf{x} = \\mathbf{b}?\nWhen solving A\\mathbf{x} = \\mathbf{b}, understanding errors helps improve numerical accuracy and stability.\nLet \\mathbf{x_a} be an approximate solution to A\\mathbf{x} = \\mathbf{b}, meaning:\n\nA\\mathbf{x_a} \\neq \\mathbf{b}\n\nWe quantify errors to assess the accuracy of \\mathbf{x_a} and evaluate the impact of approximations.\n\n\nDefinitions\n\nResidual: The difference between \\mathbf{b} and A\\mathbf{x_a}:\n\n\\mathbf{r} = \\mathbf{b} - A\\mathbf{x_a}\n\nBackward Error (BE): Measures the infinity norm of the residual:\n\n\\text{BE} = \\|\\mathbf{r}\\|_\\infty = \\|\\mathbf{b} - A\\mathbf{x_a}\\|_\\infty\n\nRelative Backward Error (RBE): Normalizes the backward error relative to \\mathbf{b}:\n\n\\text{RBE} = \\frac{\\|\\mathbf{r}\\|_\\infty}{\\|\\mathbf{b}\\|_\\infty}\n\nForward Error (FE): Measures the difference between the true solution \\mathbf{x} and the approximate solution \\mathbf{x_a}:\n\n\\text{FE} = \\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty\n\nRelative Forward Error (RFE): Normalizes the forward error relative to \\mathbf{x}:\n\n\\text{RFE} = \\frac{\\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty}{\\|x\\|_\\infty}"
+  },
+  {
+    "objectID": "notes/w07/2-3.html#error-magnification-factor-emf",
+    "href": "notes/w07/2-3.html#error-magnification-factor-emf",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Error Magnification Factor (EMF)",
+    "text": "Error Magnification Factor (EMF)\nThe error magnification factor (EMF) relates the relative forward error (RFE) to the relative backward error (RBE):\n\n\\text{EMF} = \\frac{\\text{RFE}}{\\text{RBE}}\n\nThis quantifies how much the backward error is amplified when reflected in the forward error."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#condition-number-of-a-matrix",
+    "href": "notes/w07/2-3.html#condition-number-of-a-matrix",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Condition Number of a Matrix",
+    "text": "Condition Number of a Matrix\nThe condition number of a matrix A measures the sensitivity of the solution \\mathbf{x} to changes in \\mathbf{b}. It is defined as:\n\n\\text{cond}(A) = \\|A\\|_\\infty \\cdot \\|A^{-1}\\|_\\infty\n\n\nInterpretation:\n\nA low condition number (close to 1) indicates a well-conditioned matrix.\nA high condition number suggests an ill-conditioned matrix, meaning small changes in \\mathbf{b} can result in large changes in \\mathbf{x}."
+  },
+  {
+    "objectID": "notes/w07/2-3.html#example-1",
+    "href": "notes/w07/2-3.html#example-1",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Example",
+    "text": "Example\nGiven:\n\n\\mathbf{x} = \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix}, \\quad\n\\mathbf{x_a} = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}, \\quad\nA = \\begin{bmatrix} 1 & 1 \\\\ 3 & -4 \\end{bmatrix}, \\quad\n\\mathbf{b} = \\begin{bmatrix} 3 \\\\ 2 \\end{bmatrix}\n\n\nStep 1: Compute Errors\n\nForward Error (FE):\n\n\\text{FE} = \\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty = \\left\\| \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix} - \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} \\right\\|_\\infty = 1\n\nRelative Forward Error (RFE):\n\n\\text{RFE} = \\frac{\\text{FE}}{\\|\\mathbf{x}\\|_\\infty} = \\frac{1}{2} = 0.5\n\nResidual:\n\nr = b - Ax_a = \\begin{bmatrix} 3 \\\\ 2 \\end{bmatrix} - \\begin{bmatrix} 2 \\\\ -1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}\n\nBackward Error (BE):\n\n\\text{BE} = \\|\\mathbf{r}\\|_\\infty = 3\n\nRelative Backward Error (RBE):\n\n\\text{RBE} = \\frac{\\text{BE}}{\\|\\mathbf{b}\\|_\\infty} = \\frac{3}{3} = 1\n\n\n\n\nStep 2: Compute EMF\nUsing:\n\n\\text{EMF} = \\frac{\\text{RFE}}{\\text{RBE}}\n\nwe find:\n\n\\text{EMF} = \\frac{0.5}{1} = 0.5\n\n\n\nStep 3: Compute Condition Number\n\nCompute \\|A\\|_\\infty:\n\n\\|A\\|_\\infty = \\max\\left( |1| + |1|, |3| + |-4| \\right) = \\max(2, 7) = 7\n\nCompute \\|A^{-1}\\|_\\infty:\nFrom A^{-1}, we find:\n\n\\|A^{-1}\\|_\\infty = \\max\\left( \\frac{4}{7} + \\frac{1}{7}, \\frac{3}{7} + \\frac{1}{7} \\right) = \\frac{5}{7}\n\nCondition Number:\n\n\\text{cond}(A) = \\|A\\|_\\infty \\cdot \\|A^{-1}\\|_\\infty = 7 \\cdot \\frac{5}{7} = 5"
+  },
+  {
+    "objectID": "notes/w07/2-3.html#next-steps-pa-lu-decomposition-partial-pivoting",
+    "href": "notes/w07/2-3.html#next-steps-pa-lu-decomposition-partial-pivoting",
+    "title": "Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers",
+    "section": "Next Steps: PA = LU Decomposition (Partial Pivoting)",
+    "text": "Next Steps: PA = LU Decomposition (Partial Pivoting)\n\nWhat is Partial Pivoting?\nPartial pivoting rearranges rows of A during LU decomposition to place the largest available pivot element on the diagonal. This ensures numerical stability by reducing rounding errors.\n\n\nConsequences of Partial Pivoting:\n\nControlled Multipliers: Ensures all multipliers satisfy |m_{ij}| \\leq 1.\nPrevents Swamping: Avoids large numerical errors caused by small pivot elements.\n\nUnderstanding norms, errors, and condition numbers is foundational for solving A\\mathbf{x} = \\mathbf{b} efficiently and accurately."
+  },
+  {
     "objectID": "notes/w04/trapezoidal-rule.html",
     "href": "notes/w04/trapezoidal-rule.html",
     "title": "Trapezoidal Rule",
@@ -833,83 +945,6 @@
     "text": "Week 1\n\n(C0-P1) Read/work through the Getting Started with Python notebook (see Modules &gt; Homework &gt; Getting_Started_with_Python.ipynb). Then complete the following exercises in a separate notebook or .py file:\n\nWhat is the difference between the outputs generated by the following two lines of code?\n\nnp.array([i for i in range(10)])\nnp.linspace(0, 9, 10, endpoint=True)\n\nUse both np.linspace() and np.arange() to create an array containing floating point numbers starting at 1.0, ending at 4.0, equally spaced with separation 0.2. In other words, the array should contain 1.0, 1.2, 1.4, …, 3.8, 4.0.\nCreate an array consisting of the floats 1.0, 2.0, 3.0, 4.0, and 5.0. Create a second array containing the square root of each of these numbers. Then, use a for loop to compute the sum of the squared differences between the two arrays:\n\n\n\\sum_{i=1}^n \\left(x_i - \\sqrt{x_i}\\right)^2\n\nExtra Challenge: Can you do this without a loop?\n\nStarting with x = 1, use a while loop to divide by 2 until x &lt; 10^{-4}. Display (print) the list 1.0, 0.5, 0.25, …, and report the number of divisions by 2 needed such that the (k-1)th division produces x &gt; 10^{-4} and the kth division produces x &lt; 10^{-4}.\nWrite code to create a function to compute f(x) = e^{-x} \\cos x, where x is a vector (array) of one or more numbers. Then evaluate f(x) at the points 0, 0.1, 0.2, …, 1.0.\nWrite code to plot the function h(x) = e^{x} \\cos^2 x - 2 on the interval -0.5 to 5.5 and visually estimate the roots of h(x) on that interval.\n\n(C1-P1) Exercise 1.1.4ab\n(C1-P2) Exercise 1.2.2\n(C1-P3) Computer Problem 1.2.2ab. For each equation, find an initial point x_0 and a function g(x) such that the fixed-point iteration x_{k+1} = g(x_k) converges to x, where g(x) = x. If this is not possible, explain why.\n(C1-P4) Exercise 1.2.14\n(C1-P5) Exercise 1.4.1\n(C1-P6) Exercise 1.4.3\n\n\nWeek 2\n\n(C1-P7) Exercise 1.4.6\n(C1-P8) Exercise 1.4.8\n(C1-P9) Computer Problem 1.4.7\n(C1-P10) Exercise 1.5.1\n(C1-P11) Use Python to compare results obtained using the Bisection Method, Newton’s Method, and the Secant Method to solve the equation \\ln x + x^2 = 3. Note that Python code for these methods is available on I-Learn.\n\nSolve the problem using each of the three methods. Report starting values and the number of iterations required to obtain 6 correct decimal places of accuracy. Hint: a graph of the function may help with starting values.\nOn the same axes, plot \\log(\\epsilon_{i+1}) vs. \\log(\\epsilon_i) for the three methods. Explain your plot. How is it related to the rate or order of convergence? Use the errors to determine if your results are consistent with theory. How would you compute the error if you didn’t have an exact value for the root?\n\n(C3-P1) Exercise 3.1.1ac\n(C3-P2) Exercise 3.1.2ac\n(C3-P3) Exercise 3.1.6\n\n\nWeek 3\n\n(C0-P2) Create a Python function that takes as input three points (six scalars, three pairs, or perhaps a 6-element numpy array—choose a method that makes sense to you) and uses the matplotlib package to create a figure window and then render a triangle with small open circles at each of the points and straight lines between each pair of circles. Include code to save your figure to a .png or .jpg file. Validate your function with the points (1, 2), (2, 1), and (2, 3).\n(C3-P4) Exercise 3.2.2\n(C3-P5) Exercise 3.2.5\n(C3-P6) Exercise 3.2.6 Note: the two additional points in the next-to-last sentence should be (x_7, y_7) = (0.1, f(0.1)) and (x_8, y_8) = (0.5, f(0.5)).\n(C3-P7) Computer Problem 3.1.3. To demonstrate that your function works, interpolate \\sin(x) on the interval [-\\pi, \\pi] using nodes -\\pi, -\\frac{\\pi}{2}, 0, \\frac{\\pi}{2}, \\pi. Plot your interpolating polynomial. Plot \\sin(x) on the same graph, and use the numpy functions polyfit and polyval to plot an interpolating polynomial from Python on the same graph. Use a legend to make clear which curve is yours and which one came from Python. Hint: the code on p. 146 should help. Python versions of newtdd and nest (p. 3) are available in Canvas.\n(C3-P8) Exercise 3.3.2ac\n(C3-P9) Exercise 3.3.2ac\n(C3-P10) Exercise 3.3.3\n\n\nWeek 4\n\n(C5-P1) Exercise 5.2.1ab\n(C5-P2) Exercise 5.2.2ab\n(C5-P3) Exercise 5.2.3ab\n(C5-P4) Exercise 5.2.10\n(C5-P5) Exercise 5.2.12\n(C5-P6) Computer Problem 5.2.1ac\n(C5-P7) Computer Problem 5.2.2de\n(C5-P8) Computer Problem 5.2.9bf\n\n\nWeek 5\n\n(C5-P9) Exercise 5.5.1ab\n(C5-P10) Exercise 5.5.4cd\n(C5-P11) Computer Problem 5.4.1acd\n(C5-P12) Computer Problem 5.4.2\n(C5-P13) Computer Problem 5.4.3acd\n(C5-P14) Exercise 5.5.5cd\n(C5-P15) Exercise 5.5.7\n\n\nWeek 6\n\n(C2-P1) Exercise 2.1.2ac\n(C2-P2) Computer Problem 2.1.2ac\n(C2-P3) Exercise 2.2.1ab\n(C2-P4) Exercise 2.2.2ab\n\n\nWeek 7\n\n(C2-P5) Exercise 2.2.4\n(C2-P6) Computer Problem 2.2.1ab\n(C2-P7) Exercise 2.4.1ab\n(C2-P8) Exercise 2.4.2ab\n(C2-P9) Exercise 2.4.4a\n(C2-P10) Exercise 2.4.6\n\n\nWeek 8\n\n(C2-P11) Exercise 2.5.2ab\n(C2-P12) Computer Problem 2.5.2 (solve using both Jacobi and Gauss-Seidel, compare results)\n(C4-P1) Exercise 4.1.2\n(C4-P2) Computer Problem 4.1.5 (also use a quadratic fit and compare)\n(C4-P3) Exercise 4.3.2\n\n\nWeek 9\n\n(C4-P4) Exercise 4.3.4 (use the matrix from Exercise 4.3.1d)\n(C4-P5) Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)\n(C4-P6) Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does).\n\n\nWeek 10\n\n(C4-P7) Exercise 4.4.2\n(C4-P8) Exercise 4.4.3\n(C4-P9) Computer Problem 4.4.2 (find a preconditioned GMRES Python code and use it)\n\n\nWeek 11\n\nNone\nExam 2 in class on Monday Week 11\nAttempt the first several Week 12 problems before Monday Week 12\n\n\nWeek 12\n\n(C10-P1) Exercise 10.1.1ad (also, find the inverse DFT of your result, compare to the original vector)\n(C10-P2) Exercise 10.1.8\n(C10-P3) Exercise 10.2.1ab\n(C10-P4) Exercise 10.2.3ab\n(C10-P5) Exercise 10.2.3 (plot data and function to show your interpolating function does interpolate the data)\n(C10-P6) Computer Problem 10.2.4\n(C10-P7) Exercise 10.3.2ab\n\n\nWeek 13\n\n(C10-P8) Computer Problem 10.3.2cd\n(C10-P9) Exercise 10.3.5 (Complete the \\sum_{j=0}^{n-1} \\cos \\frac{2 \\pi j k}{n} \\cos \\frac{2 \\pi j l}{n} result only)\n(C10-P10) Exercise 10.1.6"
   },
   {
-    "objectID": "notes/w07/2-3.html",
-    "href": "notes/w07/2-3.html",
-    "title": "MATH411",
-    "section": "",
-    "text": "****— title: ‘Understanding Vector and Matrix Norms, Error Analysis, and Condition Numbers’ author: ‘Nathan Lunceford’ format: html: self-contained: true page-layout: full toc: true toc-depth: 3 toc-location: right number-sections: false html-math-method: katex embed-resources: true code-fold: true code-summary: ‘Show the code’ code-overflow: wrap code-copy: hover code-tools: source: false toggle: true caption: See code engine: jupyter preview: port: 3000 browser: true watch-inputs: true navigate: true"
-  },
-  {
-    "objectID": "notes/w07/2-3.html#overview",
-    "href": "notes/w07/2-3.html#overview",
-    "title": "MATH411",
-    "section": "Overview",
-    "text": "Overview\nWhen solving linear systems of the form \\(A\\mathbf{x} = \\mathbf{b}\\), two significant issues may arise:\n\nControllable Errors: Errors due to computational methods, which we can manage or minimize.\nUncontrollable Errors: Errors inherent to the problem’s nature, which we cannot eliminate but need to understand.\n\nThis document explores vector and matrix norms, their importance in numerical computations, and how they relate to error analysis and condition numbers when solving \\(A\\mathbf{x} = \\mathbf{b}\\)."
-  },
-  {
-    "objectID": "notes/w07/2-3.html#vector-norms",
-    "href": "notes/w07/2-3.html#vector-norms",
-    "title": "MATH411",
-    "section": "Vector Norms",
-    "text": "Vector Norms\nA norm is a function that assigns a non-negative length or size to vectors in a vector space. Norms help measure the magnitude of vectors, which is essential in analyzing algorithms and numerical stability.\nFor a vector \\(\\mathbf{v} = [v_1, v_2, \\dots, v_n]^T\\), common norms include:\n\n1. \\(\\ell_2\\)-Norm (Euclidean Norm)\nMeasures the straight-line distance from the origin to the point \\(\\mathbf{v}\\):\n\\[\n\\|\\mathbf{v}\\|_2 = \\sqrt{v_1^2 + v_2^2 + \\dots + v_n^2}\n\\]\n\n\n2. \\(\\ell_1\\)-Norm (Taxicab or Manhattan Norm)\nSums the absolute values of the vector components:\n\\[\n\\|\\mathbf{v}\\|_1 = |v_1| + |v_2| + \\dots + |v_n|\n\\]\n\n\n3. \\(\\ell_\\infty\\)-Norm (Maximum or Infinity Norm)\nTakes the maximum absolute value among the components:\n\\[\n\\|\\mathbf{v}\\|_\\infty = \\max_{1 \\leq i \\leq n} |v_i|\n\\]\nAlso expressed as:\n\\[\n\\|\\mathbf{v}\\|_\\infty = \\lim_{p \\to \\infty} \\left( \\sum_{i=1}^n |v_i|^p \\right)^{1/p}.\n\\]"
-  },
-  {
-    "objectID": "notes/w07/2-3.html#matrix-norms",
-    "href": "notes/w07/2-3.html#matrix-norms",
-    "title": "MATH411",
-    "section": "Matrix Norms",
-    "text": "Matrix Norms\nMatrix norms measure the “size” of matrices and help understand how matrices affect vector norms when used as linear transformations.\nCommon matrix norms include:\n\n1. Spectral Norm (\\(\\|A\\|_2\\))\nInvolves the largest singular value of \\(A\\):\n\\[\n\\|A\\|_2 = \\sqrt{\\lambda_{\\text{max}}(A^TA)},\n\\]\nwhere \\(\\lambda_{\\text{max}}\\) is the largest eigenvalue of \\(A^TA\\).\n\n\n2. Maximum Column Sum Norm (\\(\\|A\\|_1\\))\nThe largest sum of absolute values in any column:\n\\[\n\\|A\\|_1 = \\max_j \\sum_i |a_{ij}|\n\\]\n\n\n3. Maximum Row Sum Norm (\\(\\|A\\|_\\infty\\))\nThe largest sum of absolute values in any row:\n\\[\n\\|A\\|_\\infty = \\max_i \\sum_j |a_{ij}|\n\\]"
-  },
-  {
-    "objectID": "notes/w07/2-3.html#the-matrix-infinity-norm-and-row-sums",
-    "href": "notes/w07/2-3.html#the-matrix-infinity-norm-and-row-sums",
-    "title": "MATH411",
-    "section": "The Matrix Infinity Norm and Row Sums",
-    "text": "The Matrix Infinity Norm and Row Sums\n\nDefinition of \\(\\|A\\|_\\infty\\)\nFormally defined as:\n\\[\n\\|A\\|_\\infty = \\sup_{\\mathbf{x} \\neq 0} \\frac{\\|A\\mathbf{x}\\|_\\infty}{\\|\\mathbf{x}\\|_\\infty} = \\sup_{\\|\\mathbf{x}\\|_\\infty = 1} \\|A\\mathbf{x}\\|_\\infty\n\\]\n\n\nKey Insight\n\nThe infinity norm of \\(A\\) is equal to the maximum row sum of \\(A\\).\nIt represents the maximum effect \\(A\\) can have on any vector \\(\\mathbf{x}\\) with \\(\\|\\mathbf{x}\\|_\\infty = 1\\)."
-  },
-  {
-    "objectID": "notes/w07/2-3.html#proof-a_infty-maximum-row-sum-of-a",
-    "href": "notes/w07/2-3.html#proof-a_infty-maximum-row-sum-of-a",
-    "title": "MATH411",
-    "section": "Proof: \\(\\|A\\|_\\infty =\\) Maximum Row Sum of \\(A\\)",
-    "text": "Proof: \\(\\|A\\|_\\infty =\\) Maximum Row Sum of \\(A\\)\nFor matrix \\(A\\):\n\\[\n\\|A\\|_\\infty = \\max_i \\sum_j |a_{ij}|.\n\\]\n\nExample\nConsider:\n\\[\nA = \\begin{bmatrix}\n-1 & -2 & 3 \\\\\n3 & -4 & -5 \\\\\n-2 & 3 & -4\n\\end{bmatrix}\n\\]\n\nCompute Row Sums\n\nRow 1: \\(|-1| + |-2| + |3| = 6\\)\nRow 2: \\(|3| + |-4| + |-5| = 12\\)\nRow 3: \\(|-2| + |3| + |-4| = 9\\)\n\nMaximum Row Sum: \\(12\\) (Row 2)\nTherefore, \\(\\|A\\|_\\infty = 12\\).\n\n\n\nChoosing \\(\\mathbf{\\hat{x}}\\)\nTo achieve \\(\\|A\\mathbf{\\hat{x}}\\|_\\infty = \\|A\\|_\\infty\\), select \\(\\mathbf{\\hat{x}}\\) with \\(\\|\\mathbf{\\hat{x}}\\|_\\infty = 1\\) that aligns with the signs of Row 2:\n\\[\n\\mathbf{\\hat{x}} = \\begin{bmatrix}\n1 \\\\\n-1 \\\\\n-1\n\\end{bmatrix}\n\\]\n\nCompute \\(A\\mathbf{\\hat{x}}\\):\n\\[\nA\\mathbf{\\hat{x}} = \\begin{bmatrix}\n-1(1) + -2(-1) + 3(-1) \\\\\n3(1) + -4(-1) + -5(-1) \\\\\n-2(1) + 3(-1) + -4(-1)\n\\end{bmatrix} = \\begin{bmatrix}\n-2 \\\\\n12 \\\\\n-1\n\\end{bmatrix}\n\\]\n\n\nCompute \\(\\|A\\mathbf{\\hat{x}}\\|_\\infty\\):\n\\[\n\\|A\\mathbf{\\hat{x}}\\|_\\infty = \\max(|-2|, |12|, |-1|) = 12 = \\|A\\|_\\infty\n\\]\n\n\n\nConclusion\nIt is not possible to find \\(\\mathbf{\\hat{x}}\\) such that \\(\\|A\\mathbf{\\hat{x}}\\|_\\infty &gt; \\|A\\|_\\infty\\) when \\(\\|\\mathbf{\\hat{x}}\\|_\\infty = 1\\), because \\(\\|A\\|_\\infty\\) is the supremum of \\(\\|A\\mathbf{x}\\|_\\infty\\) over all such \\(\\mathbf{x}\\)."
-  },
-  {
-    "objectID": "notes/w07/2-3.html#error-analysis-and-condition-numbers",
-    "href": "notes/w07/2-3.html#error-analysis-and-condition-numbers",
-    "title": "MATH411",
-    "section": "Error Analysis and Condition Numbers",
-    "text": "Error Analysis and Condition Numbers\n\nWhy Care About Errors in \\(A\\mathbf{x} = \\mathbf{b}\\)?\nWhen solving \\(A\\mathbf{x} = \\mathbf{b}\\), understanding errors helps improve numerical accuracy and stability.\nLet \\(\\mathbf{x_a}\\) be an approximate solution to \\(A\\mathbf{x} = \\mathbf{b}\\), meaning:\n\\[\nA\\mathbf{x_a} \\neq \\mathbf{b}\n\\]\nWe quantify errors to assess the accuracy of \\(\\mathbf{x_a}\\) and evaluate the impact of approximations.\n\n\nDefinitions\n\nResidual: The difference between \\(\\mathbf{b}\\) and \\(A\\mathbf{x_a}\\):\n\\[\n\\mathbf{r} = \\mathbf{b} - A\\mathbf{x_a}\n\\]\nBackward Error (BE): Measures the infinity norm of the residual:\n\\[\n\\text{BE} = \\|\\mathbf{r}\\|_\\infty = \\|\\mathbf{b} - A\\mathbf{x_a}\\|_\\infty\n\\]\nRelative Backward Error (RBE): Normalizes the backward error relative to \\(\\mathbf{b}\\):\n\\[\n\\text{RBE} = \\frac{\\|\\mathbf{r}\\|_\\infty}{\\|\\mathbf{b}\\|_\\infty}\n\\]\nForward Error (FE): Measures the difference between the true solution \\(\\mathbf{x}\\) and the approximate solution \\(\\mathbf{x_a}\\):\n\\[\n\\text{FE} = \\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty\n\\]\nRelative Forward Error (RFE): Normalizes the forward error relative to \\(\\mathbf{x}\\):\n\\[\n\\text{RFE} = \\frac{\\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty}{\\|x\\|_\\infty}\n\\]"
-  },
-  {
-    "objectID": "notes/w07/2-3.html#error-magnification-factor-emf",
-    "href": "notes/w07/2-3.html#error-magnification-factor-emf",
-    "title": "MATH411",
-    "section": "Error Magnification Factor (EMF)",
-    "text": "Error Magnification Factor (EMF)\nThe error magnification factor (EMF) relates the relative forward error (RFE) to the relative backward error (RBE):\n\\[\n\\text{EMF} = \\frac{\\text{RFE}}{\\text{RBE}}\n\\]\nThis quantifies how much the backward error is amplified when reflected in the forward error."
-  },
-  {
-    "objectID": "notes/w07/2-3.html#condition-number-of-a-matrix",
-    "href": "notes/w07/2-3.html#condition-number-of-a-matrix",
-    "title": "MATH411",
-    "section": "Condition Number of a Matrix",
-    "text": "Condition Number of a Matrix\nThe condition number of a matrix \\(A\\) measures the sensitivity of the solution \\(\\mathbf{x}\\) to changes in \\(\\mathbf{b}\\). It is defined as:\n\\[\n\\text{cond}(A) = \\|A\\|_\\infty \\cdot \\|A^{-1}\\|_\\infty\n\\]\n\nInterpretation:\n\nA low condition number (close to 1) indicates a well-conditioned matrix.\nA high condition number suggests an ill-conditioned matrix, meaning small changes in \\(\\mathbf{b}\\) can result in large changes in \\(\\mathbf{x}\\)."
-  },
-  {
-    "objectID": "notes/w07/2-3.html#example-1",
-    "href": "notes/w07/2-3.html#example-1",
-    "title": "MATH411",
-    "section": "Example",
-    "text": "Example\nGiven:\n\\[\n\\mathbf{x} = \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix}, \\quad\n\\mathbf{x_a} = \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix}, \\quad\nA = \\begin{bmatrix} 1 & 1 \\\\ 3 & -4 \\end{bmatrix}, \\quad\n\\mathbf{b} = \\begin{bmatrix} 3 \\\\ 2 \\end{bmatrix}\n\\]\n\nStep 1: Compute Errors\n\nForward Error (FE):\n\\[\n\\text{FE} = \\|\\mathbf{x} - \\mathbf{x_a}\\|_\\infty = \\left\\| \\begin{bmatrix} 2 \\\\ 1 \\end{bmatrix} - \\begin{bmatrix} 1 \\\\ 1 \\end{bmatrix} \\right\\|_\\infty = 1\n\\]\nRelative Forward Error (RFE):\n\\[\n\\text{RFE} = \\frac{\\text{FE}}{\\|\\mathbf{x}\\|_\\infty} = \\frac{1}{2} = 0.5\n\\]\nResidual:\n\\[\nr = b - Ax_a = \\begin{bmatrix} 3 \\\\ 2 \\end{bmatrix} - \\begin{bmatrix} 2 \\\\ -1 \\end{bmatrix} = \\begin{bmatrix} 1 \\\\ 3 \\end{bmatrix}\n\\]\nBackward Error (BE):\n\\[\n\\text{BE} = \\|\\mathbf{r}\\|_\\infty = 3\n\\]\nRelative Backward Error (RBE):\n\\[\n\\text{RBE} = \\frac{\\text{BE}}{\\|\\mathbf{b}\\|_\\infty} = \\frac{3}{3} = 1\n\\]\n\n\n\nStep 2: Compute EMF\nUsing:\n\\[\n\\text{EMF} = \\frac{\\text{RFE}}{\\text{RBE}}\n\\]\nwe find:\n\\[\n\\text{EMF} = \\frac{0.5}{1} = 0.5\n\\]\n\n\nStep 3: Compute Condition Number\n\nCompute \\(\\|A\\|_\\infty\\):\n\\[\n\\|A\\|_\\infty = \\max\\left( |1| + |1|, |3| + |-4| \\right) = \\max(2, 7) = 7\n\\]\nCompute \\(\\|A^{-1}\\|_\\infty\\):\nFrom \\(A^{-1}\\), we find:\n\\[\n\\|A^{-1}\\|_\\infty = \\max\\left( \\frac{4}{7} + \\frac{1}{7}, \\frac{3}{7} + \\frac{1}{7} \\right) = \\frac{5}{7}\n\\]\nCondition Number:\n\\[\n\\text{cond}(A) = \\|A\\|_\\infty \\cdot \\|A^{-1}\\|_\\infty = 7 \\cdot \\frac{5}{7} = 5\n\\]"
-  },
-  {
-    "objectID": "notes/w07/2-3.html#next-steps-pa-lu-decomposition-partial-pivoting",
-    "href": "notes/w07/2-3.html#next-steps-pa-lu-decomposition-partial-pivoting",
-    "title": "MATH411",
-    "section": "Next Steps: \\(PA = LU\\) Decomposition (Partial Pivoting)",
-    "text": "Next Steps: \\(PA = LU\\) Decomposition (Partial Pivoting)\n\nWhat is Partial Pivoting?\nPartial pivoting rearranges rows of \\(A\\) during LU decomposition to place the largest available pivot element on the diagonal. This ensures numerical stability by reducing rounding errors.\n\n\nConsequences of Partial Pivoting:\n\nControlled Multipliers: Ensures all multipliers satisfy \\(|m_{ij}| \\leq 1\\).\nPrevents Swamping: Avoids large numerical errors caused by small pivot elements.\n\nUnderstanding norms, errors, and condition numbers is foundational for solving \\(A\\mathbf{x} = \\mathbf{b}\\) efficiently and accurately."
-  },
-  {
     "objectID": "homework/index.html",
     "href": "homework/index.html",
     "title": "HOMEWORK",
@@ -1012,7 +1047,7 @@
     "href": "notes/index.html",
     "title": "NOTES",
     "section": "",
-    "text": "WEEK 01\n\nBisection Method\nFixed-Point Iteration\nNewtons’s Method\nSecant Method\n\n\n\nWEEK 02\n\nLagrange Interpolation\nNewton’s Divided Differences\n\n\n\nWEEK 03\n\nInterpolation Error Formula\nRunge Phenomenon\nChebyshev Interpolation\n\n\n\nWEEK 04\n\nTrapezoidal Rule\n\n\n\nWEEK 05\n\n\nWEEK 06\n\nLinear Systems: A\\mathbf{x} = \\mathbf{b}\n\n\n\nWEEK 07\n\nLU Factorization\nIterative Methods for Solving Linear Systems\nChapter 2 Section 3 Notes\nNorms\nLinear System Error Analysis\n\n\n\nWEEK 08\n\nLeast Squares Solution for Inconsistent Systems\nGram-Schmidt Orthogonalization\nModified Gram-Schmidt Orthogonalization\n\n\n\nWEEK 09\n\n\nWEEK 10\n\n\nWEEK 11\n\n\nWEEK 12"
+    "text": "WEEK 01\n\nBisection Method\nFixed-Point Iteration\nNewtons’s Method\nSecant Method\n\n\n\nWEEK 02\n\nLagrange Interpolation\nNewton’s Divided Differences\n\n\n\nWEEK 03\n\nInterpolation Error Formula\nRunge Phenomenon\nChebyshev Interpolation\n\n\n\nWEEK 04\n\nTrapezoidal Rule\n\n\n\nWEEK 05\n\n\nWEEK 06\n\nLinear Systems: A\\mathbf{x} = \\mathbf{b}\nSpectral Radius\n\n\n\nWEEK 07\n\nLU Factorization\nIterative Methods for Solving Linear Systems\nChapter 2 Section 3 Notes\nNorms\nLinear System Error Analysis\n\n\n\nWEEK 08\n\nLeast Squares Solution for Inconsistent Systems\nGram-Schmidt Orthogonalization\nModified Gram-Schmidt Orthogonalization\n\n\n\nWEEK 09\n\n\nWEEK 10\n\n\nWEEK 11\n\n\nWEEK 12"
   },
   {
     "objectID": "notes/w01/fixed-point-iteration.html",
@@ -1132,6 +1167,69 @@
     "title": "Interpolation Error Formula",
     "section": "Finding the Maximum Error Over the Interval",
     "text": "Finding the Maximum Error Over the Interval\nTo find the maximum error over the entire interval [x_1, x_n], we can use the interpolation error formula to create an upper bound for the error on the interval:\n\nMaximize |f^{(n)}(x)| over the interval: Find the maximum of the n-th derivative of f(x), f^{(n)}(x), over the interval [x_1, x_n]. This value represents the largest possible influence of the function’s curvature on the error.\nMaximize |(x - x_1)(x - x_2) \\cdots (x - x_n)|: Determine the maximum value of the product |(x - x_1)(x - x_2) \\cdots (x - x_n)| over the interval [x_1, x_n]. This product is largest near the midpoint of the interval (between the nodes) and tends to be smaller near the endpoints.\nCombine the Results: Multiply these two maximum values and divide by n! to get an upper bound on the maximum error over the interval:\n\n\\max_{x \\in [x_1, x_n]} |f(x) - P(x)| \\approx \\frac{\\max_{x \\in [x_1, x_n]} |(x - x_1)(x - x_2) \\cdots (x - x_n)|}{n!} \\cdot \\max_{x \\in [x_1, x_n]} |f^{(n)}(x)|\n\n\nThis approach provides an approximate maximum error over the interval. By using these maximum values, we can ensure that the error does not exceed this bound anywhere in [x_1, x_n].\nIn summary, the interpolation error formula gives insight into the local error at a specific point and can be used to estimate the maximum error on the interval by considering the maximum values of the components in the formula."
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html",
+    "href": "notes/w06/spectral-radius.html",
+    "title": "Spectral Radius",
+    "section": "",
+    "text": "The spectral radius is a fundamental concept in linear algebra and matrix analysis, particularly in understanding the behavior of iterative methods like the Jacobi Method for solving linear systems."
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html#overview",
+    "href": "notes/w06/spectral-radius.html#overview",
+    "title": "Spectral Radius",
+    "section": "",
+    "text": "The spectral radius is a fundamental concept in linear algebra and matrix analysis, particularly in understanding the behavior of iterative methods like the Jacobi Method for solving linear systems."
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html#definition-of-spectral-radius",
+    "href": "notes/w06/spectral-radius.html#definition-of-spectral-radius",
+    "title": "Spectral Radius",
+    "section": "Definition of Spectral Radius",
+    "text": "Definition of Spectral Radius\nThe spectral radius of a square matrix A is defined as the largest absolute value of its eigenvalues:\n\n\\rho(A) = \\max \\{ |\\lambda| : \\lambda \\text{ is an eigenvalue of } A \\}\n\n\nInterpretation: It measures the “largest influence” of the eigenvalues of A, which governs the convergence properties of matrix-related iterative processes."
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html#properties-of-the-spectral-radius",
+    "href": "notes/w06/spectral-radius.html#properties-of-the-spectral-radius",
+    "title": "Spectral Radius",
+    "section": "Properties of the Spectral Radius",
+    "text": "Properties of the Spectral Radius\n\nNon-Negativity:\n\n\\rho(A) \\geq 0\n\nsince the spectral radius is the maximum of the absolute values of eigenvalues.\nBehavior Under Similarity Transformations: If B = P^{-1}AP, then:\n\n\\rho(B) = \\rho(A)\n\nbecause eigenvalues are invariant under similarity transformations.\nNorm Relationship: The spectral radius is related to matrix norms but generally satisfies: \n\\rho(A) \\leq \\|A\\|\n for certain matrix norms. Equality holds in some cases, such as the spectral norm for symmetric matrices."
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html#importance-in-iterative-methods",
+    "href": "notes/w06/spectral-radius.html#importance-in-iterative-methods",
+    "title": "Spectral Radius",
+    "section": "Importance in Iterative Methods",
+    "text": "Importance in Iterative Methods\nThe spectral radius plays a key role in determining the convergence of iterative methods for solving systems of linear equations.\n\nConvergence Criterion\nFor an iterative method defined by:\n\nx_{k+1} = Gx_k + c\n\nwhere G is the iteration matrix, the method converges if and only if:\n\n\\rho(G) &lt; 1\n\n\nExplanation: This ensures that successive iterations diminish in magnitude, eventually converging to the solution."
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html#example-computing-the-spectral-radius",
+    "href": "notes/w06/spectral-radius.html#example-computing-the-spectral-radius",
+    "title": "Spectral Radius",
+    "section": "Example: Computing the Spectral Radius",
+    "text": "Example: Computing the Spectral Radius\nConsider the matrix:\n\nA = \\begin{bmatrix}\n2 & 1 \\\\\n1 & 3\n\\end{bmatrix}\n\n\nStep 1: Find Eigenvalues\nSolve \\det(A - \\lambda I) = 0:\n\n\\det\\left(\\begin{bmatrix}\n2-\\lambda & 1 \\\\\n1 & 3-\\lambda\n\\end{bmatrix}\\right) = 0\n\nExpanding the determinant:\n\n(2-\\lambda)(3-\\lambda) - 1 = \\lambda^2 - 5\\lambda + 5 = 0\n\nThe eigenvalues are:\n\n\\lambda = \\frac{5 \\pm \\sqrt{5}}{2}\n\n\n\nStep 2: Compute Spectral Radius\nThe eigenvalues are approximately:\n\n\\lambda_1 \\approx 4.618, \\quad \\lambda_2 \\approx 0.382\n\nThus, the spectral radius is:\n\n\\rho(A) = \\max(|\\lambda_1|, |\\lambda_2|) = 4.618"
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html#geometric-interpretation",
+    "href": "notes/w06/spectral-radius.html#geometric-interpretation",
+    "title": "Spectral Radius",
+    "section": "Geometric Interpretation",
+    "text": "Geometric Interpretation\nThe spectral radius represents the largest “stretching factor” of a matrix when applied to a vector. For a square matrix A, eigenvectors corresponding to the eigenvalue with the largest magnitude indicate the direction in which A has the most influence."
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html#applications-of-spectral-radius",
+    "href": "notes/w06/spectral-radius.html#applications-of-spectral-radius",
+    "title": "Spectral Radius",
+    "section": "Applications of Spectral Radius",
+    "text": "Applications of Spectral Radius\n\nIterative Solvers:\n\nDetermines the convergence of methods like Jacobi and Gauss-Seidel.\n\nStability Analysis:\n\nUsed in analyzing the stability of dynamical systems where A represents a system’s state transition.\n\nNetwork Analysis:\n\nIn graph theory, the spectral radius of adjacency matrices provides insights into network properties."
+  },
+  {
+    "objectID": "notes/w06/spectral-radius.html#conclusion",
+    "href": "notes/w06/spectral-radius.html#conclusion",
+    "title": "Spectral Radius",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe spectral radius is a powerful tool for understanding the properties of matrices, particularly in the context of iterative methods and stability analysis. Mastering this concept is essential for applications ranging from solving linear systems to analyzing complex networks and dynamical systems."
   },
   {
     "objectID": "notes/w07/ax-b-iterative-methods/index.html",
@@ -1540,6 +1638,13 @@
     "text": "Conclusion\nModified Gram-Schmidt is a more stable alternative to the classical process, particularly when dealing with small or near-parallel vectors. By incrementally updating the working vector y, MGS ensures numerical stability and maintains orthogonality even in the presence of rounding errors. It is especially useful in applications like QR factorization and solving least squares problems in computational settings."
   },
   {
+    "objectID": "worksheets/index.html",
+    "href": "worksheets/index.html",
+    "title": "WORKSHEETS",
+    "section": "",
+    "text": "Jacobi Method - Convergence Proof"
+  },
+  {
     "objectID": "notes/w03/runge-phenomenon.html",
     "href": "notes/w03/runge-phenomenon.html",
     "title": "Runge Phenomenon",
@@ -1691,7 +1796,7 @@
     "href": "reality-checks/rc05/rc05.html#path-equipartitioning-using-newtons-method",
     "title": "REALITY CHECK 05",
     "section": "Path Equipartitioning Using Newton’s Method",
-    "text": "Path Equipartitioning Using Newton’s Method\n\nProblem Statement\nReplace the Bisection Method in Step 2 with Newton’s Method, and repeat Steps 2 and 3. What is the derivative needed? What is a good choice for the initial guess? Is computation time decreased by this replacement?\n\n\nObjective and Approach\n\nObjective: Use Newton’s Method to locate each partition point t_i along the path, ensuring equal arc-length segments for a specified number of partitions n. Newton’s Method is expected to offer faster convergence than the Bisection Method, especially when starting with a good initial guess.\nRequired Derivative: Newton’s Method requires the derivative of the arc length function with respect to t, which is simply the arc length integrand evaluated at t:\n\nf'(t) = \\sqrt{\\left( \\frac{dx}{dt} \\right)^2 + \\left( \\frac{dy}{dt} \\right)^2}\n\nInitial Guess: A reasonable initial guess for each t_i is t_i = \\frac{i}{n}, which provides a uniformly spaced initial estimate along t, aiding the convergence of Newton’s Method.\nPerformance Comparison: To evaluate if Newton’s Method reduces computation time, we will measure the time taken by both the Bisection and Newton’s methods to achieve the same accuracy.\n\n\nWhy t_i = \\frac{i}{n} is a Good Initial Guess\n\nUniform Parameter Distribution: The parameter t varies between 0 and 1 (or the specified range of t), and \\frac{i}{n} provides evenly spaced points within this interval. This ensures that the initial guess is distributed consistently across the parameter space.\nProximity to the True Solution: For smooth and “well-behaved” curves, the true t_i values for equal arc-length segments are often near \\frac{i}{n}. This proximity ensures that Newton’s Method starts “in the ballpark” of the correct value.\nSimplicity and Efficiency: Computing \\frac{i}{n} is computationally trivial and requires no extra effort. This simplicity makes it a practical choice compared to complex initialization schemes.\nImproved Convergence: Starting close to the actual solution allows Newton’s Method to converge quadratically, reducing the number of iterations needed to achieve the desired accuracy.\n\n\n\n\nSolution Code\nThe following Python code implements Newton’s Method to find partition points and compares its performance with the Bisection Method.\n\nimport time\n\n# Newton's Method to find t for a target arc length\ndef newton_find_t(target_length, initial_guess, tol=1e-8, max_iter=100):\n    t = initial_guess\n    for _ in range(max_iter):\n        f_t = compute_arc_length(t) - target_length\n        f_prime_t = integrand(t)\n        if abs(f_t) &lt; tol:\n            return t\n        t -= f_t / f_prime_t  # Update t\n    return t\n\n# Compare performance of Bisection and Newton's methods\ndef compare_performance(target_length):\n    start_time_bisection = time.time()\n    bisection_result = bisection_find_t(target_length)\n    bisection_time = time.time() - start_time_bisection\n\n    start_time_newton = time.time()\n    newton_result = newton_find_t(target_length, initial_guess=0.5)\n    newton_time = time.time() - start_time_newton\n\n    print(f\"Bisection Method Result: {bisection_result:.9f} Time: {bisection_time:.9f} seconds\")\n    print(f\"Newton's Method Result: {newton_result:.9f} Time: {newton_time:.9f} seconds\")\n\n# Example target length (e.g., half the arc length)\ntotal_length = compute_arc_length(1)\ncompare_performance(total_length / 2)\n\nBisection Method Result: 0.800593771 Time: 0.007006168 seconds\nNewton's Method Result: 0.800593767 Time: 0.001001358 seconds\n\n\n\n\nExplanation of Solution Components\n\nNewton’s Method Implementation: The newton_find_t function applies Newton’s Method to locate the parameter t for a given arc length. It iteratively refines t by calculating f(t) and f'(t), adjusting t based on the result.\nPerformance Comparison: The compare_performance function compares the time taken by Bisection and Newton’s methods to find the target t-value. This illustrates the efficiency difference between the two methods.\n\n\n\nResults and Observations\n\nPerformance Gain: Newton’s Method generally converges faster than the Bisection Method due to its quadratic convergence rate.\nAccuracy: With an appropriately chosen initial guess, Newton’s Method efficiently reaches an accurate solution within fewer iterations.\n\n\n\nConclusion\nNewton’s Method provides a more efficient approach for finding the partition points, particularly when an initial guess is available. This reduction in computation time makes it suitable for tasks requiring high precision and quick convergence, such as real-time applications in path traversal and equipartitioning. Future explorations could involve further optimizations by dynamically refining initial guesses based on prior calculations."
+    "text": "Path Equipartitioning Using Newton’s Method\n\nProblem Statement\nReplace the Bisection Method in Step 2 with Newton’s Method, and repeat Steps 2 and 3. What is the derivative needed? What is a good choice for the initial guess? Is computation time decreased by this replacement?\n\n\nObjective and Approach\n\nObjective: Use Newton’s Method to locate each partition point t_i along the path, ensuring equal arc-length segments for a specified number of partitions n. Newton’s Method is expected to offer faster convergence than the Bisection Method, especially when starting with a good initial guess.\nRequired Derivative: Newton’s Method requires the derivative of the arc length function with respect to t, which is simply the arc length integrand evaluated at t:\n\nf'(t) = \\sqrt{\\left( \\frac{dx}{dt} \\right)^2 + \\left( \\frac{dy}{dt} \\right)^2}\n\nInitial Guess: A reasonable initial guess for each t_i is t_i = \\frac{i}{n}, which provides a uniformly spaced initial estimate along t, aiding the convergence of Newton’s Method.\nPerformance Comparison: To evaluate if Newton’s Method reduces computation time, we will measure the time taken by both the Bisection and Newton’s methods to achieve the same accuracy.\n\n\nWhy t_i = \\frac{i}{n} is a Good Initial Guess\n\nUniform Parameter Distribution: The parameter t varies between 0 and 1 (or the specified range of t), and \\frac{i}{n} provides evenly spaced points within this interval. This ensures that the initial guess is distributed consistently across the parameter space.\nProximity to the True Solution: For smooth and “well-behaved” curves, the true t_i values for equal arc-length segments are often near \\frac{i}{n}. This proximity ensures that Newton’s Method starts “in the ballpark” of the correct value.\nSimplicity and Efficiency: Computing \\frac{i}{n} is computationally trivial and requires no extra effort. This simplicity makes it a practical choice compared to complex initialization schemes.\nImproved Convergence: Starting close to the actual solution allows Newton’s Method to converge quadratically, reducing the number of iterations needed to achieve the desired accuracy.\n\n\n\n\nSolution Code\nThe following Python code implements Newton’s Method to find partition points and compares its performance with the Bisection Method.\n\nimport time\n\n# Newton's Method to find t for a target arc length\ndef newton_find_t(target_length, initial_guess, tol=1e-8, max_iter=100):\n    t = initial_guess\n    for _ in range(max_iter):\n        f_t = compute_arc_length(t) - target_length\n        f_prime_t = integrand(t)\n        if abs(f_t) &lt; tol:\n            return t\n        t -= f_t / f_prime_t  # Update t\n    return t\n\n# Compare performance of Bisection and Newton's methods\ndef compare_performance(target_length):\n    start_time_bisection = time.time()\n    bisection_result = bisection_find_t(target_length)\n    bisection_time = time.time() - start_time_bisection\n\n    start_time_newton = time.time()\n    newton_result = newton_find_t(target_length, initial_guess=0.5)\n    newton_time = time.time() - start_time_newton\n\n    print(f\"Bisection Method Result: {bisection_result:.9f} Time: {bisection_time:.9f} seconds\")\n    print(f\"Newton's Method Result: {newton_result:.9f} Time: {newton_time:.9f} seconds\")\n\n# Example target length (e.g., half the arc length)\ntotal_length = compute_arc_length(1)\ncompare_performance(total_length / 2)\n\nBisection Method Result: 0.800593771 Time: 0.007006168 seconds\nNewton's Method Result: 0.800593767 Time: 0.001001596 seconds\n\n\n\n\nExplanation of Solution Components\n\nNewton’s Method Implementation: The newton_find_t function applies Newton’s Method to locate the parameter t for a given arc length. It iteratively refines t by calculating f(t) and f'(t), adjusting t based on the result.\nPerformance Comparison: The compare_performance function compares the time taken by Bisection and Newton’s methods to find the target t-value. This illustrates the efficiency difference between the two methods.\n\n\n\nResults and Observations\n\nPerformance Gain: Newton’s Method generally converges faster than the Bisection Method due to its quadratic convergence rate.\nAccuracy: With an appropriately chosen initial guess, Newton’s Method efficiently reaches an accurate solution within fewer iterations.\n\n\n\nConclusion\nNewton’s Method provides a more efficient approach for finding the partition points, particularly when an initial guess is available. This reduction in computation time makes it suitable for tasks requiring high precision and quick convergence, such as real-time applications in path traversal and equipartitioning. Future explorations could involve further optimizations by dynamically refining initial guesses based on prior calculations."
   },
   {
     "objectID": "reality-checks/rc05/rc05.html#path-animation-at-original-and-constant-speed",
