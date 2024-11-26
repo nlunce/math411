@@ -4860,7 +4860,7 @@ window.Quarto = {
 <p><em>Theorem 2.10 (p. 107)</em></p>
 <p>If the <span class="math inline">n \times n</span> matrix <span class="math inline">A</span> is strictly diagonally dominant, then:</p>
 <ul>
-<li><span class="math inline">A</span> is a nonsingular matrix.</li>
+<li><span class="math inline">A</span> is a nonsingular matrix (invertible matrix).</li>
 <li>For every vector <span class="math inline">b</span> and every starting guess, the <a href="../notes/w07/ax-b-iterative-methods/jacobi-method.html"><strong>Jacobi Method</strong></a> applied to <span class="math inline">A \mathbf{x} = \mathbf{b}</span> converges to the (unique) solution.</li>
 </ul>
 </section>
@@ -5116,7 +5116,50 @@ d_{n,n} v_n
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>To explain why</p>
+<p><span class="math display">
+\big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big| \leq \sum_{j \neq m} |r_{m,j}|,
+</span></p>
+<p>we begin by recalling the <strong>triangle inequality</strong> for absolute values. For any sum of terms <span class="math inline">a_1, a_2, \dots, a_k</span>, the triangle inequality ensures:</p>
+<p><span class="math display">
+|a_1 + a_2 + \cdots + a_k| \leq |a_1| + |a_2| + \cdots + |a_k|
+</span></p>
+<p>In our case, the sum of interest is:</p>
+<p><span class="math display">
+r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n
+</span></p>
+<p>Applying the triangle inequality to this sum gives:</p>
+<p><span class="math inline">\quad \big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big|</span></p>
+<p><span class="math display">
+\leq |r_{m,1}v_1| + |r_{m,2}v_2| + \cdots + |r_{m,m-1}v_{m-1}| + |r_{m,m+1}v_{m+1}| + \cdots + |r_{m,n}v_n|
+</span></p>
+<p>Each term in the sum has the form <span class="math inline">|r_{m,j}v_j|</span>. Using the property of absolute values <span class="math inline">|ab| = |a||b|</span>, we can rewrite each term as:</p>
+<p><span class="math display">
+|r_{m,j}v_j| = |r_{m,j}| \cdot |v_j|
+</span></p>
+<p>Since it is assumed that <span class="math inline">|v_j| \leq 1</span> for all <span class="math inline">j</span>, it follows that:</p>
+<p><span class="math display">
+|r_{m,j}v_j| \leq |r_{m,j}|
+</span></p>
+<p>Substituting this bound for each term into the inequality gives:</p>
+<p><span class="math inline">\quad \big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big|</span></p>
+<p><span class="math display">
+\leq |r_{m,1}v_1| + |r_{m,2}v_2| + \cdots + |r_{m,m-1}v_{m-1}| + |r_{m,m+1}v_{m+1}| + \cdots + |r_{m,n}v_n|
+</span></p>
+<p>The indices <span class="math inline">j \neq m</span> correspond to all off-diagonal entries in the <span class="math inline">m</span>-th row of the matrix. Thus, we can express the sum of the absolute values of the coefficients as:</p>
+<p><span class="math display">
+|r_{m,1}| + |r_{m,2}| + \cdots + |r_{m,m-1}| + |r_{m,m+1}| + \cdots + |r_{m,n}| = \sum_{j \neq m} |r_{m,j}|
+</span></p>
+<p>Substituting this back, we find:</p>
+<p><span class="math display">
+\big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big| \leq \sum_{j \neq m} |r_{m,j}|
+</span></p>
+<p>The inequality holds because:</p>
+<ol type="1">
+<li>The <strong>triangle inequality</strong> ensures that the absolute value of a sum is at most the sum of the absolute values of its terms.</li>
+<li>The assumption <span class="math inline">|v_j| \leq 1</span> allows us to bound <span class="math inline">|r_{m,j}v_j|</span> by <span class="math inline">|r_{m,j}|</span>.</li>
+</ol>
+<p>Thus, the magnitude of the weighted sum of <span class="math inline">v_j</span> values (for <span class="math inline">j \neq m</span>) is always less than or equal to the sum of the absolute values of the off-diagonal entries in the <span class="math inline">m</span>-th row of the matrix.</p>
 </div>
 </div>
 </div>
@@ -5147,7 +5190,11 @@ d_{n,n} v_n
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>By assumption, the matrix <span class="math inline">A</span> is strictly diagonally dominant. This means that, for each row of <span class="math inline">A</span>, the absolute value of the diagonal entry <span class="math inline">|d_{m,m}|</span> is strictly greater than the sum of the absolute values of all the off-diagonal entries in that row:</p>
+<p><span class="math display">
+|d_{m,m}| &gt; \sum_{j \neq m} |r_{m,j}|
+</span></p>
+<p>In other words, the diagonal entry <span class="math inline">d_{m,m}</span> has the largest contribution in the row, ensuring that the total influence of the off-diagonal terms is strictly smaller.</p>
 </div>
 </div>
 </div>
@@ -5179,7 +5226,36 @@ d_{n,n} v_n
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>To explain why</p>
+<p><span class="math display">
+|\lambda||d_{m,m}| &lt; |d_{m,m}|
+</span></p>
+<p>we combine the results from <strong>Step (4)</strong> and <strong>Step (5)</strong> with <strong><em>EQUATION 1</em></strong>.</p>
+<p><strong><em>EQUATION 1</em></strong> states:</p>
+<p><span class="math display">
+|\lambda||d_{m,m}| = \big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big|
+</span></p>
+<p>From <strong>Step (4)</strong>, we know:</p>
+<p><span class="math display">
+\big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big| \leq \sum_{j \neq m} |r_{m,j}|
+</span></p>
+<p>Substituting this into <strong><em>EQUATION 1</em></strong>, we have:</p>
+<p><span class="math display">
+|\lambda||d_{m,m}| \leq \sum_{j \neq m} |r_{m,j}|
+</span></p>
+<p>From <strong>Step (5)</strong>, we know:</p>
+<p><span class="math display">
+\sum_{j \neq m} |r_{m,j}| &lt; |d_{m,m}|
+</span></p>
+<p>Combining this with the inequality above gives:</p>
+<p><span class="math display">
+|\lambda||d_{m,m}| &lt; |d_{m,m}|
+</span></p>
+<p>Dividing both sides of the inequality by <span class="math inline">|d_{m,m}|</span> (which is nonzero), we find:</p>
+<p><span class="math display">
+|\lambda| &lt; 1
+</span></p>
+<p>This result shows that the magnitude of the eigenvalue <span class="math inline">|\lambda|</span> is strictly less than 1 and this implies that the spectral radius <span class="math inline">\rho(D^{-1}R) &lt; 1</span>.</p>
 </div>
 </div>
 </div>
@@ -5193,12 +5269,12 @@ d_{n,n} v_n
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Since <span class="math inline">\lambda</span> is an arbitrary eigenvalue, then <span class="math inline">|\lambda|_{\text{max}} &lt; 1</span>. In other words, the spectral radius <span class="math inline">\rho(D^{-1}R) &lt; 1</span>. Thus, by the <strong>Spectral Radius Convergence Theorem</strong> (Theorem A.7), the Jacobi Method (iteration with <span class="math inline">A = D - D^{-1}R</span>) converges for any starting point <span class="math inline">\mathbf{x}_0</span>.</p>
+<p>Since <span class="math inline">\lambda</span> is an arbitrary eigenvalue, then <span class="math inline">|\lambda|_{\text{max}} &lt; 1</span>. In other words, the spectral radius <span class="math inline">\rho(D^{-1}R) &lt; 1</span>. Thus, by the <strong>Spectral Radius Convergence Theorem</strong> (Theorem A.7), the Jacobi Method (iteration with <span class="math inline">A = D^{-1}R</span>) converges for any starting point <span class="math inline">\mathbf{x}_0</span>.</p>
 <p>Let <span class="math inline">\mathbf{x}_* = \lim_{k \to \infty} \mathbf{x}_k</span>, and show that <span class="math inline">\mathbf{x}_*</span> is the solution to <span class="math inline">A \mathbf{x} = \mathbf{b}</span>, so <span class="math inline">A</span> must be nonsingular. This completes the proof of the <strong>Diagonal Dominance Convergence Theorem</strong> (Theorem 2.10).</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -5207,9 +5283,66 @@ d_{n,n} v_n
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>From earlier, we showed that the spectral radius <span class="math inline">\rho(D^{-1}R)</span>, which is the largest magnitude of the eigenvalues of <span class="math inline">D^{-1}R</span>, satisfies:</p>
+<p><span class="math display">
+\rho(D^{-1}R) &lt; 1
+</span></p>
+<p>This result guarantees that the Jacobi method converges to a solution <span class="math inline">\mathbf{x}_*</span> of <span class="math inline">A\mathbf{x} = \mathbf{b}</span> for any starting point <span class="math inline">\mathbf{x}_0</span>, as stated in the <strong>Diagonal Dominance Convergence Theorem</strong> (<em>Theorem A.7</em>).</p>
+<p>Therefore, we can write the limit of the iterates <span class="math inline">\mathbf{x}_k</span> as:</p>
+<p><span class="math display">
+\mathbf{x}_* = \lim_{k \to \infty} \mathbf{x}_k
+</span></p>
+<p>The Jacobi iteration formula is:</p>
+<p><span class="math display">
+\mathbf{x}_{k+1} = D^{-1}(\mathbf{b} - R\mathbf{x}_k)
+</span></p>
+<p>where <span class="math inline">A = D - R</span>, <span class="math inline">D</span> is the diagonal matrix, and <span class="math inline">R</span> is the remainder matrix (containing the off-diagonal terms).</p>
+<p>Substituting the limit <span class="math inline">\mathbf{x}_*</span> into this equation (as <span class="math inline">\mathbf{x}_{k+1} \to \mathbf{x}_*</span> and <span class="math inline">\mathbf{x}_k \to \mathbf{x}_*</span>), we get:</p>
+<p><span class="math display">
+\mathbf{x}_* = D^{-1}(\mathbf{b} - R\mathbf{x}_*)
+</span></p>
+<p>Expanding this:</p>
+<p><span class="math display">
+\mathbf{x}_* = -D^{-1}R\mathbf{x}_* + D^{-1}\mathbf{b}
+</span></p>
+<p>Rewriting:</p>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" style="background-color: #fffff; border-left: 5px solid #9c27b0; color: #9c27b0; font-weight: 900;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+‎
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">
+\mathbf{x}_* = -D^{-1}(L + U)\mathbf{x}_* + D^{-1}\mathbf{b}
+</span></p>
+</div>
+</div>
+<p>where <span class="math inline">R = L + U</span>, with <span class="math inline">L</span> being the strictly lower triangular part of <span class="math inline">A</span> and <span class="math inline">U</span> the strictly upper triangular part.</p>
+<p>To verify <span class="math inline">\mathbf{x}_*</span> satisfies <span class="math inline">A\mathbf{x}_* = \mathbf{b}</span>, substitute <span class="math inline">A = D + L + U</span> into the system:</p>
+<p><span class="math display">
+(D + L + U)\mathbf{x}_* = \mathbf{b}
+</span></p>
+<p>Multiply both sides by <span class="math inline">D^{-1}</span>:</p>
+<p><span class="math display">
+\mathbf{x}_* + D^{-1}(L + U)\mathbf{x}_* = D^{-1}\mathbf{b}
+</span></p>
+<p>Rearranging terms gives:</p>
+<p><span class="math display">
+\mathbf{x}_* = -D^{-1}(L + U)\mathbf{x}_* + D^{-1}\mathbf{b}
+</span></p>
+<p>This matches the Jacobi iteration formula, verifying <span class="math inline">\mathbf{x}_*</span> satisfies <span class="math inline">A\mathbf{x}_* = \mathbf{b}</span>.</p>
+<p><strong>Conclusion</strong></p>
+<ol type="1">
+<li>We proved that <span class="math inline">\rho(D^{-1}R) &lt; 1</span>, so the Jacobi method converges to <span class="math inline">\mathbf{x}_*</span>.</li>
+<li>Substituting <span class="math inline">\mathbf{x}_*</span> into <span class="math inline">A\mathbf{x} = \mathbf{b}</span>, we verified that it satisfies the system.</li>
+<li>Since <span class="math inline">A\mathbf{x}_* = \mathbf{b}</span> has a solution, <span class="math inline">A</span> is nonsingular.</li>
+</ol>
 </div>
 </div>
 </div>

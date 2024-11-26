@@ -32,7 +32,7 @@ _Theorem 2.10 (p. 107)_
 
 If the $n \times n$ matrix $A$ is strictly diagonally dominant, then:
 
-- $A$ is a nonsingular matrix.
+- $A$ is a nonsingular matrix (invertible matrix).
 - For every vector $b$ and every starting guess, the [**Jacobi Method**](../notes/w07/ax-b-iterative-methods/jacobi-method.html) applied to $A \mathbf{x} = \mathbf{b}$ converges to the (unique) solution.
 
 ## **Spectral Radius Convergence Theorem**
@@ -274,6 +274,70 @@ $$
 
 ## **Answer**
 
+To explain why
+
+$$
+\big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big| \leq \sum_{j \neq m} |r_{m,j}|,
+$$
+
+we begin by recalling the **triangle inequality** for absolute values. For any sum of terms $a_1, a_2, \dots, a_k$, the triangle inequality ensures:
+
+$$
+|a_1 + a_2 + \cdots + a_k| \leq |a_1| + |a_2| + \cdots + |a_k|
+$$
+
+In our case, the sum of interest is:
+
+$$
+r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n
+$$
+
+Applying the triangle inequality to this sum gives:
+
+$\quad \big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big|$
+
+$$
+\leq |r_{m,1}v_1| + |r_{m,2}v_2| + \cdots + |r_{m,m-1}v_{m-1}| + |r_{m,m+1}v_{m+1}| + \cdots + |r_{m,n}v_n|
+$$
+
+Each term in the sum has the form $|r_{m,j}v_j|$. Using the property of absolute values $|ab| = |a||b|$, we can rewrite each term as:
+
+$$
+|r_{m,j}v_j| = |r_{m,j}| \cdot |v_j|
+$$
+
+Since it is assumed that $|v_j| \leq 1$ for all $j$, it follows that:
+
+$$
+|r_{m,j}v_j| \leq |r_{m,j}|
+$$
+
+Substituting this bound for each term into the inequality gives:
+
+$\quad \big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big|$
+
+$$
+\leq |r_{m,1}v_1| + |r_{m,2}v_2| + \cdots + |r_{m,m-1}v_{m-1}| + |r_{m,m+1}v_{m+1}| + \cdots + |r_{m,n}v_n|
+$$
+
+The indices $j \neq m$ correspond to all off-diagonal entries in the $m$-th row of the matrix. Thus, we can express the sum of the absolute values of the coefficients as:
+
+$$
+|r_{m,1}| + |r_{m,2}| + \cdots + |r_{m,m-1}| + |r_{m,m+1}| + \cdots + |r_{m,n}| = \sum_{j \neq m} |r_{m,j}|
+$$
+
+Substituting this back, we find:
+
+$$
+\big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big| \leq \sum_{j \neq m} |r_{m,j}|
+$$
+
+The inequality holds because:
+
+1. The **triangle inequality** ensures that the absolute value of a sum is at most the sum of the absolute values of its terms.
+2. The assumption $|v_j| \leq 1$ allows us to bound $|r_{m,j}v_j|$ by $|r_{m,j}|$.
+
+Thus, the magnitude of the weighted sum of $v_j$ values (for $j \neq m$) is always less than or equal to the sum of the absolute values of the off-diagonal entries in the $m$-th row of the matrix.
 :::
 
 ::: {.callout-note icon=false}
@@ -290,6 +354,13 @@ $$
 
 ## **Answer**
 
+By assumption, the matrix $A$ is strictly diagonally dominant. This means that, for each row of $A$, the absolute value of the diagonal entry $|d_{m,m}|$ is strictly greater than the sum of the absolute values of all the off-diagonal entries in that row:
+
+$$
+|d_{m,m}| > \sum_{j \neq m} |r_{m,j}|
+$$
+
+In other words, the diagonal entry $d_{m,m}$ has the largest contribution in the row, ensuring that the total influence of the off-diagonal terms is strictly smaller.
 :::
 
 ::: {.callout-note icon=false}
@@ -308,13 +379,58 @@ What does this say about $|\lambda|$?
 
 ## **Answer**
 
+To explain why
+
+$$
+|\lambda||d_{m,m}| < |d_{m,m}|
+$$
+
+we combine the results from **Step (4)** and **Step (5)** with **_EQUATION 1_**.
+
+**_EQUATION 1_** states:
+
+$$
+|\lambda||d_{m,m}| = \big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big|
+$$
+
+From **Step (4)**, we know:
+
+$$
+\big| r_{m,1}v_1 + r_{m,2}v_2 + \cdots + r_{m,m-1}v_{m-1} + r_{m,m+1}v_{m+1} + \cdots + r_{m,n}v_n \big| \leq \sum_{j \neq m} |r_{m,j}|
+$$
+
+Substituting this into **_EQUATION 1_**, we have:
+
+$$
+|\lambda||d_{m,m}| \leq \sum_{j \neq m} |r_{m,j}|
+$$
+
+From **Step (5)**, we know:
+
+$$
+\sum_{j \neq m} |r_{m,j}| < |d_{m,m}|
+$$
+
+Combining this with the inequality above gives:
+
+$$
+|\lambda||d_{m,m}| < |d_{m,m}|
+$$
+
+Dividing both sides of the inequality by $|d_{m,m}|$ (which is nonzero), we find:
+
+$$
+|\lambda| < 1
+$$
+
+This result shows that the magnitude of the eigenvalue $|\lambda|$ is strictly less than 1 and this implies that the spectral radius $\rho(D^{-1}R) < 1$.
 :::
 
 ::: {.callout-note icon=false}
 
 ## **7. Final Conclusion**
 
-Since $\lambda$ is an arbitrary eigenvalue, then $|\lambda|_{\text{max}} < 1$. In other words, the spectral radius $\rho(D^{-1}R) < 1$. Thus, by the **Spectral Radius Convergence Theorem** (Theorem A.7), the Jacobi Method (iteration with $A = D - D^{-1}R$) converges for any starting point $\mathbf{x}_0$.
+Since $\lambda$ is an arbitrary eigenvalue, then $|\lambda|_{\text{max}} < 1$. In other words, the spectral radius $\rho(D^{-1}R) < 1$. Thus, by the **Spectral Radius Convergence Theorem** (Theorem A.7), the Jacobi Method (iteration with $A = D^{-1}R$) converges for any starting point $\mathbf{x}_0$.
 
 Let $\mathbf{x}_* = \lim_{k \to \infty} \mathbf{x}_k$, and show that $\mathbf{x}_*$ is the solution to $A \mathbf{x} = \mathbf{b}$, so $A$ must be nonsingular. This completes the proof of the **Diagonal Dominance Convergence Theorem** (Theorem 2.10).
 
@@ -323,5 +439,79 @@ Let $\mathbf{x}_* = \lim_{k \to \infty} \mathbf{x}_k$, and show that $\mathbf{x}
 ::: {.callout-tip collapse="true"}
 
 ## **Answer**
+
+From earlier, we showed that the spectral radius $\rho(D^{-1}R)$, which is the largest magnitude of the eigenvalues of $D^{-1}R$, satisfies:
+
+$$
+\rho(D^{-1}R) < 1
+$$
+
+This result guarantees that the Jacobi method converges to a solution $\mathbf{x}_*$ of $A\mathbf{x} = \mathbf{b}$ for any starting point $\mathbf{x}_0$, as stated in the **Diagonal Dominance Convergence Theorem** (_Theorem A.7_).
+
+Therefore, we can write the limit of the iterates $\mathbf{x}_k$ as:
+
+$$
+\mathbf{x}_* = \lim_{k \to \infty} \mathbf{x}_k
+$$
+
+The Jacobi iteration formula is:
+
+$$
+\mathbf{x}_{k+1} = D^{-1}(\mathbf{b} - R\mathbf{x}_k)
+$$
+
+where $A = D - R$, $D$ is the diagonal matrix, and $R$ is the remainder matrix (containing the off-diagonal terms).
+
+Substituting the limit $\mathbf{x}_*$ into this equation (as $\mathbf{x}_{k+1} \to \mathbf{x}_*$ and $\mathbf{x}_k \to \mathbf{x}_*$), we get:
+
+$$
+\mathbf{x}_* = D^{-1}(\mathbf{b} - R\mathbf{x}_*)
+$$
+
+Expanding this:
+
+$$
+\mathbf{x}_* = -D^{-1}R\mathbf{x}_* + D^{-1}\mathbf{b}
+$$
+
+Rewriting:
+
+::: {.callout-tip icon=false appearance="simple" style="background-color: #fffff; border-left: 5px solid #9c27b0; color: #9c27b0; font-weight: 900;"}
+
+# ‎
+
+$$
+\mathbf{x}_* = -D^{-1}(L + U)\mathbf{x}_* + D^{-1}\mathbf{b}
+$$
+
+:::
+
+where $R = L + U$, with $L$ being the strictly lower triangular part of $A$ and $U$ the strictly upper triangular part.
+
+To verify $\mathbf{x}_*$ satisfies $A\mathbf{x}_* = \mathbf{b}$, substitute $A = D + L + U$ into the system:
+
+$$
+(D + L + U)\mathbf{x}_* = \mathbf{b}
+$$
+
+Multiply both sides by $D^{-1}$:
+
+$$
+\mathbf{x}_* + D^{-1}(L + U)\mathbf{x}_* = D^{-1}\mathbf{b}
+$$
+
+Rearranging terms gives:
+
+$$
+\mathbf{x}_* = -D^{-1}(L + U)\mathbf{x}_* + D^{-1}\mathbf{b}
+$$
+
+This matches the Jacobi iteration formula, verifying $\mathbf{x}_*$ satisfies $A\mathbf{x}_* = \mathbf{b}$.
+
+**Conclusion**
+
+1. We proved that $\rho(D^{-1}R) < 1$, so the Jacobi method converges to $\mathbf{x}_*$.
+2. Substituting $\mathbf{x}_*$ into $A\mathbf{x} = \mathbf{b}$, we verified that it satisfies the system.
+3. Since $A\mathbf{x}_* = \mathbf{b}$ has a solution, $A$ is nonsingular.
 
 :::
