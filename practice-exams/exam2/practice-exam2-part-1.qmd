@@ -1,0 +1,175 @@
+---
+title: 'PRACTICE EXAM 2 PART 1'
+subtitle: 'MATH411'
+format:
+  pdf:
+    documentclass: article
+    margin-left: 1in
+    margin-top: 0.5in
+header-includes:
+  - \usepackage{titling}
+  - \pretitle{\begin{flushleft}\LARGE}
+  - \posttitle{\end{flushleft}}
+  - \preauthor{\begin{flushleft}\small}
+  - \postauthor{\end{flushleft}\vspace{-2em}}
+  - \renewcommand{\maketitlehooka}{\vspace{-2em}}
+---
+
+1. **Direct Solving via Gaussian Elimination / PA=LU Factorization**
+
+   **(a) Gaussian Elimination**
+
+   Solve the following system of equations using Gaussian elimination:
+
+   $$
+   \begin{cases}
+   2x + y - z = 8 \\
+   -3x - y + 2z = -11 \\
+   -2x + y + 2z = -3 \\
+   \end{cases}
+   $$
+
+   \vspace{5cm}
+
+   **(b) PA=LU Factorization**
+
+   Perform a PA=LU factorization of the following matrix $A$:
+
+   $$
+   A = \begin{pmatrix}
+   0 & 2 & 1 \\
+   1 & -2 & -1 \\
+   -1 & 0 & 2 \\
+   \end{pmatrix}
+   $$
+
+   Find the permutation matrix $P$, lower triangular matrix $L$, and upper triangular matrix $U$ such that $PA = LU$.
+
+\newpage
+
+2. **Iterative Methods**
+
+   **(a) Convergence of Iterative Methods**
+
+   Consider the matrix $A$:
+
+   $$
+   A = \begin{pmatrix}
+   5 & -2 & 3 \\
+   -3 & 9 & 1 \\
+   2 & -1 & -7 \\
+   \end{pmatrix}
+   $$
+
+   Is the Jacobi iterative method guaranteed to converge for the system $A\mathbf{x} = \mathbf{b}$ for any $\mathbf{b}$? Justify your answer.
+
+   \vspace{6cm}
+
+   **(b) Theorem Application**
+
+   Explain how the spectral radius of the iteration matrix affects the convergence of an iterative method. Refer to the theorem stating that if the spectral radius is less than 1, the method converges.
+
+\newpage
+
+3. **Jacobi and Gauss-Seidel Methods**
+
+   **(a) Jacobi Method**
+
+   For the following system:
+
+   $$
+   \begin{cases}
+   10x_1 - x_2 + 2x_3 = 6 \\
+   -x_1 + 11x_2 - x_3 + 3x_4 = 25 \\
+   2x_1 - x_2 + 10x_3 - x_4 = -11 \\
+   3x_2 - x_3 + 8x_4 = 15 \\
+   \end{cases}
+   $$
+
+   Perform two iterations of the Jacobi method starting with $\mathbf{x}^{(0)} = \begin{pmatrix} 0 \\ 0 \\ 0 \\ 0 \end{pmatrix}$.
+
+   \vspace{7cm}
+
+   **(b) Gauss-Seidel Method**
+
+   Perform two iterations of the Gauss-Seidel method for the same system and initial guess.
+
+\newpage
+
+4. **Least Squares and Orthogonalizations**
+
+   **(a) Normal Equations**
+
+   Given the overdetermined system:
+
+   $$
+   \begin{cases}
+   x + y = 2 \\
+   2x + y = 3 \\
+   x + 2y = 3 \\
+   \end{cases}
+   $$
+
+   Find the least squares solution by setting up and solving the normal equations.
+
+   \vspace{7cm}
+
+   **(b) QR Factorization**
+
+   Using the same system, perform the QR factorization of the matrix $A$ (the coefficient matrix) using the Gram-Schmidt process (either classical or modified). Then, solve $R\mathbf{x} = Q^\top\mathbf{b}$ by back substitution.
+
+\newpage
+
+5. **Gram-Schmidt Process**
+
+   Apply the Gram-Schmidt process to the following set of vectors to obtain an orthonormal basis for $\mathbb{R}^3$:
+
+   $$
+   \mathbf{v}_1 = \begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \quad
+   \mathbf{v}_2 = \begin{pmatrix} 1 \\ 0 \\ 1 \end{pmatrix}, \quad
+   \mathbf{v}_3 = \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix}
+   $$
+
+   Compute the QR factorization $A = QR$ where $A$ has columns $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$.
+
+\newpage
+
+6. **Solving $R\mathbf{x} = Q^\top\mathbf{b}$ by Back Substitution**
+
+   Given the QR factorization from Question 5, and a vector $\mathbf{b} = \begin{pmatrix} 2 \\ 3 \\ 4 \end{pmatrix}$, solve $R\mathbf{x} = Q^\top\mathbf{b}$ for $\mathbf{x}$ using back substitution.
+
+\newpage
+
+7. **GMRES with Preconditioning**
+
+   **(a) Conceptual Understanding**
+
+   Explain the role of preconditioning in the GMRES (Generalized Minimal Residual) method and how it improves convergence when solving non-symmetric linear systems.
+
+   \vspace{7cm}
+
+   **(b) Computational Exercise**
+
+   Given the matrix $A$ and vector $\mathbf{b}$:
+
+   $$
+   A = \begin{pmatrix}
+   4 & 1 \\
+   2 & 3 \\
+   \end{pmatrix}, \quad
+   \mathbf{b} = \begin{pmatrix}
+   1 \\
+   0 \\
+   \end{pmatrix}
+   $$
+
+   Suppose we use a preconditioner $M$ such that $M^{-1}A$ has better spectral properties. Let
+
+   $$
+   M = \begin{pmatrix}
+   4 & 0 \\
+   0 & 3 \\
+   \end{pmatrix}.
+   $$
+
+   Perform one iteration of the preconditioned GMRES algorithm starting from $\mathbf{x}_0 = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$.

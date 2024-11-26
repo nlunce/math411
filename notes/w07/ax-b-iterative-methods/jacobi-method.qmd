@@ -68,7 +68,7 @@ $$
 The Jacobi Method then iteratively updates the values of $\mathbf{x}$ as:
 
 $$
-\mathbf{x}^{(k+1)} = D^{-1} \left( \mathbf{b} - (L + U)\mathbf{x}^{(k)} \right)
+\mathbf{x}_{k+1} = D^{-1} \left( \mathbf{b} - (L + U)\mathbf{x}_{k} \right)
 $$
 
 where $k$ denotes the iteration step.

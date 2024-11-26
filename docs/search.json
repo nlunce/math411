@@ -550,7 +550,7 @@
     "href": "notes/w07/ax-b-iterative-methods/jacobi-method.html#the-jacobi-method",
     "title": "The Jacobi Method for Solving Linear Systems",
     "section": "The Jacobi Method",
-    "text": "The Jacobi Method\nConsider the system of equations:\n\nA\\mathbf{x} = \\mathbf{b}\n\nLet A be decomposed into three parts:\n\nD: The diagonal components of A.\nL: The strictly lower triangular components of A.\nU: The strictly upper triangular components of A.\n\nThus,\n\nA = D + L + U\n\nRewriting A\\mathbf{x} = \\mathbf{b}, we have:\n\nD\\mathbf{x} = \\mathbf{b} - (L + U)\\mathbf{x}\n\nSolving for \\mathbf{x}:\n\n\\mathbf{x} = D^{-1} \\left( \\mathbf{b} - (L + U)\\mathbf{x} \\right)\n\nThe Jacobi Method then iteratively updates the values of \\mathbf{x} as:\n\n\\mathbf{x}^{(k+1)} = D^{-1} \\left( \\mathbf{b} - (L + U)\\mathbf{x}^{(k)} \\right)\n\nwhere k denotes the iteration step."
+    "text": "The Jacobi Method\nConsider the system of equations:\n\nA\\mathbf{x} = \\mathbf{b}\n\nLet A be decomposed into three parts:\n\nD: The diagonal components of A.\nL: The strictly lower triangular components of A.\nU: The strictly upper triangular components of A.\n\nThus,\n\nA = D + L + U\n\nRewriting A\\mathbf{x} = \\mathbf{b}, we have:\n\nD\\mathbf{x} = \\mathbf{b} - (L + U)\\mathbf{x}\n\nSolving for \\mathbf{x}:\n\n\\mathbf{x} = D^{-1} \\left( \\mathbf{b} - (L + U)\\mathbf{x} \\right)\n\nThe Jacobi Method then iteratively updates the values of \\mathbf{x} as:\n\n\\mathbf{x}_{k+1} = D^{-1} \\left( \\mathbf{b} - (L + U)\\mathbf{x}_{k} \\right)\n\nwhere k denotes the iteration step."
   },
   {
     "objectID": "notes/w07/ax-b-iterative-methods/jacobi-method.html#example",
@@ -1811,5 +1811,131 @@
     "title": "REALITY CHECK 05",
     "section": "Experimenting with Equipartitioning on a Custom Path",
     "text": "Experimenting with Equipartitioning on a Custom Path\n\nProblem Statement\nExperiment with equipartitioning a path of your choice. Choose a path defined by parametric equations, partition it into equal arc-length segments, and animate the traversal as demonstrated in Problem 5.\n\nChosen Equation:\n\nx(t) = 0.4 \\sin(3t + \\frac{\\pi}{2}) + 0.5\n\n\ny(t) = 0.3 \\sin(4t) + 0.5\n\n\n\n\nObjective and Approach\n\nObjective: To apply equipartitioning to the specified path, dividing it into segments of equal arc length and visualizing the traversal at constant speed.\nApproach:\n\nPath Definition: Define x(t) and y(t) based on the given equations.\nEquipartitioning: Use numerical integration and Newton’s Method to divide the path into equal-length segments.\nAnimation: Animate the traversal of the path at a constant speed along the equal arc-length segments and compare it with traversal at the original, parameter-based speed.\n\n\n\n\nSolution Code\nThe Python code below calculates the equipartitioned segments and animates traversal along the path:\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib.animation as animation\nfrom scipy.integrate import quad\n\n# Parameters for the curve\nA = 0.4\na = 3\nf = np.pi / 2\nc = 0.5\nB = 0.3\nb = 4\nD = 0.5\n\n# Maximum value of t for one full loop\nt_max = 2 * np.pi\n\n# Define the functions for x(t) and y(t)\ndef x(t):\n    return A * np.sin(a * t + f) + c\n\ndef y(t):\n    return B * np.sin(b * t) + D\n\n# Derivatives of x(t) and y(t) for arc length calculation\ndef dx_dt(t):\n    return A * a * np.cos(a * t + f)\n\ndef dy_dt(t):\n    return B * b * np.cos(b * t)\n\n# Integrand for arc length calculation\ndef integrand(t):\n    return np.sqrt(dx_dt(t)**2 + dy_dt(t)**2)\n\n# Compute arc length using numerical integration\ndef compute_arc_length(s):\n    arc_length, _ = quad(integrand, 0, s)\n    return arc_length\n\n# Equipartition function to divide path into equal arc-length segments\ndef equipartition(n):\n    total_length = compute_arc_length(2 * np.pi)\n    segment_length = total_length / n\n    partition_points = [0]\n    for i in range(1, n):\n        target_length = i * segment_length\n        partition_points.append(find_t_for_length(target_length, partition_points[-1]))\n    partition_points.append(2 * np.pi)\n    return partition_points\n\n# Find parameter t for a given arc length using Newton's Method\ndef find_t_for_length(target_length, initial_guess=0, tol=1e-8, max_iter=100):\n    t = initial_guess\n    for _ in range(max_iter):\n        f_t = compute_arc_length(t) - target_length\n        f_prime_t = integrand(t)\n        if abs(f_t) &lt; tol:\n            return t\n        t -= f_t / f_prime_t\n        t = max(0, min(2 * np.pi, t))\n    return t\n\n\n# Data for animations\nn_points = 200\nt_values_original = np.linspace(0, 2 * np.pi, n_points)\nx_original = x(t_values_original)\ny_original = y(t_values_original)\n\nt_values_constant = equipartition(n_points)\nx_constant = [x(t) for t in t_values_constant]\ny_constant = [y(t) for t in t_values_constant]\n\n# Set up the figure for side-by-side animation\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))\n\n# Original speed plot\nax1.plot(x_original, y_original, color=\"#2196F3\", linewidth=2)\npoint1, = ax1.plot([], [], 'o', color=\"#1565C0\")\nax1.set_title(\"Original Speed\")\nax1.set_xlim(0, 1)\nax1.set_ylim(0, 1)\nax1.set_aspect('equal')\nax1.grid(True, linestyle='-', alpha=0.2, color='gray')\n\n# Constant speed plot\nax2.plot(x_constant, y_constant, color=\"#2196F3\", linewidth=2)\npoint2, = ax2.plot([], [], 'go')\nax2.set_title(\"Constant Speed\")\nax2.set_xlim(0, 1)\nax2.set_ylim(0, 1)\nax2.set_aspect('equal')\nax2.grid(True, linestyle='-', alpha=0.2, color='gray')\n\n# Update functions for each animation\ndef update_original(frame):\n    point1.set_data(x_original[:frame], y_original[:frame])\n    return point1,\n\ndef update_constant(frame):\n    point2.set_data(x_constant[:frame], y_constant[:frame])\n    return point2,\n\n# Combine animations into one\nnum_frames = len(x_original)\nani = animation.FuncAnimation(\n    fig,\n    lambda frame: update_original(frame) + update_constant(frame),\n    frames=num_frames,\n    interval=100,\n    blit=True\n)\n\n# Save animation as MP4\nani.save(\"custom_path_animation.mp4\", writer=\"ffmpeg\")\n\n  Your browser does not support the video tag. \n\n\n\nExplanation of Solution Components\n\nPath Definition: The parametric equations for x(t) = 0.4 \\sin(3t + \\frac{\\pi}{2}) + 0.5 and y(t) = 0.3 \\sin(4t) + 0.5 define a periodic curve with sinusoidal behavior, creating a visually interesting pattern with symmetric, tight curves.\nArc Length Calculation: The function compute_arc_length integrates the instantaneous speed along the curve (using derivatives dx/dt and dy/dt) over the interval [0, s] to determine the total distance traveled up to a given s.\nEquipartitioning: The equipartition function divides the path into n segments of equal arc length by calculating the target length of each segment and using Newton’s Method to determine t values corresponding to each target segment length. This ensures the segments are evenly spaced along the curve.\nAnimation: The animate_path function generates side-by-side animations of path traversal at original speed (based on parameter t) and constant speed (based on equal arc-length segments).\n\n\n\nResults and Observations\nIn the animation:\n\nOriginal Speed: The left animation shows traversal based on equally spaced t values, resulting in variable speed along the curve. The point moves faster along straighter sections and slows down significantly in tighter curves.\nConstant Speed: The right animation demonstrates traversal at a constant speed along equal arc-length segments. This movement is smoother and consistent, highlighting how equipartitioning ensures a steady traversal rate even along complex paths.\n\n\n\nConclusion\nThis exercise illustrates the benefits of equipartitioning a path into equal arc-length segments for applications that require consistent speed. By reparameterizing the curve to maintain constant speed, we can avoid the variable movement speed that results from a simple, evenly spaced parameter t. This method has potential applications in animation, robotics, and automated manufacturing, where uniform movement along a path with varying curvature is essential."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "",
+    "text": "The Gauss-Seidel Method is an iterative technique for solving systems of linear equations. It improves upon the Jacobi Method by using updated values of variables immediately within each iteration, often leading to faster convergence."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#overview",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#overview",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "",
+    "text": "The Gauss-Seidel Method is an iterative technique for solving systems of linear equations. It improves upon the Jacobi Method by using updated values of variables immediately within each iteration, often leading to faster convergence."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#the-gauss-seidel-method",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#the-gauss-seidel-method",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "The Gauss-Seidel Method",
+    "text": "The Gauss-Seidel Method\nConsider the system:\n\nA\\mathbf{x} = \\mathbf{b}\n\nwhere A is decomposed into:\n\nD: The diagonal components of A,\nL: The strictly lower triangular components of A,\nU: The strictly upper triangular components of A.\n\nThus:\n\nA = D + L + U\n\nRewriting the system:\n\n(D + L + U)\\mathbf{x} = \\mathbf{b}\n\nSolving for \\mathbf{x}, the iterative formula for the Gauss-Seidel Method is:\n\n\\mathbf{x}_{k+1} = D^{-1} \\left( \\mathbf{b} - U\\mathbf{x}_{k} - L\\mathbf{x}_{k+1} \\right), \\quad \\text{for } k = 0, 1, 2, \\dots\n\nHere:\n\n\\mathbf{x}_0: Initial guess vector.\nk: Iteration number."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#example",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#example",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "Example",
+    "text": "Example\n\nSystem of Equations\nConsider the system:\n\n4u + v + w = 7, \\quad u + 3v + w = 8, \\quad u + v + 5w = 6\n\n\n\nStep 1: Rearrange Equations\nRewriting each equation to isolate the variables:\n\nu = \\frac{7 - v - w}{4}, \\quad v = \\frac{8 - u - w}{3}, \\quad w = \\frac{6 - u - v}{5}\n\n\n\nStep 2: Iterative Updates\nStart with an initial guess, \\mathbf{x}_0 = \\begin{bmatrix} u_0 \\\\ v_0 \\\\ w_0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\end{bmatrix}. The iterations proceed as follows:\n\nIteration 1 (k = 1):\n\nu^{(1)} = \\frac{7 - 0 - 0}{4} = 1.75, \\quad\nv^{(1)} = \\frac{8 - 1.75 - 0}{3} = 2.083, \\quad\nw^{(1)} = \\frac{6 - 1.75 - 2.083}{5} = 0.833\n\n\n\\mathbf{x}^{(1)} = \\begin{bmatrix} 1.75 \\\\ 2.083 \\\\ 0.833 \\end{bmatrix}\n\nIteration 2 (k = 2):\nUsing updated values:\n\nu^{(2)} = \\frac{7 - 2.083 - 0.833}{4} = 1.521\n\n\nv^{(2)} = \\frac{8 - 1.521 - 0.833}{3} = 1.882\n\n\nw^{(2)} = \\frac{6 - 1.521 - 1.882}{5} = 0.919\n\n\n\\mathbf{x}^{(2)} = \\begin{bmatrix} 1.521 \\\\ 1.882 \\\\ 0.919 \\end{bmatrix}\n\nIteration 3 (k = 3):\nRepeating the process:\n\nu^{(3)} = 1.550, \\quad v^{(3)} = 1.866, \\quad w^{(3)} = 0.916\n\n\n\\mathbf{x}^{(3)} = \\begin{bmatrix} 1.550 \\\\ 1.866 \\\\ 0.916 \\end{bmatrix}"
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#convergence",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#convergence",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "Convergence",
+    "text": "Convergence\nThe iterations converge to:\n\n\\mathbf{x} = \\begin{bmatrix} 1.6 \\\\ 1.8 \\\\ 0.9 \\end{bmatrix}"
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#convergence-conditions",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#convergence-conditions",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "Convergence Conditions",
+    "text": "Convergence Conditions\nThe Gauss-Seidel Method converges if A is strictly diagonally dominant, meaning:\n\n|a_{ii}| &gt; \\sum_{j \\neq i} |a_{ij}|\n\nfor all rows i, or if A is symmetric positive definite."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#advantages",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#advantages",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "Advantages",
+    "text": "Advantages\n\nFaster convergence than the Jacobi Method due to the use of updated values.\nEfficient for solving large systems with appropriate properties."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#limitations",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#limitations",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "Limitations",
+    "text": "Limitations\n\nMay fail to converge if A is not strictly diagonally dominant or symmetric positive definite.\nSequential updates limit parallel computation."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#summary",
+    "href": "notes/w07/ax-b-iterative-methods/gauss-seidel-method.html#summary",
+    "title": "The Gauss-Seidel Method for Solving Linear Systems",
+    "section": "Summary",
+    "text": "Summary\nThe Gauss-Seidel Method is a powerful iterative technique for solving linear systems, particularly when A is strictly diagonally dominant or symmetric positive definite. Its reliance on updated values accelerates convergence but also imposes matrix property requirements for guaranteed success."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "",
+    "text": "The Successive Over-Relaxation (SOR) Method is an extension of the Gauss-Seidel Method used to solve systems of linear equations. By introducing a relaxation parameter \\omega, the SOR method accelerates convergence or allows fine-tuning of the iterative process.\nThe SOR method is particularly useful when \\omega is chosen appropriately, typically 1 &lt; \\omega &lt; 2 for over-relaxation."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#overview",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#overview",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "",
+    "text": "The Successive Over-Relaxation (SOR) Method is an extension of the Gauss-Seidel Method used to solve systems of linear equations. By introducing a relaxation parameter \\omega, the SOR method accelerates convergence or allows fine-tuning of the iterative process.\nThe SOR method is particularly useful when \\omega is chosen appropriately, typically 1 &lt; \\omega &lt; 2 for over-relaxation."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#the-sor-method",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#the-sor-method",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "The SOR Method",
+    "text": "The SOR Method\nConsider the system:\n\nA\\mathbf{x} = \\mathbf{b}\n\nwhere A is decomposed into:\n\nD: The diagonal components of A,\nL: The strictly lower triangular components of A,\nU: The strictly upper triangular components of A.\n\nThus:\n\nA = D + L + U\n\nThe SOR iterative formula is:\n\n\\mathbf{x}_{k+1} = (\\omega L + D)^{-1} \\left[ (1 - \\omega)D\\mathbf{x}_{k} - \\omega U\\mathbf{x}_{k} \\right] + \\omega (D + \\omega L)^{-1} \\mathbf{b}\n\nfor k = 0, 1, 2, \\dots, where:\n\n\\omega: Relaxation parameter (\\omega = 1 corresponds to the Gauss-Seidel Method)."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#algorithm",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#algorithm",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "Algorithm",
+    "text": "Algorithm\n\nInitial Guess: Start with an initial vector \\mathbf{x}_0.\nIterative Formula: For each iteration k, compute:\n\n\\mathbf{x}_{k+1} = (\\omega L + D)^{-1} \\left[ (1 - \\omega)D\\mathbf{x}_{k} - \\omega U\\mathbf{x}_{k} \\right] + \\omega (D + \\omega L)^{-1} \\mathbf{b}\n\nRelaxation Parameter: Choose \\omega:\n\n\\omega &gt; 1: Over-relaxation (accelerates convergence).\n\\omega = 1: Equivalent to the Gauss-Seidel Method.\n\\omega &lt; 1: Under-relaxation (may be used to stabilize divergence).\n\nConvergence Check: Stop when the norm of the residual \\|\\mathbf{b} - A\\mathbf{x}^{(k)}\\| is sufficiently small."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#example",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#example",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "Example",
+    "text": "Example\n\nSystem of Equations\nConsider the system:\n\n4u + v + w = 7, \\quad u + 3v + w = 8, \\quad u + v + 5w = 6\n\n\n\nStep 1: Decompose A\nDecompose the coefficient matrix A:\n\nA = \\begin{bmatrix}\n4 & 1 & 1 \\\\\n1 & 3 & 1 \\\\\n1 & 1 & 5\n\\end{bmatrix}, \\quad\nD = \\begin{bmatrix}\n4 & 0 & 0 \\\\\n0 & 3 & 0 \\\\\n0 & 0 & 5\n\\end{bmatrix}, \\quad\nL = \\begin{bmatrix}\n0 & 0 & 0 \\\\\n1 & 0 & 0 \\\\\n1 & 1 & 0\n\\end{bmatrix}, \\quad\nU = \\begin{bmatrix}\n0 & 1 & 1 \\\\\n0 & 0 & 1 \\\\\n0 & 0 & 0\n\\end{bmatrix}\n\n\n\nStep 2: Iterative Updates\nUsing \\omega = 1.25 and an initial guess \\mathbf{x}_0 = \\begin{bmatrix} 0 \\\\ 0 \\\\ 0 \\end{bmatrix}, compute the iterations:\n\nIteration 1 (k = 1):\nSubstitute values into the SOR formula:\n\nu^{(1)} = \\frac{1.25}{4} \\left[ 7 - 0 - 0 \\right] = 2.1875\n\n\nv^{(1)} = \\frac{1.25}{3} \\left[ 8 - 2.1875 - 0 \\right] = 1.9792\n\n\nw^{(1)} = \\frac{1.25}{5} \\left[ 6 - 2.1875 - 1.9792 \\right] = 0.9188\n\n\n\\mathbf{x}^{(1)} = \\begin{bmatrix} 2.1875 \\\\ 1.9792 \\\\ 0.9188 \\end{bmatrix}\n\nIteration 2 (k = 2):\nUsing updated values:\n\nu^{(2)} = \\dots, \\quad v^{(2)} = \\dots, \\quad w^{(2)} = \\dots\n\nContinue substituting until convergence."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#convergence-conditions",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#convergence-conditions",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "Convergence Conditions",
+    "text": "Convergence Conditions\nThe SOR method converges under similar conditions to the Gauss-Seidel Method:\n\nIf A is strictly diagonally dominant, or\nIf A is symmetric positive definite.\n\nAdditionally, convergence depends on the choice of \\omega, with 1 &lt; \\omega &lt; 2 typically achieving the fastest results."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#advantages",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#advantages",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "Advantages",
+    "text": "Advantages\n\nAdjustable Convergence Speed: The relaxation parameter \\omega allows tuning for faster convergence.\nEfficiency: For well-chosen \\omega, fewer iterations are required compared to the Gauss-Seidel Method."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#limitations",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#limitations",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "Limitations",
+    "text": "Limitations\n\nRequires tuning \\omega for optimal performance.\nMay not converge if \\omega is poorly chosen.\nNot inherently parallelizable like the Jacobi Method."
+  },
+  {
+    "objectID": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#summary",
+    "href": "notes/w07/ax-b-iterative-methods/successive-over-relaxation.html#summary",
+    "title": "The Successive Over-Relaxation (SOR) Method for Solving Linear Systems",
+    "section": "Summary",
+    "text": "Summary\nThe Successive Over-Relaxation (SOR) Method improves upon the Gauss-Seidel Method by introducing a relaxation parameter \\omega, enabling faster convergence for well-conditioned systems. However, the method requires careful parameter selection and is sensitive to the properties of the system matrix A."
   }
 ]
