@@ -4827,25 +4827,21 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#definition-and-decomposition" id="toc-definition-and-decomposition" class="nav-link" data-scroll-target="#definition-and-decomposition">Definition and Decomposition</a></li>
-  <li><a href="#conditions-for-lu-factorization" id="toc-conditions-for-lu-factorization" class="nav-link" data-scroll-target="#conditions-for-lu-factorization">Conditions for LU Factorization</a></li>
-  <li><a href="#factorization-process" id="toc-factorization-process" class="nav-link" data-scroll-target="#factorization-process">Factorization Process</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
+  <li><a href="#definition-and-decomposition" id="toc-definition-and-decomposition" class="nav-link" data-scroll-target="#definition-and-decomposition"><strong>Definition and Decomposition</strong></a></li>
+  <li><a href="#why-you-subtract-rows" id="toc-why-you-subtract-rows" class="nav-link" data-scroll-target="#why-you-subtract-rows"><strong>Why You Subtract Rows</strong></a>
   <ul class="collapse">
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#importance-of-subtraction" id="toc-importance-of-subtraction" class="nav-link" data-scroll-target="#importance-of-subtraction"><strong>Importance of Subtraction:</strong></a></li>
+  <li><a href="#example-of-a-sign-error" id="toc-example-of-a-sign-error" class="nav-link" data-scroll-target="#example-of-a-sign-error"><strong>Example of a Sign Error:</strong></a></li>
   </ul></li>
-  <li><a href="#solving-systems-with-lu-factorization" id="toc-solving-systems-with-lu-factorization" class="nav-link" data-scroll-target="#solving-systems-with-lu-factorization">Solving Systems with LU Factorization</a>
+  <li><a href="#conditions-for-lu-factorization" id="toc-conditions-for-lu-factorization" class="nav-link" data-scroll-target="#conditions-for-lu-factorization"><strong>Conditions for LU Factorization</strong></a></li>
+  <li><a href="#factorization-process" id="toc-factorization-process" class="nav-link" data-scroll-target="#factorization-process"><strong>Factorization Process</strong></a>
   <ul class="collapse">
-  <li><a href="#efficiency" id="toc-efficiency" class="nav-link" data-scroll-target="#efficiency">Efficiency</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><strong>Example</strong></a></li>
   </ul></li>
-  <li><a href="#pivoting-and-permutation" id="toc-pivoting-and-permutation" class="nav-link" data-scroll-target="#pivoting-and-permutation">Pivoting and Permutation</a></li>
-  <li><a href="#advantages-of-lu-factorization" id="toc-advantages-of-lu-factorization" class="nav-link" data-scroll-target="#advantages-of-lu-factorization">Advantages of LU Factorization</a></li>
-  <li><a href="#applications-of-lu-factorization" id="toc-applications-of-lu-factorization" class="nav-link" data-scroll-target="#applications-of-lu-factorization">Applications of LU Factorization</a></li>
-  <li><a href="#example-problem" id="toc-example-problem" class="nav-link" data-scroll-target="#example-problem">Example Problem</a>
-  <ul class="collapse">
-  <li><a href="#solution-steps" id="toc-solution-steps" class="nav-link" data-scroll-target="#solution-steps">Solution Steps</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#solving-systems-with-lu-factorization" id="toc-solving-systems-with-lu-factorization" class="nav-link" data-scroll-target="#solving-systems-with-lu-factorization"><strong>Solving Systems with LU Factorization</strong></a></li>
+  <li><a href="#pivoting-and-permutation" id="toc-pivoting-and-permutation" class="nav-link" data-scroll-target="#pivoting-and-permutation"><strong>Pivoting and Permutation</strong></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4878,11 +4874,11 @@ window.Quarto = {
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix <span class="math inline">A</span> into the product of a lower triangular matrix <span class="math inline">L</span> and an upper triangular matrix <span class="math inline">U</span>. This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices. This note explores LU Factorization’s definition, properties, computation, and applications.</p>
+<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
+<p>LU Factorization (or LU Decomposition) is a powerful technique in linear algebra for breaking down a matrix <span class="math inline">A</span> into the product of a lower triangular matrix <span class="math inline">L</span> and an upper triangular matrix <span class="math inline">U</span>. This factorization is commonly used for solving linear systems, computing determinants, and inverting matrices.</p>
 </section>
 <section id="definition-and-decomposition" class="level2">
-<h2 class="anchored" data-anchor-id="definition-and-decomposition">Definition and Decomposition</h2>
+<h2 class="anchored" data-anchor-id="definition-and-decomposition"><strong>Definition and Decomposition</strong></h2>
 <p>For a square matrix <span class="math inline">A</span>, LU Factorization is given by:</p>
 <p><span class="math display">
 A = LU
@@ -4898,8 +4894,70 @@ PA = LU
 </span></p>
 <p>where <span class="math inline">P</span> is a permutation matrix that records row exchanges.</p>
 </section>
+<section id="why-you-subtract-rows" class="level2">
+<h2 class="anchored" data-anchor-id="why-you-subtract-rows"><strong>Why You Subtract Rows</strong></h2>
+<p>When performing row operations to compute <span class="math inline">LU</span>, the operation for row elimination is explicitly written as:</p>
+<p><span class="math display">
+R_j \to R_j - L_{ij} R_i
+</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">R_i</span> is the pivot row.</li>
+<li><span class="math inline">R_j</span> is the row being updated.</li>
+<li><span class="math inline">L_{ij} = \frac{a_{ji}}{a_{ii}}</span> is the multiplier used to eliminate the element <span class="math inline">a_{ji}</span>.</li>
+</ul>
+<section id="importance-of-subtraction" class="level3">
+<h3 class="anchored" data-anchor-id="importance-of-subtraction"><strong>Importance of Subtraction:</strong></h3>
+<ul>
+<li><strong>Correct Multiplier Signs:</strong> Subtracting ensures that the multiplier <span class="math inline">L_{ij}</span> is stored with its correct sign in the <span class="math inline">L</span>-matrix.</li>
+<li><strong>Consistency in Computation:</strong> Adding the negative version (i.e., <span class="math inline">R_j \to R_j + (-L_{ij} R_i)</span>) can lead to confusion and sign errors in <span class="math inline">L_{ij}</span>, even though it seems conceptually similar.</li>
+<li><strong>Preventing Errors:</strong> Adding instead of subtracting might inadvertently reverse the signs of the entries in <span class="math inline">L</span>, causing errors in the final decomposition.</li>
+</ul>
+</section>
+<section id="example-of-a-sign-error" class="level3">
+<h3 class="anchored" data-anchor-id="example-of-a-sign-error"><strong>Example of a Sign Error:</strong></h3>
+<p>Suppose we start with the matrix:</p>
+<p><span class="math display">
+A = \begin{bmatrix}
+4 &amp; 8 &amp; -4 \\
+-1 &amp; 1 &amp; -2 \\
+2 &amp; 3 &amp; 1
+\end{bmatrix}
+</span></p>
+<ol type="1">
+<li><p><strong>Correct Subtraction:</strong></p>
+<p>Compute <span class="math inline">L_{21} = \frac{-1}{4}</span>, and perform <span class="math inline">R_2 \to R_2 - L_{21} R_1</span>:</p>
+<p><span class="math display">
+L_{21} = \frac{-1}{4}, \quad R_2 \to R_2 - L_{21} R_1
+</span></p>
+<p>Result:</p>
+<p><span class="math display">
+\begin{bmatrix}
+4 &amp; 8 &amp; -4 \\
+0 &amp; 3 &amp; -3 \\
+2 &amp; 3 &amp; 1
+\end{bmatrix}
+</span></p>
+<p>The multiplier <span class="math inline">L_{21} = \frac{-1}{4}</span> is correctly stored.</p></li>
+<li><p><strong>Adding the Negative Version:</strong></p>
+<p>If we compute <span class="math inline">R_2 \to R_2 + (-L_{21} R_1)</span>, we might misinterpret <span class="math inline">-L_{21} = \frac{1}{4}</span> as <span class="math inline">+\frac{1}{4}</span>:</p>
+<p><span class="math display">
+L_{21} = \frac{1}{4}, \quad R_2 \to R_2 + (-L_{21} R_1)
+</span></p>
+<p>Result:</p>
+<p><span class="math display">
+\begin{bmatrix}
+4 &amp; 8 &amp; -4 \\
+0 &amp; -3 &amp; +3 \\
+2 &amp; 3 &amp; 1
+\end{bmatrix}
+</span></p>
+<p>Here, <span class="math inline">L_{21}</span> would have the wrong sign in the <span class="math inline">L</span>-matrix, leading to incorrect results.</p></li>
+</ol>
+</section>
+</section>
 <section id="conditions-for-lu-factorization" class="level2">
-<h2 class="anchored" data-anchor-id="conditions-for-lu-factorization">Conditions for LU Factorization</h2>
+<h2 class="anchored" data-anchor-id="conditions-for-lu-factorization"><strong>Conditions for LU Factorization</strong></h2>
 <p>LU Factorization is valid when:</p>
 <ol type="1">
 <li><strong>Matrix is Square</strong>: <span class="math inline">A</span> must be a square matrix.</li>
@@ -4908,14 +4966,14 @@ PA = LU
 <p>When these conditions are not met, row pivoting enables decomposition.</p>
 </section>
 <section id="factorization-process" class="level2">
-<h2 class="anchored" data-anchor-id="factorization-process">Factorization Process</h2>
+<h2 class="anchored" data-anchor-id="factorization-process"><strong>Factorization Process</strong></h2>
 <p>To factorize <span class="math inline">A</span> into <span class="math inline">L</span> and <span class="math inline">U</span>:</p>
 <ol type="1">
 <li><strong>Eliminate Elements</strong>: Perform row operations to create zeros below the main diagonal of <span class="math inline">U</span>.</li>
 <li><strong>Store Multipliers</strong>: Record the multipliers in <span class="math inline">L</span>.</li>
 </ol>
 <section id="example" class="level3">
-<h3 class="anchored" data-anchor-id="example">Example</h3>
+<h3 class="anchored" data-anchor-id="example"><strong>Example</strong></h3>
 <p>Given a <span class="math inline">3 \times 3</span> matrix:</p>
 <p><span class="math display">
 A = \begin{pmatrix} 2 &amp; 3 &amp; 1 \\ 4 &amp; 7 &amp; -1 \\ -2 &amp; 3 &amp; 5 \end{pmatrix}
@@ -4928,65 +4986,24 @@ A = \begin{pmatrix} 2 &amp; 3 &amp; 1 \\ 4 &amp; 7 &amp; -1 \\ -2 &amp; 3 &amp; 
 </section>
 </section>
 <section id="solving-systems-with-lu-factorization" class="level2">
-<h2 class="anchored" data-anchor-id="solving-systems-with-lu-factorization">Solving Systems with LU Factorization</h2>
+<h2 class="anchored" data-anchor-id="solving-systems-with-lu-factorization"><strong>Solving Systems with LU Factorization</strong></h2>
 <p>LU Factorization allows us to solve <span class="math inline">Ax = b</span> by breaking it down into two simpler systems:</p>
 <ol type="1">
 <li><strong>Solve <span class="math inline">Ly = b</span></strong>: Use forward substitution, as <span class="math inline">L</span> is lower triangular.</li>
 <li><strong>Solve <span class="math inline">Ux = y</span></strong>: Use back substitution with <span class="math inline">U</span> as an upper triangular matrix.</li>
 </ol>
-<section id="efficiency" class="level3">
-<h3 class="anchored" data-anchor-id="efficiency">Efficiency</h3>
-<p>This approach reduces computation time, especially when solving multiple systems with the same <span class="math inline">A</span> but different <span class="math inline">b</span> vectors, as the factorization needs to be computed only once.</p>
-</section>
 </section>
 <section id="pivoting-and-permutation" class="level2">
-<h2 class="anchored" data-anchor-id="pivoting-and-permutation">Pivoting and Permutation</h2>
+<h2 class="anchored" data-anchor-id="pivoting-and-permutation"><strong>Pivoting and Permutation</strong></h2>
 <p>In cases where <span class="math inline">A</span> has zeros or small values on the diagonal, <strong>partial pivoting</strong> improves numerical stability by reordering rows to place a larger element on the diagonal:</p>
 <p><span class="math display">
 PA = LU
 </span></p>
 <p>where <span class="math inline">P</span> is a permutation matrix that tracks row exchanges.</p>
 </section>
-<section id="advantages-of-lu-factorization" class="level2">
-<h2 class="anchored" data-anchor-id="advantages-of-lu-factorization">Advantages of LU Factorization</h2>
-<ul>
-<li><strong>Efficient Linear System Solving</strong>: Faster than Gaussian elimination for repeated systems.</li>
-<li><strong>Determinant Computation</strong>: The determinant of <span class="math inline">A</span> is the product of the diagonal elements of <span class="math inline">U</span>.</li>
-<li><strong>Matrix Inversion</strong>: LU Factorization simplifies inversion by inverting <span class="math inline">L</span> and <span class="math inline">U</span> separately.</li>
-</ul>
-</section>
-<section id="applications-of-lu-factorization" class="level2">
-<h2 class="anchored" data-anchor-id="applications-of-lu-factorization">Applications of LU Factorization</h2>
-<p>LU Factorization is widely used across various fields due to its computational efficiency:</p>
-<ul>
-<li><strong>Numerical Linear Algebra</strong>: Fundamental for solving linear systems.</li>
-<li><strong>Optimization</strong>: Integral in algorithms that rely on matrix decompositions.</li>
-<li><strong>Computer Graphics</strong>: Enables transformations and projections.</li>
-<li><strong>Scientific Computing</strong>: Common in simulations and solving differential equations.</li>
-</ul>
-</section>
-<section id="example-problem" class="level2">
-<h2 class="anchored" data-anchor-id="example-problem">Example Problem</h2>
-<p><strong>Problem:</strong> For the matrix</p>
-<p><span class="math display">
-A = \begin{pmatrix} 3 &amp; -7 &amp; -2 \\ -3 &amp; 5 &amp; 1 \\ 6 &amp; -4 &amp; 0 \end{pmatrix}
-</span></p>
-<ol type="1">
-<li><strong>Factorize <span class="math inline">A</span> into <span class="math inline">L</span> and <span class="math inline">U</span></strong>.</li>
-<li><strong>Solve <span class="math inline">Ax = b</span></strong> for <span class="math inline">b = \begin{pmatrix} 5 \\ -1 \\ 3 \end{pmatrix}</span>.</li>
-</ol>
-<section id="solution-steps" class="level3">
-<h3 class="anchored" data-anchor-id="solution-steps">Solution Steps</h3>
-<ol type="1">
-<li>Perform row operations to decompose <span class="math inline">A</span> into <span class="math inline">L</span> and <span class="math inline">U</span>.</li>
-<li>Solve <span class="math inline">Ly = b</span> via forward substitution.</li>
-<li>Solve <span class="math inline">Ux = y</span> via back substitution.</li>
-</ol>
-</section>
-</section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>LU Factorization is an essential tool in linear algebra, providing a simplified method to solve linear systems efficiently. By breaking matrices into triangular forms, it reduces computational complexity and lays the groundwork for more advanced numerical techniques.</p>
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
+<p>LU Factorization is an essential tool in linear algebra, providing a simplified method to solve linear systems efficiently. By breaking matrices into triangular forms, it reduces computational complexity and lays the groundwork for more advanced numerical techniques. Always remember to <strong>subtract row operations consistently</strong> to avoid sign errors and ensure correct results.</p>
 
 
 </section>
