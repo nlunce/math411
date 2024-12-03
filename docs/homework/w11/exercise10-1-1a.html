@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nathan Lunceford">
 
-<title>Roots of Unity – MATH411</title>
+<title>Exercise 10.1.1a – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4830,15 +4830,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><strong>Definition</strong></a>
-  <ul class="collapse">
-  <li><a href="#key-properties" id="toc-key-properties" class="nav-link" data-scroll-target="#key-properties"><strong>Key Properties</strong></a></li>
-  </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><strong>Examples</strong></a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><strong>Applications</strong></a></li>
-  <li><a href="#visual-representation" id="toc-visual-representation" class="nav-link" data-scroll-target="#visual-representation"><strong>Visual Representation</strong></a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem</strong></a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4847,7 +4840,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Roots of Unity</h1>
+<h1 class="title">Exercise 10.1.1a</h1>
 </div>
 
 
@@ -4870,67 +4863,72 @@ window.Quarto = {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
-<p>A <strong>root of unity</strong> is a complex number that, when raised to a specific positive integer power <span class="math inline">n</span>, equals 1. These roots are central in number theory, algebra, and applications such as <a href="./fourier-transform.html"><strong>Fourier transforms</strong></a>.</p>
-</section>
-<section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition"><strong>Definition</strong></h2>
-<p>A complex number <span class="math inline">z</span> is an <span class="math inline">n</span>-th root of unity if:</p>
+<section id="problem" class="level1">
+<h1><strong>Problem</strong></h1>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>10.1.1a</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Find the Discrete Fourier Transform (DFT) of the following vector:</p>
 <p><span class="math display">
-z^n = 1
+\begin{bmatrix}
+0 \\ 1 \\ 0 \\ -1
+\end{bmatrix}
 </span></p>
-<p>The <span class="math inline">n</span>-th roots of unity are given by:</p>
+</div>
+</div>
+</section>
+<section id="solution" class="level1">
+<h1><strong>Solution</strong></h1>
+<section id="dft-of-0-1-0--1t" class="level2">
+<h2 class="anchored" data-anchor-id="dft-of-0-1-0--1t"><strong>DFT of <span class="math inline">[0, 1, 0, -1]^T</span></strong></h2>
+<section id="define-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="define-parameters">Define Parameters</h3>
+<p>The vector has <span class="math inline">n = 4</span>, so:</p>
 <p><span class="math display">
-z_k = e^{2\pi i k / n} = \cos\left(\frac{2\pi k}{n}\right) + i \sin\left(\frac{2\pi k}{n}\right)
+\omega = e^{-i \frac{2\pi}{4}} = i
 </span></p>
-<p>for <span class="math inline">k = 0, 1, 2, \dots, n-1</span>.</p>
-<section id="key-properties" class="level3">
-<h3 class="anchored" data-anchor-id="key-properties"><strong>Key Properties</strong></h3>
-<ol type="1">
-<li><strong>Number of Roots</strong>: There are exactly <span class="math inline">n</span> distinct <span class="math inline">n</span>-th roots of unity.</li>
-<li><strong>Symmetry</strong>: The roots are evenly distributed on the unit circle in the complex plane.</li>
-<li><strong>Primitive Roots</strong>: A root <span class="math inline">z_k</span> is <strong>primitive</strong> if it generates all <span class="math inline">n</span>-th roots of unity under repeated multiplication. This happens when <span class="math inline">\gcd(k, n) = 1</span>.</li>
-<li><strong>Sum of Roots</strong>: The sum of all <span class="math inline">n</span>-th roots of unity is zero: <span class="math display">
-\sum_{k=0}^{n-1} z_k = 0
-</span></li>
-</ol>
-</section>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples"><strong>Examples</strong></h2>
-<ol type="1">
-<li><p><strong>2nd Roots of Unity (<span class="math inline">n=2</span>)</strong>:</p>
+<p>The formula for the DFT is:</p>
 <p><span class="math display">
-z_0 = 1, \quad z_1 = -1
-</span></p></li>
-<li><p><strong>3rd Roots of Unity (<span class="math inline">n=3</span>)</strong>:</p>
-<p><span class="math display">
-z_0 = 1, \quad z_1 = e^{2\pi i / 3} = -\frac{1}{2} + i\frac{\sqrt{3}}{2}, \quad z_2 = e^{4\pi i / 3} = -\frac{1}{2} - i\frac{\sqrt{3}}{2}
-</span></p></li>
-<li><p><strong>4th Roots of Unity (<span class="math inline">n=4</span>)</strong>: <span class="math display">
-z_0 = 1, \quad z_1 = i, \quad z_2 = -1, \quad z_3 = -i
-</span></p></li>
-</ol>
-<p>These roots divide the unit circle into equal parts.</p>
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}, \quad k = 0, 1, \dots, n-1
+</span></p>
 </section>
-<section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications"><strong>Applications</strong></h2>
+<section id="compute-each-y_k" class="level3">
+<h3 class="anchored" data-anchor-id="compute-each-y_k">Compute Each <span class="math inline">y_k</span>:</h3>
 <ol type="1">
-<li><strong>Fourier Transform</strong>: Roots of unity are used to compute discrete Fourier transforms, enabling efficient signal processing.</li>
-<li><strong>Cyclotomic Polynomials</strong>: These polynomials, defined by the roots of unity, are used in number theory and field theory.</li>
-<li><strong>Algebraic Equations</strong>: Roots of unity help solve polynomial equations like <span class="math inline">x^n - 1 = 0</span>.</li>
+<li><p><strong><span class="math inline">y_0</span>:</strong></p>
+<p><span class="math display">
+y_0 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 0} = \frac{1}{2}(0 + 1 + 0 - 1) = 0
+</span></p></li>
+<li><p><strong><span class="math inline">y_1</span>:</strong></p>
+<p><span class="math display">
+y_1 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 1} = \frac{1}{2}(0 + i \cdot 1 + 0 + (-1) \cdot (-i)) = \frac{1}{2}(i + i) = i
+</span></p></li>
+<li><p><strong><span class="math inline">y_2</span>:</strong></p>
+<p><span class="math display">
+y_2 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 2} = \frac{1}{2}(0 + (-1) + 0 + (-1)) = -1
+</span></p></li>
+<li><p><strong><span class="math inline">y_3</span>:</strong> <span class="math display">
+y_3 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 3} = \frac{1}{2}(0 + (-i) + 0 + (-1) \cdot i) = \frac{1}{2}(-i - i) = -i
+</span></p></li>
 </ol>
 </section>
-<section id="visual-representation" class="level2">
-<h2 class="anchored" data-anchor-id="visual-representation"><strong>Visual Representation</strong></h2>
-<p>The roots of unity lie on the unit circle in the complex plane, at equal angular intervals of <span class="math inline">\frac{2\pi}{n}</span> radians. Each root corresponds to a rotation by <span class="math inline">\frac{2\pi k}{n}</span>.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
-<p>Roots of unity provide a geometric and algebraic foundation for understanding complex numbers and their properties. Their applications extend across mathematics, engineering, and physics, making them a powerful concept to explore.</p>
+<section id="result" class="level3">
+<h3 class="anchored" data-anchor-id="result">Result:</h3>
+<p>The DFT of <span class="math inline">[0, 1, 0, -1]</span> is:</p>
+<p><span class="math display">
+y = [0, i, -1, -i]
+</span></p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

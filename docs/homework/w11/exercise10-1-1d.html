@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nathan Lunceford">
 
-<title>Roots of Unity – MATH411</title>
+<title>Exercise 4.3.1d – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4830,15 +4830,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><strong>Definition</strong></a>
-  <ul class="collapse">
-  <li><a href="#key-properties" id="toc-key-properties" class="nav-link" data-scroll-target="#key-properties"><strong>Key Properties</strong></a></li>
-  </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><strong>Examples</strong></a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><strong>Applications</strong></a></li>
-  <li><a href="#visual-representation" id="toc-visual-representation" class="nav-link" data-scroll-target="#visual-representation"><strong>Visual Representation</strong></a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem</strong></a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4847,7 +4840,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Roots of Unity</h1>
+<h1 class="title">Exercise 4.3.1d</h1>
 </div>
 
 
@@ -4870,67 +4863,152 @@ window.Quarto = {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
-<p>A <strong>root of unity</strong> is a complex number that, when raised to a specific positive integer power <span class="math inline">n</span>, equals 1. These roots are central in number theory, algebra, and applications such as <a href="./fourier-transform.html"><strong>Fourier transforms</strong></a>.</p>
-</section>
-<section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition"><strong>Definition</strong></h2>
-<p>A complex number <span class="math inline">z</span> is an <span class="math inline">n</span>-th root of unity if:</p>
+<section id="problem" class="level1">
+<h1><strong>Problem</strong></h1>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>4.3.1d</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Apply classical Gram–Schmidt orthogonalization to find the full QR factorization of the matrix:</p>
 <p><span class="math display">
-z^n = 1
+\mathbf{A} = \begin{bmatrix} 4 &amp; 8 &amp; 1 \\ 0 &amp; 2 &amp; -2 \\ 3 &amp; 6 &amp; 7 \end{bmatrix}
 </span></p>
-<p>The <span class="math inline">n</span>-th roots of unity are given by:</p>
+</div>
+</div>
+</section>
+<section id="solution" class="level1">
+<h1><strong>Solution</strong></h1>
+<section id="define-the-columns-of-matrix-mathbfa" class="level2">
+<h2 class="anchored" data-anchor-id="define-the-columns-of-matrix-mathbfa">Define the Columns of Matrix <span class="math inline">\mathbf{A}</span></h2>
+<p>Represent the columns of <span class="math inline">\mathbf{A}</span> as vectors:</p>
 <p><span class="math display">
-z_k = e^{2\pi i k / n} = \cos\left(\frac{2\pi k}{n}\right) + i \sin\left(\frac{2\pi k}{n}\right)
+\mathbf{a}_1 = \begin{bmatrix} 4 \\ 0 \\ 3 \end{bmatrix}, \quad \mathbf{a}_2 = \begin{bmatrix} 8 \\ 2 \\ 6 \end{bmatrix}, \quad \mathbf{a}_3 = \begin{bmatrix} 1 \\ -2 \\ 7 \end{bmatrix}
 </span></p>
-<p>for <span class="math inline">k = 0, 1, 2, \dots, n-1</span>.</p>
-<section id="key-properties" class="level3">
-<h3 class="anchored" data-anchor-id="key-properties"><strong>Key Properties</strong></h3>
-<ol type="1">
-<li><strong>Number of Roots</strong>: There are exactly <span class="math inline">n</span> distinct <span class="math inline">n</span>-th roots of unity.</li>
-<li><strong>Symmetry</strong>: The roots are evenly distributed on the unit circle in the complex plane.</li>
-<li><strong>Primitive Roots</strong>: A root <span class="math inline">z_k</span> is <strong>primitive</strong> if it generates all <span class="math inline">n</span>-th roots of unity under repeated multiplication. This happens when <span class="math inline">\gcd(k, n) = 1</span>.</li>
-<li><strong>Sum of Roots</strong>: The sum of all <span class="math inline">n</span>-th roots of unity is zero: <span class="math display">
-\sum_{k=0}^{n-1} z_k = 0
-</span></li>
-</ol>
 </section>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples"><strong>Examples</strong></h2>
+<section id="finding-mathbfq_1" class="level2">
+<h2 class="anchored" data-anchor-id="finding-mathbfq_1">Finding <span class="math inline">\mathbf{q}_1</span></h2>
+<p>To find the first orthonormal vector <span class="math inline">\mathbf{q}_1</span>, normalize <span class="math inline">\mathbf{a}_1</span>.</p>
 <ol type="1">
-<li><p><strong>2nd Roots of Unity (<span class="math inline">n=2</span>)</strong>:</p>
+<li><p><strong>Calculate the norm of <span class="math inline">\mathbf{a}_1</span></strong>:</p>
 <p><span class="math display">
-z_0 = 1, \quad z_1 = -1
+\|\mathbf{a}_1\| = \sqrt{4^2 + 0^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5
 </span></p></li>
-<li><p><strong>3rd Roots of Unity (<span class="math inline">n=3</span>)</strong>:</p>
+<li><p><strong>Normalize <span class="math inline">\mathbf{a}_1</span></strong>:</p>
 <p><span class="math display">
-z_0 = 1, \quad z_1 = e^{2\pi i / 3} = -\frac{1}{2} + i\frac{\sqrt{3}}{2}, \quad z_2 = e^{4\pi i / 3} = -\frac{1}{2} - i\frac{\sqrt{3}}{2}
-</span></p></li>
-<li><p><strong>4th Roots of Unity (<span class="math inline">n=4</span>)</strong>: <span class="math display">
-z_0 = 1, \quad z_1 = i, \quad z_2 = -1, \quad z_3 = -i
+\mathbf{q}_1 = \frac{\mathbf{a}_1}{\|\mathbf{a}_1\|} = \frac{1}{5} \begin{bmatrix} 4 \\ 0 \\ 3 \end{bmatrix} = \begin{bmatrix} \frac{4}{5} \\ 0 \\ \frac{3}{5} \end{bmatrix}
 </span></p></li>
 </ol>
-<p>These roots divide the unit circle into equal parts.</p>
 </section>
-<section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications"><strong>Applications</strong></h2>
+<section id="finding-mathbfq_2" class="level2">
+<h2 class="anchored" data-anchor-id="finding-mathbfq_2">Finding <span class="math inline">\mathbf{q}_2</span></h2>
+<p>To find <span class="math inline">\mathbf{q}_2</span>, project <span class="math inline">\mathbf{a}_2</span> onto <span class="math inline">\mathbf{q}_1</span> and then subtract this projection from <span class="math inline">\mathbf{a}_2</span>.</p>
 <ol type="1">
-<li><strong>Fourier Transform</strong>: Roots of unity are used to compute discrete Fourier transforms, enabling efficient signal processing.</li>
-<li><strong>Cyclotomic Polynomials</strong>: These polynomials, defined by the roots of unity, are used in number theory and field theory.</li>
-<li><strong>Algebraic Equations</strong>: Roots of unity help solve polynomial equations like <span class="math inline">x^n - 1 = 0</span>.</li>
+<li><p><strong>Calculate the projection of <span class="math inline">\mathbf{a}_2</span> onto <span class="math inline">\mathbf{q}_1</span></strong>:</p>
+<p><span class="math display">
+\text{proj}_{\mathbf{q}_1} \mathbf{a}_2 = \left( \mathbf{a}_2 \cdot \mathbf{q}_1 \right) \mathbf{q}_1
+</span></p>
+<p>Since <span class="math inline">\mathbf{q}_1</span> is a unit vector, <span class="math inline">\mathbf{q}_1 \cdot \mathbf{q}_1 = 1</span>.</p></li>
+<li><p><strong>Compute <span class="math inline">\mathbf{a}_2 \cdot \mathbf{q}_1</span></strong>:</p>
+<p><span class="math display">
+\mathbf{a}_2 \cdot \mathbf{q}_1 = \begin{bmatrix} 8 \\ 2 \\ 6 \end{bmatrix} \cdot \begin{bmatrix} \frac{4}{5} \\ 0 \\ \frac{3}{5} \end{bmatrix} = \frac{32}{5} + 0 + \frac{18}{5} = \frac{50}{5} = 10
+</span></p></li>
+<li><p><strong>Calculate <span class="math inline">\text{proj}_{\mathbf{q}_1} \mathbf{a}_2</span></strong>:</p>
+<p><span class="math display">
+\text{proj}_{\mathbf{q}_1} \mathbf{a}_2 = 10 \begin{bmatrix} \frac{4}{5} \\ 0 \\ \frac{3}{5} \end{bmatrix} = \begin{bmatrix} 8 \\ 0 \\ 6 \end{bmatrix}
+</span></p></li>
+<li><p><strong>Calculate <span class="math inline">\mathbf{u}_2</span></strong>:</p>
+<p>Subtracting the projection from <span class="math inline">\mathbf{a}_2</span> gives <span class="math inline">\mathbf{u}_2</span>:</p>
+<p><span class="math display">
+\mathbf{u}_2 = \mathbf{a}_2 - \text{proj}_{\mathbf{q}_1} \mathbf{a}_2 = \begin{bmatrix} 8 \\ 2 \\ 6 \end{bmatrix} - \begin{bmatrix} 8 \\ 0 \\ 6 \end{bmatrix} = \begin{bmatrix} 0 \\ 2 \\ 0 \end{bmatrix}
+</span></p></li>
+<li><p><strong>Normalize <span class="math inline">\mathbf{u}_2</span> to obtain <span class="math inline">\mathbf{q}_2</span></strong>:</p>
+<p>The norm of <span class="math inline">\mathbf{u}_2</span> is:</p>
+<p><span class="math display">
+\|\mathbf{u}_2\| = \sqrt{0^2 + 2^2 + 0^2} = 2
+</span></p>
+<p>Thus,</p>
+<p><span class="math display">
+\mathbf{q}_2 = \frac{\mathbf{u}_2}{\|\mathbf{u}_2\|} = \frac{1}{2} \begin{bmatrix} 0 \\ 2 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}
+</span></p></li>
 </ol>
 </section>
-<section id="visual-representation" class="level2">
-<h2 class="anchored" data-anchor-id="visual-representation"><strong>Visual Representation</strong></h2>
-<p>The roots of unity lie on the unit circle in the complex plane, at equal angular intervals of <span class="math inline">\frac{2\pi}{n}</span> radians. Each root corresponds to a rotation by <span class="math inline">\frac{2\pi k}{n}</span>.</p>
+<section id="finding-mathbfq_3" class="level2">
+<h2 class="anchored" data-anchor-id="finding-mathbfq_3">Finding <span class="math inline">\mathbf{q}_3</span></h2>
+<p>To find <span class="math inline">\mathbf{q}_3</span>, project <span class="math inline">\mathbf{a}_3</span> onto both <span class="math inline">\mathbf{q}_1</span> and <span class="math inline">\mathbf{q}_2</span>, and then subtract these projections from <span class="math inline">\mathbf{a}_3</span>.</p>
+<ol type="1">
+<li><p><strong>Calculate the projection of <span class="math inline">\mathbf{a}_3</span> onto <span class="math inline">\mathbf{q}_1</span></strong>:</p>
+<p><span class="math display">
+\mathbf{a}_3 \cdot \mathbf{q}_1 = \begin{bmatrix} 1 \\ -2 \\ 7 \end{bmatrix} \cdot \begin{bmatrix} \frac{4}{5} \\ 0 \\ \frac{3}{5} \end{bmatrix} = \frac{4}{5} + 0 + \frac{21}{5} = \frac{25}{5} = 5
+</span></p>
+<p>Then,</p>
+<p><span class="math display">
+\text{proj}_{\mathbf{q}_1} \mathbf{a}_3 = 5 \begin{bmatrix} \frac{4}{5} \\ 0 \\ \frac{3}{5} \end{bmatrix} = \begin{bmatrix} 4 \\ 0 \\ 3 \end{bmatrix}
+</span></p></li>
+<li><p><strong>Calculate the projection of <span class="math inline">\mathbf{a}_3</span> onto <span class="math inline">\mathbf{q}_2</span></strong>:</p>
+<p><span class="math display">
+\mathbf{a}_3 \cdot \mathbf{q}_2 = \begin{bmatrix} 1 \\ -2 \\ 7 \end{bmatrix} \cdot \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} = -2
+</span></p>
+<p>Then,</p>
+<p><span class="math display">
+\text{proj}_{\mathbf{q}_2} \mathbf{a}_3 = -2 \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ -2 \\ 0 \end{bmatrix}
+</span></p></li>
+<li><p><strong>Calculate <span class="math inline">\mathbf{u}_3</span></strong>:</p>
+<p>Subtracting both projections from <span class="math inline">\mathbf{a}_3</span> yields <span class="math inline">\mathbf{u}_3</span>:</p>
+<p><span class="math display">
+\mathbf{u}_3 = \mathbf{a}_3 - \text{proj}_{\mathbf{q}_1} \mathbf{a}_3 - \text{proj}_{\mathbf{q}_2} \mathbf{a}_3 = \begin{bmatrix} 1 \\ -2 \\ 7 \end{bmatrix} - \begin{bmatrix} 4 \\ 0 \\ 3 \end{bmatrix} - \begin{bmatrix} 0 \\ -2 \\ 0 \end{bmatrix} = \begin{bmatrix} -3 \\ 0 \\ 4 \end{bmatrix}
+</span></p></li>
+<li><p><strong>Normalize <span class="math inline">\mathbf{u}_3</span> to obtain <span class="math inline">\mathbf{q}_3</span></strong>:</p>
+<p>The norm of <span class="math inline">\mathbf{u}_3</span> is:</p>
+<p><span class="math display">
+\|\mathbf{u}_3\| = \sqrt{(-3)^2 + 0^2 + 4^2} = \sqrt{9 + 16} = \sqrt{25} = 5
+</span></p>
+<p>Thus,</p>
+<p><span class="math display">
+\mathbf{q}_3 = \frac{\mathbf{u}_3}{\|\mathbf{u}_3\|} = \frac{1}{5} \begin{bmatrix} -3 \\ 0 \\ 4 \end{bmatrix} = \begin{bmatrix} -\frac{3}{5} \\ 0 \\ \frac{4}{5} \end{bmatrix}
+</span></p></li>
+</ol>
 </section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
-<p>Roots of unity provide a geometric and algebraic foundation for understanding complex numbers and their properties. Their applications extend across mathematics, engineering, and physics, making them a powerful concept to explore.</p>
+<section id="constructing-mathbfq-and-mathbfr-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="constructing-mathbfq-and-mathbfr-matrices">Constructing <span class="math inline">\mathbf{Q}</span> and <span class="math inline">\mathbf{R}</span> Matrices</h2>
+<section id="orthogonal-matrix-mathbfq" class="level3">
+<h3 class="anchored" data-anchor-id="orthogonal-matrix-mathbfq">Orthogonal Matrix <span class="math inline">\mathbf{Q}</span></h3>
+<p>Combine <span class="math inline">\mathbf{q}_1</span>, <span class="math inline">\mathbf{q}\_2</span>, and <span class="math inline">\mathbf{q}_3</span> as columns to form <span class="math inline">\mathbf{Q}</span>:</p>
+<p><span class="math display">
+\mathbf{Q} = \begin{bmatrix} \frac{4}{5} &amp; 0 &amp; -\frac{3}{5} \\ 0 &amp; 1 &amp; 0 \\ \frac{3}{5} &amp; 0 &amp; \frac{4}{5} \end{bmatrix}
+</span></p>
+</section>
+<section id="upper-triangular-matrix-mathbfr" class="level3">
+<h3 class="anchored" data-anchor-id="upper-triangular-matrix-mathbfr">Upper Triangular Matrix <span class="math inline">\mathbf{R}</span></h3>
+<p>The entries of <span class="math inline">\mathbf{R}</span> are calculated as the dot products of the original columns of <span class="math inline">\mathbf{A}</span> with the orthonormal vectors <span class="math inline">\mathbf{q}_1</span>, <span class="math inline">\mathbf{q}_2</span>, and <span class="math inline">\mathbf{q}_3</span>:</p>
+<p><span class="math display">
+\mathbf{R} = \begin{bmatrix} \mathbf{a}_1 \cdot \mathbf{q}_1 &amp; \mathbf{a}_2 \cdot \mathbf{q}_1 &amp; \mathbf{a}_3 \cdot \mathbf{q}_1 \\ 0 &amp; \mathbf{a}_2 \cdot \mathbf{q}_2 &amp; \mathbf{a}_3 \cdot \mathbf{q}_2 \\ 0 &amp; 0 &amp; \mathbf{a}_3 \cdot \mathbf{q}_3 \end{bmatrix} = \begin{bmatrix} 5 &amp; 10 &amp; 5 \\ 0 &amp; 2 &amp; -2 \\ 0 &amp; 0 &amp; 5 \end{bmatrix}
+</span></p>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Final Answer:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The QR factorization of <span class="math inline">\mathbf{A}</span> is:</p>
+<p><span class="math display">
+\mathbf{A} = \mathbf{Q} \mathbf{R} = \begin{bmatrix} \frac{4}{5} &amp; 0 &amp; -\frac{3}{5} \\ 0 &amp; 1 &amp; 0 \\ \frac{3}{5} &amp; 0 &amp; \frac{4}{5} \end{bmatrix} \begin{bmatrix} 5 &amp; 10 &amp; 5 \\ 0 &amp; 2 &amp; -2 \\ 0 &amp; 0 &amp; 5 \end{bmatrix}
+</span></p>
+</div>
+</div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nathan Lunceford">
 
-<title>Roots of Unity – MATH411</title>
+<title>Understanding the Discrete Fourier Transform (DFT) – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4830,14 +4830,25 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><strong>Definition</strong></a>
+  <li><a href="#what-is-the-discrete-fourier-transform" id="toc-what-is-the-discrete-fourier-transform" class="nav-link active" data-scroll-target="#what-is-the-discrete-fourier-transform"><strong>What is the Discrete Fourier Transform?</strong></a></li>
+  <li><a href="#mathematical-definition" id="toc-mathematical-definition" class="nav-link" data-scroll-target="#mathematical-definition"><strong>Mathematical Definition</strong></a>
   <ul class="collapse">
-  <li><a href="#key-properties" id="toc-key-properties" class="nav-link" data-scroll-target="#key-properties"><strong>Key Properties</strong></a></li>
+  <li><a href="#breaking-down-the-formula" id="toc-breaking-down-the-formula" class="nav-link" data-scroll-target="#breaking-down-the-formula">Breaking Down the Formula:</a></li>
   </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><strong>Examples</strong></a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><strong>Applications</strong></a></li>
-  <li><a href="#visual-representation" id="toc-visual-representation" class="nav-link" data-scroll-target="#visual-representation"><strong>Visual Representation</strong></a></li>
+  <li><a href="#from-summation-notation-to-the-fourier-matrix" id="toc-from-summation-notation-to-the-fourier-matrix" class="nav-link" data-scroll-target="#from-summation-notation-to-the-fourier-matrix"><strong>From Summation Notation to the Fourier Matrix</strong></a>
+  <ul class="collapse">
+  <li><a href="#the-summation" id="toc-the-summation" class="nav-link" data-scroll-target="#the-summation">The Summation:</a></li>
+  <li><a href="#the-matrix-formulation" id="toc-the-matrix-formulation" class="nav-link" data-scroll-target="#the-matrix-formulation">The Matrix Formulation:</a></li>
+  <li><a href="#building-the-fourier-matrix" id="toc-building-the-fourier-matrix" class="nav-link" data-scroll-target="#building-the-fourier-matrix">Building the Fourier Matrix:</a></li>
+  <li><a href="#example-constructing-f_4" id="toc-example-constructing-f_4" class="nav-link" data-scroll-target="#example-constructing-f_4">Example: Constructing <span class="math inline">F_4</span></a></li>
+  <li><a href="#why-does-this-work" id="toc-why-does-this-work" class="nav-link" data-scroll-target="#why-does-this-work">Why Does This Work?</a></li>
+  </ul></li>
+  <li><a href="#example-dft-of-a-simple-signal" id="toc-example-dft-of-a-simple-signal" class="nav-link" data-scroll-target="#example-dft-of-a-simple-signal"><strong>Example: DFT of a Simple Signal</strong></a>
+  <ul class="collapse">
+  <li><a href="#step-1-define-the-fourier-matrix" id="toc-step-1-define-the-fourier-matrix" class="nav-link" data-scroll-target="#step-1-define-the-fourier-matrix"><strong>Step 1: Define the Fourier Matrix</strong></a></li>
+  <li><a href="#step-2-perform-matrix-multiplication" id="toc-step-2-perform-matrix-multiplication" class="nav-link" data-scroll-target="#step-2-perform-matrix-multiplication"><strong>Step 2: Perform Matrix Multiplication</strong></a></li>
+  <li><a href="#step-3-interpret-the-result" id="toc-step-3-interpret-the-result" class="nav-link" data-scroll-target="#step-3-interpret-the-result"><strong>Step 3: Interpret the Result</strong></a></li>
+  </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
@@ -4847,7 +4858,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Roots of Unity</h1>
+<h1 class="title">Understanding the Discrete Fourier Transform (DFT)</h1>
 </div>
 
 
@@ -4870,65 +4881,150 @@ window.Quarto = {
 </header>
 
 
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
-<p>A <strong>root of unity</strong> is a complex number that, when raised to a specific positive integer power <span class="math inline">n</span>, equals 1. These roots are central in number theory, algebra, and applications such as <a href="./fourier-transform.html"><strong>Fourier transforms</strong></a>.</p>
+<section id="what-is-the-discrete-fourier-transform" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-discrete-fourier-transform"><strong>What is the Discrete Fourier Transform?</strong></h2>
+<p>Imagine you’re listening to music. You hear a melody, but the melody is made up of individual notes (frequencies). The <strong>Discrete Fourier Transform (DFT)</strong> works similarly—it takes a “melody” of data in the time domain (a sequence of numbers) and breaks it into its “notes” (frequency components). This makes it easier to analyze patterns in signals like sound, images, or other data.</p>
+<p>The DFT transforms a sequence of <span class="math inline">n</span>-dimensional samples <span class="math inline">x</span> into a sequence <span class="math inline">y</span> that reveals how much of each frequency is present in the original data.</p>
+<hr>
 </section>
-<section id="definition" class="level2">
-<h2 class="anchored" data-anchor-id="definition"><strong>Definition</strong></h2>
-<p>A complex number <span class="math inline">z</span> is an <span class="math inline">n</span>-th root of unity if:</p>
+<section id="mathematical-definition" class="level2">
+<h2 class="anchored" data-anchor-id="mathematical-definition"><strong>Mathematical Definition</strong></h2>
+<p>Given an input vector <span class="math inline">x = [x_0, x_1, \dots, x_{n-1}]^T</span>, the DFT produces a vector <span class="math inline">y = [y_0, y_1, \dots, y_{n-1}]^T</span>, where:</p>
 <p><span class="math display">
-z^n = 1
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}, \quad \omega = e^{-i \frac{2\pi}{n}}, \quad k = 0, 1, \dots, n-1.
 </span></p>
-<p>The <span class="math inline">n</span>-th roots of unity are given by:</p>
+<section id="breaking-down-the-formula" class="level3">
+<h3 class="anchored" data-anchor-id="breaking-down-the-formula">Breaking Down the Formula:</h3>
+<ol type="1">
+<li><strong>Input <span class="math inline">x_j</span></strong>: These are the original “time-domain” samples, like the signal you’re analyzing.</li>
+<li><strong>Frequency <span class="math inline">k</span></strong>: Each <span class="math inline">y_k</span> tells us how much of the <span class="math inline">k</span>-th frequency is present in the signal.</li>
+<li><strong>Exponential Term <span class="math inline">\omega^{jk}</span></strong>: Think of this as a “rotating clock hand” that sweeps through frequencies. For each frequency <span class="math inline">k</span>, it adds up how the signal aligns with that frequency.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="from-summation-notation-to-the-fourier-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="from-summation-notation-to-the-fourier-matrix"><strong>From Summation Notation to the Fourier Matrix</strong></h2>
+<section id="the-summation" class="level3">
+<h3 class="anchored" data-anchor-id="the-summation">The Summation:</h3>
+<p>In the summation formula:</p>
 <p><span class="math display">
-z_k = e^{2\pi i k / n} = \cos\left(\frac{2\pi k}{n}\right) + i \sin\left(\frac{2\pi k}{n}\right)
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk},
 </span></p>
-<p>for <span class="math inline">k = 0, 1, 2, \dots, n-1</span>.</p>
-<section id="key-properties" class="level3">
-<h3 class="anchored" data-anchor-id="key-properties"><strong>Key Properties</strong></h3>
-<ol type="1">
-<li><strong>Number of Roots</strong>: There are exactly <span class="math inline">n</span> distinct <span class="math inline">n</span>-th roots of unity.</li>
-<li><strong>Symmetry</strong>: The roots are evenly distributed on the unit circle in the complex plane.</li>
-<li><strong>Primitive Roots</strong>: A root <span class="math inline">z_k</span> is <strong>primitive</strong> if it generates all <span class="math inline">n</span>-th roots of unity under repeated multiplication. This happens when <span class="math inline">\gcd(k, n) = 1</span>.</li>
-<li><strong>Sum of Roots</strong>: The sum of all <span class="math inline">n</span>-th roots of unity is zero: <span class="math display">
-\sum_{k=0}^{n-1} z_k = 0
-</span></li>
-</ol>
+<p>we are calculating <span class="math inline">y_k</span> for each <span class="math inline">k</span>, where <span class="math inline">k</span> represents the <span class="math inline">k</span>-th frequency component. For a sequence of length <span class="math inline">n</span>, we compute <span class="math inline">n</span> values of <span class="math inline">y_k</span>. Each <span class="math inline">y_k</span> is essentially a weighted sum of the input vector <span class="math inline">x</span>, where the weights are determined by <span class="math inline">\omega^{jk}</span>, the complex exponential.</p>
 </section>
+<section id="the-matrix-formulation" class="level3">
+<h3 class="anchored" data-anchor-id="the-matrix-formulation">The Matrix Formulation:</h3>
+<p>Instead of calculating <span class="math inline">y_k</span> for each <span class="math inline">k</span> one by one, we can express the entire computation as a <strong>matrix multiplication</strong>. To do this, we arrange the coefficients <span class="math inline">\omega^{jk}</span> into a matrix. This matrix, called the <strong>Fourier matrix</strong>, performs the DFT transformation in one step.</p>
+<hr>
 </section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples"><strong>Examples</strong></h2>
+<section id="building-the-fourier-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="building-the-fourier-matrix">Building the Fourier Matrix:</h3>
+<p>The Fourier matrix <span class="math inline">F_n</span> is constructed as follows:</p>
 <ol type="1">
-<li><p><strong>2nd Roots of Unity (<span class="math inline">n=2</span>)</strong>:</p>
+<li><p><strong>Structure</strong>: The element in the <span class="math inline">k</span>-th row and <span class="math inline">j</span>-th column of the Fourier matrix is <span class="math inline">\frac{1}{\sqrt{n}} \omega^{jk}</span>, where <span class="math inline">\omega = e^{-i \frac{2\pi}{n}}</span>.</p></li>
+<li><p><strong>Rows and Columns</strong>:</p>
+<ul>
+<li>Each row corresponds to a frequency <span class="math inline">k</span>.</li>
+<li>Each column corresponds to a time sample <span class="math inline">j</span>.</li>
+</ul></li>
+<li><p><strong>General Form</strong>: The <span class="math inline">n \times n</span> Fourier matrix is:</p>
 <p><span class="math display">
-z_0 = 1, \quad z_1 = -1
-</span></p></li>
-<li><p><strong>3rd Roots of Unity (<span class="math inline">n=3</span>)</strong>:</p>
-<p><span class="math display">
-z_0 = 1, \quad z_1 = e^{2\pi i / 3} = -\frac{1}{2} + i\frac{\sqrt{3}}{2}, \quad z_2 = e^{4\pi i / 3} = -\frac{1}{2} - i\frac{\sqrt{3}}{2}
-</span></p></li>
-<li><p><strong>4th Roots of Unity (<span class="math inline">n=4</span>)</strong>: <span class="math display">
-z_0 = 1, \quad z_1 = i, \quad z_2 = -1, \quad z_3 = -i
+F_n = \frac{1}{\sqrt{n}}
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; \dots &amp; 1 \\
+1 &amp; \omega &amp; \omega^2 &amp; \dots &amp; \omega^{n-1} \\
+1 &amp; \omega^2 &amp; \omega^4 &amp; \dots &amp; \omega^{2(n-1)} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; \omega^{n-1} &amp; \omega^{2(n-1)} &amp; \dots &amp; \omega^{(n-1)^2}
+\end{bmatrix}.
 </span></p></li>
 </ol>
-<p>These roots divide the unit circle into equal parts.</p>
+<hr>
 </section>
-<section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications"><strong>Applications</strong></h2>
+<section id="example-constructing-f_4" class="level3">
+<h3 class="anchored" data-anchor-id="example-constructing-f_4">Example: Constructing <span class="math inline">F_4</span></h3>
+<p>Let <span class="math inline">n = 4</span>, so <span class="math inline">\omega = e^{-i \pi / 2} = i</span>. Using the general formula, we build the Fourier matrix:</p>
 <ol type="1">
-<li><strong>Fourier Transform</strong>: Roots of unity are used to compute discrete Fourier transforms, enabling efficient signal processing.</li>
-<li><strong>Cyclotomic Polynomials</strong>: These polynomials, defined by the roots of unity, are used in number theory and field theory.</li>
-<li><strong>Algebraic Equations</strong>: Roots of unity help solve polynomial equations like <span class="math inline">x^n - 1 = 0</span>.</li>
+<li><p><strong>Row 0</strong>: This row corresponds to <span class="math inline">k = 0</span>: <span class="math display"> [1, 1, 1, 1]. </span></p></li>
+<li><p><strong>Row 1</strong>: This row corresponds to <span class="math inline">k = 1</span>: <span class="math display"> [1, \omega, \omega^2, \omega^3] = [1, i, -1, -i]. </span></p></li>
+<li><p><strong>Row 2</strong>: This row corresponds to <span class="math inline">k = 2</span>: <span class="math display"> [1, \omega^2, \omega^4, \omega^6] = [1, -1, 1, -1]. </span></p></li>
+<li><p><strong>Row 3</strong>: This row corresponds to <span class="math inline">k = 3</span>: <span class="math display"> [1, \omega^3, \omega^6, \omega^9] = [1, -i, -1, i]. </span></p></li>
 </ol>
+<p>Finally, combine these rows into the matrix:</p>
+<p><span class="math display">
+F_4 = \frac{1}{2}
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; i &amp; -1 &amp; -i \\
+1 &amp; -1 &amp; 1 &amp; -1 \\
+1 &amp; -i &amp; -1 &amp; i
+\end{bmatrix}.
+</span></p>
+<p>This matrix performs the DFT when multiplied by the input vector <span class="math inline">x</span>.</p>
+<hr>
 </section>
-<section id="visual-representation" class="level2">
-<h2 class="anchored" data-anchor-id="visual-representation"><strong>Visual Representation</strong></h2>
-<p>The roots of unity lie on the unit circle in the complex plane, at equal angular intervals of <span class="math inline">\frac{2\pi}{n}</span> radians. Each root corresponds to a rotation by <span class="math inline">\frac{2\pi k}{n}</span>.</p>
+<section id="why-does-this-work" class="level3">
+<h3 class="anchored" data-anchor-id="why-does-this-work">Why Does This Work?</h3>
+<p>The Fourier matrix is essentially a “recipe” for how to mix the input data <span class="math inline">x</span> with the complex exponential terms <span class="math inline">\omega^{jk}</span> to extract the frequency components <span class="math inline">y_k</span>. Each row of the matrix corresponds to a specific frequency <span class="math inline">k</span>, and the entries in that row are the weights <span class="math inline">\omega^{jk}</span> used to compute how much of <span class="math inline">x</span> aligns with that frequency.</p>
+<hr>
+</section>
+</section>
+<section id="example-dft-of-a-simple-signal" class="level2">
+<h2 class="anchored" data-anchor-id="example-dft-of-a-simple-signal"><strong>Example: DFT of a Simple Signal</strong></h2>
+<p>Let’s compute the DFT of <span class="math inline">x = [1, 1, 1, 1]^T</span>.</p>
+<section id="step-1-define-the-fourier-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-define-the-fourier-matrix"><strong>Step 1: Define the Fourier Matrix</strong></h3>
+<p>We already built <span class="math inline">F_4</span>:</p>
+<p><span class="math display">
+F_4 = \frac{1}{2}
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; i &amp; -1 &amp; -i \\
+1 &amp; -1 &amp; 1 &amp; -1 \\
+1 &amp; -i &amp; -1 &amp; i
+\end{bmatrix}.
+</span></p>
+</section>
+<section id="step-2-perform-matrix-multiplication" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-perform-matrix-multiplication"><strong>Step 2: Perform Matrix Multiplication</strong></h3>
+<p>Multiply <span class="math inline">F_4</span> by <span class="math inline">x</span>:</p>
+<p><span class="math display">
+y = F_4 x = \frac{1}{2}
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; i &amp; -1 &amp; -i \\
+1 &amp; -1 &amp; 1 &amp; -1 \\
+1 &amp; -i &amp; -1 &amp; i
+\end{bmatrix}
+\begin{bmatrix}
+1 \\ 1 \\ 1 \\ 1
+\end{bmatrix}.
+</span></p>
+<p>Perform the computation row by row:</p>
+<ol type="1">
+<li>Row 0: <span class="math inline">1 + 1 + 1 + 1 = 4</span>,</li>
+<li>Row 1: <span class="math inline">1 + i - 1 - i = 0</span>,</li>
+<li>Row 2: <span class="math inline">1 - 1 + 1 - 1 = 0</span>,</li>
+<li>Row 3: <span class="math inline">1 - i - 1 + i = 0</span>.</li>
+</ol>
+<p>So:</p>
+<p><span class="math display">
+y = \frac{1}{2}
+\begin{bmatrix}
+4 \\ 0 \\ 0 \\ 0
+\end{bmatrix}.
+</span></p>
+</section>
+<section id="step-3-interpret-the-result" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-interpret-the-result"><strong>Step 3: Interpret the Result</strong></h3>
+<p>The DFT reveals that the input signal <span class="math inline">[1, 1, 1, 1]</span> contains only a constant frequency component, represented by <span class="math inline">y_0 = 2</span>, and no higher frequencies.</p>
+<hr>
+</section>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
-<p>Roots of unity provide a geometric and algebraic foundation for understanding complex numbers and their properties. Their applications extend across mathematics, engineering, and physics, making them a powerful concept to explore.</p>
+<p>The transition from summation notation to the Fourier matrix helps us see the DFT as a compact, structured operation. By arranging the weights <span class="math inline">\omega^{jk}</span> into a matrix, we can perform the transformation efficiently and systematically. The Fourier matrix is not just a tool—it’s a roadmap for understanding how data in the time domain connects to its frequency representation.</p>
 
 
 </section>

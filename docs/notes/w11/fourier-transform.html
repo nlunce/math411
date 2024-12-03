@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nathan Lunceford">
 
-<title>Roots of Unity – MATH411</title>
+<title>Fourier Transform – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4831,13 +4831,13 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><strong>Definition</strong></a>
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><strong>Definition</strong></a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties"><strong>Properties</strong></a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><strong>Applications</strong></a>
   <ul class="collapse">
-  <li><a href="#key-properties" id="toc-key-properties" class="nav-link" data-scroll-target="#key-properties"><strong>Key Properties</strong></a></li>
+  <li><a href="#example-fourier-transform-of-a-sine-wave" id="toc-example-fourier-transform-of-a-sine-wave" class="nav-link" data-scroll-target="#example-fourier-transform-of-a-sine-wave"><strong>Example: Fourier Transform of a Sine Wave</strong></a></li>
   </ul></li>
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><strong>Examples</strong></a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><strong>Applications</strong></a></li>
-  <li><a href="#visual-representation" id="toc-visual-representation" class="nav-link" data-scroll-target="#visual-representation"><strong>Visual Representation</strong></a></li>
+  <li><a href="#discrete-fourier-transform-dft" id="toc-discrete-fourier-transform-dft" class="nav-link" data-scroll-target="#discrete-fourier-transform-dft"><strong>Discrete Fourier Transform (DFT)</strong></a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
@@ -4847,7 +4847,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Roots of Unity</h1>
+<h1 class="title">Fourier Transform</h1>
 </div>
 
 
@@ -4872,63 +4872,91 @@ window.Quarto = {
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
-<p>A <strong>root of unity</strong> is a complex number that, when raised to a specific positive integer power <span class="math inline">n</span>, equals 1. These roots are central in number theory, algebra, and applications such as <a href="./fourier-transform.html"><strong>Fourier transforms</strong></a>.</p>
+<p>The Fourier Transform is a mathematical operation that transforms a function of time <span class="math inline">g(t)</span> into a function of frequency <span class="math inline">f</span>. It provides a powerful tool for analyzing the frequency components of signals and is widely used in physics, engineering, and signal processing.</p>
 </section>
 <section id="definition" class="level2">
 <h2 class="anchored" data-anchor-id="definition"><strong>Definition</strong></h2>
-<p>A complex number <span class="math inline">z</span> is an <span class="math inline">n</span>-th root of unity if:</p>
+<p>The Fourier Transform of a function <span class="math inline">g(t)</span> is given by:</p>
 <p><span class="math display">
-z^n = 1
+\hat{g}(f) = \int_{-\infty}^{+\infty} g(t) e^{-2\pi i f t} \, dt
 </span></p>
-<p>The <span class="math inline">n</span>-th roots of unity are given by:</p>
+<p>Here:</p>
+<ul>
+<li><span class="math inline">g(t)</span>: The function in the time domain.</li>
+<li><span class="math inline">f</span>: The frequency variable (in Hz).</li>
+<li><span class="math inline">\hat{g}(f)</span>: The Fourier Transform, representing the frequency domain representation of <span class="math inline">g(t)</span>.</li>
+<li><span class="math inline">e^{-2\pi i f t}</span>: A complex exponential that encodes frequency components.</li>
+</ul>
+<p>The <strong>Inverse Fourier Transform</strong> allows reconstruction of <span class="math inline">g(t)</span> from its Fourier Transform <span class="math inline">\hat{g}(f)</span>:</p>
 <p><span class="math display">
-z_k = e^{2\pi i k / n} = \cos\left(\frac{2\pi k}{n}\right) + i \sin\left(\frac{2\pi k}{n}\right)
+g(t) = \int_{-\infty}^{+\infty} \hat{g}(f) e^{2\pi i f t} \, df
 </span></p>
-<p>for <span class="math inline">k = 0, 1, 2, \dots, n-1</span>.</p>
-<section id="key-properties" class="level3">
-<h3 class="anchored" data-anchor-id="key-properties"><strong>Key Properties</strong></h3>
-<ol type="1">
-<li><strong>Number of Roots</strong>: There are exactly <span class="math inline">n</span> distinct <span class="math inline">n</span>-th roots of unity.</li>
-<li><strong>Symmetry</strong>: The roots are evenly distributed on the unit circle in the complex plane.</li>
-<li><strong>Primitive Roots</strong>: A root <span class="math inline">z_k</span> is <strong>primitive</strong> if it generates all <span class="math inline">n</span>-th roots of unity under repeated multiplication. This happens when <span class="math inline">\gcd(k, n) = 1</span>.</li>
-<li><strong>Sum of Roots</strong>: The sum of all <span class="math inline">n</span>-th roots of unity is zero: <span class="math display">
-\sum_{k=0}^{n-1} z_k = 0
-</span></li>
-</ol>
 </section>
-</section>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples"><strong>Examples</strong></h2>
+<section id="properties" class="level2">
+<h2 class="anchored" data-anchor-id="properties"><strong>Properties</strong></h2>
 <ol type="1">
-<li><p><strong>2nd Roots of Unity (<span class="math inline">n=2</span>)</strong>:</p>
+<li><p><strong>Linearity</strong>:</p>
 <p><span class="math display">
-z_0 = 1, \quad z_1 = -1
+\mathcal{F}(a g_1 + b g_2)(f) = a \hat{g}_1(f) + b \hat{g}_2(f)
 </span></p></li>
-<li><p><strong>3rd Roots of Unity (<span class="math inline">n=3</span>)</strong>:</p>
+<li><p><strong>Time Shift</strong>: If <span class="math inline">g(t) \to \hat{g}(f)</span>, then <span class="math inline">g(t - t_0) \to \hat{g}(f)e^{-2\pi i f t_0}</span>.</p></li>
+<li><p><strong>Frequency Shift</strong>: If <span class="math inline">g(t) \to \hat{g}(f)</span>, then <span class="math inline">e^{2\pi i f_0 t} g(t) \to \hat{g}(f - f_0)</span>.</p></li>
+<li><p><strong>Scaling</strong>: If <span class="math inline">g(at) \to \frac{1}{|a|} \hat{g}\left(\frac{f}{a}\right)</span>.</p></li>
+<li><p><strong>Parseval’s Theorem</strong>: The total energy of the signal in the time and frequency domains is the same:</p>
 <p><span class="math display">
-z_0 = 1, \quad z_1 = e^{2\pi i / 3} = -\frac{1}{2} + i\frac{\sqrt{3}}{2}, \quad z_2 = e^{4\pi i / 3} = -\frac{1}{2} - i\frac{\sqrt{3}}{2}
+\int_{-\infty}^{+\infty} |g(t)|^2 \, dt = \int_{-\infty}^{+\infty} |\hat{g}(f)|^2 \, df
 </span></p></li>
-<li><p><strong>4th Roots of Unity (<span class="math inline">n=4</span>)</strong>: <span class="math display">
-z_0 = 1, \quad z_1 = i, \quad z_2 = -1, \quad z_3 = -i
-</span></p></li>
+<li><p><strong>Convolution</strong>: Convolution in the time domain corresponds to multiplication in the frequency domain:</p>
+<p><span class="math display">
+\mathcal{F}(g_1 \ast g_2)(f) = \hat{g}_1(f) \cdot \hat{g}_2(f)
+</span></p>
+<p>where <span class="math inline">(g*1 \ast g_2)(t) = \int*{-\infty}^{+\infty} g_1(\tau) g_2(t - \tau) \, d\tau</span>.</p></li>
 </ol>
-<p>These roots divide the unit circle into equal parts.</p>
 </section>
 <section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications"><strong>Applications</strong></h2>
 <ol type="1">
-<li><strong>Fourier Transform</strong>: Roots of unity are used to compute discrete Fourier transforms, enabling efficient signal processing.</li>
-<li><strong>Cyclotomic Polynomials</strong>: These polynomials, defined by the roots of unity, are used in number theory and field theory.</li>
-<li><strong>Algebraic Equations</strong>: Roots of unity help solve polynomial equations like <span class="math inline">x^n - 1 = 0</span>.</li>
+<li><p><strong>Signal Processing</strong>:</p>
+<ul>
+<li>Frequency analysis, filtering, and noise reduction.</li>
+</ul></li>
+<li><p><strong>Physics</strong>:</p>
+<ul>
+<li>Analyzing waveforms, optics, and quantum mechanics.</li>
+</ul></li>
+<li><p><strong>Engineering</strong>:</p>
+<ul>
+<li>Communication systems and control systems.</li>
+</ul></li>
+<li><p><strong>Image Processing</strong>:</p>
+<ul>
+<li>Compression, edge detection, and restoration.</li>
+</ul></li>
 </ol>
+<section id="example-fourier-transform-of-a-sine-wave" class="level3">
+<h3 class="anchored" data-anchor-id="example-fourier-transform-of-a-sine-wave"><strong>Example: Fourier Transform of a Sine Wave</strong></h3>
+<p>Consider the signal <span class="math inline">g(t) = \sin(2\pi f_0 t)</span>. Using Euler’s formula, <span class="math inline">\sin(2\pi f_0 t) = \frac{e^{2\pi i f_0 t} - e^{-2\pi i f_0 t}}{2i}</span>, we find:</p>
+<p><span class="math display">
+\hat{g}(f) = \frac{1}{2i} [\delta(f - f_0) - \delta(f + f_0)]
+</span></p>
+<p>The Fourier Transform shows that the sine wave consists of two frequency components at <span class="math inline">\pm f_0</span>.</p>
 </section>
-<section id="visual-representation" class="level2">
-<h2 class="anchored" data-anchor-id="visual-representation"><strong>Visual Representation</strong></h2>
-<p>The roots of unity lie on the unit circle in the complex plane, at equal angular intervals of <span class="math inline">\frac{2\pi}{n}</span> radians. Each root corresponds to a rotation by <span class="math inline">\frac{2\pi k}{n}</span>.</p>
+</section>
+<section id="discrete-fourier-transform-dft" class="level2">
+<h2 class="anchored" data-anchor-id="discrete-fourier-transform-dft"><a href="./discrete-fourier-transform.html"><strong>Discrete Fourier Transform (DFT)</strong></a></h2>
+<p>For digital signals, the Fourier Transform is approximated using the Discrete Fourier Transform (DFT). For a sequence of <span class="math inline">N</span> samples <span class="math inline">\{g_n\}</span>:</p>
+<p><span class="math display">
+\hat{g}_k = \sum_{n=0}^{N-1} g_n e^{-2\pi i k n / N}, \quad k = 0, 1, \dots, N-1
+</span></p>
+<p>The <strong>Inverse DFT (IDFT)</strong> is:</p>
+<p><span class="math display">
+g_n = \frac{1}{N} \sum_{k=0}^{N-1} \hat{g}_k e^{2\pi i k n / N}
+</span></p>
+<p>The Fast Fourier Transform (FFT) is an efficient algorithm to compute the DFT.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
-<p>Roots of unity provide a geometric and algebraic foundation for understanding complex numbers and their properties. Their applications extend across mathematics, engineering, and physics, making them a powerful concept to explore.</p>
+<p>The Fourier Transform bridges the time and frequency domains, enabling analysis and manipulation of signals. Its versatility and foundational properties make it an essential tool in science and engineering.</p>
 
 
 </section>

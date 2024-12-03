@@ -1,0 +1,95 @@
+---
+title: 'Exercise 10.1.1a'
+author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 1
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show the code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
+---
+
+# **Problem**
+
+::: {.callout-note icon=false }
+
+## **10.1.1a**
+
+Find the Discrete Fourier Transform (DFT) of the following vector:
+
+$$
+\begin{bmatrix}
+0 \\ 1 \\ 0 \\ -1
+\end{bmatrix}
+$$
+
+:::
+
+# **Solution**
+
+## **DFT of $[0, 1, 0, -1]^T$**
+
+### Define Parameters
+
+The vector has $n = 4$, so:
+
+$$
+\omega = e^{-i \frac{2\pi}{4}} = i
+$$
+
+The formula for the DFT is:
+
+$$
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}, \quad k = 0, 1, \dots, n-1
+$$
+
+### Compute Each $y_k$:
+
+1. **$y_0$:**
+
+   $$
+   y_0 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 0} = \frac{1}{2}(0 + 1 + 0 - 1) = 0
+   $$
+
+2. **$y_1$:**
+
+   $$
+   y_1 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 1} = \frac{1}{2}(0 + i \cdot 1 + 0 + (-1) \cdot (-i)) = \frac{1}{2}(i + i) = i
+   $$
+
+3. **$y_2$:**
+
+   $$
+   y_2 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 2} = \frac{1}{2}(0 + (-1) + 0 + (-1)) = -1
+   $$
+
+4. **$y_3$:**
+   $$
+   y_3 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 3} = \frac{1}{2}(0 + (-i) + 0 + (-1) \cdot i) = \frac{1}{2}(-i - i) = -i
+   $$
+
+### Result:
+
+The DFT of $[0, 1, 0, -1]$ is:
+
+$$
+y = [0, i, -1, -i]
+$$

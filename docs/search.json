@@ -1972,5 +1972,243 @@
     "title": "REALITY CHECK 05",
     "section": "Experimenting with Equipartitioning on a Custom Path",
     "text": "Experimenting with Equipartitioning on a Custom Path\n\nProblem Statement\nExperiment with equipartitioning a path of your choice. Choose a path defined by parametric equations, partition it into equal arc-length segments, and animate the traversal as demonstrated in Problem 5.\n\nChosen Equation:\n\nx(t) = 0.4 \\sin(3t + \\frac{\\pi}{2}) + 0.5\n\n\ny(t) = 0.3 \\sin(4t) + 0.5\n\n\n\n\nObjective and Approach\n\nObjective: To apply equipartitioning to the specified path, dividing it into segments of equal arc length and visualizing the traversal at constant speed.\nApproach:\n\nPath Definition: Define x(t) and y(t) based on the given equations.\nEquipartitioning: Use numerical integration and Newton’s Method to divide the path into equal-length segments.\nAnimation: Animate the traversal of the path at a constant speed along the equal arc-length segments and compare it with traversal at the original, parameter-based speed.\n\n\n\n\nSolution Code\nThe Python code below calculates the equipartitioned segments and animates traversal along the path:\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport matplotlib.animation as animation\nfrom scipy.integrate import quad\n\n# Parameters for the curve\nA = 0.4\na = 3\nf = np.pi / 2\nc = 0.5\nB = 0.3\nb = 4\nD = 0.5\n\n# Maximum value of t for one full loop\nt_max = 2 * np.pi\n\n# Define the functions for x(t) and y(t)\ndef x(t):\n    return A * np.sin(a * t + f) + c\n\ndef y(t):\n    return B * np.sin(b * t) + D\n\n# Derivatives of x(t) and y(t) for arc length calculation\ndef dx_dt(t):\n    return A * a * np.cos(a * t + f)\n\ndef dy_dt(t):\n    return B * b * np.cos(b * t)\n\n# Integrand for arc length calculation\ndef integrand(t):\n    return np.sqrt(dx_dt(t)**2 + dy_dt(t)**2)\n\n# Compute arc length using numerical integration\ndef compute_arc_length(s):\n    arc_length, _ = quad(integrand, 0, s)\n    return arc_length\n\n# Equipartition function to divide path into equal arc-length segments\ndef equipartition(n):\n    total_length = compute_arc_length(2 * np.pi)\n    segment_length = total_length / n\n    partition_points = [0]\n    for i in range(1, n):\n        target_length = i * segment_length\n        partition_points.append(find_t_for_length(target_length, partition_points[-1]))\n    partition_points.append(2 * np.pi)\n    return partition_points\n\n# Find parameter t for a given arc length using Newton's Method\ndef find_t_for_length(target_length, initial_guess=0, tol=1e-8, max_iter=100):\n    t = initial_guess\n    for _ in range(max_iter):\n        f_t = compute_arc_length(t) - target_length\n        f_prime_t = integrand(t)\n        if abs(f_t) &lt; tol:\n            return t\n        t -= f_t / f_prime_t\n        t = max(0, min(2 * np.pi, t))\n    return t\n\n\n# Data for animations\nn_points = 200\nt_values_original = np.linspace(0, 2 * np.pi, n_points)\nx_original = x(t_values_original)\ny_original = y(t_values_original)\n\nt_values_constant = equipartition(n_points)\nx_constant = [x(t) for t in t_values_constant]\ny_constant = [y(t) for t in t_values_constant]\n\n# Set up the figure for side-by-side animation\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))\n\n# Original speed plot\nax1.plot(x_original, y_original, color=\"#2196F3\", linewidth=2)\npoint1, = ax1.plot([], [], 'o', color=\"#1565C0\")\nax1.set_title(\"Original Speed\")\nax1.set_xlim(0, 1)\nax1.set_ylim(0, 1)\nax1.set_aspect('equal')\nax1.grid(True, linestyle='-', alpha=0.2, color='gray')\n\n# Constant speed plot\nax2.plot(x_constant, y_constant, color=\"#2196F3\", linewidth=2)\npoint2, = ax2.plot([], [], 'go')\nax2.set_title(\"Constant Speed\")\nax2.set_xlim(0, 1)\nax2.set_ylim(0, 1)\nax2.set_aspect('equal')\nax2.grid(True, linestyle='-', alpha=0.2, color='gray')\n\n# Update functions for each animation\ndef update_original(frame):\n    point1.set_data(x_original[:frame], y_original[:frame])\n    return point1,\n\ndef update_constant(frame):\n    point2.set_data(x_constant[:frame], y_constant[:frame])\n    return point2,\n\n# Combine animations into one\nnum_frames = len(x_original)\nani = animation.FuncAnimation(\n    fig,\n    lambda frame: update_original(frame) + update_constant(frame),\n    frames=num_frames,\n    interval=100,\n    blit=True\n)\n\n# Save animation as MP4\nani.save(\"custom_path_animation.mp4\", writer=\"ffmpeg\")\n\n  Your browser does not support the video tag. \n\n\n\nExplanation of Solution Components\n\nPath Definition: The parametric equations for x(t) = 0.4 \\sin(3t + \\frac{\\pi}{2}) + 0.5 and y(t) = 0.3 \\sin(4t) + 0.5 define a periodic curve with sinusoidal behavior, creating a visually interesting pattern with symmetric, tight curves.\nArc Length Calculation: The function compute_arc_length integrates the instantaneous speed along the curve (using derivatives dx/dt and dy/dt) over the interval [0, s] to determine the total distance traveled up to a given s.\nEquipartitioning: The equipartition function divides the path into n segments of equal arc length by calculating the target length of each segment and using Newton’s Method to determine t values corresponding to each target segment length. This ensures the segments are evenly spaced along the curve.\nAnimation: The animate_path function generates side-by-side animations of path traversal at original speed (based on parameter t) and constant speed (based on equal arc-length segments).\n\n\n\nResults and Observations\nIn the animation:\n\nOriginal Speed: The left animation shows traversal based on equally spaced t values, resulting in variable speed along the curve. The point moves faster along straighter sections and slows down significantly in tighter curves.\nConstant Speed: The right animation demonstrates traversal at a constant speed along equal arc-length segments. This movement is smoother and consistent, highlighting how equipartitioning ensures a steady traversal rate even along complex paths.\n\n\n\nConclusion\nThis exercise illustrates the benefits of equipartitioning a path into equal arc-length segments for applications that require consistent speed. By reparameterizing the curve to maintain constant speed, we can avoid the variable movement speed that results from a simple, evenly spaced parameter t. This method has potential applications in animation, robotics, and automated manufacturing, where uniform movement along a path with varying curvature is essential."
+  },
+  {
+    "objectID": "notes/w11/fourier-transform.html",
+    "href": "notes/w11/fourier-transform.html",
+    "title": "Fourier Transform",
+    "section": "",
+    "text": "The Fourier Transform is a mathematical operation that transforms a function of time g(t) into a function of frequency f. It provides a powerful tool for analyzing the frequency components of signals and is widely used in physics, engineering, and signal processing."
+  },
+  {
+    "objectID": "notes/w11/fourier-transform.html#overview",
+    "href": "notes/w11/fourier-transform.html#overview",
+    "title": "Fourier Transform",
+    "section": "",
+    "text": "The Fourier Transform is a mathematical operation that transforms a function of time g(t) into a function of frequency f. It provides a powerful tool for analyzing the frequency components of signals and is widely used in physics, engineering, and signal processing."
+  },
+  {
+    "objectID": "notes/w11/fourier-transform.html#definition",
+    "href": "notes/w11/fourier-transform.html#definition",
+    "title": "Fourier Transform",
+    "section": "Definition",
+    "text": "Definition\nThe Fourier Transform of a function g(t) is given by:\n\n\\hat{g}(f) = \\int_{-\\infty}^{+\\infty} g(t) e^{-2\\pi i f t} \\, dt\n\nHere:\n\ng(t): The function in the time domain.\nf: The frequency variable (in Hz).\n\\hat{g}(f): The Fourier Transform, representing the frequency domain representation of g(t).\ne^{-2\\pi i f t}: A complex exponential that encodes frequency components.\n\nThe Inverse Fourier Transform allows reconstruction of g(t) from its Fourier Transform \\hat{g}(f):\n\ng(t) = \\int_{-\\infty}^{+\\infty} \\hat{g}(f) e^{2\\pi i f t} \\, df"
+  },
+  {
+    "objectID": "notes/w11/fourier-transform.html#properties",
+    "href": "notes/w11/fourier-transform.html#properties",
+    "title": "Fourier Transform",
+    "section": "Properties",
+    "text": "Properties\n\nLinearity:\n\n\\mathcal{F}(a g_1 + b g_2)(f) = a \\hat{g}_1(f) + b \\hat{g}_2(f)\n\nTime Shift: If g(t) \\to \\hat{g}(f), then g(t - t_0) \\to \\hat{g}(f)e^{-2\\pi i f t_0}.\nFrequency Shift: If g(t) \\to \\hat{g}(f), then e^{2\\pi i f_0 t} g(t) \\to \\hat{g}(f - f_0).\nScaling: If g(at) \\to \\frac{1}{|a|} \\hat{g}\\left(\\frac{f}{a}\\right).\nParseval’s Theorem: The total energy of the signal in the time and frequency domains is the same:\n\n\\int_{-\\infty}^{+\\infty} |g(t)|^2 \\, dt = \\int_{-\\infty}^{+\\infty} |\\hat{g}(f)|^2 \\, df\n\nConvolution: Convolution in the time domain corresponds to multiplication in the frequency domain:\n\n\\mathcal{F}(g_1 \\ast g_2)(f) = \\hat{g}_1(f) \\cdot \\hat{g}_2(f)\n\nwhere (g*1 \\ast g_2)(t) = \\int*{-\\infty}^{+\\infty} g_1(\\tau) g_2(t - \\tau) \\, d\\tau."
+  },
+  {
+    "objectID": "notes/w11/fourier-transform.html#applications",
+    "href": "notes/w11/fourier-transform.html#applications",
+    "title": "Fourier Transform",
+    "section": "Applications",
+    "text": "Applications\n\nSignal Processing:\n\nFrequency analysis, filtering, and noise reduction.\n\nPhysics:\n\nAnalyzing waveforms, optics, and quantum mechanics.\n\nEngineering:\n\nCommunication systems and control systems.\n\nImage Processing:\n\nCompression, edge detection, and restoration.\n\n\n\nExample: Fourier Transform of a Sine Wave\nConsider the signal g(t) = \\sin(2\\pi f_0 t). Using Euler’s formula, \\sin(2\\pi f_0 t) = \\frac{e^{2\\pi i f_0 t} - e^{-2\\pi i f_0 t}}{2i}, we find:\n\n\\hat{g}(f) = \\frac{1}{2i} [\\delta(f - f_0) - \\delta(f + f_0)]\n\nThe Fourier Transform shows that the sine wave consists of two frequency components at \\pm f_0."
+  },
+  {
+    "objectID": "notes/w11/fourier-transform.html#discrete-fourier-transform-dft",
+    "href": "notes/w11/fourier-transform.html#discrete-fourier-transform-dft",
+    "title": "Fourier Transform",
+    "section": "Discrete Fourier Transform (DFT)",
+    "text": "Discrete Fourier Transform (DFT)\nFor digital signals, the Fourier Transform is approximated using the Discrete Fourier Transform (DFT). For a sequence of N samples \\{g_n\\}:\n\n\\hat{g}_k = \\sum_{n=0}^{N-1} g_n e^{-2\\pi i k n / N}, \\quad k = 0, 1, \\dots, N-1\n\nThe Inverse DFT (IDFT) is:\n\ng_n = \\frac{1}{N} \\sum_{k=0}^{N-1} \\hat{g}_k e^{2\\pi i k n / N}\n\nThe Fast Fourier Transform (FFT) is an efficient algorithm to compute the DFT."
+  },
+  {
+    "objectID": "notes/w11/fourier-transform.html#conclusion",
+    "href": "notes/w11/fourier-transform.html#conclusion",
+    "title": "Fourier Transform",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe Fourier Transform bridges the time and frequency domains, enabling analysis and manipulation of signals. Its versatility and foundational properties make it an essential tool in science and engineering."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html",
+    "href": "notes/w11/discrete-fourier-transform.html",
+    "title": "Understanding the Discrete Fourier Transform (DFT)",
+    "section": "",
+    "text": "Imagine you’re listening to music. You hear a melody, but the melody is made up of individual notes (frequencies). The Discrete Fourier Transform (DFT) works similarly—it takes a “melody” of data in the time domain (a sequence of numbers) and breaks it into its “notes” (frequency components). This makes it easier to analyze patterns in signals like sound, images, or other data.\nThe DFT transforms a sequence of n-dimensional samples x into a sequence y that reveals how much of each frequency is present in the original data."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#overview",
+    "href": "notes/w11/discrete-fourier-transform.html#overview",
+    "title": "Discrete Fourier Transform (DFT)",
+    "section": "",
+    "text": "The Discrete Fourier Transform (DFT) is a numerical operation that transforms a finite sequence of n-dimensional samples from the time domain into the frequency domain. It is used extensively in digital signal processing, image analysis, and other engineering applications."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#definition",
+    "href": "notes/w11/discrete-fourier-transform.html#definition",
+    "title": "Discrete Fourier Transform (DFT)",
+    "section": "Definition",
+    "text": "Definition\nGiven a vector x = [x_0, x_1, \\dots, x_{n-1}]^T, the DFT produces a vector y = [y_0, y_1, \\dots, y_{n-1}]^T, where:\n\ny_k = \\frac{1}{\\sqrt{n}} \\sum_{j=0}^{n-1} x_j \\omega^{jk}, \\quad \\omega = e^{-i \\frac{2\\pi}{n}}, \\quad k = 0, 1, \\dots, n-1\n\nHere:\n\nx_j: Input signal at the j-th sample.\n\\omega^{jk}: The complex exponential term, representing oscillations.\ny_k = a_k + i b_k: The k-th frequency component (complex number).\n\nThe Inverse Discrete Fourier Transform (IDFT) reconstructs the original sequence:\n\nx_j = \\frac{1}{\\sqrt{n}} \\sum_{k=0}^{n-1} y_k \\omega^{-jk}, \\quad j = 0, 1, \\dots, n-1"
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#properties",
+    "href": "notes/w11/discrete-fourier-transform.html#properties",
+    "title": "Discrete Fourier Transform (DFT)",
+    "section": "Properties",
+    "text": "Properties\n\nLinearity:\n\n\\mathcal{DFT}(a x_1 + b x_2) = a \\mathcal{DFT}(x_1) + b \\mathcal{DFT}(x_2)\n\nSymmetry: For real-valued inputs, the frequency components satisfy:\n\ny_{n-k} = \\overline{y_k}, \\quad k = 1, \\dots, \\lfloor n/2 \\rfloor\n\nParseval’s Theorem: The total energy is conserved between the time and frequency domains:\n\n\\sum_{j=0}^{n-1} |x_j|^2 = \\sum_{k=0}^{n-1} |y_k|^2\n\nPeriodicity: Both x_j and y_k are periodic with period n: \nx_{j+n} = x_j, \\quad y_{k+n} = y_k"
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#applications",
+    "href": "notes/w11/discrete-fourier-transform.html#applications",
+    "title": "Discrete Fourier Transform (DFT)",
+    "section": "Applications",
+    "text": "Applications\n\nSignal Processing:\n\nFrequency analysis, filtering, and noise reduction.\n\nImage Processing:\n\nCompression and enhancement techniques.\n\nAudio and Speech Analysis:\n\nSpectral representation of sounds for various transformations.\n\nEngineering:\n\nVibration analysis, communication systems, and control systems."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#example",
+    "href": "notes/w11/discrete-fourier-transform.html#example",
+    "title": "Discrete Fourier Transform (DFT)",
+    "section": "Example",
+    "text": "Example\nConsider x = [1, 1, 1, 1]^T with n = 4.\n\nDefine the Fourier Matrix F_4:\nUsing \\omega = e^{-i \\pi / 2} = i, the matrix is:\n\nF_4 = \\frac{1}{2}\n\\begin{bmatrix}\n1 & 1 & 1 & 1 \\\\\n1 & i & -1 & -i \\\\\n1 & -1 & 1 & -1 \\\\\n1 & -i & -1 & i\n\\end{bmatrix}\n\nCompute y:\nMultiply F_4 by x:\n\ny = F_4 x = \\frac{1}{2}\n\\begin{bmatrix}\n1 & 1 & 1 & 1 \\\\\n1 & i & -1 & -i \\\\\n1 & -1 & 1 & -1 \\\\\n1 & -i & -1 & i\n\\end{bmatrix}\n\\begin{bmatrix}\n1 \\\\ 1 \\\\ 1 \\\\ 1\n\\end{bmatrix}\n\nPerform matrix multiplication:\n\ny = \\frac{1}{2}\n\\begin{bmatrix}\n1 + 1 + 1 + 1 \\\\\n1 + i - 1 - i \\\\\n1 - 1 + 1 - 1 \\\\\n1 - i - 1 + i\n\\end{bmatrix}\n= \\frac{1}{2}\n\\begin{bmatrix}\n4 \\\\ 0 \\\\ 0 \\\\ 0\n\\end{bmatrix}\n\n\n\nResult:\nThe DFT of x = [1, 1, 1, 1]^T is:\n\ny = \\begin{bmatrix}\n2 \\\\ 0 \\\\ 0 \\\\ 0\n\\end{bmatrix}"
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#fast-fourier-transform-fft",
+    "href": "notes/w11/discrete-fourier-transform.html#fast-fourier-transform-fft",
+    "title": "Discrete Fourier Transform (DFT)",
+    "section": "Fast Fourier Transform (FFT)",
+    "text": "Fast Fourier Transform (FFT)\nThe DFT has a computational complexity of O(n^2), making it inefficient for large n. The Fast Fourier Transform (FFT) reduces this complexity to O(n \\log n) by exploiting the periodicity and symmetry of \\omega."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#conclusion",
+    "href": "notes/w11/discrete-fourier-transform.html#conclusion",
+    "title": "Understanding the Discrete Fourier Transform (DFT)",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe transition from summation notation to the Fourier matrix helps us see the DFT as a compact, structured operation. By arranging the weights \\omega^{jk} into a matrix, we can perform the transformation efficiently and systematically. The Fourier matrix is not just a tool—it’s a roadmap for understanding how data in the time domain connects to its frequency representation."
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1a.html",
+    "href": "homework/w11/exercise10-1-1a.html",
+    "title": "Exercise 10.1.1a",
+    "section": "",
+    "text": "10.1.1a\n\n\n\nFind the Discrete Fourier Transform (DFT) of the following vector:\n\n\\begin{bmatrix}\n0 \\\\ 1 \\\\ 0 \\\\ -1\n\\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1a.html#part-a-dft-of-0-1-0--1",
+    "href": "homework/w11/exercise10-1-1a.html#part-a-dft-of-0-1-0--1",
+    "title": "Exercise 10.1.1a",
+    "section": "Part (a): DFT of [0, 1, 0, -1]",
+    "text": "Part (a): DFT of [0, 1, 0, -1]\n\nDefine Parameters\nThe vector has n = 4, so:\n\n\\omega = e^{-i \\frac{2\\pi}{4}} = i\n\nThe formula for the DFT is:\n\ny_k = \\frac{1}{\\sqrt{n}} \\sum_{j=0}^{n-1} x_j \\omega^{jk}, \\quad k = 0, 1, \\dots, n-1\n\n\n\nCompute Each y_k:\n\ny_0:\n\ny_0 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 0} = \\frac{1}{2}(0 + 1 + 0 - 1) = 0\n\ny_1:\n\ny_1 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 1} = \\frac{1}{2}(0 + i \\cdot 1 + 0 + (-1) \\cdot (-i)) = \\frac{1}{2}(i + i) = i\n\ny_2:\n\ny_2 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 2} = \\frac{1}{2}(0 + (-1) + 0 + (-1)) = -1\n\ny_3: \ny_3 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 3} = \\frac{1}{2}(0 + (-i) + 0 + (-1) \\cdot i) = \\frac{1}{2}(-i - i) = -i\n\n\n\n\nResult:\nThe DFT of [0, 1, 0, -1] is:\n\ny = [0, i, -1, -i]"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1a.html#part-d-dft-of-0-1-0--1-0-1-0--1",
+    "href": "homework/w11/exercise10-1-1a.html#part-d-dft-of-0-1-0--1-0-1-0--1",
+    "title": "Exercise 10.1.1a",
+    "section": "Part (d): DFT of [0, 1, 0, -1, 0, 1, 0, -1]",
+    "text": "Part (d): DFT of [0, 1, 0, -1, 0, 1, 0, -1]\n\nDefine Parameters\nThe vector has n = 8, so:\n\n\\omega = e^{-i \\frac{2\\pi}{8}} = e^{-i \\pi / 4}\n\n\n\nCompute Each y_k:\n\ny_0:\n\ny_0 = \\frac{1}{\\sqrt{8}} \\sum_{j=0}^{7} x_j \\omega^{j \\cdot 0} = \\frac{1}{\\sqrt{8}}(0 + 1 + 0 - 1 + 0 + 1 + 0 - 1) = 0\n\ny_1:\n\ny_1 = \\frac{1}{\\sqrt{8}} \\sum_{j=0}^{7} x_j \\omega^{j \\cdot 1}\n\nExpand terms using \\omega^1 = e^{-i \\pi / 4}, \\omega^2 = i, \\omega^3 = -e^{i \\pi / 4}, etc.\nAfter simplifying, y_1 = \\text{[Calculation Continues]}.\n\n(Continue calculations similarly for y_2, y_3, \\dots, y_7.)\n\n\nFinal Steps:\nComplete each term and simplify to express y_k for k = 0, 1, \\dots, 7."
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1d.html",
+    "href": "homework/w11/exercise10-1-1d.html",
+    "title": "Exercise 4.3.1d",
+    "section": "",
+    "text": "4.3.1d\n\n\n\nApply classical Gram–Schmidt orthogonalization to find the full QR factorization of the matrix:\n\n\\mathbf{A} = \\begin{bmatrix} 4 & 8 & 1 \\\\ 0 & 2 & -2 \\\\ 3 & 6 & 7 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1d.html#define-the-columns-of-matrix-mathbfa",
+    "href": "homework/w11/exercise10-1-1d.html#define-the-columns-of-matrix-mathbfa",
+    "title": "Exercise 4.3.1d",
+    "section": "Define the Columns of Matrix \\mathbf{A}",
+    "text": "Define the Columns of Matrix \\mathbf{A}\nRepresent the columns of \\mathbf{A} as vectors:\n\n\\mathbf{a}_1 = \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix}, \\quad \\mathbf{a}_2 = \\begin{bmatrix} 8 \\\\ 2 \\\\ 6 \\end{bmatrix}, \\quad \\mathbf{a}_3 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1d.html#finding-mathbfq_1",
+    "href": "homework/w11/exercise10-1-1d.html#finding-mathbfq_1",
+    "title": "Exercise 4.3.1d",
+    "section": "Finding \\mathbf{q}_1",
+    "text": "Finding \\mathbf{q}_1\nTo find the first orthonormal vector \\mathbf{q}_1, normalize \\mathbf{a}_1.\n\nCalculate the norm of \\mathbf{a}_1:\n\n\\|\\mathbf{a}_1\\| = \\sqrt{4^2 + 0^2 + 3^2} = \\sqrt{16 + 9} = \\sqrt{25} = 5\n\nNormalize \\mathbf{a}_1:\n\n\\mathbf{q}_1 = \\frac{\\mathbf{a}_1}{\\|\\mathbf{a}_1\\|} = \\frac{1}{5} \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix} = \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1d.html#finding-mathbfq_2",
+    "href": "homework/w11/exercise10-1-1d.html#finding-mathbfq_2",
+    "title": "Exercise 4.3.1d",
+    "section": "Finding \\mathbf{q}_2",
+    "text": "Finding \\mathbf{q}_2\nTo find \\mathbf{q}_2, project \\mathbf{a}_2 onto \\mathbf{q}_1 and then subtract this projection from \\mathbf{a}_2.\n\nCalculate the projection of \\mathbf{a}_2 onto \\mathbf{q}_1:\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\left( \\mathbf{a}_2 \\cdot \\mathbf{q}_1 \\right) \\mathbf{q}_1\n\nSince \\mathbf{q}_1 is a unit vector, \\mathbf{q}_1 \\cdot \\mathbf{q}_1 = 1.\nCompute \\mathbf{a}_2 \\cdot \\mathbf{q}_1:\n\n\\mathbf{a}_2 \\cdot \\mathbf{q}_1 = \\begin{bmatrix} 8 \\\\ 2 \\\\ 6 \\end{bmatrix} \\cdot \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\frac{32}{5} + 0 + \\frac{18}{5} = \\frac{50}{5} = 10\n\nCalculate \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2:\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = 10 \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\begin{bmatrix} 8 \\\\ 0 \\\\ 6 \\end{bmatrix}\n\nCalculate \\mathbf{u}_2:\nSubtracting the projection from \\mathbf{a}_2 gives \\mathbf{u}_2:\n\n\\mathbf{u}_2 = \\mathbf{a}_2 - \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_2 = \\begin{bmatrix} 8 \\\\ 2 \\\\ 6 \\end{bmatrix} - \\begin{bmatrix} 8 \\\\ 0 \\\\ 6 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 2 \\\\ 0 \\end{bmatrix}\n\nNormalize \\mathbf{u}_2 to obtain \\mathbf{q}_2:\nThe norm of \\mathbf{u}_2 is:\n\n\\|\\mathbf{u}_2\\| = \\sqrt{0^2 + 2^2 + 0^2} = 2\n\nThus,\n\n\\mathbf{q}_2 = \\frac{\\mathbf{u}_2}{\\|\\mathbf{u}_2\\|} = \\frac{1}{2} \\begin{bmatrix} 0 \\\\ 2 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1d.html#finding-mathbfq_3",
+    "href": "homework/w11/exercise10-1-1d.html#finding-mathbfq_3",
+    "title": "Exercise 4.3.1d",
+    "section": "Finding \\mathbf{q}_3",
+    "text": "Finding \\mathbf{q}_3\nTo find \\mathbf{q}_3, project \\mathbf{a}_3 onto both \\mathbf{q}_1 and \\mathbf{q}_2, and then subtract these projections from \\mathbf{a}_3.\n\nCalculate the projection of \\mathbf{a}_3 onto \\mathbf{q}_1:\n\n\\mathbf{a}_3 \\cdot \\mathbf{q}_1 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} \\cdot \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\frac{4}{5} + 0 + \\frac{21}{5} = \\frac{25}{5} = 5\n\nThen,\n\n\\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_3 = 5 \\begin{bmatrix} \\frac{4}{5} \\\\ 0 \\\\ \\frac{3}{5} \\end{bmatrix} = \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix}\n\nCalculate the projection of \\mathbf{a}_3 onto \\mathbf{q}_2:\n\n\\mathbf{a}_3 \\cdot \\mathbf{q}_2 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} \\cdot \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix} = -2\n\nThen,\n\n\\text{proj}_{\\mathbf{q}_2} \\mathbf{a}_3 = -2 \\begin{bmatrix} 0 \\\\ 1 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} 0 \\\\ -2 \\\\ 0 \\end{bmatrix}\n\nCalculate \\mathbf{u}_3:\nSubtracting both projections from \\mathbf{a}_3 yields \\mathbf{u}_3:\n\n\\mathbf{u}_3 = \\mathbf{a}_3 - \\text{proj}_{\\mathbf{q}_1} \\mathbf{a}_3 - \\text{proj}_{\\mathbf{q}_2} \\mathbf{a}_3 = \\begin{bmatrix} 1 \\\\ -2 \\\\ 7 \\end{bmatrix} - \\begin{bmatrix} 4 \\\\ 0 \\\\ 3 \\end{bmatrix} - \\begin{bmatrix} 0 \\\\ -2 \\\\ 0 \\end{bmatrix} = \\begin{bmatrix} -3 \\\\ 0 \\\\ 4 \\end{bmatrix}\n\nNormalize \\mathbf{u}_3 to obtain \\mathbf{q}_3:\nThe norm of \\mathbf{u}_3 is:\n\n\\|\\mathbf{u}_3\\| = \\sqrt{(-3)^2 + 0^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\n\nThus,\n\n\\mathbf{q}_3 = \\frac{\\mathbf{u}_3}{\\|\\mathbf{u}_3\\|} = \\frac{1}{5} \\begin{bmatrix} -3 \\\\ 0 \\\\ 4 \\end{bmatrix} = \\begin{bmatrix} -\\frac{3}{5} \\\\ 0 \\\\ \\frac{4}{5} \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1d.html#constructing-mathbfq-and-mathbfr-matrices",
+    "href": "homework/w11/exercise10-1-1d.html#constructing-mathbfq-and-mathbfr-matrices",
+    "title": "Exercise 4.3.1d",
+    "section": "Constructing \\mathbf{Q} and \\mathbf{R} Matrices",
+    "text": "Constructing \\mathbf{Q} and \\mathbf{R} Matrices\n\nOrthogonal Matrix \\mathbf{Q}\nCombine \\mathbf{q}_1, \\mathbf{q}\\_2, and \\mathbf{q}_3 as columns to form \\mathbf{Q}:\n\n\\mathbf{Q} = \\begin{bmatrix} \\frac{4}{5} & 0 & -\\frac{3}{5} \\\\ 0 & 1 & 0 \\\\ \\frac{3}{5} & 0 & \\frac{4}{5} \\end{bmatrix}\n\n\n\nUpper Triangular Matrix \\mathbf{R}\nThe entries of \\mathbf{R} are calculated as the dot products of the original columns of \\mathbf{A} with the orthonormal vectors \\mathbf{q}_1, \\mathbf{q}_2, and \\mathbf{q}_3:\n\n\\mathbf{R} = \\begin{bmatrix} \\mathbf{a}_1 \\cdot \\mathbf{q}_1 & \\mathbf{a}_2 \\cdot \\mathbf{q}_1 & \\mathbf{a}_3 \\cdot \\mathbf{q}_1 \\\\ 0 & \\mathbf{a}_2 \\cdot \\mathbf{q}_2 & \\mathbf{a}_3 \\cdot \\mathbf{q}_2 \\\\ 0 & 0 & \\mathbf{a}_3 \\cdot \\mathbf{q}_3 \\end{bmatrix} = \\begin{bmatrix} 5 & 10 & 5 \\\\ 0 & 2 & -2 \\\\ 0 & 0 & 5 \\end{bmatrix}\n\n\n\n\n\n\n\nFinal Answer:\n\n\n\nThe QR factorization of \\mathbf{A} is:\n\n\\mathbf{A} = \\mathbf{Q} \\mathbf{R} = \\begin{bmatrix} \\frac{4}{5} & 0 & -\\frac{3}{5} \\\\ 0 & 1 & 0 \\\\ \\frac{3}{5} & 0 & \\frac{4}{5} \\end{bmatrix} \\begin{bmatrix} 5 & 10 & 5 \\\\ 0 & 2 & -2 \\\\ 0 & 0 & 5 \\end{bmatrix}"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1a.html#dft-of-0-1-0--1",
+    "href": "homework/w11/exercise10-1-1a.html#dft-of-0-1-0--1",
+    "title": "Exercise 10.1.1a",
+    "section": "DFT of [0, 1, 0, -1]",
+    "text": "DFT of [0, 1, 0, -1]\n\nDefine Parameters\nThe vector has n = 4, so:\n\n\\omega = e^{-i \\frac{2\\pi}{4}} = i\n\nThe formula for the DFT is:\n\ny_k = \\frac{1}{\\sqrt{n}} \\sum_{j=0}^{n-1} x_j \\omega^{jk}, \\quad k = 0, 1, \\dots, n-1\n\n\n\nCompute Each y_k:\n\ny_0:\n\ny_0 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 0} = \\frac{1}{2}(0 + 1 + 0 - 1) = 0\n\ny_1:\n\ny_1 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 1} = \\frac{1}{2}(0 + i \\cdot 1 + 0 + (-1) \\cdot (-i)) = \\frac{1}{2}(i + i) = i\n\ny_2:\n\ny_2 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 2} = \\frac{1}{2}(0 + (-1) + 0 + (-1)) = -1\n\ny_3: \ny_3 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 3} = \\frac{1}{2}(0 + (-i) + 0 + (-1) \\cdot i) = \\frac{1}{2}(-i - i) = -i\n\n\n\n\nResult:\nThe DFT of [0, 1, 0, -1] is:\n\ny = [0, i, -1, -i]"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1a.html#dft-of-0-1-0--1ts",
+    "href": "homework/w11/exercise10-1-1a.html#dft-of-0-1-0--1ts",
+    "title": "Exercise 10.1.1a",
+    "section": "DFT of [0, 1, 0, -1]^TS",
+    "text": "DFT of [0, 1, 0, -1]^TS\n\nDefine Parameters\nThe vector has n = 4, so:\n\n\\omega = e^{-i \\frac{2\\pi}{4}} = i\n\nThe formula for the DFT is:\n\ny_k = \\frac{1}{\\sqrt{n}} \\sum_{j=0}^{n-1} x_j \\omega^{jk}, \\quad k = 0, 1, \\dots, n-1\n\n\n\nCompute Each y_k:\n\ny_0:\n\ny_0 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 0} = \\frac{1}{2}(0 + 1 + 0 - 1) = 0\n\ny_1:\n\ny_1 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 1} = \\frac{1}{2}(0 + i \\cdot 1 + 0 + (-1) \\cdot (-i)) = \\frac{1}{2}(i + i) = i\n\ny_2:\n\ny_2 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 2} = \\frac{1}{2}(0 + (-1) + 0 + (-1)) = -1\n\ny_3: \ny_3 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 3} = \\frac{1}{2}(0 + (-i) + 0 + (-1) \\cdot i) = \\frac{1}{2}(-i - i) = -i\n\n\n\n\nResult:\nThe DFT of [0, 1, 0, -1] is:\n\ny = [0, i, -1, -i]"
+  },
+  {
+    "objectID": "homework/w11/exercise10-1-1a.html#dft-of-0-1-0--1t",
+    "href": "homework/w11/exercise10-1-1a.html#dft-of-0-1-0--1t",
+    "title": "Exercise 10.1.1a",
+    "section": "DFT of [0, 1, 0, -1]^T",
+    "text": "DFT of [0, 1, 0, -1]^T\n\nDefine Parameters\nThe vector has n = 4, so:\n\n\\omega = e^{-i \\frac{2\\pi}{4}} = i\n\nThe formula for the DFT is:\n\ny_k = \\frac{1}{\\sqrt{n}} \\sum_{j=0}^{n-1} x_j \\omega^{jk}, \\quad k = 0, 1, \\dots, n-1\n\n\n\nCompute Each y_k:\n\ny_0:\n\ny_0 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 0} = \\frac{1}{2}(0 + 1 + 0 - 1) = 0\n\ny_1:\n\ny_1 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 1} = \\frac{1}{2}(0 + i \\cdot 1 + 0 + (-1) \\cdot (-i)) = \\frac{1}{2}(i + i) = i\n\ny_2:\n\ny_2 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 2} = \\frac{1}{2}(0 + (-1) + 0 + (-1)) = -1\n\ny_3: \ny_3 = \\frac{1}{\\sqrt{4}} \\sum_{j=0}^{3} x_j \\omega^{j \\cdot 3} = \\frac{1}{2}(0 + (-i) + 0 + (-1) \\cdot i) = \\frac{1}{2}(-i - i) = -i\n\n\n\n\nResult:\nThe DFT of [0, 1, 0, -1] is:\n\ny = [0, i, -1, -i]"
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#matrix-representation-of-the-dft",
+    "href": "notes/w11/discrete-fourier-transform.html#matrix-representation-of-the-dft",
+    "title": "Discrete Fourier Transform (DFT)",
+    "section": "Matrix Representation of the DFT",
+    "text": "Matrix Representation of the DFT\nThe DFT can be represented in matrix form. Let:\n\nx = [x_0, x_1, \\dots, x_{n-1}]^T (input vector).\ny = [y_0, y_1, \\dots, y_{n-1}]^T (output vector).\n\nThe transformation is expressed as:\n\ny = F_n x\n\nwhere F_n is the Fourier matrix, given by:\n\nF_n = \\frac{1}{\\sqrt{n}}\n\\begin{bmatrix}\n\\omega^0 & \\omega^0 & \\omega^0 & \\dots & \\omega^0 \\\\\n\\omega^0 & \\omega^1 & \\omega^2 & \\dots & \\omega^{n-1} \\\\\n\\omega^0 & \\omega^2 & \\omega^4 & \\dots & \\omega^{2(n-1)} \\\\\n\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n\\omega^0 & \\omega^{n-1} & \\omega^{2(n-1)} & \\dots & \\omega^{(n-1)^2}\n\\end{bmatrix}, \\quad \\omega = e^{-i \\frac{2\\pi}{n}}\n\n\nFourier Matrix Properties\n\nSymmetry: The Fourier matrix F_n is symmetric, meaning F_n^T = F_n.\nOrthogonality: The rows and columns of F_n are orthogonal, satisfying:\n\nF_n F_n^\\dagger = I_n, \\quad \\text{where } F_n^\\dagger \\text{ is the Hermitian conjugate of } F_n\n\nInverse Fourier Matrix: The inverse of F_n is:\n\nF_n^{-1} = \\frac{1}{\\sqrt{n}}\n\\begin{bmatrix}\n\\omega^0 & \\omega^0 & \\omega^0 & \\dots & \\omega^0 \\\\\n\\omega^0 & \\omega^{-1} & \\omega^{-2} & \\dots & \\omega^{-(n-1)} \\\\\n\\omega^0 & \\omega^{-2} & \\omega^{-4} & \\dots & \\omega^{-2(n-1)} \\\\\n\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n\\omega^0 & \\omega^{-(n-1)} & \\omega^{-2(n-1)} & \\dots & \\omega^{-(n-1)^2}\n\\end{bmatrix}"
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#what-is-the-discrete-fourier-transform",
+    "href": "notes/w11/discrete-fourier-transform.html#what-is-the-discrete-fourier-transform",
+    "title": "Understanding the Discrete Fourier Transform (DFT)",
+    "section": "",
+    "text": "Imagine you’re listening to music. You hear a melody, but the melody is made up of individual notes (frequencies). The Discrete Fourier Transform (DFT) works similarly—it takes a “melody” of data in the time domain (a sequence of numbers) and breaks it into its “notes” (frequency components). This makes it easier to analyze patterns in signals like sound, images, or other data.\nThe DFT transforms a sequence of n-dimensional samples x into a sequence y that reveals how much of each frequency is present in the original data."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#mathematical-definition",
+    "href": "notes/w11/discrete-fourier-transform.html#mathematical-definition",
+    "title": "Understanding the Discrete Fourier Transform (DFT)",
+    "section": "Mathematical Definition",
+    "text": "Mathematical Definition\nGiven an input vector x = [x_0, x_1, \\dots, x_{n-1}]^T, the DFT produces a vector y = [y_0, y_1, \\dots, y_{n-1}]^T, where:\n\ny_k = \\frac{1}{\\sqrt{n}} \\sum_{j=0}^{n-1} x_j \\omega^{jk}, \\quad \\omega = e^{-i \\frac{2\\pi}{n}}, \\quad k = 0, 1, \\dots, n-1.\n\n\nBreaking Down the Formula:\n\nInput x_j: These are the original “time-domain” samples, like the signal you’re analyzing.\nFrequency k: Each y_k tells us how much of the k-th frequency is present in the signal.\nExponential Term \\omega^{jk}: Think of this as a “rotating clock hand” that sweeps through frequencies. For each frequency k, it adds up how the signal aligns with that frequency."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#matrix-formulation",
+    "href": "notes/w11/discrete-fourier-transform.html#matrix-formulation",
+    "title": "Understanding the Discrete Fourier Transform (DFT)",
+    "section": "Matrix Formulation",
+    "text": "Matrix Formulation\nIf the DFT feels abstract, imagine it as a matrix operation. You can rewrite it like this:\n\ny = F_n x\n\nwhere F_n is the Fourier matrix, a kind of transformation matrix:\n\nF_n = \\frac{1}{\\sqrt{n}}\n\\begin{bmatrix}\n1 & 1 & 1 & \\dots & 1 \\\\\n1 & \\omega & \\omega^2 & \\dots & \\omega^{n-1} \\\\\n1 & \\omega^2 & \\omega^4 & \\dots & \\omega^{2(n-1)} \\\\\n\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n1 & \\omega^{n-1} & \\omega^{2(n-1)} & \\dots & \\omega^{(n-1)^2}\n\\end{bmatrix}, \\quad \\omega = e^{-i \\frac{2\\pi}{n}}\n\n\nAnalogy: The Fourier Matrix as a Recipe\nImagine x is a mixture of ingredients, like flour, sugar, and eggs. The Fourier matrix F_n is like a recipe that transforms those ingredients into a cake y. The recipe shows how much of each ingredient (frequency) contributes to the final result."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#key-properties-of-the-fourier-matrix",
+    "href": "notes/w11/discrete-fourier-transform.html#key-properties-of-the-fourier-matrix",
+    "title": "Understanding the Discrete Fourier Transform (DFT)",
+    "section": "Key Properties of the Fourier Matrix",
+    "text": "Key Properties of the Fourier Matrix\n\nSymmetry: The Fourier matrix is symmetric, meaning you can “transpose” it without changing its structure.\nOrthogonality: The rows and columns of F_n are orthogonal, meaning they’re independent of one another. This ensures no frequency overlaps with another.\nInversion: You can reverse the transformation (go back to your original “ingredients”) using the Inverse Fourier Transform, represented as:\n\nF_n^{-1} = \\frac{1}{\\sqrt{n}}\n\\begin{bmatrix}\n1 & 1 & 1 & \\dots & 1 \\\\\n1 & \\omega^{-1} & \\omega^{-2} & \\dots & \\omega^{-(n-1)} \\\\\n1 & \\omega^{-2} & \\omega^{-4} & \\dots & \\omega^{-2(n-1)} \\\\\n\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n1 & \\omega^{-(n-1)} & \\omega^{-2(n-1)} & \\dots & \\omega^{-(n-1)^2}\n\\end{bmatrix}"
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#example-dft-of-a-simple-signal",
+    "href": "notes/w11/discrete-fourier-transform.html#example-dft-of-a-simple-signal",
+    "title": "Understanding the Discrete Fourier Transform (DFT)",
+    "section": "Example: DFT of a Simple Signal",
+    "text": "Example: DFT of a Simple Signal\nLet’s compute the DFT of x = [1, 1, 1, 1]^T.\n\nStep 1: Define the Fourier Matrix\nWe already built F_4:\n\nF_4 = \\frac{1}{2}\n\\begin{bmatrix}\n1 & 1 & 1 & 1 \\\\\n1 & i & -1 & -i \\\\\n1 & -1 & 1 & -1 \\\\\n1 & -i & -1 & i\n\\end{bmatrix}.\n\n\n\nStep 2: Perform Matrix Multiplication\nMultiply F_4 by x:\n\ny = F_4 x = \\frac{1}{2}\n\\begin{bmatrix}\n1 & 1 & 1 & 1 \\\\\n1 & i & -1 & -i \\\\\n1 & -1 & 1 & -1 \\\\\n1 & -i & -1 & i\n\\end{bmatrix}\n\\begin{bmatrix}\n1 \\\\ 1 \\\\ 1 \\\\ 1\n\\end{bmatrix}.\n\nPerform the computation row by row:\n\nRow 0: 1 + 1 + 1 + 1 = 4,\nRow 1: 1 + i - 1 - i = 0,\nRow 2: 1 - 1 + 1 - 1 = 0,\nRow 3: 1 - i - 1 + i = 0.\n\nSo:\n\ny = \\frac{1}{2}\n\\begin{bmatrix}\n4 \\\\ 0 \\\\ 0 \\\\ 0\n\\end{bmatrix}.\n\n\n\nStep 3: Interpret the Result\nThe DFT reveals that the input signal [1, 1, 1, 1] contains only a constant frequency component, represented by y_0 = 2, and no higher frequencies."
+  },
+  {
+    "objectID": "notes/w11/discrete-fourier-transform.html#from-summation-notation-to-the-fourier-matrix",
+    "href": "notes/w11/discrete-fourier-transform.html#from-summation-notation-to-the-fourier-matrix",
+    "title": "Understanding the Discrete Fourier Transform (DFT)",
+    "section": "From Summation Notation to the Fourier Matrix",
+    "text": "From Summation Notation to the Fourier Matrix\n\nThe Summation:\nIn the summation formula:\n\ny_k = \\frac{1}{\\sqrt{n}} \\sum_{j=0}^{n-1} x_j \\omega^{jk},\n\nwe are calculating y_k for each k, where k represents the k-th frequency component. For a sequence of length n, we compute n values of y_k. Each y_k is essentially a weighted sum of the input vector x, where the weights are determined by \\omega^{jk}, the complex exponential.\n\n\nThe Matrix Formulation:\nInstead of calculating y_k for each k one by one, we can express the entire computation as a matrix multiplication. To do this, we arrange the coefficients \\omega^{jk} into a matrix. This matrix, called the Fourier matrix, performs the DFT transformation in one step.\n\n\n\nBuilding the Fourier Matrix:\nThe Fourier matrix F_n is constructed as follows:\n\nStructure: The element in the k-th row and j-th column of the Fourier matrix is \\frac{1}{\\sqrt{n}} \\omega^{jk}, where \\omega = e^{-i \\frac{2\\pi}{n}}.\nRows and Columns:\n\nEach row corresponds to a frequency k.\nEach column corresponds to a time sample j.\n\nGeneral Form: The n \\times n Fourier matrix is:\n\nF_n = \\frac{1}{\\sqrt{n}}\n\\begin{bmatrix}\n1 & 1 & 1 & \\dots & 1 \\\\\n1 & \\omega & \\omega^2 & \\dots & \\omega^{n-1} \\\\\n1 & \\omega^2 & \\omega^4 & \\dots & \\omega^{2(n-1)} \\\\\n\\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n1 & \\omega^{n-1} & \\omega^{2(n-1)} & \\dots & \\omega^{(n-1)^2}\n\\end{bmatrix}.\n\n\n\n\n\nExample: Constructing F_4\nLet n = 4, so \\omega = e^{-i \\pi / 2} = i. Using the general formula, we build the Fourier matrix:\n\nRow 0: This row corresponds to k = 0:  [1, 1, 1, 1]. \nRow 1: This row corresponds to k = 1:  [1, \\omega, \\omega^2, \\omega^3] = [1, i, -1, -i]. \nRow 2: This row corresponds to k = 2:  [1, \\omega^2, \\omega^4, \\omega^6] = [1, -1, 1, -1]. \nRow 3: This row corresponds to k = 3:  [1, \\omega^3, \\omega^6, \\omega^9] = [1, -i, -1, i]. \n\nFinally, combine these rows into the matrix:\n\nF_4 = \\frac{1}{2}\n\\begin{bmatrix}\n1 & 1 & 1 & 1 \\\\\n1 & i & -1 & -i \\\\\n1 & -1 & 1 & -1 \\\\\n1 & -i & -1 & i\n\\end{bmatrix}.\n\nThis matrix performs the DFT when multiplied by the input vector x.\n\n\n\nWhy Does This Work?\nThe Fourier matrix is essentially a “recipe” for how to mix the input data x with the complex exponential terms \\omega^{jk} to extract the frequency components y_k. Each row of the matrix corresponds to a specific frequency k, and the entries in that row are the weights \\omega^{jk} used to compute how much of x aligns with that frequency."
   }
 ]

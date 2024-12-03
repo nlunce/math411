@@ -29,7 +29,7 @@ preview:
 
 ## **Overview**
 
-A **root of unity** is a complex number that, when raised to a specific positive integer power $n$, equals 1. These roots are central in number theory, algebra, and applications such as Fourier transforms.
+A **root of unity** is a complex number that, when raised to a specific positive integer power $n$, equals 1. These roots are central in number theory, algebra, and applications such as [**Fourier transforms**](./fourier-transform.html).
 
 ## **Definition**
 
