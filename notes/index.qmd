@@ -75,8 +75,8 @@ preview:
 
 # **WEEK 11**
 
-- [The Fourier Transform](./w11/fourier-transform.html)
-- [Roots of Unity](./w11/root-of-unity.html)
-- [The Discrete Fourier Transform (DFT)](./w11/discrete-fourier-transform.html)
-
 # **WEEK 12**
+
+- [The Fourier Transform](./w12/fourier-transform.html)
+- [Roots of Unity](./w12/root-of-unity.html)
+- [The Discrete Fourier Transform (DFT)](./w12/discrete-fourier-transform.html)

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Nathan Lunceford">
 
-<title>The Gauss-Seidel Method for Solving Linear Systems – MATH411</title>
+<title>Roots of Unity – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1668,7 +1668,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="../../../">
+<meta name="quarto:offset" content="../../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4782,7 +4782,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4793,23 +4793,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../.././homework/index.html"> 
+    <a class="nav-link" href="../.././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../.././reality-checks/index.html"> 
+    <a class="nav-link" href="../.././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../.././worksheets/index.html"> 
+    <a class="nav-link" href="../.././worksheets/index.html"> 
 <span class="menu-text">WORKSHEETS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../.././notes/index.html"> 
+    <a class="nav-link" href="../.././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../.././index.html"> 
+    <a class="nav-link" href="../.././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4831,18 +4831,14 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><strong>Overview</strong></a></li>
-  <li><a href="#the-gauss-seidel-method" id="toc-the-gauss-seidel-method" class="nav-link" data-scroll-target="#the-gauss-seidel-method"><strong>The Gauss-Seidel Method</strong></a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><strong>Example</strong></a>
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><strong>Definition</strong></a>
   <ul class="collapse">
-  <li><a href="#system-of-equations" id="toc-system-of-equations" class="nav-link" data-scroll-target="#system-of-equations"><strong>System of Equations</strong></a></li>
-  <li><a href="#step-1-rearrange-equations" id="toc-step-1-rearrange-equations" class="nav-link" data-scroll-target="#step-1-rearrange-equations"><strong>Step 1: Rearrange Equations</strong></a></li>
-  <li><a href="#step-2-iterative-updates" id="toc-step-2-iterative-updates" class="nav-link" data-scroll-target="#step-2-iterative-updates"><strong>Step 2: Iterative Updates</strong></a></li>
+  <li><a href="#key-properties" id="toc-key-properties" class="nav-link" data-scroll-target="#key-properties"><strong>Key Properties</strong></a></li>
   </ul></li>
-  <li><a href="#convergence" id="toc-convergence" class="nav-link" data-scroll-target="#convergence"><strong>Convergence</strong></a></li>
-  <li><a href="#convergence-conditions" id="toc-convergence-conditions" class="nav-link" data-scroll-target="#convergence-conditions"><strong>Convergence Conditions</strong></a></li>
-  <li><a href="#advantages" id="toc-advantages" class="nav-link" data-scroll-target="#advantages"><strong>Advantages</strong></a></li>
-  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><strong>Limitations</strong></a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><strong>Summary</strong></a></li>
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples"><strong>Examples</strong></a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications"><strong>Applications</strong></a></li>
+  <li><a href="#visual-representation" id="toc-visual-representation" class="nav-link" data-scroll-target="#visual-representation"><strong>Visual Representation</strong></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4851,7 +4847,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">The Gauss-Seidel Method for Solving Linear Systems</h1>
+<h1 class="title">Roots of Unity</h1>
 </div>
 
 
@@ -4876,124 +4872,63 @@ window.Quarto = {
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview"><strong>Overview</strong></h2>
-<p>The <strong>Gauss-Seidel Method</strong> is an iterative technique for solving <a href="../../w06/linear-systems.html"><strong>systems of linear equations</strong></a>. It improves upon the <a href="./jacobi-method.html"><strong>Jacobi Method</strong></a> by using updated values of variables immediately within each iteration, often leading to faster convergence.</p>
+<p>A <strong>root of unity</strong> is a complex number that, when raised to a specific positive integer power <span class="math inline">n</span>, equals 1. These roots are central in number theory, algebra, and applications such as <a href="./fourier-transform.html"><strong>Fourier transforms</strong></a>.</p>
 </section>
-<section id="the-gauss-seidel-method" class="level2">
-<h2 class="anchored" data-anchor-id="the-gauss-seidel-method"><strong>The Gauss-Seidel Method</strong></h2>
-<p>Consider the system:</p>
+<section id="definition" class="level2">
+<h2 class="anchored" data-anchor-id="definition"><strong>Definition</strong></h2>
+<p>A complex number <span class="math inline">z</span> is an <span class="math inline">n</span>-th root of unity if:</p>
 <p><span class="math display">
-A\mathbf{x} = \mathbf{b}
+z^n = 1
 </span></p>
-<p>where <span class="math inline">A</span> is decomposed into:</p>
-<ul>
-<li><span class="math inline">D</span>: The diagonal components of <span class="math inline">A</span>,</li>
-<li><span class="math inline">L</span>: The strictly lower triangular components of <span class="math inline">A</span>,</li>
-<li><span class="math inline">U</span>: The strictly upper triangular components of <span class="math inline">A</span>.</li>
-</ul>
-<p>Thus:</p>
+<p>The <span class="math inline">n</span>-th roots of unity are given by:</p>
 <p><span class="math display">
-A = D + L + U
+z_k = e^{2\pi i k / n} = \cos\left(\frac{2\pi k}{n}\right) + i \sin\left(\frac{2\pi k}{n}\right)
 </span></p>
-<p>Rewriting the system:</p>
-<p><span class="math display">
-(D + L + U)\mathbf{x} = \mathbf{b}
-</span></p>
-<p>Solving for <span class="math inline">\mathbf{x}</span>, the iterative formula for the Gauss-Seidel Method is:</p>
-<p><span class="math display">
-\mathbf{x}_{k+1} = D^{-1} \left( \mathbf{b} - U\mathbf{x}_{k} - L\mathbf{x}_{k+1} \right), \quad \text{for } k = 0, 1, 2, \dots
-</span></p>
-<p>Here:</p>
-<ul>
-<li><span class="math inline">\mathbf{x}_0</span>: Initial guess vector.</li>
-<li><span class="math inline">k</span>: Iteration number.</li>
-</ul>
-</section>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example"><strong>Example</strong></h2>
-<section id="system-of-equations" class="level3">
-<h3 class="anchored" data-anchor-id="system-of-equations"><strong>System of Equations</strong></h3>
-<p>Consider the system:</p>
-<p><span class="math display">
-4u + v + w = 7, \quad u + 3v + w = 8, \quad u + v + 5w = 6
-</span></p>
-</section>
-<section id="step-1-rearrange-equations" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-rearrange-equations"><strong>Step 1: Rearrange Equations</strong></h3>
-<p>Rewriting each equation to isolate the variables:</p>
-<p><span class="math display">
-u = \frac{7 - v - w}{4}, \quad v = \frac{8 - u - w}{3}, \quad w = \frac{6 - u - v}{5}
-</span></p>
-</section>
-<section id="step-2-iterative-updates" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-iterative-updates"><strong>Step 2: Iterative Updates</strong></h3>
-<p>Start with an initial guess, <span class="math inline">\mathbf{x}_0 = \begin{bmatrix} u_0 \\ v_0 \\ w_0 \end{bmatrix} = \begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}</span>. The iterations proceed as follows:</p>
+<p>for <span class="math inline">k = 0, 1, 2, \dots, n-1</span>.</p>
+<section id="key-properties" class="level3">
+<h3 class="anchored" data-anchor-id="key-properties"><strong>Key Properties</strong></h3>
 <ol type="1">
-<li><p><strong>Iteration 1 (<span class="math inline">k = 1</span>):</strong></p>
-<p><span class="math display">
-u^{(1)} = \frac{7 - 0 - 0}{4} = 1.75, \quad
-v^{(1)} = \frac{8 - 1.75 - 0}{3} = 2.083, \quad
-w^{(1)} = \frac{6 - 1.75 - 2.083}{5} = 0.833
-</span></p>
-<p><span class="math display">
-\mathbf{x}^{(1)} = \begin{bmatrix} 1.75 \\ 2.083 \\ 0.833 \end{bmatrix}
-</span></p></li>
-<li><p><strong>Iteration 2 (<span class="math inline">k = 2</span>):</strong></p>
-<p>Using updated values:</p>
-<p><span class="math display">
-u^{(2)} = \frac{7 - 2.083 - 0.833}{4} = 1.521
-</span></p>
-<p><span class="math display">
-v^{(2)} = \frac{8 - 1.521 - 0.833}{3} = 1.882
-</span></p>
-<p><span class="math display">
-w^{(2)} = \frac{6 - 1.521 - 1.882}{5} = 0.919
-</span></p>
-<p><span class="math display">
-\mathbf{x}^{(2)} = \begin{bmatrix} 1.521 \\ 1.882 \\ 0.919 \end{bmatrix}
-</span></p></li>
-<li><p><strong>Iteration 3 (<span class="math inline">k = 3</span>):</strong></p>
-<p>Repeating the process:</p>
-<p><span class="math display">
-u^{(3)} = 1.550, \quad v^{(3)} = 1.866, \quad w^{(3)} = 0.916
-</span></p>
-<p><span class="math display">
-\mathbf{x}^{(3)} = \begin{bmatrix} 1.550 \\ 1.866 \\ 0.916 \end{bmatrix}
-</span></p></li>
+<li><strong>Number of Roots</strong>: There are exactly <span class="math inline">n</span> distinct <span class="math inline">n</span>-th roots of unity.</li>
+<li><strong>Symmetry</strong>: The roots are evenly distributed on the unit circle in the complex plane.</li>
+<li><strong>Primitive Roots</strong>: A root <span class="math inline">z_k</span> is <strong>primitive</strong> if it generates all <span class="math inline">n</span>-th roots of unity under repeated multiplication. This happens when <span class="math inline">\gcd(k, n) = 1</span>.</li>
+<li><strong>Sum of Roots</strong>: The sum of all <span class="math inline">n</span>-th roots of unity is zero: <span class="math display">
+\sum_{k=0}^{n-1} z_k = 0
+</span></li>
 </ol>
 </section>
 </section>
-<section id="convergence" class="level2">
-<h2 class="anchored" data-anchor-id="convergence"><strong>Convergence</strong></h2>
-<p>The iterations converge to:</p>
+<section id="examples" class="level2">
+<h2 class="anchored" data-anchor-id="examples"><strong>Examples</strong></h2>
+<ol type="1">
+<li><p><strong>2nd Roots of Unity (<span class="math inline">n=2</span>)</strong>:</p>
 <p><span class="math display">
-\mathbf{x} = \begin{bmatrix} 1.6 \\ 1.8 \\ 0.9 \end{bmatrix}
-</span></p>
-</section>
-<section id="convergence-conditions" class="level2">
-<h2 class="anchored" data-anchor-id="convergence-conditions"><strong>Convergence Conditions</strong></h2>
-<p>The Gauss-Seidel Method converges if <span class="math inline">A</span> is <strong>strictly diagonally dominant</strong>, meaning:</p>
+z_0 = 1, \quad z_1 = -1
+</span></p></li>
+<li><p><strong>3rd Roots of Unity (<span class="math inline">n=3</span>)</strong>:</p>
 <p><span class="math display">
-|a_{ii}| &gt; \sum_{j \neq i} |a_{ij}|
-</span></p>
-<p>for all rows <span class="math inline">i</span>, or if <span class="math inline">A</span> is <strong>symmetric positive definite</strong>.</p>
+z_0 = 1, \quad z_1 = e^{2\pi i / 3} = -\frac{1}{2} + i\frac{\sqrt{3}}{2}, \quad z_2 = e^{4\pi i / 3} = -\frac{1}{2} - i\frac{\sqrt{3}}{2}
+</span></p></li>
+<li><p><strong>4th Roots of Unity (<span class="math inline">n=4</span>)</strong>: <span class="math display">
+z_0 = 1, \quad z_1 = i, \quad z_2 = -1, \quad z_3 = -i
+</span></p></li>
+</ol>
+<p>These roots divide the unit circle into equal parts.</p>
 </section>
-<section id="advantages" class="level2">
-<h2 class="anchored" data-anchor-id="advantages"><strong>Advantages</strong></h2>
-<ul>
-<li>Faster convergence than the Jacobi Method due to the use of updated values.</li>
-<li>Efficient for solving large systems with appropriate properties.</li>
-</ul>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications"><strong>Applications</strong></h2>
+<ol type="1">
+<li><strong>Fourier Transform</strong>: Roots of unity are used to compute discrete Fourier transforms, enabling efficient signal processing.</li>
+<li><strong>Cyclotomic Polynomials</strong>: These polynomials, defined by the roots of unity, are used in number theory and field theory.</li>
+<li><strong>Algebraic Equations</strong>: Roots of unity help solve polynomial equations like <span class="math inline">x^n - 1 = 0</span>.</li>
+</ol>
 </section>
-<section id="limitations" class="level2">
-<h2 class="anchored" data-anchor-id="limitations"><strong>Limitations</strong></h2>
-<ul>
-<li>May fail to converge if <span class="math inline">A</span> is not strictly diagonally dominant or symmetric positive definite.</li>
-<li>Sequential updates limit parallel computation.</li>
-</ul>
+<section id="visual-representation" class="level2">
+<h2 class="anchored" data-anchor-id="visual-representation"><strong>Visual Representation</strong></h2>
+<p>The roots of unity lie on the unit circle in the complex plane, at equal angular intervals of <span class="math inline">\frac{2\pi}{n}</span> radians. Each root corresponds to a rotation by <span class="math inline">\frac{2\pi k}{n}</span>.</p>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary"><strong>Summary</strong></h2>
-<p>The Gauss-Seidel Method is a powerful iterative technique for solving linear systems, particularly when <span class="math inline">A</span> is strictly diagonally dominant or symmetric positive definite. Its reliance on updated values accelerates convergence but also imposes matrix property requirements for guaranteed success.</p>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
+<p>Roots of unity provide a geometric and algebraic foundation for understanding complex numbers and their properties. Their applications extend across mathematics, engineering, and physics, making them a powerful concept to explore.</p>
 
 
 </section>
