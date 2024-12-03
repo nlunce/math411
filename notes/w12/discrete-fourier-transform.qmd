@@ -33,14 +33,12 @@ Imagine you’re listening to music. You hear a melody, but the melody is made u
 
 The DFT transforms a sequence of $n$-dimensional samples $x$ into a sequence $y$ that reveals how much of each frequency is present in the original data.
 
----
-
 ## **Mathematical Definition**
 
 Given an input vector $x = [x_0, x_1, \dots, x_{n-1}]^T$, the DFT produces a vector $y = [y_0, y_1, \dots, y_{n-1}]^T$, where:
 
 $$
-y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}, \quad \omega = e^{-i \frac{2\pi}{n}}, \quad k = 0, 1, \dots, n-1.
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}, \quad \omega = e^{-i \frac{2\pi}{n}}, \quad k = 0, 1, \dots, n-1
 $$
 
 ### Breaking Down the Formula:
@@ -49,8 +47,6 @@ $$
 2. **Frequency $k$**: Each $y_k$ tells us how much of the $k$-th frequency is present in the signal.
 3. **Exponential Term $\omega^{jk}$**: Think of this as a "rotating clock hand" that sweeps through frequencies. For each frequency $k$, it adds up how the signal aligns with that frequency.
 
----
-
 ## **From Summation Notation to the Fourier Matrix**
 
 ### The Summation:
@@ -58,7 +54,7 @@ $$
 In the summation formula:
 
 $$
-y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk},
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}
 $$
 
 we are calculating $y_k$ for each $k$, where $k$ represents the $k$-th frequency component. For a sequence of length $n$, we compute $n$ values of $y_k$. Each $y_k$ is essentially a weighted sum of the input vector $x$, where the weights are determined by $\omega^{jk}$, the complex exponential.
@@ -66,8 +62,6 @@ we are calculating $y_k$ for each $k$, where $k$ represents the $k$-th frequency
 ### The Matrix Formulation:
 
 Instead of calculating $y_k$ for each $k$ one by one, we can express the entire computation as a **matrix multiplication**. To do this, we arrange the coefficients $\omega^{jk}$ into a matrix. This matrix, called the **Fourier matrix**, performs the DFT transformation in one step.
-
----
 
 ### Building the Fourier Matrix:
 
@@ -91,26 +85,57 @@ The Fourier matrix $F_n$ is constructed as follows:
    1 & \omega^2 & \omega^4 & \dots & \omega^{2(n-1)} \\
    \vdots & \vdots & \vdots & \ddots & \vdots \\
    1 & \omega^{n-1} & \omega^{2(n-1)} & \dots & \omega^{(n-1)^2}
-   \end{bmatrix}.
+   \end{bmatrix}
    $$
 
----
+### **Why Are the Leftmost Column and Top Row All Ones?**
+
+#### Leftmost Column:
+
+The leftmost column corresponds to $k = 0$, which represents the **"DC component"** (the constant or average value of the signal). For $k = 0$, the exponential term becomes:
+
+$$
+\omega^{jk} = \omega^{j \cdot 0} = 1
+$$
+
+This means every value in the signal $x$ contributes equally to $y_0$, which measures the average (or overall "weight") of the signal.
+
+#### Top Row:
+
+The top row corresponds to $j = 0$, which represents the **contribution of the first time sample** across all frequencies. For $j = 0$, the exponential term simplifies to:
+
+$$
+\omega^{jk} = \omega^{0 \cdot k} = 1
+$$
+
+This reflects the fact that the first sample $x_0$ is "aligned" with all frequencies equally—it doesn't rotate or oscillate, so its contribution is uniform across all frequencies.
 
 ### Example: Constructing $F_4$
 
 Let $n = 4$, so $\omega = e^{-i \pi / 2} = i$. Using the general formula, we build the Fourier matrix:
 
 1. **Row 0**: This row corresponds to $k = 0$:
-   $$ [1, 1, 1, 1]. $$
+
+   $$
+   [1, 1, 1, 1]
+   $$
 
 2. **Row 1**: This row corresponds to $k = 1$:
-   $$ [1, \omega, \omega^2, \omega^3] = [1, i, -1, -i]. $$
+
+   $$
+    [1, \omega, \omega^2, \omega^3] = [1, i, -1, -i]
+   $$
 
 3. **Row 2**: This row corresponds to $k = 2$:
-   $$ [1, \omega^2, \omega^4, \omega^6] = [1, -1, 1, -1]. $$
+
+   $$
+   [1, \omega^2, \omega^4, \omega^6] = [1, -1, 1, -1]
+   $$
 
 4. **Row 3**: This row corresponds to $k = 3$:
-   $$ [1, \omega^3, \omega^6, \omega^9] = [1, -i, -1, i]. $$
+   $$
+   [1, \omega^3, \omega^6, \omega^9] = [1, -i, -1, i]
+   $$
 
 Finally, combine these rows into the matrix:
 
@@ -121,18 +146,10 @@ F_4 = \frac{1}{2}
 1 & i & -1 & -i \\
 1 & -1 & 1 & -1 \\
 1 & -i & -1 & i
-\end{bmatrix}.
+\end{bmatrix}
 $$
 
 This matrix performs the DFT when multiplied by the input vector $x$.
-
----
-
-### Why Does This Work?
-
-The Fourier matrix is essentially a "recipe" for how to mix the input data $x$ with the complex exponential terms $\omega^{jk}$ to extract the frequency components $y_k$. Each row of the matrix corresponds to a specific frequency $k$, and the entries in that row are the weights $\omega^{jk}$ used to compute how much of $x$ aligns with that frequency.
-
----
 
 ## **Example: DFT of a Simple Signal**
 
@@ -149,7 +166,7 @@ F_4 = \frac{1}{2}
 1 & i & -1 & -i \\
 1 & -1 & 1 & -1 \\
 1 & -i & -1 & i
-\end{bmatrix}.
+\end{bmatrix}
 $$
 
 ### **Step 2: Perform Matrix Multiplication**
@@ -166,15 +183,15 @@ y = F_4 x = \frac{1}{2}
 \end{bmatrix}
 \begin{bmatrix}
 1 \\ 1 \\ 1 \\ 1
-\end{bmatrix}.
+\end{bmatrix}
 $$
 
 Perform the computation row by row:
 
-1. Row 0: $1 + 1 + 1 + 1 = 4$,
-2. Row 1: $1 + i - 1 - i = 0$,
-3. Row 2: $1 - 1 + 1 - 1 = 0$,
-4. Row 3: $1 - i - 1 + i = 0$.
+1. Row 0: $1 + 1 + 1 + 1 = 4$
+2. Row 1: $1 + i - 1 - i = 0$
+3. Row 2: $1 - 1 + 1 - 1 = 0$
+4. Row 3: $1 - i - 1 + i = 0$
 
 So:
 
@@ -182,15 +199,13 @@ $$
 y = \frac{1}{2}
 \begin{bmatrix}
 4 \\ 0 \\ 0 \\ 0
-\end{bmatrix}.
+\end{bmatrix}
 $$
 
 ### **Step 3: Interpret the Result**
 
 The DFT reveals that the input signal $[1, 1, 1, 1]$ contains only a constant frequency component, represented by $y_0 = 2$, and no higher frequencies.
 
----
-
 ## **Conclusion**
 
-The transition from summation notation to the Fourier matrix helps us see the DFT as a compact, structured operation. By arranging the weights $\omega^{jk}$ into a matrix, we can perform the transformation efficiently and systematically. The Fourier matrix is not just a tool—it’s a roadmap for understanding how data in the time domain connects to its frequency representation.
+The leftmost column and top row of the Fourier matrix are all ones because they represent the "constant" contributions of the signal and the uniform weighting of the first sample, respectively. Understanding this structure makes it easier to interpret the Fourier matrix and the transformation it performs. By breaking down the matrix into its rows and columns, the DFT reveals how the time-domain signal aligns with different frequencies, giving us a deeper insight into the data.
