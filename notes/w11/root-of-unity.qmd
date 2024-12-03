@@ -1,0 +1,93 @@
+---
+title: 'Roots of Unity'
+author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show Code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
+---
+
+## **Overview**
+
+A **root of unity** is a complex number that, when raised to a specific positive integer power $n$, equals 1. These roots are central in number theory, algebra, and applications such as Fourier transforms.
+
+## **Definition**
+
+A complex number $z$ is an $n$-th root of unity if:
+
+$$
+z^n = 1
+$$
+
+The $n$-th roots of unity are given by:
+
+$$
+z_k = e^{2\pi i k / n} = \cos\left(\frac{2\pi k}{n}\right) + i \sin\left(\frac{2\pi k}{n}\right)
+$$
+
+for $k = 0, 1, 2, \dots, n-1$.
+
+### **Key Properties**
+
+1. **Number of Roots**: There are exactly $n$ distinct $n$-th roots of unity.
+2. **Symmetry**: The roots are evenly distributed on the unit circle in the complex plane.
+3. **Primitive Roots**: A root $z_k$ is **primitive** if it generates all $n$-th roots of unity under repeated multiplication. This happens when $\gcd(k, n) = 1$.
+4. **Sum of Roots**: The sum of all $n$-th roots of unity is zero:
+   $$
+   \sum_{k=0}^{n-1} z_k = 0
+   $$
+
+## **Examples**
+
+1. **2nd Roots of Unity ($n=2$)**:
+
+   $$
+   z_0 = 1, \quad z_1 = -1
+   $$
+
+2. **3rd Roots of Unity ($n=3$)**:
+
+   $$
+   z_0 = 1, \quad z_1 = e^{2\pi i / 3} = -\frac{1}{2} + i\frac{\sqrt{3}}{2}, \quad z_2 = e^{4\pi i / 3} = -\frac{1}{2} - i\frac{\sqrt{3}}{2}
+   $$
+
+3. **4th Roots of Unity ($n=4$)**:
+   $$
+   z_0 = 1, \quad z_1 = i, \quad z_2 = -1, \quad z_3 = -i
+   $$
+
+These roots divide the unit circle into equal parts.
+
+## **Applications**
+
+1. **Fourier Transform**: Roots of unity are used to compute discrete Fourier transforms, enabling efficient signal processing.
+2. **Cyclotomic Polynomials**: These polynomials, defined by the roots of unity, are used in number theory and field theory.
+3. **Algebraic Equations**: Roots of unity help solve polynomial equations like $x^n - 1 = 0$.
+
+## **Visual Representation**
+
+The roots of unity lie on the unit circle in the complex plane, at equal angular intervals of $\frac{2\pi}{n}$ radians. Each root corresponds to a rotation by $\frac{2\pi k}{n}$.
+
+## **Conclusion**
+
+Roots of unity provide a geometric and algebraic foundation for understanding complex numbers and their properties. Their applications extend across mathematics, engineering, and physics, making them a powerful concept to explore.
