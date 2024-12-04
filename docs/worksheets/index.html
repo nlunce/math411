@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nathan Lunceford">
 
-<title>Understanding the Discrete Fourier Transform (DFT) – MATH411</title>
+<title>WORKSHEETS – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1668,7 +1667,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="../../">
+<meta name="quarto:offset" content="../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4711,65 +4710,6 @@ vertical-align: -.125em;
   }
 }</script>
 
-  
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var head = document.getElementsByTagName("head")[0];
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
-      head.appendChild(link);
-
-      var script = document.createElement("script");
-      script.type = "text/javascript";
-      script.src  = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
-      script.async = false;
-      script.addEventListener('load', function() {
-        var mathElements = document.getElementsByClassName("math");
-          var macros = [];
-          for (var i = 0; i < mathElements.length; i++) {
-            var texText = mathElements[i].firstChild;
-            if (mathElements[i].tagName == "SPAN") {
-              window.katex.render(texText.data, mathElements[i], {
-                displayMode: mathElements[i].classList.contains('display'),
-                throwOnError: false,
-                macros: macros,
-                fleqn: false
-              });
-            }
-          }
-      });
-      head.appendChild(script);
-    });
-  </script>
-  
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <style type="text/css">
 </style>
@@ -4782,7 +4722,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4793,23 +4733,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../.././homework/index.html"> 
+    <a class="nav-link" href=".././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../.././reality-checks/index.html"> 
+    <a class="nav-link" href=".././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../.././worksheets/index.html"> 
+    <a class="nav-link" href=".././worksheets/index.html"> 
 <span class="menu-text">WORKSHEETS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../.././notes/index.html"> 
+    <a class="nav-link" href=".././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../.././index.html"> 
+    <a class="nav-link" href=".././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4825,42 +4765,21 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#what-is-the-discrete-fourier-transform-dft" id="toc-what-is-the-discrete-fourier-transform-dft" class="nav-link active" data-scroll-target="#what-is-the-discrete-fourier-transform-dft"><strong>What is the Discrete Fourier Transform (DFT)?</strong></a></li>
-  <li><a href="#mathematical-definition" id="toc-mathematical-definition" class="nav-link" data-scroll-target="#mathematical-definition"><strong>Mathematical Definition</strong></a></li>
-  <li><a href="#what-is-omega-and-why-does-omega1--i" id="toc-what-is-omega-and-why-does-omega1--i" class="nav-link" data-scroll-target="#what-is-omega-and-why-does-omega1--i"><strong>What is <span class="math inline">\omega</span> and Why Does <span class="math inline">\omega^1 = -i</span>?</strong></a>
-  <ul class="collapse">
-  <li><a href="#step-1-define-omega" id="toc-step-1-define-omega" class="nav-link" data-scroll-target="#step-1-define-omega"><strong>Step 1: Define <span class="math inline">\omega</span></strong></a></li>
-  <li><a href="#step-2-expand-e-i-fracpi2-using-eulers-formula" id="toc-step-2-expand-e-i-fracpi2-using-eulers-formula" class="nav-link" data-scroll-target="#step-2-expand-e-i-fracpi2-using-eulers-formula"><strong>Step 2: Expand <span class="math inline">e^{-i \frac{\pi}{2}}</span> Using Euler’s Formula</strong></a></li>
-  <li><a href="#step-3-verify-powers-of-omega" id="toc-step-3-verify-powers-of-omega" class="nav-link" data-scroll-target="#step-3-verify-powers-of-omega"><strong>Step 3: Verify Powers of <span class="math inline">\omega</span></strong></a></li>
-  </ul></li>
-  <li><a href="#building-the-fourier-matrix" id="toc-building-the-fourier-matrix" class="nav-link" data-scroll-target="#building-the-fourier-matrix"><strong>Building the Fourier Matrix</strong></a></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Understanding the Discrete Fourier Transform (DFT)</h1>
+<h1 class="title">WORKSHEETS</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta column-page">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Nathan Lunceford </p>
-          </div>
-  </div>
     
   
     
@@ -4871,97 +4790,11 @@ window.Quarto = {
 </header>
 
 
-<section id="what-is-the-discrete-fourier-transform-dft" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-the-discrete-fourier-transform-dft"><strong>What is the Discrete Fourier Transform (DFT)?</strong></h2>
-<p>Imagine you’re listening to music. You hear a melody, but the melody is made up of individual notes (frequencies). The <strong>Discrete Fourier Transform (DFT)</strong> works similarly—it takes a “melody” of data in the time domain (a sequence of numbers) and breaks it into its “notes” (frequency components). This makes it easier to analyze patterns in signals like sound, images, or other data.</p>
-<p>The DFT transforms a sequence of <span class="math inline">n</span>-dimensional samples <span class="math inline">x</span> into a sequence <span class="math inline">y</span> that reveals how much of each frequency is present in the original data.</p>
-</section>
-<section id="mathematical-definition" class="level2">
-<h2 class="anchored" data-anchor-id="mathematical-definition"><strong>Mathematical Definition</strong></h2>
-<p>Given an input vector <span class="math inline">x = [x_0, x_1, \dots, x_{n-1}]^T</span>, the DFT produces a vector <span class="math inline">y = [y_0, y_1, \dots, y_{n-1}]^T</span>, where:</p>
-<p><span class="math display">
-y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}, \quad \omega = e^{-i \frac{2\pi}{n}}, \quad k = 0, 1, \dots, n-1
-</span></p>
-</section>
-<section id="what-is-omega-and-why-does-omega1--i" class="level2">
-<h2 class="anchored" data-anchor-id="what-is-omega-and-why-does-omega1--i"><strong>What is <span class="math inline">\omega</span> and Why Does <span class="math inline">\omega^1 = -i</span>?</strong></h2>
-<section id="step-1-define-omega" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-define-omega"><strong>Step 1: Define <span class="math inline">\omega</span></strong></h3>
-<p>The root of unity <span class="math inline">\omega</span> is defined as:</p>
-<p><span class="math display">
-\omega = e^{-i \frac{2\pi}{n}}
-</span></p>
-<p>For <span class="math inline">n = 4</span>, this becomes:</p>
-<p><span class="math display">
-\omega = e^{-i \frac{2\pi}{4}} = e^{-i \frac{\pi}{2}}
-</span></p>
-</section>
-<section id="step-2-expand-e-i-fracpi2-using-eulers-formula" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-expand-e-i-fracpi2-using-eulers-formula"><strong>Step 2: Expand <span class="math inline">e^{-i \frac{\pi}{2}}</span> Using Euler’s Formula</strong></h3>
-<p>Euler’s formula states:</p>
-<p><span class="math display">
-e^{i\theta} = \cos(\theta) + i \sin(\theta)
-</span></p>
-<p>Using this for <span class="math inline">\omega = e^{-i \frac{\pi}{2}}</span>, we get:</p>
-<p><span class="math display">
-e^{-i \frac{\pi}{2}} = \cos\left(-\frac{\pi}{2}\right) + i \sin\left(-\frac{\pi}{2}\right)
-</span></p>
-<p>From the unit circle:</p>
 <ul>
-<li><span class="math inline">\cos\left(-\frac{\pi}{2}\right) = 0</span>,</li>
-<li><span class="math inline">\sin\left(-\frac{\pi}{2}\right) = -1</span>.</li>
+<li><a href="./jacobi-method-convergence/jacobi-method-convergence.html"><strong>Jacobi Method - Convergence Proof</strong></a></li>
 </ul>
-<p>Substitute these values:</p>
-<p><span class="math display">
-e^{-i \frac{\pi}{2}} = 0 - i = -i
-</span></p>
-<p>Thus:</p>
-<p><span class="math display">
-\omega^1 = -i
-</span></p>
-</section>
-<section id="step-3-verify-powers-of-omega" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-verify-powers-of-omega"><strong>Step 3: Verify Powers of <span class="math inline">\omega</span></strong></h3>
-<p>The powers of <span class="math inline">\omega</span> for <span class="math inline">n = 4</span> are as follows:</p>
-<ol type="1">
-<li><span class="math inline">\omega^0 = e^{-i \cdot 0} = 1</span></li>
-<li><span class="math inline">\omega^1 = e^{-i \frac{\pi}{2}} = -i</span></li>
-<li><span class="math inline">\omega^2 = e^{-i \pi} = -1</span></li>
-<li><span class="math inline">\omega^3 = e^{-i \frac{3\pi}{2}} = i</span></li>
-<li><span class="math inline">\omega^4 = e^{-i 2\pi} = 1</span> (cyclic repetition)</li>
-</ol>
-<p>These powers correspond to four equally spaced points on the unit circle in the complex plane.</p>
-</section>
-</section>
-<section id="building-the-fourier-matrix" class="level2">
-<h2 class="anchored" data-anchor-id="building-the-fourier-matrix"><strong>Building the Fourier Matrix</strong></h2>
-<p>The Fourier matrix <span class="math inline">F_n</span> is defined as:</p>
-<p><span class="math display">
-F_n(k, j) = \frac{1}{\sqrt{n}} \omega^{kj}, \quad k, j = 0, 1, \dots, n-1
-</span></p>
-<p>For <span class="math inline">n = 4</span>:</p>
-<ol type="1">
-<li>Compute <span class="math inline">\frac{1}{\sqrt{4}} = \frac{1}{2}</span>.</li>
-<li>Use the powers of <span class="math inline">\omega</span> to fill the matrix:</li>
-</ol>
-<p><span class="math display">
-F_4 = \frac{1}{2}
-\begin{bmatrix}
-1 &amp; 1 &amp; 1 &amp; 1 \\
-1 &amp; -i &amp; -1 &amp; i \\
-1 &amp; -1 &amp; 1 &amp; -1 \\
-1 &amp; i &amp; -1 &amp; -i
-\end{bmatrix}
-</span></p>
-<p>Each row corresponds to a frequency <span class="math inline">k</span>, and each column corresponds to a time sample <span class="math inline">j</span>.</p>
-</section>
-<section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h2>
-<p>The key to understanding the Fourier matrix and DFT lies in the properties of <span class="math inline">\omega</span>, the primitive root of unity. The matrix formulation provides a systematic way to compute the DFT, while the powers of <span class="math inline">\omega</span> determine the contributions of different frequencies in the signal. By breaking the time-domain signal into its frequency components, the DFT reveals hidden patterns and structures in the data.</p>
-<pre><code></code></pre>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

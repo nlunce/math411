@@ -4830,8 +4830,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem</strong></a></li>
-  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem"><strong>Problem:</strong></a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution:</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4864,7 +4864,7 @@ window.Quarto = {
 
 
 <section id="problem" class="level1">
-<h1><strong>Problem</strong></h1>
+<h1><strong>Problem:</strong></h1>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4885,49 +4885,113 @@ window.Quarto = {
 </div>
 </section>
 <section id="solution" class="level1">
-<h1><strong>Solution</strong></h1>
-<section id="dft-of-0-1-0--1t" class="level2">
-<h2 class="anchored" data-anchor-id="dft-of-0-1-0--1t"><strong>DFT of <span class="math inline">[0, 1, 0, -1]^T</span></strong></h2>
-<section id="define-parameters" class="level3">
-<h3 class="anchored" data-anchor-id="define-parameters">Define Parameters</h3>
-<p>The vector has <span class="math inline">n = 4</span>, so:</p>
+<h1><strong>Solution:</strong></h1>
+<section id="compute-the-dft-using-the-matrix-formulation" class="level3">
+<h3 class="anchored" data-anchor-id="compute-the-dft-using-the-matrix-formulation"><strong>Compute the DFT using the matrix formulation:</strong></h3>
 <p><span class="math display">
-\omega = e^{-i \frac{2\pi}{4}} = i
+\mathbf{y} = F \mathbf{x}
 </span></p>
-<p>The formula for the DFT is:</p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">F</span> is the Fourier matrix, with entries: <span class="math display">
+F_{k,j} = \omega^{k j}, \quad \omega = e^{-i \frac{2\pi}{n}}
+</span></li>
+<li><span class="math inline">\mathbf{x} = \begin{bmatrix} x_0 \\ x_1 \\ x_2 \\ x_3 \end{bmatrix}</span> is the input vector</li>
+</ul>
+<ul>
+<li><span class="math inline">\mathbf{y} = \begin{bmatrix} y_0 \\ y_1 \\ y_2 \\ y_3 \end{bmatrix}</span> is the DFT of the input vector</li>
+</ul>
+</section>
+<section id="define-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="define-parameters"><strong>Define Parameters</strong></h3>
+<p>The input vector is:</p>
 <p><span class="math display">
-y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}, \quad k = 0, 1, \dots, n-1
+\mathbf{x} = \begin{bmatrix} 0 \\ 1 \\ 0 \\ -1 \end{bmatrix}
+</span></p>
+<p>The length of the vector is <span class="math inline">n = 4</span>. The primitive root of unity is:</p>
+<p><span class="math display">
+\omega = e^{-i \frac{2\pi}{n}} = e^{-i \frac{\pi}{2}} = \cos\left(\frac{\pi}{2}\right) - i \sin\left(\frac{\pi}{2}\right) = -i
 </span></p>
 </section>
-<section id="compute-each-y_k" class="level3">
-<h3 class="anchored" data-anchor-id="compute-each-y_k">Compute Each <span class="math inline">y_k</span>:</h3>
-<ol type="1">
+<section id="construct-the-fourier-matrix-f_4" class="level3">
+<h3 class="anchored" data-anchor-id="construct-the-fourier-matrix-f_4"><strong>Construct the Fourier Matrix <span class="math inline">F_4</span></strong></h3>
+<p>The Fourier matrix <span class="math inline">F_4</span> is given by:</p>
+<p><span class="math display">
+F_4 =
+\begin{bmatrix}
+\omega^{0 \cdot 0} &amp; \omega^{0 \cdot 1} &amp; \omega^{0 \cdot 2} &amp; \omega^{0 \cdot 3} \\
+\omega^{1 \cdot 0} &amp; \omega^{1 \cdot 1} &amp; \omega^{1 \cdot 2} &amp; \omega^{1 \cdot 3} \\
+\omega^{2 \cdot 0} &amp; \omega^{2 \cdot 1} &amp; \omega^{2 \cdot 2} &amp; \omega^{2 \cdot 3} \\
+\omega^{3 \cdot 0} &amp; \omega^{3 \cdot 1} &amp; \omega^{3 \cdot 2} &amp; \omega^{3 \cdot 3}
+\end{bmatrix}
+</span></p>
+</section>
+<section id="compute-powers-of-omega" class="level3">
+<h3 class="anchored" data-anchor-id="compute-powers-of-omega"><strong>Compute Powers of <span class="math inline">\omega</span></strong></h3>
+<ul>
+<li><span class="math inline">\omega^0 = 1</span></li>
+<li><span class="math inline">\omega^1 = -i</span></li>
+<li><span class="math inline">\omega^2 = (-i)^2 = -1</span></li>
+<li><span class="math inline">\omega^3 = (-i)^3 = i</span></li>
+</ul>
+<section id="fill-in-the-matrix-f_4" class="level4">
+<h4 class="anchored" data-anchor-id="fill-in-the-matrix-f_4"><strong>Fill in the Matrix <span class="math inline">F_4</span>:</strong></h4>
+<p><span class="math display">
+F_4 =
+\begin{bmatrix}
+1 &amp; 1 &amp; 1 &amp; 1 \\
+1 &amp; -i &amp; -1 &amp; i \\
+1 &amp; -1 &amp; 1 &amp; -1 \\
+1 &amp; i &amp; -1 &amp; -i
+\end{bmatrix}
+</span></p>
+</section>
+</section>
+<section id="perform-the-matrix-multiplication" class="level3">
+<h3 class="anchored" data-anchor-id="perform-the-matrix-multiplication"><strong>Perform the Matrix Multiplication</strong></h3>
+<ul>
 <li><p><strong><span class="math inline">y_0</span>:</strong></p>
 <p><span class="math display">
-y_0 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 0} = \frac{1}{2}(0 + 1 + 0 - 1) = 0
+y_0 = 1 \cdot 0 + 1 \cdot 1 + 1 \cdot 0 + 1 \cdot (-1) = 0 + 1 + 0 - 1 = 0
 </span></p></li>
 <li><p><strong><span class="math inline">y_1</span>:</strong></p>
 <p><span class="math display">
-y_1 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 1} = \frac{1}{2}(0 + i \cdot 1 + 0 + (-1) \cdot (-i)) = \frac{1}{2}(i + i) = i
+y_1 = 1 \cdot 0 + (-i) \cdot 1 + (-1) \cdot 0 + i \cdot (-1)
+</span></p>
+<p><span class="math display">
+y_1 = 0 - i + 0 - i = -2i
 </span></p></li>
 <li><p><strong><span class="math inline">y_2</span>:</strong></p>
 <p><span class="math display">
-y_2 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 2} = \frac{1}{2}(0 + (-1) + 0 + (-1)) = -1
+y_2 = 1 \cdot 0 + (-1) \cdot 1 + 1 \cdot 0 + (-1) \cdot (-1)
+</span></p>
+<p><span class="math display">
+y_2 = 0 - 1 + 0 + 1 = 0
 </span></p></li>
 <li><p><strong><span class="math inline">y_3</span>:</strong> <span class="math display">
-y_3 = \frac{1}{\sqrt{4}} \sum_{j=0}^{3} x_j \omega^{j \cdot 3} = \frac{1}{2}(0 + (-i) + 0 + (-1) \cdot i) = \frac{1}{2}(-i - i) = -i
+y_3 = 1 \cdot 0 + i \cdot 1 + (-1) \cdot 0 + (-i) \cdot (-1)
+</span> <span class="math display">
+y_3 = 0 + i + 0 + i = 2i
 </span></p></li>
-</ol>
-</section>
-<section id="result" class="level3">
-<h3 class="anchored" data-anchor-id="result">Result:</h3>
-<p>The DFT of <span class="math inline">[0, 1, 0, -1]</span> is:</p>
+</ul>
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Final Answer:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The DFT of <span class="math inline">\mathbf{x}</span> is:</p>
 <p><span class="math display">
-y = [0, i, -1, -i]
+\mathbf{y} = \begin{bmatrix} 0 \\ -2i \\ 0 \\ 2i \end{bmatrix}
 </span></p>
+</div>
+</div>
 
 
-</section>
 </section>
 </section>
 

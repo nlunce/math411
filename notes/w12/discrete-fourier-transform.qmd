@@ -27,7 +27,7 @@ preview:
   navigate: true
 ---
 
-## **What is the Discrete Fourier Transform?**
+## **What is the Discrete Fourier Transform (DFT)?**
 
 Imagine you’re listening to music. You hear a melody, but the melody is made up of individual notes (frequencies). The **Discrete Fourier Transform (DFT)** works similarly—it takes a "melody" of data in the time domain (a sequence of numbers) and breaks it into its "notes" (frequency components). This makes it easier to analyze patterns in signals like sound, images, or other data.
 
@@ -41,171 +41,94 @@ $$
 y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}, \quad \omega = e^{-i \frac{2\pi}{n}}, \quad k = 0, 1, \dots, n-1
 $$
 
-### Breaking Down the Formula:
+## **What is $\omega$ and Why Does $\omega^1 = -i$?**
 
-1. **Input $x_j$**: These are the original "time-domain" samples, like the signal you’re analyzing.
-2. **Frequency $k$**: Each $y_k$ tells us how much of the $k$-th frequency is present in the signal.
-3. **Exponential Term $\omega^{jk}$**: Think of this as a "rotating clock hand" that sweeps through frequencies. For each frequency $k$, it adds up how the signal aligns with that frequency.
+### **Step 1: Define $\omega$**
 
-## **From Summation Notation to the Fourier Matrix**
-
-### The Summation:
-
-In the summation formula:
+The root of unity $\omega$ is defined as:
 
 $$
-y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}
+\omega = e^{-i \frac{2\pi}{n}}
 $$
 
-we are calculating $y_k$ for each $k$, where $k$ represents the $k$-th frequency component. For a sequence of length $n$, we compute $n$ values of $y_k$. Each $y_k$ is essentially a weighted sum of the input vector $x$, where the weights are determined by $\omega^{jk}$, the complex exponential.
-
-### The Matrix Formulation:
-
-Instead of calculating $y_k$ for each $k$ one by one, we can express the entire computation as a **matrix multiplication**. To do this, we arrange the coefficients $\omega^{jk}$ into a matrix. This matrix, called the **Fourier matrix**, performs the DFT transformation in one step.
-
-### Building the Fourier Matrix:
-
-The Fourier matrix $F_n$ is constructed as follows:
-
-1. **Structure**: The element in the $k$-th row and $j$-th column of the Fourier matrix is $\frac{1}{\sqrt{n}} \omega^{jk}$, where $\omega = e^{-i \frac{2\pi}{n}}$.
-
-2. **Rows and Columns**:
-
-   - Each row corresponds to a frequency $k$.
-   - Each column corresponds to a time sample $j$.
-
-3. **General Form**:
-   The $n \times n$ Fourier matrix is:
-
-   $$
-   F_n = \frac{1}{\sqrt{n}}
-   \begin{bmatrix}
-   1 & 1 & 1 & \dots & 1 \\
-   1 & \omega & \omega^2 & \dots & \omega^{n-1} \\
-   1 & \omega^2 & \omega^4 & \dots & \omega^{2(n-1)} \\
-   \vdots & \vdots & \vdots & \ddots & \vdots \\
-   1 & \omega^{n-1} & \omega^{2(n-1)} & \dots & \omega^{(n-1)^2}
-   \end{bmatrix}
-   $$
-
-### **Why Are the Leftmost Column and Top Row All Ones?**
-
-#### Leftmost Column:
-
-The leftmost column corresponds to $k = 0$, which represents the **"DC component"** (the constant or average value of the signal). For $k = 0$, the exponential term becomes:
+For $n = 4$, this becomes:
 
 $$
-\omega^{jk} = \omega^{j \cdot 0} = 1
+\omega = e^{-i \frac{2\pi}{4}} = e^{-i \frac{\pi}{2}}
 $$
 
-This means every value in the signal $x$ contributes equally to $y_0$, which measures the average (or overall "weight") of the signal.
+### **Step 2: Expand $e^{-i \frac{\pi}{2}}$ Using Euler’s Formula**
 
-#### Top Row:
-
-The top row corresponds to $j = 0$, which represents the **contribution of the first time sample** across all frequencies. For $j = 0$, the exponential term simplifies to:
+Euler's formula states:
 
 $$
-\omega^{jk} = \omega^{0 \cdot k} = 1
+e^{i\theta} = \cos(\theta) + i \sin(\theta)
 $$
 
-This reflects the fact that the first sample $x_0$ is "aligned" with all frequencies equally—it doesn't rotate or oscillate, so its contribution is uniform across all frequencies.
+Using this for $\omega = e^{-i \frac{\pi}{2}}$, we get:
 
-### Example: Constructing $F_4$
+$$
+e^{-i \frac{\pi}{2}} = \cos\left(-\frac{\pi}{2}\right) + i \sin\left(-\frac{\pi}{2}\right)
+$$
 
-Let $n = 4$, so $\omega = e^{-i \pi / 2} = i$. Using the general formula, we build the Fourier matrix:
+From the unit circle:
 
-1. **Row 0**: This row corresponds to $k = 0$:
+- $\cos\left(-\frac{\pi}{2}\right) = 0$,
+- $\sin\left(-\frac{\pi}{2}\right) = -1$.
 
-   $$
-   [1, 1, 1, 1]
-   $$
+Substitute these values:
 
-2. **Row 1**: This row corresponds to $k = 1$:
+$$
+e^{-i \frac{\pi}{2}} = 0 - i = -i
+$$
 
-   $$
-    [1, \omega, \omega^2, \omega^3] = [1, i, -1, -i]
-   $$
+Thus:
 
-3. **Row 2**: This row corresponds to $k = 2$:
+$$
+\omega^1 = -i
+$$
 
-   $$
-   [1, \omega^2, \omega^4, \omega^6] = [1, -1, 1, -1]
-   $$
+### **Step 3: Verify Powers of $\omega$**
 
-4. **Row 3**: This row corresponds to $k = 3$:
-   $$
-   [1, \omega^3, \omega^6, \omega^9] = [1, -i, -1, i]
-   $$
+The powers of $\omega$ for $n = 4$ are as follows:
 
-Finally, combine these rows into the matrix:
+1. $\omega^0 = e^{-i \cdot 0} = 1$
+2. $\omega^1 = e^{-i \frac{\pi}{2}} = -i$
+3. $\omega^2 = e^{-i \pi} = -1$
+4. $\omega^3 = e^{-i \frac{3\pi}{2}} = i$
+5. $\omega^4 = e^{-i 2\pi} = 1$ (cyclic repetition)
+
+These powers correspond to four equally spaced points on the unit circle in the complex plane.
+
+## **Building the Fourier Matrix**
+
+The Fourier matrix $F_n$ is defined as:
+
+$$
+F_n(k, j) = \frac{1}{\sqrt{n}} \omega^{kj}, \quad k, j = 0, 1, \dots, n-1
+$$
+
+For $n = 4$:
+
+1. Compute $\frac{1}{\sqrt{4}} = \frac{1}{2}$.
+2. Use the powers of $\omega$ to fill the matrix:
 
 $$
 F_4 = \frac{1}{2}
 \begin{bmatrix}
 1 & 1 & 1 & 1 \\
-1 & i & -1 & -i \\
+1 & -i & -1 & i \\
 1 & -1 & 1 & -1 \\
-1 & -i & -1 & i
+1 & i & -1 & -i
 \end{bmatrix}
 $$
 
-This matrix performs the DFT when multiplied by the input vector $x$.
-
-## **Example: DFT of a Simple Signal**
-
-Let’s compute the DFT of $x = [1, 1, 1, 1]^T$.
-
-### **Step 1: Define the Fourier Matrix**
-
-We already built $F_4$:
-
-$$
-F_4 = \frac{1}{2}
-\begin{bmatrix}
-1 & 1 & 1 & 1 \\
-1 & i & -1 & -i \\
-1 & -1 & 1 & -1 \\
-1 & -i & -1 & i
-\end{bmatrix}
-$$
-
-### **Step 2: Perform Matrix Multiplication**
-
-Multiply $F_4$ by $x$:
-
-$$
-y = F_4 x = \frac{1}{2}
-\begin{bmatrix}
-1 & 1 & 1 & 1 \\
-1 & i & -1 & -i \\
-1 & -1 & 1 & -1 \\
-1 & -i & -1 & i
-\end{bmatrix}
-\begin{bmatrix}
-1 \\ 1 \\ 1 \\ 1
-\end{bmatrix}
-$$
-
-Perform the computation row by row:
-
-1. Row 0: $1 + 1 + 1 + 1 = 4$
-2. Row 1: $1 + i - 1 - i = 0$
-3. Row 2: $1 - 1 + 1 - 1 = 0$
-4. Row 3: $1 - i - 1 + i = 0$
-
-So:
-
-$$
-y = \frac{1}{2}
-\begin{bmatrix}
-4 \\ 0 \\ 0 \\ 0
-\end{bmatrix}
-$$
-
-### **Step 3: Interpret the Result**
-
-The DFT reveals that the input signal $[1, 1, 1, 1]$ contains only a constant frequency component, represented by $y_0 = 2$, and no higher frequencies.
+Each row corresponds to a frequency $k$, and each column corresponds to a time sample $j$.
 
 ## **Conclusion**
 
-The leftmost column and top row of the Fourier matrix are all ones because they represent the "constant" contributions of the signal and the uniform weighting of the first sample, respectively. Understanding this structure makes it easier to interpret the Fourier matrix and the transformation it performs. By breaking down the matrix into its rows and columns, the DFT reveals how the time-domain signal aligns with different frequencies, giving us a deeper insight into the data.
+The key to understanding the Fourier matrix and DFT lies in the properties of $\omega$, the primitive root of unity. The matrix formulation provides a systematic way to compute the DFT, while the powers of $\omega$ determine the contributions of different frequencies in the signal. By breaking the time-domain signal into its frequency components, the DFT reveals hidden patterns and structures in the data.
+
+```
+
+```
