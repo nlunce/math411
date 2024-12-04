@@ -80,3 +80,4 @@ preview:
 - [The Fourier Transform](./w12/fourier-transform.html)
 - [Roots of Unity](./w12/root-of-unity.html)
 - [The Discrete Fourier Transform (DFT)](./w12/discrete-fourier-transform.html)
+- [The Fast Fourier Transform (FFT)](./w12/fast-fourier-transform.html)
