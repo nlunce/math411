@@ -30,22 +30,22 @@ preview:
 
 ::: {.callout-note icon=false }
 
-## **10.2.1a**
+## **10.2.1b**
 
-Use the DFT and Corollary 10.8 to find the trigonometric interpolating function for the following data:
+Use the Discrete Fourier Transform (DFT) and **Corollary 10.8** to find the trigonometric interpolating function for the following data:
 
-| $t$   | $x$  |
-| ----- | ---- |
-| $0$   | $0$  |
-| $1/4$ | $1$  |
-| $1/2$ | $0$  |
-| $3/4$ | $-1$ |
+| $t$           | $x$  |
+| ------------- | ---- |
+| $0$           | $0$  |
+| $\frac{1}{4}$ | $1$  |
+| $\frac{1}{2}$ | $0$  |
+| $\frac{3}{4}$ | $-1$ |
 
 :::
 
 # **Solution:**
 
-### **Corollary 10.8**
+## **Corollary 10.8**
 
 For an even integer $n$, let
 
@@ -62,13 +62,13 @@ $$
 denote a vector of $n$ real numbers. Define
 
 $$
-\mathbf{a} + \mathbf{b} i= F_n x,
+\mathbf{a} + \mathbf{b} i = F_n x,
 $$
 
 where $F_n$ is the Discrete Fourier Transform. Then the function
 
 $$
-P_n(t) = \frac{a_0}{\sqrt{n}} + \frac{2}{\sqrt{n}} \sum_{k=1}^{n/2 - 1} \left( a_k \cos\left(\frac{2\pi k (t - c)}{d - c}\right) - b_k \sin\left(\frac{2\pi k (t - c)}{d - c}\right) \right)
+P_n(t) = \frac{a_0}{\sqrt{n}} + \frac{2}{\sqrt{n}} \sum_{k=1}^{\frac{n}{2} - 1} \left( a_k \cos\left(\frac{2\pi k (t - c)}{d - c}\right) - b_k \sin\left(\frac{2\pi k (t - c)}{d - c}\right) \right)
 + \frac{a_{n/2}}{\sqrt{n}} \cos\left(\frac{n\pi (t - c)}{d - c}\right)
 $$
 
@@ -78,145 +78,166 @@ $$
 P_n(t_j) = x_j, \quad \text{for } j = 0, \dots, n - 1
 $$
 
-### **Params:**
+## **Parameters:**
 
-- $t = [0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4}]$
+- $t = \left[0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4} \right]$
 - $x = [0, 1, 0, -1]$
-- $n = 4$, $c = 0$, $d = 1$
+- **Interval start:** $c = 0$
+- **Interval end:** $d = 1$
+- **Number of data points:** $n = 4$
 
-### **Compute the DFT of $x$**
+## **Compute the DFT of $x_j$**
 
-The DFT formula is:
-
-$$
-y_k = \sum_{j=0}^{n-1} x_j \cdot e^{-i \frac{2\pi k j}{n}}, \quad k = 0, 1, 2, 3
-$$
-
-where $n = 4$ and $\omega = e^{-i \frac{2\pi}{4}} = -i$ (the primitive 4th root of unity).
-
-#### **Compute $y_k$ for $k = 0, 1, 2, 3$:**
-
-1. **For $k = 0$:**
-
-   $$
-   y_0 = x_0 + x_1 + x_2 + x_3 = 0 + 1 + 0 - 1 = 0
-   $$
-
-2. **For $k = 1$:**
-
-   $$
-   y_1 = x_0(1) + x_1(-i) + x_2(-1) + x_3(i)
-   $$
-
-   Substituting the values:
-
-   $$
-   y_1 = 0(1) + 1(-i) + 0(-1) + (-1)(i) = -i + i = -2i
-   $$
-
-3. **For $k = 2$:**
-
-   $$
-   y_2 = x_0(1) + x_1(-1) + x_2(1) + x_3(-1)
-   $$
-
-   Substituting the values:
-
-   $$
-   y_2 = 0 + 1(-1) + 0(1) + (-1)(-1) = -1 + 1 = 0
-   $$
-
-4. **For $k = 3$:**
-   $$
-   y_3 = x_0(1) + x_1(i) + x_2(-1) + x_3(-i)
-   $$
-   Substituting the values:
-   $$
-   y_3 = 0(1) + 1(i) + 0(-1) + (-1)(-i) = i - i = 2i
-   $$
-
-#### **DFT Coefficients:**
+The **Discrete Fourier Transform (DFT)** of $x = [x_0, \dots, x_{n-1}]^T$ is the $n$-dimensional vector
+$y = [y_0, \dots, y_{n-1}]$, where $\omega = e^{-i 2 \pi / n}$ and
 
 $$
-y = [0, -2i, 0, 2i]
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}
 $$
 
-### **Find $a_k$ and $b_k$:**
+### **DFT Calculations:-**
 
-From the DFT coefficients $y_k = \mathbf{a}_k +\mathbf{b}_k i$:
-
-- $a_k = \operatorname{Re}(y_k)$, the real part of $y_k$,
-- $b_k = \operatorname{Im}(y_k)$, the imaginary part of $y_k$.
-
-#### Compute $a_k$ and $b_k$:
-
-- $y_0 = 0$: $a_0 = 0, b_0 = 0$
-- $y_1 = -2i$: $a_1 = 0, b_1 = -2$
-- $y_2 = 0$: $a_2 = 0, b_2 = 0$
-- $y_3 = 2i$: $a_3 = 0, b_3 = 2$
-
-### **Write the Interpolating Function $P_4(t)$**
-
-Using **Corollary 10.8**, the general formula for the interpolating function is:
+#### **For $k = 0$:**
 
 $$
-P_4(t) = \frac{a_0}{\sqrt{n}} + \frac{2}{\sqrt{n}} \sum_{k=1}^{n/2-1} \left( a_k \cos\left(\frac{2\pi k (t-c)}{d-c}\right) - b_k \sin\left(\frac{2\pi k (t-c)}{d-c}\right) \right) + \frac{a_{n/2}}{\sqrt{n}} \cos\left(\frac{n\pi (t-c)}{d-c}\right)
+y_0 = \frac{1}{\sqrt{4}} \sum_{j=0}^3 x_j \cdot \omega^{0 \cdot j}
 $$
 
-Substitute $n = 4$, $c = 0$, $d = 1$, $a_0 = 0$, $a_1 = 0$, $b_1 = -2$, and $a_2 = 0$:
-
-- The first term:
-  $$
-  \frac{a_0}{\sqrt{n}} = \frac{0}{\sqrt{4}} = 0
-  $$
-- The second term:
-  $$
-  \frac{2}{\sqrt{4}} \left( a_1 \cos(2\pi t) - b_1 \sin(2\pi t) \right) = 1 \cdot (-(-2) \sin(2\pi t)) = 2 \sin(2\pi t)
-  $$
-- The third term:
-  $$
-  \frac{a_2}{\sqrt{4}} \cos(4\pi t) = \frac{0}{\sqrt{4}} = 0
-  $$
-
-Therefore:
+Since $\omega^{0 \cdot j} = 1$:
 
 $$
-P_4(t) = \sin(2\pi t)
+y_0 = \frac{1}{2} (0 + 1 + 0 - 1) = 0
 $$
 
-### **Verification:**
+#### **For $k = 1$:**
 
-1. At $t = 0$:
+$$
+y_1 = \frac{1}{\sqrt{4}} \sum_{j=0}^3 x_j \cdot \omega^j
+$$
+
+Substitute $x = [0, 1, 0, -1]$ and $\omega = e^{-i \pi / 2} = -i$:
+
+$$
+y_1 = \frac{1}{2} (0 + (-i) \cdot 1 + 0 + i \cdot (-1))
+$$
+
+$$
+y_1 = \frac{1}{2} (0 - i + 0 - i) = \frac{1}{2} (-2i) = -i
+$$
+
+#### **For $k = 2$:**
+
+$$
+y_2 = \frac{1}{\sqrt{4}} \sum_{j=0}^3 x_j \cdot \omega^{2j}
+$$
+
+Since $\omega^2 = -1$:
+
+$$
+y_2 = \frac{1}{2} (0 \cdot 1 + 1 \cdot (-1) + 0 \cdot 1 + (-1) \cdot (-1))
+$$
+
+$$
+y_2 = \frac{1}{2} (0 - 1 + 0 + 1) = \frac{1}{2} (0) = 0
+$$
+
+#### **For $k = 3$:**
+
+$$
+y_3 = \frac{1}{\sqrt{4}} \sum_{j=0}^3 x_j \cdot \omega^{3j}
+$$
+
+Since $\omega^3 = i$:
+
+$$
+y_3 = \frac{1}{2} (0 \cdot 1 + 1 \cdot i + 0 \cdot (-1) + (-1) \cdot (-i))
+$$
+
+$$
+y_3 = \frac{1}{2} (0 + i + 0 + i) = \frac{1}{2} (2i) = i
+$$
+
+### **DFT Results:**
+
+- $y_0 = 0$
+- $y_1 = -i$
+- $y_2 = 0$
+- $y_3 = i$
+
+### **Find $a_k$ and $b_k$ for Each $y_k$:**
+
+For each $y_k = a_k + b_k i$:
+
+- $y_0 = 0 \implies a_0 = 0, b_0 = 0$
+- $y_1 = -i \implies a_1 = 0, b_1 = -1$
+- $y_2 = 0 \implies a_2 = 0, b_2 = 0$
+- $y_3 = i \implies a_3 = 0, b_3 = 1$
+
+## **Construct the Trigonometric Interpolating Polynomial**
+
+Using **Corollary 10.8**, the interpolating polynomial is:
+
+$$
+P_4(t) = \frac{a_0}{\sqrt{n}} + \frac{2}{\sqrt{n}} \left( a_1 \cos(2 \pi t) - b_1 \sin(2 \pi t) \right) + \frac{a_2}{\sqrt{n}} \cos(4 \pi t)
+$$
+
+### **Step-by-Step Substitution**
+
+1. **First term:**
 
    $$
-   P_4(0) = \sin(2\pi \cdot 0) = \sin(0) = 0
+   \frac{a_0}{\sqrt{n}} = \frac{0}{2} = 0
    $$
 
-2. At $t = \frac{1}{4}$:
+2. **Second Term:**
 
    $$
-   P_4\left(\frac{1}{4}\right) = \sin\left(2\pi \cdot \frac{1}{4}\right) = \sin\left(\frac{\pi}{2}\right) = 1
+   \frac{2}{\sqrt{n}} \left( a_1 \cos(2 \pi t) - b_1 \sin(2 \pi t) \right)
    $$
 
-3. At $t = \frac{1}{2}$:
+   From $a_1 = 0, b_1 = -1$:
 
    $$
-   P_4\left(\frac{1}{2}\right) = \sin\left(2\pi \cdot \frac{1}{2}\right) = \sin(\pi) = 0
+   \frac{2}{2} \left( 0 \cdot \cos(2 \pi t) - (-1) \cdot \sin(2 \pi t) \right) = \sin(2 \pi t)
    $$
 
-4. At $t = \frac{3}{4}$:
+3. **Third Term:**
+
    $$
-   P_4\left(\frac{3}{4}\right) = \sin\left(2\pi \cdot \frac{3}{4}\right) = \sin\left(\frac{3\pi}{2}\right) =-1
+   \frac{a_2}{\sqrt{n}} \cos(4 \pi t)
    $$
+
+   From $a_2 = 0$:
+
+   $$
+   \frac{0}{2} \cos(4 \pi t) = 0
+   $$
+
+### **Final Polynomial**
+
+Combine all terms:
+
+$$
+P_4(t) = \sin(2 \pi t)
+$$
+
+### **Verification**
+
+Check $P_4(t)$ at each data point:
+
+1. At $t = 0$: $P_4(0) = \sin(0) = 0$
+2. At $t = \frac{1}{4}$: $P_4\left(\frac{1}{4}\right) = \sin\left(\frac{\pi}{2}\right) = 1$
+3. At $t = \frac{1}{2}$: $P_4\left(\frac{1}{2}\right) = \sin(\pi) = 0$
+4. At $t = \frac{3}{4}$: $P_4\left(\frac{3}{4}\right) = \sin\left(\frac{3\pi}{2}\right) = -1$
 
 ::: {.callout-tip icon=false}
 
 ## **Final Answer:**
 
-The trigonometric interpolating function is:
+The trigonometric interpolating polynomial is:
 
 $$
-P_4(t) = \sin(2\pi t)
+P_4(t) = \sin(2 \pi t)
 $$
 
 :::

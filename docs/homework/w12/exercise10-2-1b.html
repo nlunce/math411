@@ -4872,7 +4872,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Use the DFT and Corollary 10.8 to find the trigonometric interpolating function for the following data:</p>
+<p>Use the Discrete Fourier Transform (DFT) and <strong>Corollary 10.8</strong> to find the trigonometric interpolating function for the following data:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -4886,15 +4886,15 @@ window.Quarto = {
 <td><span class="math inline">1</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">1/4</span></td>
+<td><span class="math inline">\frac{1}{4}</span></td>
 <td><span class="math inline">1</span></td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">1/2</span></td>
+<td><span class="math inline">\frac{1}{2}</span></td>
 <td><span class="math inline">-1</span></td>
 </tr>
 <tr class="even">
-<td><span class="math inline">3/4</span></td>
+<td><span class="math inline">\frac{3}{4}</span></td>
 <td><span class="math inline">-1</span></td>
 </tr>
 </tbody>
@@ -4906,114 +4906,138 @@ window.Quarto = {
 <h1><strong>Solution:</strong></h1>
 <section id="corollary-10.8" class="level2">
 <h2 class="anchored" data-anchor-id="corollary-10.8"><strong>Corollary 10.8</strong></h2>
-<p>For an even integer <span class="math inline">n</span>, equally spaced nodes are defined as:</p>
+<p>For an even integer <span class="math inline">n</span>, let</p>
 <p><span class="math display">
-t_j = c + j \frac{(d - c)}{n}, \quad \text{for } j = 0, 1, \dots, n - 1,
+t_j = c + j \frac{(d - c)}{n}, \quad \text{for } j = 0, \dots, n-1,
 </span></p>
-<p>and a vector of real numbers is given by:</p>
+<p>and let</p>
 <p><span class="math display">
-x = (x_0, x_1, \dots, x_{n-1}).
+x = (x_0, \dots, x_{n-1})
 </span></p>
-<p>The DFT of <span class="math inline">x</span> is defined as:</p>
+<p>denote a vector of <span class="math inline">n</span> real numbers. Define</p>
 <p><span class="math display">
-\mathbf{a} + i\mathbf{b} = F_n x,
+\mathbf{a} + \mathbf{b} i = F_n x,
 </span></p>
-<p>where <span class="math inline">F_n</span> is the DFT matrix.</p>
-<p>The trigonometric interpolating function is expressed as:</p>
+<p>where <span class="math inline">F_n</span> is the Discrete Fourier Transform. Then the function</p>
 <p><span class="math display">
-P_n(t) = \frac{a_0}{\sqrt{n}} + \frac{2}{\sqrt{n}} \sum_{k=1}^{n/2 - 1} \left[ a_k \cos\left( \frac{2\pi k (t - c)}{d - c} \right) - b_k \sin\left( \frac{2\pi k (t - c)}{d - c} \right) \right] + \frac{a_{n/2}}{\sqrt{n}} \cos\left( \frac{n\pi (t - c)}{d - c} \right).
+P_n(t) = \frac{a_0}{\sqrt{n}} + \frac{2}{\sqrt{n}} \sum_{k=1}^{\frac{n}{2} - 1} \left( a_k \cos\left(\frac{2\pi k (t - c)}{d - c}\right) - b_k \sin\left(\frac{2\pi k (t - c)}{d - c}\right) \right)
++ \frac{a_{n/2}}{\sqrt{n}} \cos\left(\frac{n\pi (t - c)}{d - c}\right)
+</span></p>
+<p>satisfies</p>
+<p><span class="math display">
+P_n(t_j) = x_j, \quad \text{for } j = 0, \dots, n - 1
 </span></p>
 </section>
-<section id="params" class="level2">
-<h2 class="anchored" data-anchor-id="params"><strong>Params</strong></h2>
+<section id="parameters" class="level2">
+<h2 class="anchored" data-anchor-id="parameters"><strong>Parameters:</strong></h2>
 <ul>
-<li><p>Data points:</p>
-<p><span class="math display">
-t = \left[ 0, \, \frac{1}{4}, \, \frac{1}{2}, \, \frac{3}{4} \right],
-\quad
-x = \left[ 1, \, 1, \, -1, \, -1 \right]
-</span></p></li>
-<li><p>Number of points: <span class="math inline">n = 4</span>.</p></li>
-<li><p>Interval: <span class="math inline">c = 0</span>, <span class="math inline">d = 1</span>.</p></li>
+<li><span class="math inline">t = \left[0, \frac{1}{4}, \frac{1}{2}, \frac{3}{4} \right]</span></li>
+<li><span class="math inline">x = [1, 1, -1, -1]</span></li>
+<li><strong>Interval start:</strong> <span class="math inline">c = 0</span></li>
+<li><strong>Interval end:</strong> <span class="math inline">d = 1</span></li>
+<li><strong>Number of data points:</strong> <span class="math inline">n = 4</span></li>
 </ul>
 </section>
-<section id="compute-the-dft-of-x" class="level2">
-<h2 class="anchored" data-anchor-id="compute-the-dft-of-x"><strong>Compute the DFT of <span class="math inline">x</span></strong></h2>
-<section id="definition-of-the-dft" class="level3">
-<h3 class="anchored" data-anchor-id="definition-of-the-dft"><strong>Definition of the DFT</strong></h3>
-<p>For <span class="math inline">n = 4</span>, the DFT of <span class="math inline">x</span> is:</p>
+<section id="compute-the-dft-of-x_j" class="level2">
+<h2 class="anchored" data-anchor-id="compute-the-dft-of-x_j"><strong>Compute the DFT of <span class="math inline">x_j</span></strong></h2>
+<p>The <strong>Discrete Fourier Transform (DFT)</strong> of <span class="math inline">x = [x_0, \dots, x_{n-1}]^T</span> is the <span class="math inline">n</span>-dimensional vector <span class="math inline">y = [y_0, \dots, y_{n-1}]</span>, where <span class="math inline">\omega = e^{-i 2 \pi / n}</span> and</p>
 <p><span class="math display">
-y_k = \sum_{j=0}^{n-1} x_j \cdot e^{-i \frac{2\pi k j}{n}}, \quad \text{for } k = 0, 1, 2, 3
+y_k = \frac{1}{\sqrt{n}} \sum_{j=0}^{n-1} x_j \omega^{jk}
 </span></p>
-</section>
-<section id="computing-y_k-for-k-0-1-2-3" class="level3">
-<h3 class="anchored" data-anchor-id="computing-y_k-for-k-0-1-2-3"><strong>Computing <span class="math inline">y_k</span> for <span class="math inline">k = 0, 1, 2, 3</span></strong></h3>
+<section id="dft-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="dft-calculations"><strong>DFT Calculations:</strong></h3>
 <section id="for-k-0" class="level4">
 <h4 class="anchored" data-anchor-id="for-k-0"><strong>For <span class="math inline">k = 0</span>:</strong></h4>
 <p><span class="math display">
-y_0 = x_0 + x_1 + x_2 + x_3 = 1 + 1 - 1 - 1 = 0
+y_0 = \frac{1}{\sqrt{4}} \sum_{j=0}^3 x_j \cdot \omega^{0 \cdot j}
+</span></p>
+<p>Since <span class="math inline">\omega^{0 \cdot j} = 1</span>:</p>
+<p><span class="math display">
+y_0 = \frac{1}{2} (1 + 1 - 1 - 1) = 0
 </span></p>
 </section>
 <section id="for-k-1" class="level4">
 <h4 class="anchored" data-anchor-id="for-k-1"><strong>For <span class="math inline">k = 1</span>:</strong></h4>
-<p>Compute <span class="math inline">y_1</span>:</p>
 <p><span class="math display">
-y_1 = 1 \cdot 1 + 1 \cdot (-i) + (-1) \cdot (-1) + (-1) \cdot i = 1 - i + 1 - i = 2 - 2i
+y_1 = \frac{1}{\sqrt{4}} \sum_{j=0}^3 x_j \cdot \omega^j
+</span></p>
+<p>Substitute <span class="math inline">x = [1, 1, -1, -1]</span> and <span class="math inline">\omega = e^{-i \pi / 2} = -i</span>:</p>
+<p><span class="math display">
+y_1 = \frac{1}{2} (1 + (-i) + 1 + i) = \frac{1}{2} (2 - 2i) = 1 - i
 </span></p>
 </section>
 <section id="for-k-2" class="level4">
 <h4 class="anchored" data-anchor-id="for-k-2"><strong>For <span class="math inline">k = 2</span>:</strong></h4>
-<p>Compute <span class="math inline">y_2</span>:</p>
 <p><span class="math display">
-y_2 = 1 \cdot 1 + 1 \cdot (-1) + (-1) \cdot 1 + (-1) \cdot (-1) = 1 - 1 - 1 + 1 = 0
+y_2 = \frac{1}{\sqrt{4}} \sum_{j=0}^3 x_j \cdot \omega^{2j}
+</span></p>
+<p>Since <span class="math inline">\omega^2 = -1</span>:</p>
+<p><span class="math display">
+y_2 = \frac{1}{2} (1 - 1 - 1 + 1) = 0
 </span></p>
 </section>
 <section id="for-k-3" class="level4">
 <h4 class="anchored" data-anchor-id="for-k-3"><strong>For <span class="math inline">k = 3</span>:</strong></h4>
-<p>Compute <span class="math inline">y_3</span>:</p>
 <p><span class="math display">
-y_3 = 1 \cdot 1 + 1 \cdot i + (-1) \cdot (-1) + (-1) \cdot (-i) = 1 + i + 1 + i = 2 + 2i
+y_3 = \frac{1}{\sqrt{4}} \sum_{j=0}^3 x_j \cdot \omega^{3j}
+</span></p>
+<p>Since <span class="math inline">\omega^3 = i</span>:</p>
+<p><span class="math display">
+y_3 = \frac{1}{2} (1 + i + 1 - i) = \frac{1}{2} (2 + 2i) = 1 + i
 </span></p>
 </section>
 </section>
-<section id="summary-of-dft-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="summary-of-dft-coefficients"><strong>Summary of DFT Coefficients</strong></h3>
-<p><span class="math display">
-y = \left[ y_0, \, y_1, \, y_2, \, y_3 \right] = \left[ 0, \, 2 - 2i, \, 0, \, 2 + 2i \right]
-</span></p>
-</section>
-</section>
-<section id="extract-a_k-and-b_k-with-correct-scaling" class="level2">
-<h2 class="anchored" data-anchor-id="extract-a_k-and-b_k-with-correct-scaling"><strong>Extract <span class="math inline">a_k</span> and <span class="math inline">b_k</span> with Correct Scaling</strong> ???</h2>
-<section id="scaling-of-dft-coefficients" class="level3">
-<h3 class="anchored" data-anchor-id="scaling-of-dft-coefficients"><strong>Scaling of DFT Coefficients</strong></h3>
-<p><span class="math display">
-y_k = \frac{y_k}{\sqrt{n}} = \frac{y_k}{2}
-</span></p>
-<p>Compute <span class="math inline">a_k</span> and <span class="math inline">b_k</span>:</p>
-<p><span class="math display">
-a_k = \operatorname{Re}(y_k), \quad b_k = \operatorname{Im}(y_k)
-</span></p>
-</section>
-<section id="scaled-a_k-and-b_k" class="level3">
-<h3 class="anchored" data-anchor-id="scaled-a_k-and-b_k"><strong>Scaled <span class="math inline">a_k</span> and <span class="math inline">b_k</span></strong></h3>
-<ol type="1">
-<li><span class="math inline">y_0 = 0</span>, so <span class="math inline">a_0 = 0</span>, <span class="math inline">b_0 = 0</span></li>
-<li><span class="math inline">y_1 = 1 - i</span>, so <span class="math inline">a_1 = 1</span>, <span class="math inline">b_1 = -1</span></li>
-<li><span class="math inline">y_2 = 0</span>, so <span class="math inline">a_2 = 0</span>, <span class="math inline">b_2 = 0</span></li>
+<section id="dft-results" class="level3">
+<h3 class="anchored" data-anchor-id="dft-results"><strong>DFT Results:</strong></h3>
+<ul>
+<li><span class="math inline">y_0 = 0</span></li>
+<li><span class="math inline">y_1 = 1 - i</span></li>
+<li><span class="math inline">y_2 = 0</span></li>
 <li><span class="math inline">y_3 = 1 + i</span></li>
-</ol>
+</ul>
+</section>
+<section id="find-a_k-and-b_k-for-each-y_k" class="level3">
+<h3 class="anchored" data-anchor-id="find-a_k-and-b_k-for-each-y_k"><strong>Find <span class="math inline">a_k</span> and <span class="math inline">b_k</span> for Each <span class="math inline">y_k</span>:</strong></h3>
+<p>For each <span class="math inline">y_k = a_k + b_k i</span>:</p>
+<ul>
+<li><span class="math inline">y_0 = 0 \implies a_0 = 0, b_0 = 0</span></li>
+<li><span class="math inline">y_1 = 1 - i \implies a_1 = 1, b_1 = -1</span></li>
+<li><span class="math inline">y_2 = 0 \implies a_2 = 0, b_2 = 0</span></li>
+<li><span class="math inline">y_3 = 1 + i \implies a_3 = 1, b_3 = 1</span></li>
+</ul>
 </section>
 </section>
-<section id="construct-the-interpolating-function-p_4t" class="level2">
-<h2 class="anchored" data-anchor-id="construct-the-interpolating-function-p_4t"><strong>Construct the Interpolating Function <span class="math inline">P_4(t)</span></strong></h2>
-<p>Using <strong>Corollary 10.8</strong>:</p>
+<section id="construct-the-trigonometric-interpolating-polynomial" class="level2">
+<h2 class="anchored" data-anchor-id="construct-the-trigonometric-interpolating-polynomial"><strong>Construct the Trigonometric Interpolating Polynomial</strong></h2>
+<p>Using <strong>Corollary 10.8</strong>, the interpolating polynomial is:</p>
 <p><span class="math display">
-P_4(t) = \frac{a_0}{2} + \frac{2}{2} \left[ a_1 \cos\left( 2\pi t \right) - b_1 \sin\left( 2\pi t \right) \right] + \frac{a_2}{2} \cos\left( 4\pi t \right)
+P_4(t) = \frac{a_0}{\sqrt{n}} + \frac{2}{\sqrt{n}} \left( a_1 \cos(2 \pi t) - b_1 \sin(2 \pi t) \right) + \frac{a_2}{\sqrt{n}} \cos(4 \pi t)
 </span></p>
-<p>Substituting the values:</p>
+<ol type="1">
+<li><p><strong>First term:</strong></p>
 <p><span class="math display">
-P_4(t) = \cos\left( 2\pi t \right) + \sin\left( 2\pi t \right)
+\frac{a_0}{\sqrt{n}} = \frac{0}{2} = 0
+</span></p></li>
+<li><p><strong>Second Term:</strong></p>
+<p><span class="math display">
+\frac{2}{\sqrt{n}} \left( a_1 \cos(2 \pi t) - b_1 \sin(2 \pi t) \right)
+</span></p>
+<p>Substitute <span class="math inline">a_1 = 1</span>, <span class="math inline">b_1 = -1</span>, and <span class="math inline">\sqrt{n} = 2</span>:</p>
+<p><span class="math display">
+\frac{2}{2} \left( 1 \cdot \cos(2 \pi t) - (-1) \cdot \sin(2 \pi t) \right) = \cos(2 \pi t) + \sin(2 \pi t)
+</span></p></li>
+<li><p><strong>Third Term:</strong></p>
+<p><span class="math display">
+\frac{a_2}{\sqrt{n}} \cos(4 \pi t)
+</span></p>
+<p>Substitute <span class="math inline">a_2 = 0</span>:</p>
+<p><span class="math display">
+\frac{0}{2} \cos(4 \pi t) = 0
+</span></p></li>
+</ol>
+<p>Combine all terms:</p>
+<p><span class="math display">
+P_4(t) = \cos(2 \pi t) + \sin(2 \pi t)
 </span></p>
 </section>
 <section id="verification" class="level2">
@@ -5035,9 +5059,9 @@ P_4(t) = \cos\left( 2\pi t \right) + \sin\left( 2\pi t \right)
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The trigonometric interpolating function is:</p>
+<p>The trigonometric interpolating polynomial is:</p>
 <p><span class="math display">
-P_4(t) = \cos\left( 2\pi t \right) + \sin\left( 2\pi t \right)
+P_4(t) = \cos(2 \pi t) + \sin(2 \pi t)
 </span></p>
 </div>
 </div>
