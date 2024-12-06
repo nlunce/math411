@@ -115,7 +115,7 @@ $$
 $$
 
 Begin by writing out the first **two** terms of the Taylor series for $f(r)$ centered at $x_i$, along with the remainder term (see p. 21, with $x = r$, $x_0 = x_i$, and $c = c_i$).
-sssss
+
 :::
 
 ::: {.callout-tip collapse="true"}
