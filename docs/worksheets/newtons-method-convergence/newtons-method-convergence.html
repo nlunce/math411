@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HOMEWORK – MATH411</title>
+<title>Newtons Method - Convergence Proof – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1667,7 +1667,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="../">
+<meta name="quarto:offset" content="../../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4781,7 +4781,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4792,23 +4792,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href=".././homework/index.html"> 
+    <a class="nav-link" href="../.././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././reality-checks/index.html"> 
+    <a class="nav-link" href="../.././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././worksheets/index.html"> 
+    <a class="nav-link" href="../.././worksheets/index.html"> 
 <span class="menu-text">WORKSHEETS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././notes/index.html"> 
+    <a class="nav-link" href="../.././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href=".././index.html"> 
+    <a class="nav-link" href="../.././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4828,20 +4828,13 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
+  <ul>
+  <li><a href="#fixed-point-iteration-convergence-theorem" id="toc-fixed-point-iteration-convergence-theorem" class="nav-link active" data-scroll-target="#fixed-point-iteration-convergence-theorem"><strong>Fixed-Point Iteration Convergence Theorem</strong></a>
   <ul class="collapse">
-  <li><a href="#week-01" id="toc-week-01" class="nav-link active" data-scroll-target="#week-01"><strong>WEEK 01</strong></a></li>
-  <li><a href="#week-02" id="toc-week-02" class="nav-link" data-scroll-target="#week-02"><strong>WEEK 02</strong></a></li>
-  <li><a href="#week-03" id="toc-week-03" class="nav-link" data-scroll-target="#week-03"><strong>WEEK 03</strong></a></li>
-  <li><a href="#week-04" id="toc-week-04" class="nav-link" data-scroll-target="#week-04"><strong>WEEK 04</strong></a></li>
-  <li><a href="#week-05" id="toc-week-05" class="nav-link" data-scroll-target="#week-05"><strong>WEEK 05</strong></a></li>
-  <li><a href="#week-06" id="toc-week-06" class="nav-link" data-scroll-target="#week-06"><strong>WEEK 06</strong></a></li>
-  <li><a href="#week-07" id="toc-week-07" class="nav-link" data-scroll-target="#week-07"><strong>WEEK 07</strong></a></li>
-  <li><a href="#week-08" id="toc-week-08" class="nav-link" data-scroll-target="#week-08"><strong>WEEK 08</strong></a></li>
-  <li><a href="#week-09" id="toc-week-09" class="nav-link" data-scroll-target="#week-09"><strong>WEEK 09</strong></a></li>
-  <li><a href="#week-10" id="toc-week-10" class="nav-link" data-scroll-target="#week-10"><strong>WEEK 10</strong></a></li>
-  <li><a href="#week-11" id="toc-week-11" class="nav-link" data-scroll-target="#week-11"><strong>WEEK 11</strong></a></li>
-  <li><a href="#week-12" id="toc-week-12" class="nav-link" data-scroll-target="#week-12"><strong>WEEK 12</strong></a></li>
-  <li><a href="#week-13" id="toc-week-13" class="nav-link" data-scroll-target="#week-13"><strong>WEEK 13</strong></a></li>
+  <li><a href="#proof" id="toc-proof" class="nav-link" data-scroll-target="#proof"><strong>Proof</strong></a></li>
+  </ul></li>
+  <li><a href="#newtons-method-convergence-theorem" id="toc-newtons-method-convergence-theorem" class="nav-link" data-scroll-target="#newtons-method-convergence-theorem"><strong>Newton’s Method Convergence Theorem</strong></a></li>
+  <li><a href="#proof-1" id="toc-proof-1" class="nav-link" data-scroll-target="#proof-1"><strong>Proof</strong></a></li>
   </ul>
 </nav>
     </div>
@@ -4850,7 +4843,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HOMEWORK</h1>
+<h1 class="title">Newtons Method - Convergence Proof</h1>
 </div>
 
 
@@ -4867,146 +4860,288 @@ window.Quarto = {
 </header>
 
 
-<p><a href="./math411-suggested-homework.html">Suggested Homework</a></p>
-<section id="week-01" class="level1">
-<h1><strong>WEEK 01</strong></h1>
-<ul>
-<li><a href="#">(C0-P1)</a></li>
-<li><a href="#">(C1-P1) Exercise 1.1.4ab</a></li>
-<li><a href="#">(C1-P2) Exercise 1.2.2</a></li>
-<li><a href="#">(C1-P3)</a></li>
-<li><a href="#">(C1-P4) Exercise 1.2.14</a></li>
-<li><a href="#">(C1-P5) Exercise 1.4.1</a></li>
-<li><a href="#">(C1-P6) Exercise 1.4.3</a></li>
-</ul>
+<section id="fixed-point-iteration-convergence-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="fixed-point-iteration-convergence-theorem"><strong>Fixed-Point Iteration Convergence Theorem</strong></h2>
+<p><em>Theorem 1.6 (p. 35)</em></p>
+<p>Assume that <span class="math inline">g</span> is continuously differentiable, that <span class="math inline">g(r) = r</span>, and that <span class="math inline">S = |g&#39;(r)| &lt; 1</span>. Then Fixed-Point Iteration converges linearly with rate <span class="math inline">S</span> to the fixed point <span class="math inline">r</span> for initial guesses sufficiently close to <span class="math inline">r</span>.</p>
+<section id="proof" class="level3">
+<h3 class="anchored" data-anchor-id="proof"><strong>Proof</strong></h3>
+<p>Let <span class="math inline">x_i</span> denote the iterate at step <span class="math inline">i</span>. According to the Mean Value Theorem, there exists a number <span class="math inline">c_i</span> between <span class="math inline">x_i</span> and <span class="math inline">r</span> such that</p>
+<p><span class="math display">
+x_{i+1} - r = g&#39;(c_i)(x_i - r)
+</span></p>
+<p>where we have substituted <span class="math inline">x_{i+1} = g(x_i)</span> and <span class="math inline">r = g(r)</span>. Defining <span class="math inline">e_i = |x_i - r|</span>, (1.9) can be written as</p>
+<p><span class="math display">
+e_{i+1} = |g&#39;(c_i)|e_i
+</span></p>
+<p>If <span class="math inline">S = |g&#39;(r)|</span> is less than one, then by the continuity of <span class="math inline">g&#39;</span>, there is a small neighborhood around <span class="math inline">r</span> for which <span class="math inline">|g&#39;(x)| &lt; (S + 1)/2</span>, slightly larger than <span class="math inline">S</span>, but still less than one. If <span class="math inline">x_i</span> happens to lie in this neighborhood, then <span class="math inline">c_i</span> does, too (it is trapped between <span class="math inline">x_i</span> and <span class="math inline">r</span>), and so</p>
+<p><span class="math display">
+e_{i+1} \leq \frac{S + 1}{2} e_i
+</span></p>
+<p>Thus, the error decreases by a factor of <span class="math inline">(S + 1)/2</span> or better on this and every future step. That means <span class="math inline">\lim_{i \to \infty} x_i = r</span>, and taking the limit of (1.10) yields</p>
+<p><span class="math display">
+\lim_{i \to \infty} \frac{e_{i+1}}{e_i} = \lim_{i \to \infty} |g&#39;(c_i)| = |g&#39;(r)| = S
+</span></p>
 </section>
-<section id="week-02" class="level1">
-<h1><strong>WEEK 02</strong></h1>
-<ul>
-<li><a href="#">(C1-P7) Exercise 1.4.6</a></li>
-<li><a href="#">(C1-P8) Exercise 1.4.8</a></li>
-<li><a href="#">(C1-P9) Computer Problem 1.4.7</a></li>
-<li><a href="#">(C1-P10) Exercise 1.5.1</a></li>
-<li><a href="#">(C1-P11)</a></li>
-<li><a href="./w02/exercise3-1-1a.html">(C3-P1) Exercise 3.1.1a</a></li>
-<li><a href="./w02/exercise3-1-1c.html">(C3-P1) Exercise 3.1.1c</a></li>
-<li><a href="./w02/exercise3-1-2a.html">(C3-P2) Exercise 3.1.2a</a></li>
-<li><a href="./w02/exercise3-1-2c.html">(C3-P2) Exercise 3.1.2c</a></li>
-<li><a href="./w02/exercise3-1-6.html">(C3-P3) Exercise 3.1.6</a></li>
-</ul>
 </section>
-<section id="week-03" class="level1">
-<h1><strong>WEEK 03</strong></h1>
-<ul>
-<li><a href="./w03/c0-p2.html">(C0-P2)</a></li>
-<li><a href="./w03/exercise3-2-2.html">(C3-P4) Exercise 3.2.2</a></li>
-<li><a href="#">(C3-P5) Exercise 3.2.5</a></li>
-<li><a href="#">(C3-P6) Exercise 3.2.6</a></li>
-<li><a href="#">(C3-P7) Computer Problem 3.1.3</a></li>
-<li><a href="#">(C3-P8) Exercise 3.3.1ac</a></li>
-<li><a href="#">(C3-P9) Exercise 3.3.2ac</a></li>
-<li><a href="./w03/exercise3-3-3.html">(C3-P10) Exercise 3.3.3</a></li>
-</ul>
+<section id="newtons-method-convergence-theorem" class="level2">
+<h2 class="anchored" data-anchor-id="newtons-method-convergence-theorem"><strong>Newton’s Method Convergence Theorem</strong></h2>
+<p><em>Theorem 1.11 (p. 53)</em></p>
+<p>Let <span class="math inline">f</span> be twice continuously differentiable and <span class="math inline">f(r) = 0</span>. If <span class="math inline">f&#39;(r) \neq 0</span>, then Newton’s Method is locally and quadratically convergent to <span class="math inline">r</span>. The error <span class="math inline">e_i</span> at step <span class="math inline">i</span> satisfies:</p>
+<p><span class="math display">
+\lim_{i \to \infty} \frac{e_{i+1}}{e_i^2} = M
+</span></p>
+<p>where</p>
+<p><span class="math display">
+M = \left| \frac{f&#39;&#39;(r)}{2f&#39;(r)} \right|
+</span></p>
 </section>
-<section id="week-04" class="level1">
-<h1><strong>WEEK 04</strong></h1>
-<ul>
-<li><a href="./w04/exercise5-2-1a.html">(C5-P1) Exercise 5.2.1a</a></li>
-<li><a href="./w04/exercise5-2-b.html">(C5-P1) Exercise 5.2.1b</a></li>
-<li><a href="#">(C5-P2) Exercise 5.2.2ab</a></li>
-<li><a href="#">(C5-P3) Exercise 5.2.3ab</a></li>
-<li><a href="#">(C5-P4) Exercise 5.2.10</a></li>
-<li><a href="#">(C5-P5) Exercise 5.2.12</a></li>
-<li><a href="#">(C5-P6) Computer Problem 5.2.1ac</a></li>
-<li><a href="#">(C5-P7) Computer Problem 5.2.2de</a></li>
-<li><a href="#">(C5-P8) Computer Problem 5.2.9bf</a></li>
-</ul>
-</section>
-<section id="week-05" class="level1">
-<h1><strong>WEEK 05</strong></h1>
-<ul>
-<li><a href="#">(C5-P9) Exercise 5.5.1ab</a></li>
-<li><a href="#">(C5-P10) Exercise 5.5.4cd</a></li>
-<li><a href="#">(C5-P11) Computer Problem 5.4.1acd</a></li>
-<li><a href="#">(C5-P12) Computer Problem 5.4.2</a></li>
-<li><a href="#">(C5-P13) Computer Problem 5.4.3acd</a></li>
-<li><a href="#">(C5-P14) Exercise 5.5.5cd</a></li>
-<li><a href="#">(C5-P15) Exercise 5.5.7</a></li>
-</ul>
-</section>
-<section id="week-06" class="level1">
-<h1><strong>WEEK 06</strong></h1>
-<ul>
-<li><a href="./w06/exercise2-1-2a.html">(C2-P1) Exercise 2.1.2a</a></li>
-<li><a href="#">(C2-P1) Exercise 2.1.2c</a></li>
-<li><a href="#">(C2-P2) Computer Problem 2.1.2ac</a></li>
-<li><a href="#">(C2-P3) Exercise 2.2.1ab</a></li>
-<li><a href="#">(C2-P4) Exercise 2.2.2ab</a></li>
-</ul>
-</section>
-<section id="week-07" class="level1">
-<h1><strong>WEEK 07</strong></h1>
-<ul>
-<li><a href="#">(C2-P5) Exercise 2.2.4</a></li>
-<li><a href="#">(C2-P6) Computer Problem 2.2.1ab</a></li>
-<li><a href="#">(C2-P7) Exercise 2.4.1ab</a></li>
-<li><a href="#">(C2-P8) Exercise 2.4.2ab</a></li>
-<li><a href="./w07/exercise2-4-4a.html">(C2-P9) Exercise 2.4.4a</a></li>
-<li><a href="./w07/exercise2-4-6.html">(C2-P10) Exercise 2.4.6</a></li>
-</ul>
-</section>
-<section id="week-08" class="level1">
-<h1><strong>WEEK 08</strong></h1>
-<ul>
-<li><a href="#">(C2-P11) Exercise 2.5.2ab</a></li>
-<li><a href="#">(C2-P12) Computer Problem 2.5.2 (solve using both Jacobi and Gauss-Seidel, compare results)</a></li>
-<li><a href="./w08/exercise4-1-2a.html">(C4-P1) Exercise 4.1.2a</a></li>
-<li><a href="#">(C4-P1) Exercise 4.1.2b</a></li>
-<li><a href="#">(C4-P2) Computer Problem 4.1.5 (also use a quadratic fit and compare)</a></li>
-<li><a href="#">(C4-P3) Exercise 4.3.2</a></li>
-</ul>
-</section>
-<section id="week-09" class="level1">
-<h1><strong>WEEK 09</strong></h1>
-<ul>
-<li><a href="./w09/exercise4-3-1d.html">Exercise 4.3.1d</a></li>
-<li><a href="#">(C4-P4) Exercise 4.3.4</a></li>
-<li><a href="#">(C4-P5) Exercise 4.3.7 (you can use your QR factorizations from Exercise 4.3.2)</a></li>
-<li><a href="#">(C4-P6) Computer Problem 4.3.4 Additional instructions: Write a classical Gram-Schmidt code only. Use the matrices in Exercise 4.3.2 to check your code. If you use the code I provided, you must comment it (explain what every line does).</a></li>
-</ul>
-</section>
-<section id="week-10" class="level1">
-<h1><strong>WEEK 10</strong></h1>
-<ul>
-<li><a href="#">(C4-P7) Exercise 4.4.2</a></li>
-<li><a href="#">(C4-P8) Exercise 4.4.3</a></li>
-<li><a href="#">(C4-P9) Computer Problem 4.4.2 (find a preconditioned GMRES Python code and use it)</a></li>
-</ul>
-</section>
-<section id="week-11" class="level1">
-<h1><strong>WEEK 11</strong></h1>
-<p>None</p>
-</section>
-<section id="week-12" class="level1">
-<h1><strong>WEEK 12</strong></h1>
-<ul>
-<li><a href="#">(C10-P1) Exercise 10.1.1ad (also, find the inverse DFT of your result, compare to the original vector)</a></li>
-<li><a href="#">(C10-P2) Exercise 10.1.8</a></li>
-<li><a href="./w12/exercise10-2-1a.html">(C10-P3) Exercise 10.2.1a</a></li>
-<li><a href="./w12/exercise10-2-1b.html">(C10-P3) Exercise 10.2.1b</a></li>
-<li><a href="#">(C10-P4) Exercise 10.2.3ab</a></li>
-<li><a href="#">(C10-P5) Exercise 10.2.3 (plot data and function to show your interpolating function does interpolate the data)</a></li>
-<li><a href="#">(C10-P6) Computer Problem 10.2.4</a></li>
-<li><a href="#">(C10-P7) Exercise 10.3.2ab</a></li>
-</ul>
-</section>
-<section id="week-13" class="level1">
-<h1><strong>WEEK 13</strong></h1>
-<ul>
-<li><a href="#">(C10-P8) Computer Problem 10.3.2cd</a></li>
-<li><a href="#">(C10-P9) Exercise 10.3.5 (Complete the <span class="math inline">\sum\_{j=0}^{n-1} \cos \frac{2 \pi j k}{n} \cos \frac{2 \pi j l}{n}</span> result only)</a></li>
-<li><a href="#">(C10-P10) Exercise 10.1.6</a></li>
-</ul>
+<section id="proof-1" class="level2">
+<h2 class="anchored" data-anchor-id="proof-1"><strong>Proof</strong></h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>1. Show <span class="math inline">g&#39;(r) = 0</span>:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Newton’s Method is</p>
+<p><span class="math display">
+x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x_i)}
+</span></p>
+<p>This has the form of Fixed-Point Iteration (i.e., <span class="math inline">x_{i+1} = g(x_i)</span>), where</p>
+<p><span class="math display">
+g(x) = x - \frac{f(x)}{f&#39;(x)}
+</span></p>
+<p>Show that <span class="math inline">g&#39;(r) = 0</span>.</p>
+<p>What does this imply about the convergence of Newton’s Method? <em>(Hint: see Theorem 1.6)</em></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>2. First two terms of the Taylor series for <span class="math inline">f(r)</span>:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To complete our proof, we need to show that</p>
+<p><span class="math display">
+\lim_{i \to \infty} \frac{e_{i+1}}{e_i^2} = \left| \frac{f&#39;&#39;(r)}{2f&#39;(r)} \right|
+</span></p>
+<p>Begin by writing out the first <strong>two</strong> terms of the Taylor series for <span class="math inline">f(r)</span> centered at <span class="math inline">x_i</span>, along with the remainder term (see p. 21, with <span class="math inline">x = r</span>, <span class="math inline">x_0 = x_i</span>, and <span class="math inline">c = c_i</span>).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>3. Manipulate result:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Manipulate your result so it looks like this <em>(note: the LHS of this equation is the RHS of Newton’s Method)</em>:</p>
+<p><span class="math display">
+x_i - \frac{f(x_i)}{f&#39;(x_i)} = r + \frac{f&#39;&#39;(c_i)}{2f&#39;(x_i)}(r - x_i)^2
+</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong><em>EQUATION 1</em></strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>4. Explain why:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>5. Explain why:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>6. Use the results from Steps (4) and (5) with <em>EQUATION 1</em> to show show that:</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>7. Final Conclusion</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Answer</strong>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="callout callout-style-simple callout-tip no-icon callout-titled" style="background-color: #fffff; border-left: 5px solid #9c27b0; color: #9c27b0; font-weight: 900;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+‎
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>

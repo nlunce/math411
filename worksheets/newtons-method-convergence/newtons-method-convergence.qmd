@@ -1,0 +1,203 @@
+---
+title: 'Newtons Method - Convergence Proof'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show Code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
+---
+
+## **Fixed-Point Iteration Convergence Theorem**
+
+_Theorem 1.6 (p. 35)_
+
+Assume that $g$ is continuously differentiable, that $g(r) = r$, and that $S = |g'(r)| < 1$. Then Fixed-Point Iteration converges linearly with rate $S$ to the fixed point $r$ for initial guesses sufficiently close to $r$.
+
+### **Proof**
+
+Let $x_i$ denote the iterate at step $i$. According to the Mean Value Theorem, there exists a number $c_i$ between $x_i$ and $r$ such that
+
+$$
+x_{i+1} - r = g'(c_i)(x_i - r)
+$$
+
+where we have substituted $x_{i+1} = g(x_i)$ and $r = g(r)$. Defining $e_i = |x_i - r|$, (1.9) can be written as
+
+$$
+e_{i+1} = |g'(c_i)|e_i
+$$
+
+If $S = |g'(r)|$ is less than one, then by the continuity of $g'$, there is a small neighborhood around $r$ for which $|g'(x)| < (S + 1)/2$, slightly larger than $S$, but still less than one. If $x_i$ happens to lie in this neighborhood, then $c_i$ does, too (it is trapped between $x_i$ and $r$), and so
+
+$$
+e_{i+1} \leq \frac{S + 1}{2} e_i
+$$
+
+Thus, the error decreases by a factor of $(S + 1)/2$ or better on this and every future step. That means $\lim_{i \to \infty} x_i = r$, and taking the limit of (1.10) yields
+
+$$
+\lim_{i \to \infty} \frac{e_{i+1}}{e_i} = \lim_{i \to \infty} |g'(c_i)| = |g'(r)| = S
+$$
+
+## **Newton's Method Convergence Theorem**
+
+_Theorem 1.11 (p. 53)_
+
+Let $f$ be twice continuously differentiable and $f(r) = 0$. If $f'(r) \neq 0$, then Newton’s Method is locally and quadratically convergent to $r$. The error $e_i$ at step $i$ satisfies:
+
+$$
+\lim_{i \to \infty} \frac{e_{i+1}}{e_i^2} = M
+$$
+
+where
+
+$$
+M = \left| \frac{f''(r)}{2f'(r)} \right|
+$$
+
+## **Proof**
+
+::: {.callout-note icon=false}
+
+## **1. Show $g'(r) = 0$:**
+
+Newton’s Method is
+
+$$
+x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
+$$
+
+This has the form of Fixed-Point Iteration (i.e., $x_{i+1} = g(x_i)$), where
+
+$$
+g(x) = x - \frac{f(x)}{f'(x)}
+$$
+
+Show that $g'(r) = 0$.
+
+What does this imply about the convergence of Newton’s Method? _(Hint: see Theorem 1.6)_
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **2. First two terms of the Taylor series for $f(r)$:**
+
+To complete our proof, we need to show that
+
+$$
+\lim_{i \to \infty} \frac{e_{i+1}}{e_i^2} = \left| \frac{f''(r)}{2f'(r)} \right|
+$$
+
+Begin by writing out the first **two** terms of the Taylor series for $f(r)$ centered at $x_i$, along with the remainder term (see p. 21, with $x = r$, $x_0 = x_i$, and $c = c_i$).
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **3. Manipulate result:**
+
+Manipulate your result so it looks like this _(note: the LHS of this equation is the RHS of Newton’s Method)_:
+
+$$
+x_i - \frac{f(x_i)}{f'(x_i)} = r + \frac{f''(c_i)}{2f'(x_i)}(r - x_i)^2
+$$
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-tip icon=false appearance="simple"}
+
+# **_EQUATION 1_**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **4. Explain why:**
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **5. Explain why:**
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **6. Use the results from Steps (4) and (5) with _EQUATION 1_ to show show that:**
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+:::
+
+::: {.callout-note icon=false}
+
+## **7. Final Conclusion**
+
+:::
+
+::: {.callout-tip collapse="true"}
+
+## **Answer**
+
+::: {.callout-tip icon=false appearance="simple" style="background-color: #fffff; border-left: 5px solid #9c27b0; color: #9c27b0; font-weight: 900;"}
+
+# ‎
+
+:::
+
+:::

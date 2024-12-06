@@ -26,4 +26,5 @@ preview:
   navigate: true
 ---
 
+- [**Newtons Method - Convergence Proof**](./newtons-method-convergence/newtons-method-convergence.html)
 - [**Jacobi Method - Convergence Proof**](./jacobi-method-convergence/jacobi-method-convergence.html)
