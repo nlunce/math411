@@ -73,7 +73,7 @@ def P_8(t):
 
 t_plot = np.linspace(0, 1, 400)
 x_plot = P_8(t_plot)
--
+
 # Plot the interpolating function
 plt.figure(figsize=(8,5))
 plt.plot(t_plot, x_plot, label='Interpolating Function', color='blue')
