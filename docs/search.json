@@ -907,7 +907,7 @@
     "href": "homework/w12/exercise10-2-3a.html",
     "title": "Exercise 10.2.3a (C10-P4)",
     "section": "",
-    "text": "Find the trigonometric interpolating function for the given data:\n\n\n\nt\nx\n\n\n\n\n0\n0\n\n\n\\frac{1}{8}\n1\n\n\n\\frac{1}{4}\n0\n\n\n\\frac{3}{8}\n-1\n\n\n\\frac{1}{2}\n0\n\n\n\\frac{5}{8}\n1\n\n\n\\frac{3}{4}\n0\n\n\n\\frac{7}{8}\n-1\n\n\n\n:::"
+    "text": "10.2.3a\n\n\n\nFind the trigonometric interpolating function for the given data:\n\n\n\nt\nx\n\n\n\n\n0\n0\n\n\n\\frac{1}{8}\n1\n\n\n\\frac{1}{4}\n0\n\n\n\\frac{3}{8}\n-1\n\n\n\\frac{1}{2}\n0\n\n\n\\frac{5}{8}\n1\n\n\n\\frac{3}{4}\n0\n\n\n\\frac{7}{8}\n-1"
   },
   {
     "objectID": "homework/w12/exercise10-2-3a.html#a",

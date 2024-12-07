@@ -28,7 +28,7 @@ preview:
 
 # **Problem:**
 
-## ::: {.callout-note icon=false }
+::: {.callout-note icon=false }
 
 ## **10.2.3a**
 
