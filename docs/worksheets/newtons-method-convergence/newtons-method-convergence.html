@@ -4860,25 +4860,26 @@ window.Quarto = {
 <section id="fixed-point-iteration-convergence-theorem" class="level2">
 <h2 class="anchored" data-anchor-id="fixed-point-iteration-convergence-theorem"><strong>Fixed-Point Iteration Convergence Theorem</strong></h2>
 <p><em>Theorem 1.6 (p. 35)</em></p>
-<p>Assume that <span class="math inline">g</span> is continuously differentiable, that <span class="math inline">g(r) = r</span>, and that <span class="math inline">S = |g&#39;(r)| &lt; 1</span>. Then Fixed-Point Iteration converges linearly with rate <span class="math inline">S</span> to the fixed point <span class="math inline">r</span> for initial guesses sufficiently close to <span class="math inline">r</span>.</p>
+<p>Assume that <span class="math inline">g</span> is continuously differentiable, <span class="math inline">g(r) = r</span>, and <span class="math inline">S = |g&#39;(r)| &lt; 1</span>. Under these conditions, Fixed-Point Iteration converges linearly with rate <span class="math inline">S</span> to the fixed point <span class="math inline">r</span> for initial guesses sufficiently close to <span class="math inline">r</span>.</p>
 <section id="proof" class="level3">
 <h3 class="anchored" data-anchor-id="proof"><strong>Proof</strong></h3>
-<p>Let <span class="math inline">x_i</span> denote the iterate at step <span class="math inline">i</span>. According to the Mean Value Theorem, there exists a number <span class="math inline">c_i</span> between <span class="math inline">x_i</span> and <span class="math inline">r</span> such that</p>
+<p>Let <span class="math inline">x_i</span> represent the <span class="math inline">i</span>-th iteration. By the Mean Value Theorem, there exists some <span class="math inline">c_i</span> between <span class="math inline">x_i</span> and <span class="math inline">r</span> such that:</p>
 <p><span class="math display">
 x_{i+1} - r = g&#39;(c_i)(x_i - r)
 </span></p>
-<p>where we have substituted <span class="math inline">x_{i+1} = g(x_i)</span> and <span class="math inline">r = g(r)</span>. Defining <span class="math inline">e_i = |x_i - r|</span>, (1.9) can be written as</p>
+<p>Here, we substitute <span class="math inline">x_{i+1} = g(x_i)</span> and <span class="math inline">r = g(r)</span>. Defining the error <span class="math inline">e_i = |x_i - r|</span>, this equation can be rewritten as:</p>
 <p><span class="math display">
 e_{i+1} = |g&#39;(c_i)|e_i
 </span></p>
-<p>If <span class="math inline">S = |g&#39;(r)|</span> is less than one, then by the continuity of <span class="math inline">g&#39;</span>, there is a small neighborhood around <span class="math inline">r</span> for which <span class="math inline">|g&#39;(x)| &lt; (S + 1)/2</span>, slightly larger than <span class="math inline">S</span>, but still less than one. If <span class="math inline">x_i</span> happens to lie in this neighborhood, then <span class="math inline">c_i</span> does, too (it is trapped between <span class="math inline">x_i</span> and <span class="math inline">r</span>), and so</p>
+<p>If <span class="math inline">S = |g&#39;(r)|</span> is less than one, the continuity of <span class="math inline">g&#39;</span> ensures that there exists a small neighborhood around <span class="math inline">r</span> where <span class="math inline">|g&#39;(x)| &lt; (S + 1)/2</span>. This value is slightly larger than <span class="math inline">S</span>, but still less than one. If <span class="math inline">x_i</span> lies within this neighborhood, then <span class="math inline">c_i</span>, being between <span class="math inline">x_i</span> and <span class="math inline">r</span>, also lies within this neighborhood. Consequently:</p>
 <p><span class="math display">
 e_{i+1} \leq \frac{S + 1}{2} e_i
 </span></p>
-<p>Thus, the error decreases by a factor of <span class="math inline">(S + 1)/2</span> or better on this and every future step. That means <span class="math inline">\lim_{i \to \infty} x_i = r</span>, and taking the limit of (1.10) yields</p>
+<p>This inequality shows that the error decreases by at least a factor of <span class="math inline">(S + 1)/2</span> on this and every subsequent step. As a result, <span class="math inline">\lim_{i \to \infty} x_i = r</span>. Furthermore, taking the limit of the ratio of consecutive errors yields:</p>
 <p><span class="math display">
 \lim_{i \to \infty} \frac{e_{i+1}}{e_i} = \lim_{i \to \infty} |g&#39;(c_i)| = |g&#39;(r)| = S
 </span></p>
+<p>This establishes that the iteration converges linearly with rate <span class="math inline">S</span>.</p>
 </section>
 </section>
 <section id="newtons-method-convergence-theorem" class="level2">
@@ -4929,7 +4930,44 @@ g(x) = x - \frac{f(x)}{f&#39;(x)}
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>Newton’s Method is given by the iteration formula:</p>
+<p><span class="math display">
+x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x_i)}
+</span></p>
+<p>This can be expressed in the form of Fixed-Point Iteration by defining:</p>
+<p><span class="math display">
+g(x) = x - \frac{f(x)}{f&#39;(x)}
+</span></p>
+<p>Therefore, the iteration becomes:</p>
+<p><span class="math display">
+x_{i+1} = g(x_i)
+</span></p>
+<p>To find <span class="math inline">g&#39;(r)</span>, first differentiate <span class="math inline">g(x)</span> with respect to <span class="math inline">x</span>:</p>
+<p><span class="math display">
+g&#39;(x) = \frac{d}{dx} \left( x - \frac{f(x)}{f&#39;(x)} \right) = 1 - \frac{d}{dx} \left( \frac{f(x)}{f&#39;(x)} \right)
+</span></p>
+<p>Using the <strong>Quotient Rule</strong> for differentiation:</p>
+<p><span class="math display">
+\frac{d}{dx} \left( \frac{f(x)}{f&#39;(x)} \right) = \frac{f&#39;(x)f&#39;(x) - f(x)f&#39;&#39;(x)}{[f&#39;(x)]^2} = \frac{[f&#39;(x)]^2 - f(x)f&#39;&#39;(x)}{[f&#39;(x)]^2}
+</span></p>
+<p>Substituting back into the expression for <span class="math inline">g&#39;(x)</span>:</p>
+<p><span class="math display">
+g&#39;(x) = 1 - \frac{[f&#39;(x)]^2 - f(x)f&#39;&#39;(x)}{[f&#39;(x)]^2} = 1 - 1 + \frac{f(x)f&#39;&#39;(x)}{[f&#39;(x)]^2} = \frac{f(x)f&#39;&#39;(x)}{[f&#39;(x)]^2}
+</span></p>
+<p>Given that <span class="math inline">r</span> is the root of <span class="math inline">f(x)</span>:</p>
+<p><span class="math display">
+f(r) = 0
+</span></p>
+<p>Plugging <span class="math inline">x = r</span> into the derivative:</p>
+<p><span class="math display">
+g&#39;(r) = \frac{f(r)f&#39;&#39;(r)}{[f&#39;(r)]^2} = \frac{0 \cdot f&#39;&#39;(r)}{[f&#39;(r)]^2} = 0
+</span></p>
+<p>Therefore:</p>
+<p><span class="math display">
+g&#39;(r) = 0
+</span></p>
+<p><strong>This implies that convergence is guaranteed locally:</strong></p>
+<p><em>Theorem 1.6</em> states that if <span class="math inline">|g&#39;(r)| &lt; 1</span>, the Fixed-Point Iteration will converge to <span class="math inline">r</span>, provided the initial guess <span class="math inline">x_0</span> is sufficiently close to <span class="math inline">r</span>. Since <span class="math inline">g&#39;(r) = 0</span>, this condition is satisfied with <span class="math inline">|g&#39;(r)| = 0 &lt; 1</span>. Thus, Newton’s Method will converge to the root <span class="math inline">r</span> if the initial guess is close enough.</p>
 </div>
 </div>
 </div>
@@ -4962,7 +5000,15 @@ g(x) = x - \frac{f(x)}{f&#39;(x)}
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>The Taylor series expansion of a function <span class="math inline">f(x)</span> around a point <span class="math inline">x_i</span> up to the second term is given by:</p>
+<p><span class="math display">
+f(r) = f(x_i) + f&#39;(x_i)(r - x_i) + \frac{f&#39;&#39;(c_i)}{2}(r - x_i)^2
+</span></p>
+<p>Here:</p>
+<ul>
+<li><span class="math inline">x_i</span> is the current approximation.</li>
+<li><span class="math inline">c_i</span> is a point between <span class="math inline">x_i</span> and <span class="math inline">r</span>.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -4994,7 +5040,40 @@ x_i - \frac{f(x_i)}{f&#39;(x_i)} = r + \frac{f&#39;&#39;(c_i)}{2f&#39;(x_i)}(r -
 </div>
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-
+<p>From the Taylor series expansion of <span class="math inline">f(r)</span> centered at <span class="math inline">x_i</span>, we have:</p>
+<p><span class="math display">
+f(r) = f(x_i) + f&#39;(x_i)(r - x_i) + \frac{f&#39;&#39;(c_i)}{2}(r - x_i)^2
+</span></p>
+<p>Since <span class="math inline">r</span> is the root of <span class="math inline">f(x)</span>, <span class="math inline">f(r) = 0</span>. Substitute <span class="math inline">f(r) = 0</span>:</p>
+<p><span class="math display">
+0 = f(x_i) + f&#39;(x_i)(r - x_i) + \frac{f&#39;&#39;(c_i)}{2}(r - x_i)^2
+</span></p>
+<p>Rearrange to solve for <span class="math inline">f(x_i)</span>:</p>
+<p><span class="math display">
+f(x_i) = -f&#39;(x_i)(r - x_i) - \frac{f&#39;&#39;(c_i)}{2}(r - x_i)^2
+</span></p>
+<p>The formula for Newton’s Method is:</p>
+<p><span class="math display">
+x_{i+1} = x_i - \frac{f(x_i)}{f&#39;(x_i)}
+</span></p>
+<p>Substitute <span class="math inline">f(x_i) = -f&#39;(x_i)(r - x_i) - \frac{f&#39;&#39;(c_i)}{2}(r - x_i)^2</span> into <span class="math inline">x_i - \frac{f(x_i)}{f&#39;(x_i)}</span>:</p>
+<p><span class="math display">
+x_i - \frac{f(x_i)}{f&#39;(x_i)} = x_i - \frac{-f&#39;(x_i)(r - x_i) - \frac{f&#39;&#39;(c_i)}{2}(r - x_i)^2}{f&#39;(x_i)}
+</span></p>
+<p>Break this into two terms:</p>
+<ul>
+<li><p>The first term:</p>
+<p><span class="math display">
+-\frac{-f&#39;(x_i)(r - x_i)}{f&#39;(x_i)} = r - x_i
+</span></p></li>
+<li><p>The second term: <span class="math display">
+-\frac{\frac{f&#39;&#39;(c_i)}{2}(r - x_i)^2}{f&#39;(x_i)} = \frac{f&#39;&#39;(c_i)}{2f&#39;(x_i)}(r - x_i)^2
+</span></p></li>
+</ul>
+<p>Combine the terms:</p>
+<p><span class="math display">
+x_i - \frac{f(x_i)}{f&#39;(x_i)} = r + \frac{f&#39;&#39;(c_i)}{2f&#39;(x_i)}(r - x_i)^2
+</span></p>
 </div>
 </div>
 </div>

@@ -30,33 +30,35 @@ preview:
 
 _Theorem 1.6 (p. 35)_
 
-Assume that $g$ is continuously differentiable, that $g(r) = r$, and that $S = |g'(r)| < 1$. Then Fixed-Point Iteration converges linearly with rate $S$ to the fixed point $r$ for initial guesses sufficiently close to $r$.
+Assume that $g$ is continuously differentiable, $g(r) = r$, and $S = |g'(r)| < 1$. Under these conditions, Fixed-Point Iteration converges linearly with rate $S$ to the fixed point $r$ for initial guesses sufficiently close to $r$.
 
 ### **Proof**
 
-Let $x_i$ denote the iterate at step $i$. According to the Mean Value Theorem, there exists a number $c_i$ between $x_i$ and $r$ such that
+Let $x_i$ represent the $i$-th iteration. By the Mean Value Theorem, there exists some $c_i$ between $x_i$ and $r$ such that:
 
 $$
 x_{i+1} - r = g'(c_i)(x_i - r)
 $$
 
-where we have substituted $x_{i+1} = g(x_i)$ and $r = g(r)$. Defining $e_i = |x_i - r|$, (1.9) can be written as
+Here, we substitute $x_{i+1} = g(x_i)$ and $r = g(r)$. Defining the error $e_i = |x_i - r|$, this equation can be rewritten as:
 
 $$
 e_{i+1} = |g'(c_i)|e_i
 $$
 
-If $S = |g'(r)|$ is less than one, then by the continuity of $g'$, there is a small neighborhood around $r$ for which $|g'(x)| < (S + 1)/2$, slightly larger than $S$, but still less than one. If $x_i$ happens to lie in this neighborhood, then $c_i$ does, too (it is trapped between $x_i$ and $r$), and so
+If $S = |g'(r)|$ is less than one, the continuity of $g'$ ensures that there exists a small neighborhood around $r$ where $|g'(x)| < (S + 1)/2$. This value is slightly larger than $S$, but still less than one. If $x_i$ lies within this neighborhood, then $c_i$, being between $x_i$ and $r$, also lies within this neighborhood. Consequently:
 
 $$
 e_{i+1} \leq \frac{S + 1}{2} e_i
 $$
 
-Thus, the error decreases by a factor of $(S + 1)/2$ or better on this and every future step. That means $\lim_{i \to \infty} x_i = r$, and taking the limit of (1.10) yields
+This inequality shows that the error decreases by at least a factor of $(S + 1)/2$ on this and every subsequent step. As a result, $\lim_{i \to \infty} x_i = r$. Furthermore, taking the limit of the ratio of consecutive errors yields:
 
 $$
 \lim_{i \to \infty} \frac{e_{i+1}}{e_i} = \lim_{i \to \infty} |g'(c_i)| = |g'(r)| = S
 $$
+
+This establishes that the iteration converges linearly with rate $S$.
 
 ## **Newton's Method Convergence Theorem**
 
@@ -102,6 +104,64 @@ What does this imply about the convergence of Newton’s Method? _(Hint: see The
 
 ## **Answer**
 
+Newton’s Method is given by the iteration formula:
+
+$$
+x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
+$$
+
+This can be expressed in the form of Fixed-Point Iteration by defining:
+
+$$
+g(x) = x - \frac{f(x)}{f'(x)}
+$$
+
+Therefore, the iteration becomes:
+
+$$
+x_{i+1} = g(x_i)
+$$
+
+To find $g'(r)$, first differentiate $g(x)$ with respect to $x$:
+
+$$
+g'(x) = \frac{d}{dx} \left( x - \frac{f(x)}{f'(x)} \right) = 1 - \frac{d}{dx} \left( \frac{f(x)}{f'(x)} \right)
+$$
+
+Using the **Quotient Rule** for differentiation:
+
+$$
+\frac{d}{dx} \left( \frac{f(x)}{f'(x)} \right) = \frac{f'(x)f'(x) - f(x)f''(x)}{[f'(x)]^2} = \frac{[f'(x)]^2 - f(x)f''(x)}{[f'(x)]^2}
+$$
+
+Substituting back into the expression for $g'(x)$:
+
+$$
+g'(x) = 1 - \frac{[f'(x)]^2 - f(x)f''(x)}{[f'(x)]^2} = 1 - 1 + \frac{f(x)f''(x)}{[f'(x)]^2} = \frac{f(x)f''(x)}{[f'(x)]^2}
+$$
+
+Given that $r$ is the root of $f(x)$:
+
+$$
+f(r) = 0
+$$
+
+Plugging $x = r$ into the derivative:
+
+$$
+g'(r) = \frac{f(r)f''(r)}{[f'(r)]^2} = \frac{0 \cdot f''(r)}{[f'(r)]^2} = 0
+$$
+
+Therefore:
+
+$$
+g'(r) = 0
+$$
+
+**This implies that convergence is guaranteed locally:**
+
+_Theorem 1.6_ states that if $|g'(r)| < 1$, the Fixed-Point Iteration will converge to $r$, provided the initial guess $x_0$ is sufficiently close to $r$. Since $g'(r) = 0$, this condition is satisfied with $|g'(r)| = 0 < 1$. Thus, Newton’s Method will converge to the root $r$ if the initial guess is close enough.
+
 :::
 
 ::: {.callout-note icon=false}
@@ -122,6 +182,17 @@ Begin by writing out the first **two** terms of the Taylor series for $f(r)$ cen
 
 ## **Answer**
 
+The Taylor series expansion of a function $f(x)$ around a point $x_i$ up to the second term is given by:
+
+$$
+f(r) = f(x_i) + f'(x_i)(r - x_i) + \frac{f''(c_i)}{2}(r - x_i)^2
+$$
+
+Here:
+
+- $x_i$ is the current approximation.
+- $c_i$ is a point between $x_i$ and $r$.
+
 :::
 
 ::: {.callout-note icon=false}
@@ -139,6 +210,55 @@ $$
 ::: {.callout-tip collapse="true"}
 
 ## **Answer**
+
+From the Taylor series expansion of $f(r)$ centered at $x_i$, we have:
+
+$$
+f(r) = f(x_i) + f'(x_i)(r - x_i) + \frac{f''(c_i)}{2}(r - x_i)^2
+$$
+
+Since $r$ is the root of $f(x)$, $f(r) = 0$. Substitute $f(r) = 0$:
+
+$$
+0 = f(x_i) + f'(x_i)(r - x_i) + \frac{f''(c_i)}{2}(r - x_i)^2
+$$
+
+Rearrange to solve for $f(x_i)$:
+
+$$
+f(x_i) = -f'(x_i)(r - x_i) - \frac{f''(c_i)}{2}(r - x_i)^2
+$$
+
+The formula for Newton’s Method is:
+
+$$
+x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
+$$
+
+Substitute $f(x_i) = -f'(x_i)(r - x_i) - \frac{f''(c_i)}{2}(r - x_i)^2$ into $x_i - \frac{f(x_i)}{f'(x_i)}$:
+
+$$
+x_i - \frac{f(x_i)}{f'(x_i)} = x_i - \frac{-f'(x_i)(r - x_i) - \frac{f''(c_i)}{2}(r - x_i)^2}{f'(x_i)}
+$$
+
+Break this into two terms:
+
+- The first term:
+
+  $$
+  -\frac{-f'(x_i)(r - x_i)}{f'(x_i)} = r - x_i
+  $$
+
+- The second term:
+  $$
+  -\frac{\frac{f''(c_i)}{2}(r - x_i)^2}{f'(x_i)} = \frac{f''(c_i)}{2f'(x_i)}(r - x_i)^2
+  $$
+
+Combine the terms:
+
+$$
+x_i - \frac{f(x_i)}{f'(x_i)} = r + \frac{f''(c_i)}{2f'(x_i)}(r - x_i)^2
+$$
 
 :::
 
