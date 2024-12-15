@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FALL 2024 - SCHEDULE – MATH411</title>
+<title>REALITY CHECK 04 Info – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1667,7 +1667,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="./">
+<meta name="quarto:offset" content="../../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4707,6 +4707,65 @@ vertical-align: -.125em;
   }
 }</script>
 
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var head = document.getElementsByTagName("head")[0];
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
+      head.appendChild(link);
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
+      script.async = false;
+      script.addEventListener('load', function() {
+        var mathElements = document.getElementsByClassName("math");
+          var macros = [];
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == "SPAN") {
+              window.katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                macros: macros,
+                fleqn: false
+              });
+            }
+          }
+      });
+      head.appendChild(script);
+    });
+  </script>
+  
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <style type="text/css">
 </style>
@@ -4719,7 +4778,7 @@ vertical-align: -.125em;
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4730,23 +4789,23 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="././homework/index.html"> 
+    <a class="nav-link" href="../.././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././reality-checks/index.html"> 
+    <a class="nav-link" href="../.././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././worksheets/index.html"> 
+    <a class="nav-link" href="../.././worksheets/index.html"> 
 <span class="menu-text">WORKSHEETS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././notes/index.html"> 
+    <a class="nav-link" href="../.././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././index.html"> 
+    <a class="nav-link" href="../.././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4762,20 +4821,26 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gps-conditioning-and-nonlinear-least-squares" id="toc-gps-conditioning-and-nonlinear-least-squares" class="nav-link active" data-scroll-target="#gps-conditioning-and-nonlinear-least-squares">GPS, Conditioning, and Nonlinear Least Squares</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">FALL 2024 - SCHEDULE</h1>
+<h1 class="title">REALITY CHECK 04 Info</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -4787,342 +4852,113 @@ vertical-align: -.125em;
 </header>
 
 
-<style>
-table {
-width: 100%;
-border-collapse: collapse;
-}
-th, td {
-border: 1px solid #ddd;
-text-align: center;
-vertical-align: top;
-font-family: Arial, sans-serif;
-position: relative;
-}
-th {
-padding: 5px;
-}
-td {
-height: 100px;
-}
-.week-col {
-width: 10%; 
-}
-.content-cell {
-width: 18%; 
-}
-.date {
-position: absolute;
-top: 5px;
-left: 5px;
-font-size: 0.8em;
-color: #666;
-}
-</style>
-<table>
-<tbody><tr>
-<th class="week-col">
-Week
-</th>
-<th class="content-cell">
-Monday
-</th>
-<th class="content-cell">
-Tuesday
-</th>
-<th class="content-cell">
-Wednesday
-</th>
-<th class="content-cell">
-Thursday
-</th>
-<th class="content-cell">
-Friday
-</th>
-</tr>
-<tr>
-<td class="week-col">
-1
-</td>
-<td>
-<span class="date">16</span><br>Chapter 1
-</td>
-<td>
-<span class="date">17</span>
-</td>
-<td>
-<span class="date">18</span><br>Chapter 1
-</td>
-<td>
-<span class="date">19</span>
-</td>
-<td>
-<span class="date">20</span><br>Chapter 1
-</td>
-</tr>
-<tr>
-<td class="week-col">
-2
-</td>
-<td>
-<span class="date">23</span><br>Add/Drop<br>Chapter 1
-</td>
-<td>
-<span class="date">24</span>
-</td>
-<td>
-<span class="date">25</span><br>Chapter 1<br><strong>Quiz 1</strong>
-</td>
-<td>
-<span class="date">26</span>
-</td>
-<td>
-<span class="date">27</span><br>Chapter 3
-</td>
-</tr>
-<tr>
-<td class="week-col">
-3
-</td>
-<td>
-<span class="date">30</span><br>Chapter 3
-</td>
-<td>
-<span class="date">1</span>
-</td>
-<td>
-<span class="date">2</span><br>Chapter 3<br><strong>Quiz 2</strong>
-</td>
-<td>
-<span class="date">3</span>
-</td>
-<td>
-<span class="date">4</span><br>Chapter 3
-</td>
-</tr>
-<tr>
-<td class="week-col">
-4
-</td>
-<td>
-<span class="date">7</span><br>Chapter 3<br><strong>Reality Check 1</strong>
-</td>
-<td>
-<span class="date">8</span><br>No W drop date
-</td>
-<td>
-<span class="date">9</span><br>Chapter 5<br><strong>Quiz 3</strong>
-</td>
-<td>
-<span class="date">10</span>
-</td>
-<td>
-<span class="date">11</span><br>Chapter 5
-</td>
-</tr>
-<tr>
-<td class="week-col">
-5
-</td>
-<td>
-<span class="date">14</span><br>Chapter 5
-</td>
-<td>
-<span class="date">15</span>
-</td>
-<td>
-<span class="date">16</span><br>Chapter 5<br><strong>Quiz 4</strong>
-</td>
-<td>
-<span class="date">17</span>
-</td>
-<td>
-<span class="date">18</span><br>Chapter 5
-</td>
-</tr>
-<tr>
-<td class="week-col">
-6
-</td>
-<td>
-<span class="date">21</span><br>Exam 1 Review<br><strong>Exam 1-2 Opens</strong>
-</td>
-<td>
-<span class="date">22</span>
-</td>
-<td>
-<span class="date">23</span><br><strong>Exam 1-1</strong><br><strong>In Class</strong>
-</td>
-<td>
-<span class="date">24</span><br><strong>Exam 1-2 Closes</strong>
-</td>
-<td>
-<span class="date">25</span><br>Chapter 2
-</td>
-</tr>
-<tr>
-<td class="week-col">
-7
-</td>
-<td>
-<span class="date">28</span><br>Chapter 2
-</td>
-<td>
-<span class="date">29</span>
-</td>
-<td>
-<span class="date">30</span><br>Chapter 2
-</td>
-<td>
-<span class="date">31</span>
-</td>
-<td>
-<span class="date">1</span><br>Chapter 2
-</td>
-</tr>
-<tr>
-<td class="week-col">
-8
-</td>
-<td>
-<span class="date">4</span><br>Chapter 2
-</td>
-<td>
-<span class="date">5</span>
-</td>
-<td>
-<span class="date">6</span><br>Chapter 4<br><strong>Quiz 5</strong>
-</td>
-<td>
-<span class="date">7</span>
-</td>
-<td>
-<span class="date">8</span><br>Chapter 4
-</td>
-</tr>
-<tr>
-<td class="week-col">
-9
-</td>
-<td>
-<span class="date">11</span><br>Drop w/W date<br>Chapter 4<br><strong>2nd Reality Check</strong>
-</td>
-<td>
-<span class="date">12</span>
-</td>
-<td>
-<span class="date">13</span><br>Chapter 4<br><strong>Quiz 6</strong>
-</td>
-<td>
-<span class="date">14</span>
-</td>
-<td>
-<span class="date">15</span><br>Chapter 4
-</td>
-</tr>
-<tr>
-<td class="week-col">
-10
-</td>
-<td>
-<span class="date">18</span><br>Chapter 4
-</td>
-<td>
-<span class="date">19</span>
-</td>
-<td>
-<span class="date">20</span><br>Chapter 4
-</td>
-<td>
-<span class="date">21</span>
-</td>
-<td>
-<span class="date">22</span><br>Exam 2 Review<br><strong>Exam 2-2 Opens</strong>
-</td>
-</tr>
-<tr>
-<td class="week-col">
-11
-</td>
-<td>
-<span class="date">25</span><br>Exam 2-1<br>In Class
-</td>
-<td>
-<span class="date">26</span><br><strong>Exam 2-2 Closes</strong>
-</td>
-<td>
-<span class="date">27</span><br>No Classes
-</td>
-<td>
-<span class="date">28</span><br>Holiday
-</td>
-<td>
-<span class="date">29</span><br>Holiday
-</td>
-</tr>
-<tr>
-<td class="week-col">
-12
-</td>
-<td>
-<span class="date">2</span><br>Chapter 10
-</td>
-<td>
-<span class="date">3</span><br>Discontinuance
-</td>
-<td>
-<span class="date">4</span><br>Chapter 10
-</td>
-<td>
-<span class="date">5</span>
-</td>
-<td>
-<span class="date">6</span><br>Chapter 10<br>Quiz 7 (?)
-</td>
-</tr>
-<tr>
-<td class="week-col">
-13
-</td>
-<td>
-<span class="date">9</span><br>Chapter 10
-</td>
-<td>
-<span class="date">10</span>
-</td>
-<td>
-<span class="date">11</span><br>Chapter 10
-</td>
-<td>
-<span class="date">12</span>
-</td>
-<td>
-<span class="date">13</span><br>Chapter 10<br><strong>Exam 3-2 Opens</strong>
-</td>
-</tr>
-<tr>
-<td class="week-col">
-14
-</td>
-<td>
-<span class="date">16</span><br>Last Day of Class
-</td>
-<td>
-<span class="date">17</span><br><strong>10:30 Exam 3-1</strong><br><strong>Exam 3-2 Closes</strong><br><strong>3rd Reality Check</strong>
-</td>
-<td>
-<span class="date">18</span>
-</td>
-<td>
-<span class="date">19</span><br>Commencement
-</td>
-<td>
-<span class="date">20</span>
-</td>
-</tr>
-</tbody></table>
+<section id="gps-conditioning-and-nonlinear-least-squares" class="level2">
+<h2 class="anchored" data-anchor-id="gps-conditioning-and-nonlinear-least-squares">GPS, Conditioning, and Nonlinear Least Squares</h2>
+<p>The global positioning system (GPS) consists of 24 satellites carrying atomic clocks, orbiting the earth at an altitude of 20,200 km. Four satellites in each of six planes, slanted at 55° with respect to the poles, make two revolutions per day. At any time, from any point on earth, five to eight satellites are in the direct line of sight. Each satellite has a simple mission: to transmit carefully synchronized signals from predetermined positions in space, to be picked up by GPS receivers on earth. The receivers use the information, with some mathematics (described shortly), to determine accurate (x, y, z) coordinates of the receiver.</p>
+<p>At a given instant, the receiver collects the synchronized signal from the <em>i</em>-th satellite and determines its transmission time <span class="math inline">t_i</span>, the difference between the times the signal was transmitted and received. The nominal speed of the signal is the speed of light, <span class="math inline">c ≈ 299792.458 \, \text{km/sec}</span>. Multiplying transmission time by <span class="math inline">c</span> gives the distance of the satellite from the receiver, putting the receiver on the surface of a sphere centered at the satellite position and with radius <span class="math inline">ct_i</span>. If three satellites are available, then three spheres are known, whose intersection consists of two points, as shown in <strong>Figure 4.16</strong>. One intersection point is the location of the receiver. The other is normally far from the earth’s surface and can be safely disregarded. In theory, the problem is reduced to computing this intersection, the common solution of three sphere equations.</p>
+<p>However, there is a major problem with this analysis. First, although the transmissions from the satellites are timed nearly to the nanosecond by onboard atomic clocks, the clock in the typical low-cost receiver on earth has relatively poor accuracy. If we solve the three equations with slightly inaccurate timing, the calculated position could be wrong by several kilometers. Fortunately, there is a way to fix this problem. The price to pay is one extra satellite. Define <span class="math inline">d</span> to be the difference between the synchronized time on the (now four) satellite clocks and the earth-bound receiver clock. Denote the location of satellite <span class="math inline">i</span> by <span class="math inline">(A_i, B_i, C_i)</span>. Then the true intersection point <span class="math inline">(x, y, z)</span> satisfies</p>
+<p><strong>(4.37)</strong></p>
+<p><span class="math display">
+r_1(x, y, z, d) = \sqrt{(x - A_1)^2 + (y - B_1)^2 + (z - C_1)^2} - c(t_1 - d) = 0
+</span></p>
+<p><span class="math display">
+r_2(x, y, z, d) = \sqrt{(x - A_2)^2 + (y - B_2)^2 + (z - C_2)^2} - c(t_2 - d) = 0
+</span></p>
+<p><span class="math display">
+r_3(x, y, z, d) = \sqrt{(x - A_3)^2 + (y - B_3)^2 + (z - C_3)^2} - c(t_3 - d) = 0
+</span></p>
+<p><span class="math display">
+r_4(x, y, z, d) = \sqrt{(x - A_4)^2 + (y - B_4)^2 + (z - C_4)^2} - c(t_4 - d) = 0
+</span></p>
+<p>to be solved for the unknowns <span class="math inline">x, y, z, d</span>. Solving the system reveals not only the receiver location, but also the correct time from the satellite clocks, due to knowing <span class="math inline">d</span>. Therefore, the inaccuracy in the GPS receiver clock can be fixed by using one extra satellite.</p>
+<p>Geometrically speaking, four spheres may not have a common intersection point, but they will if the radii are expanded or contracted by the right common amount.</p>
+<p>The system (4.37) representing the intersection of four spheres is the three-dimensional analogue of (4.35), representing the intersection point of three circles in the plane.</p>
+<p>The system (4.37) can be seen to have two solutions <span class="math inline">(x, y, z, d)</span>. The equations can be equivalently written</p>
+<p><span class="math display">
+(x - A_1)^2 + (y - B_1)^2 + (z - C_1)^2 = [c(t_1 - d)]^2
+</span></p>
+<p><span class="math display">
+(x - A_2)^2 + (y - B_2)^2 + (z - C_2)^2 = [c(t_2 - d)]^2
+</span></p>
+<p><span class="math display">
+(x - A_3)^2 + (y - B_3)^2 + (z - C_3)^2 = [c(t_3 - d)]^2
+</span></p>
+<p><span class="math display">
+(x - A_4)^2 + (y - B_4)^2 + (z - C_4)^2 = [c(t_4 - d)]^2
+</span></p>
+<p>Note that by subtracting the last three equations from the first, three <strong>linear equations</strong> are obtained. Each linear equation can be used to eliminate a variable <span class="math inline">x, y, z</span>, and by substituting into any of the original equations, a quadratic equation in the single variable <span class="math inline">d</span> results. Therefore, system (4.37) has at most two real solutions, and they can be found by the quadratic formula.</p>
+<p>Two further problems emerge when GPS is deployed. First is the <strong>conditioning</strong> of the system of equations (4.37). We will find that solving for <span class="math inline">(x, y, z, d)</span> is ill-conditioned when the satellites are bunched closely in the sky.</p>
+<p>The second difficulty is that the transmission speed of the signals is not precisely <span class="math inline">c</span>. The signals pass through 100 km of ionosphere and 10 km of troposphere, whose electromagnetic properties may affect the transmission speed. Furthermore, the signals may encounter obstacles on earth before reaching the receiver, an effect called multipath interference. To the extent that these obstacles have an equal impact on each satellite path, introducing the time correction <span class="math inline">d</span> on the right side of (4.37) helps. In general, however, this assumption is not viable and will lead us to add information from more satellites and consider applying <strong>Gauss–Newton</strong> to solve a least squares problem.</p>
+<p>Consider a three-dimensional coordinate system whose origin is the center of the earth (radius ≈ 6370 km). GPS receivers convert these coordinates into latitude, longitude, and elevation data for readout and more sophisticated mapping applications using global information systems (GIS), a process we will not consider here.</p>
+<ol type="1">
+<li>Solve the system (4.37) by using a multivariate root finder in Python. There are<br>
+multiple options in scipy optimize, including root, fsolve, and newton_krylov.<br>
+Find the receiver position <span class="math inline">(x, y, z)</span> near earth and time correction <span class="math inline">d</span> for known,<br>
+simultaneous satellite positions</li>
+</ol>
+<p><span class="math display">
+(15 600, 7540, 20 140), \quad (18 760, 2750, 18 610),
+(17 610, 14 630, 13 480), \quad (19 170, 610, 18 390)
+</span></p>
+<p>in km, and measured time intervals <span class="math inline">0.07074, 0.07220, 0.07690, 0.07242</span> in<br>
+seconds, respectively. Set the initial vector to be <span class="math inline">(x_0, y_0, z_0, d_0) = (0, 0, 6370.0, 0)</span>.<br>
+As a check, the answers are approximately</p>
+<p><span class="math display">
+(x, y, z) = (-41.77271, -16.78919, 6370.0596)
+</span></p>
+<p>and</p>
+<p><span class="math display">
+d = -3.201566 \times 10^{-3} \text{ seconds}.
+</span></p>
+<ol start="2" type="1">
+<li>Write a Python program to carry out the solution via the quadratic formula.<br>
+Hint: Subtracting the last three equations of (4.37) from the first yields three<br>
+linear equations in the four unknowns</li>
+</ol>
+<p><span class="math display">
+x u_x + y u_y + z u_z + d u_d + w = 0,
+</span></p>
+<p>expressed in vector form. A formula for <span class="math inline">x</span> in terms of <span class="math inline">d</span> can be obtained from</p>
+<p><span class="math display">
+0 = \text{det}[u_y | u_z | x u_x + y u_y + z u_z + d u_d + w]
+</span></p>
+<p>noting that the determinant is linear in its columns and that a matrix with a<br>
+repeated column has determinant zero. Similarly, we can arrive at formulas for <span class="math inline">y</span><br>
+and <span class="math inline">z</span>, respectively, in terms of <span class="math inline">d</span>, that can be substituted in the first quadratic<br>
+equation of (4.37), to make it an equation in one variable.</p>
+<ol start="3" type="1">
+<li><p>Skip</p></li>
+<li><p>Now set up a test of the conditioning of the GPS problem</p></li>
+</ol>
+<p>Define satellite positions <span class="math inline">(A_i, B_i, C_i)</span> from spherical coordinates <span class="math inline">(\rho, \phi_i, \theta_i)</span> as:</p>
+<p><span class="math display">
+A_i = \rho \cos(\phi_i) \cos(\theta_i)
+</span></p>
+<p><span class="math display">
+B_i = \rho \cos(\phi_i) \sin(\theta_i)
+</span></p>
+<p><span class="math display">
+C_i = \rho \sin(\phi_i)
+</span></p>
+<p>where <span class="math inline">\rho = 26 \, 570 \, \text{km}</span> is fixed, while <span class="math inline">0 \leq \phi_i \leq \pi / 2</span> and <span class="math inline">0 \leq \theta_i \leq 2 \pi</span> for <span class="math inline">i = 1, \ldots, 4</span> are chosen arbitrarily. The <span class="math inline">\phi</span> coordinate is restricted so that the four satellites are in the upper hemisphere. Set <span class="math inline">x = 0, y = 0, z = 6370, d = 0.0001</span>, and calculate the corresponding satellite ranges:</p>
+<p><span class="math display">
+R_i = \sqrt{A_i^2 + B_i^2 + (C_i - 6370)^2}
+</span></p>
+<p>and travel times:</p>
+<p><span class="math display">
+t_i = d + R_i / c
+</span></p>
+<p>We will define an error magnification factor specially tailored to the situation. The atomic clocks aboard the satellites are correct up to about 10 nanoseconds, or <span class="math inline">10^{-8} \, \text{second}</span>. Therefore, it is important to study the effect of changes in the transmission time of this magnitude.</p>
+<p>Let the backward, or input error, be the input change in meters. At the speed of light, <span class="math inline">\Delta t*i = 10^{-8} \, \text{second}</span> corresponds to <span class="math inline">10^{-8} s \approx 3 \, \text{meters}</span>. Let the forward, or output error, be the change in position <span class="math inline">\|\Delta x, \Delta y, \Delta z\|*\infty</span>, caused by such a change in <span class="math inline">t_i</span>, also in meters. Then we can define the dimensionless error magnification factor (EMF):</p>
+<p><span class="math display">
+\text{EMF} = \frac{\|\Delta x, \Delta y, \Delta z\|_\infty}{c \|\Delta t_1, \ldots, \Delta t_m\|_\infty}
+</span></p>
+<p>and the condition number of the problem to be the maximum error magnification factor for all small <span class="math inline">\Delta t_i</span> (say, <span class="math inline">10^{-8}</span> or less).</p>
+<p>Change each <span class="math inline">t*i</span> defined in the foregoing by <span class="math inline">\Delta t_i = \pm 10^{-8}</span>, not all the same. Denote the new solution of the equations (4.37) by <span class="math inline">(x, y, z, d)</span> and compute the difference in position <span class="math inline">\|\Delta x, \Delta y, \Delta z\|*\infty</span> and the error magnification factor. Try different variations of the <span class="math inline">\Delta t_i</span>’s.</p>
+<p>What is the maximum position error found, in meters? Estimate the condition number of the problem, on the basis of the error magnification factors you have computed.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

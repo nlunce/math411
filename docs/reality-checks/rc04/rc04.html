@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Nathan Lunceford">
 
-<title>FALL 2024 - SCHEDULE – MATH411</title>
+<title>REALITY CHECK 04 – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1667,7 +1668,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="./">
+<meta name="quarto:offset" content="../../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4707,6 +4708,65 @@ vertical-align: -.125em;
   }
 }</script>
 
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var head = document.getElementsByTagName("head")[0];
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
+      head.appendChild(link);
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
+      script.async = false;
+      script.addEventListener('load', function() {
+        var mathElements = document.getElementsByClassName("math");
+          var macros = [];
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == "SPAN") {
+              window.katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                macros: macros,
+                fleqn: false
+              });
+            }
+          }
+      });
+      head.appendChild(script);
+    });
+  </script>
+  
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <style type="text/css">
 </style>
@@ -4719,7 +4779,7 @@ vertical-align: -.125em;
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4730,23 +4790,23 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="././homework/index.html"> 
+    <a class="nav-link" href="../.././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././reality-checks/index.html"> 
+    <a class="nav-link" href="../.././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././worksheets/index.html"> 
+    <a class="nav-link" href="../.././worksheets/index.html"> 
 <span class="menu-text">WORKSHEETS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././notes/index.html"> 
+    <a class="nav-link" href="../.././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././index.html"> 
+    <a class="nav-link" href="../.././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4762,21 +4822,59 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">0.1</span> <strong>Overview</strong></a></li>
+  <li><a href="#numerical-root-finding-approach-to-gps-positioning" id="toc-numerical-root-finding-approach-to-gps-positioning" class="nav-link" data-scroll-target="#numerical-root-finding-approach-to-gps-positioning"><span class="header-section-number">1</span> <strong>Numerical Root-Finding Approach to GPS Positioning</strong></a>
+  <ul class="collapse">
+  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective"><span class="header-section-number">1.1</span> <strong>Objective</strong></a></li>
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">1.2</span> <strong>Background</strong></a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology"><span class="header-section-number">1.3</span> <strong>Methodology</strong></a>
+  <ul class="collapse">
+  <li><a href="#formulation-of-the-problem" id="toc-formulation-of-the-problem" class="nav-link" data-scroll-target="#formulation-of-the-problem"><span class="header-section-number">1.3.1</span> <strong>Formulation of the Problem</strong></a></li>
+  <li><a href="#numerical-solution" id="toc-numerical-solution" class="nav-link" data-scroll-target="#numerical-solution"><span class="header-section-number">1.3.2</span> <strong>Numerical Solution</strong></a></li>
+  </ul></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">1.4</span> <strong>Results</strong></a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations"><span class="header-section-number">1.5</span> <strong>Limitations</strong></a></li>
+  <li><a href="#motivation-for-an-improved-approach" id="toc-motivation-for-an-improved-approach" class="nav-link" data-scroll-target="#motivation-for-an-improved-approach"><span class="header-section-number">1.6</span> <strong>Motivation for an Improved Approach</strong></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">1.7</span> <strong>Conclusion</strong></a></li>
+  </ul></li>
+  <li><a href="#determinant-based-analytical-approach-to-gps-positioning" id="toc-determinant-based-analytical-approach-to-gps-positioning" class="nav-link" data-scroll-target="#determinant-based-analytical-approach-to-gps-positioning"><span class="header-section-number">2</span> <strong>Determinant-Based Analytical Approach to GPS Positioning</strong></a>
+  <ul class="collapse">
+  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1"><span class="header-section-number">2.1</span> <strong>Objective</strong></a></li>
+  <li><a href="#problem-formulation" id="toc-problem-formulation" class="nav-link" data-scroll-target="#problem-formulation"><span class="header-section-number">2.2</span> <strong>Problem Formulation</strong></a></li>
+  <li><a href="#methodology-1" id="toc-methodology-1" class="nav-link" data-scroll-target="#methodology-1"><span class="header-section-number">2.3</span> <strong>Methodology</strong></a>
+  <ul class="collapse">
+  <li><a href="#reducing-the-nonlinear-system-to-a-linear-form" id="toc-reducing-the-nonlinear-system-to-a-linear-form" class="nav-link" data-scroll-target="#reducing-the-nonlinear-system-to-a-linear-form"><span class="header-section-number">2.3.1</span> <strong>Reducing the Nonlinear System to a Linear Form</strong></a></li>
+  <li><a href="#isolating-x-in-terms-of-d-using-the-determinant" id="toc-isolating-x-in-terms-of-d-using-the-determinant" class="nav-link" data-scroll-target="#isolating-x-in-terms-of-d-using-the-determinant"><span class="header-section-number">2.3.2</span> <strong>Isolating <span class="math inline">x</span> in Terms of <span class="math inline">d</span> Using the Determinant</strong></a></li>
+  <li><a href="#forming-the-quadratic-equation-in-d" id="toc-forming-the-quadratic-equation-in-d" class="nav-link" data-scroll-target="#forming-the-quadratic-equation-in-d"><span class="header-section-number">2.3.3</span> <strong>Forming the Quadratic Equation in <span class="math inline">d</span></strong></a></li>
+  </ul></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1"><span class="header-section-number">2.4</span> <strong>Conclusion</strong></a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">FALL 2024 - SCHEDULE</h1>
+<h1 class="title">REALITY CHECK 04</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Nathan Lunceford </p>
+          </div>
+  </div>
     
   
     
@@ -4787,342 +4885,402 @@ vertical-align: -.125em;
 </header>
 
 
-<style>
-table {
-width: 100%;
-border-collapse: collapse;
-}
-th, td {
-border: 1px solid #ddd;
-text-align: center;
-vertical-align: top;
-font-family: Arial, sans-serif;
-position: relative;
-}
-th {
-padding: 5px;
-}
-td {
-height: 100px;
-}
-.week-col {
-width: 10%; 
-}
-.content-cell {
-width: 18%; 
-}
-.date {
-position: absolute;
-top: 5px;
-left: 5px;
-font-size: 0.8em;
-color: #666;
-}
-</style>
-<table>
-<tbody><tr>
-<th class="week-col">
-Week
-</th>
-<th class="content-cell">
-Monday
-</th>
-<th class="content-cell">
-Tuesday
-</th>
-<th class="content-cell">
-Wednesday
-</th>
-<th class="content-cell">
-Thursday
-</th>
-<th class="content-cell">
-Friday
-</th>
-</tr>
-<tr>
-<td class="week-col">
-1
-</td>
-<td>
-<span class="date">16</span><br>Chapter 1
-</td>
-<td>
-<span class="date">17</span>
-</td>
-<td>
-<span class="date">18</span><br>Chapter 1
-</td>
-<td>
-<span class="date">19</span>
-</td>
-<td>
-<span class="date">20</span><br>Chapter 1
-</td>
-</tr>
-<tr>
-<td class="week-col">
-2
-</td>
-<td>
-<span class="date">23</span><br>Add/Drop<br>Chapter 1
-</td>
-<td>
-<span class="date">24</span>
-</td>
-<td>
-<span class="date">25</span><br>Chapter 1<br><strong>Quiz 1</strong>
-</td>
-<td>
-<span class="date">26</span>
-</td>
-<td>
-<span class="date">27</span><br>Chapter 3
-</td>
-</tr>
-<tr>
-<td class="week-col">
-3
-</td>
-<td>
-<span class="date">30</span><br>Chapter 3
-</td>
-<td>
-<span class="date">1</span>
-</td>
-<td>
-<span class="date">2</span><br>Chapter 3<br><strong>Quiz 2</strong>
-</td>
-<td>
-<span class="date">3</span>
-</td>
-<td>
-<span class="date">4</span><br>Chapter 3
-</td>
-</tr>
-<tr>
-<td class="week-col">
-4
-</td>
-<td>
-<span class="date">7</span><br>Chapter 3<br><strong>Reality Check 1</strong>
-</td>
-<td>
-<span class="date">8</span><br>No W drop date
-</td>
-<td>
-<span class="date">9</span><br>Chapter 5<br><strong>Quiz 3</strong>
-</td>
-<td>
-<span class="date">10</span>
-</td>
-<td>
-<span class="date">11</span><br>Chapter 5
-</td>
-</tr>
-<tr>
-<td class="week-col">
-5
-</td>
-<td>
-<span class="date">14</span><br>Chapter 5
-</td>
-<td>
-<span class="date">15</span>
-</td>
-<td>
-<span class="date">16</span><br>Chapter 5<br><strong>Quiz 4</strong>
-</td>
-<td>
-<span class="date">17</span>
-</td>
-<td>
-<span class="date">18</span><br>Chapter 5
-</td>
-</tr>
-<tr>
-<td class="week-col">
-6
-</td>
-<td>
-<span class="date">21</span><br>Exam 1 Review<br><strong>Exam 1-2 Opens</strong>
-</td>
-<td>
-<span class="date">22</span>
-</td>
-<td>
-<span class="date">23</span><br><strong>Exam 1-1</strong><br><strong>In Class</strong>
-</td>
-<td>
-<span class="date">24</span><br><strong>Exam 1-2 Closes</strong>
-</td>
-<td>
-<span class="date">25</span><br>Chapter 2
-</td>
-</tr>
-<tr>
-<td class="week-col">
-7
-</td>
-<td>
-<span class="date">28</span><br>Chapter 2
-</td>
-<td>
-<span class="date">29</span>
-</td>
-<td>
-<span class="date">30</span><br>Chapter 2
-</td>
-<td>
-<span class="date">31</span>
-</td>
-<td>
-<span class="date">1</span><br>Chapter 2
-</td>
-</tr>
-<tr>
-<td class="week-col">
-8
-</td>
-<td>
-<span class="date">4</span><br>Chapter 2
-</td>
-<td>
-<span class="date">5</span>
-</td>
-<td>
-<span class="date">6</span><br>Chapter 4<br><strong>Quiz 5</strong>
-</td>
-<td>
-<span class="date">7</span>
-</td>
-<td>
-<span class="date">8</span><br>Chapter 4
-</td>
-</tr>
-<tr>
-<td class="week-col">
-9
-</td>
-<td>
-<span class="date">11</span><br>Drop w/W date<br>Chapter 4<br><strong>2nd Reality Check</strong>
-</td>
-<td>
-<span class="date">12</span>
-</td>
-<td>
-<span class="date">13</span><br>Chapter 4<br><strong>Quiz 6</strong>
-</td>
-<td>
-<span class="date">14</span>
-</td>
-<td>
-<span class="date">15</span><br>Chapter 4
-</td>
-</tr>
-<tr>
-<td class="week-col">
-10
-</td>
-<td>
-<span class="date">18</span><br>Chapter 4
-</td>
-<td>
-<span class="date">19</span>
-</td>
-<td>
-<span class="date">20</span><br>Chapter 4
-</td>
-<td>
-<span class="date">21</span>
-</td>
-<td>
-<span class="date">22</span><br>Exam 2 Review<br><strong>Exam 2-2 Opens</strong>
-</td>
-</tr>
-<tr>
-<td class="week-col">
-11
-</td>
-<td>
-<span class="date">25</span><br>Exam 2-1<br>In Class
-</td>
-<td>
-<span class="date">26</span><br><strong>Exam 2-2 Closes</strong>
-</td>
-<td>
-<span class="date">27</span><br>No Classes
-</td>
-<td>
-<span class="date">28</span><br>Holiday
-</td>
-<td>
-<span class="date">29</span><br>Holiday
-</td>
-</tr>
-<tr>
-<td class="week-col">
-12
-</td>
-<td>
-<span class="date">2</span><br>Chapter 10
-</td>
-<td>
-<span class="date">3</span><br>Discontinuance
-</td>
-<td>
-<span class="date">4</span><br>Chapter 10
-</td>
-<td>
-<span class="date">5</span>
-</td>
-<td>
-<span class="date">6</span><br>Chapter 10<br>Quiz 7 (?)
-</td>
-</tr>
-<tr>
-<td class="week-col">
-13
-</td>
-<td>
-<span class="date">9</span><br>Chapter 10
-</td>
-<td>
-<span class="date">10</span>
-</td>
-<td>
-<span class="date">11</span><br>Chapter 10
-</td>
-<td>
-<span class="date">12</span>
-</td>
-<td>
-<span class="date">13</span><br>Chapter 10<br><strong>Exam 3-2 Opens</strong>
-</td>
-</tr>
-<tr>
-<td class="week-col">
-14
-</td>
-<td>
-<span class="date">16</span><br>Last Day of Class
-</td>
-<td>
-<span class="date">17</span><br><strong>10:30 Exam 3-1</strong><br><strong>Exam 3-2 Closes</strong><br><strong>3rd Reality Check</strong>
-</td>
-<td>
-<span class="date">18</span>
-</td>
-<td>
-<span class="date">19</span><br>Commencement
-</td>
-<td>
-<span class="date">20</span>
-</td>
-</tr>
-</tbody></table>
+<section id="overview" class="level2" data-number="0.1">
+<h2 data-number="0.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">0.1</span> <strong>Overview</strong></h2>
+<p>The Global Positioning System (GPS) is a satellite-based navigation system consisting of 24 satellites equipped with atomic clocks, orbiting the Earth at an altitude of 20,200 km. By measuring the travel time of signals transmitted from satellites to a receiver, GPS calculates the receiver’s position in three-dimensional space. Each signal defines a sphere with a radius equal to the distance traveled by the signal, and the receiver’s position is at the intersection of these spheres.</p>
+<p>To determine an accurate position <span class="math inline">(x, y, z)</span> and synchronize the receiver’s clock, at least four satellites are required. The system of nonlinear equations representing the sphere intersections can be formulated as:</p>
+<p><span class="math display">
+r_i(x, y, z, d) = \sqrt{(x - A_i)^2 + (y - B_i)^2 + (z - C_i)^2} - c(t_i - d) = 0
+</span></p>
+<p>where <span class="math inline">d</span> is a clock correction factor for the receiver. Solving this system reveals both the receiver’s coordinates and the corrected clock time.</p>
+<p>However, the system faces challenges due to:</p>
+<ol type="1">
+<li><strong>Receiver Clock Inaccuracy</strong>: Affordable GPS receivers lack the precision of satellite atomic clocks, necessitating the inclusion of <span class="math inline">d</span> in the equations.</li>
+<li><strong>Ill-Conditioning</strong>: The system becomes sensitive to errors when satellites are clustered close together in the sky.</li>
+<li><strong>Environmental Factors</strong>: Signal transmission speed is affected by atmospheric interference and obstacles, introducing further inaccuracies.</li>
+</ol>
+<p>To address these challenges:</p>
+<ul>
+<li><strong>Numerical Root-Finding Methods</strong> (e.g., Newton-Krylov, Gauss-Newton) iteratively solve the equations but can struggle with sensitivity to initial guesses and ill-conditioning.</li>
+<li><strong>Error Analysis</strong> evaluates the system’s sensitivity to input timing errors, quantified through the <strong>Error Magnification Factor (EMF)</strong>, which assesses the impact of small changes in signal timing on positional accuracy.</li>
+</ul>
+<p>By leveraging precise satellite positions and signal timing data, this system provides accurate navigation but requires advanced mathematical techniques to manage inherent nonlinearities and ensure robustness. This report focuses on exploring and solving the GPS positioning problem through numerical and analytical approaches, providing insights into accuracy, stability, and efficiency.</p>
+</section>
+<section id="numerical-root-finding-approach-to-gps-positioning" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> <strong>Numerical Root-Finding Approach to GPS Positioning</strong></h1>
+<section id="objective" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="objective"><span class="header-section-number">1.1</span> <strong>Objective</strong></h2>
+<p>The objective of this study is to calculate the position of a GPS receiver <span class="math inline">(x, y, z)</span> and correct the receiver’s clock bias <span class="math inline">d</span> by solving a system of nonlinear equations. These equations model the distance between the receiver and multiple satellites based on signal travel times. The numerical solution relies on iterative root-finding methods to achieve high accuracy.</p>
+</section>
+<section id="background" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="background"><span class="header-section-number">1.2</span> <strong>Background</strong></h2>
+<p>In a GPS system, the position of a receiver is determined by measuring the time it takes for signals to travel from multiple satellites. The propagation time, when multiplied by the speed of light <span class="math inline">c</span>, provides the distance between the satellite and the receiver. Mathematically, the relationship between the receiver’s unknown position <span class="math inline">(x, y, z)</span> and the clock correction <span class="math inline">d</span> is expressed as a system of nonlinear equations:</p>
+<p><span class="math display">
+\sqrt{(x - A_i)^2 + (y - B_i)^2 + (z - C_i)^2} = c(t_i - d), \quad i = 1, 2, 3, 4
+</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">(A_i, B_i, C_i)</span> are the known satellite positions.</li>
+<li><span class="math inline">t_i</span> are the measured signal travel times.</li>
+<li><span class="math inline">c \approx 299,792.458 \, \text{km/s}</span> is the speed of light.</li>
+<li><span class="math inline">(x, y, z)</span> are the unknown receiver coordinates.</li>
+<li><span class="math inline">d</span> is the receiver clock correction.</li>
+</ul>
+<p>Each equation corresponds to a sphere centered at the satellite’s position, with the radius equal to the computed distance. The receiver’s position lies at the intersection of these spheres. The inclusion of <span class="math inline">d</span> accounts for the clock bias in the receiver, which is less precise than the atomic clocks onboard GPS satellites.</p>
+</section>
+<section id="methodology" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="methodology"><span class="header-section-number">1.3</span> <strong>Methodology</strong></h2>
+<p>A numerical root-finding approach is employed to solve this system of nonlinear equations. Specifically, Python’s <code>fsolve</code> function from the <code>scipy.optimize</code> library is utilized. This method iteratively refines estimates for <span class="math inline">(x, y, z, d)</span> until the residuals—the differences between the measured and calculated distances—are minimized.</p>
+<section id="formulation-of-the-problem" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="formulation-of-the-problem"><span class="header-section-number">1.3.1</span> <strong>Formulation of the Problem</strong></h3>
+<p>The system of equations is reformulated as residual functions <span class="math inline">f_i</span>, where each function evaluates to zero when the system is satisfied:</p>
+<p><span class="math display">
+f_i(x, y, z, d) = \sqrt{(x - A_i)^2 + (y - B_i)^2 + (z - C_i)^2} - c(t_i - d), \quad i = 1, 2, 3, 4
+</span></p>
+<p>The root-finding process involves solving for <span class="math inline">(x, y, z, d)</span> such that all <span class="math inline">f_i(x, y, z, d) = 0</span>.</p>
+</section>
+<section id="numerical-solution" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="numerical-solution"><span class="header-section-number">1.3.2</span> <strong>Numerical Solution</strong></h3>
+<p>The computational steps are as follows:</p>
+<ol type="1">
+<li><strong>Input Data:</strong> Known satellite positions <span class="math inline">(A_i, B_i, C_i)</span> and signal travel times <span class="math inline">t_i</span> are provided as inputs, along with the speed of light <span class="math inline">c</span>.</li>
+<li><strong>Initial Guess:</strong> A starting point of <span class="math inline">(x_0, y_0, z_0) = (0, 0, 6370)</span> km is assumed, placing the receiver near the Earth’s surface. The initial clock correction is set to <span class="math inline">d_0 = 0</span>.</li>
+<li><strong>Iterative Solver:</strong> The <code>fsolve</code> function iteratively adjusts <span class="math inline">(x, y, z, d)</span> to minimize the residuals <span class="math inline">f_i</span>. The algorithm terminates when all residuals approach zero, indicating convergence to a solution.</li>
+</ol>
+<p>The implementation was tested using the following dataset:</p>
+<ul>
+<li><p>Satellite positions:</p>
+<ul>
+<li><span class="math inline">(15,600, 7,540, 20,140)</span></li>
+<li><span class="math inline">(18,760, 2,750, 18,610)</span></li>
+<li><span class="math inline">(17,610, 14,630, 13,480)</span></li>
+<li><span class="math inline">(19,170, 610, 18,390)</span></li>
+</ul></li>
+<li><p>Signal travel times: <span class="math display">
+t = [0.07074, 0.07220, 0.07690, 0.07242] \, \text{(in seconds)}
+</span></p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Accompanying Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <a href="#"><strong>accompanying code implementation</strong></a> defines the residual function, applies the <code>fsolve</code> solver, and outputs the computed results.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="results" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="results"><span class="header-section-number">1.4</span> <strong>Results</strong></h2>
+<p>The numerical root-finding method produced the following results:</p>
+<ul>
+<li><strong>Receiver Position (in km):</strong> <span class="math display">
+(x, y, z) = (-41.77271, -16.78919, 6370.0596)
+</span></li>
+<li><strong>Clock Correction (in seconds):</strong> <span class="math display">
+d = -3.201566 \times 10^{-3}
+</span></li>
+</ul>
+<p>These values were verified against expected results, confirming the accuracy of the numerical solution. The computed receiver position aligns with the Earth’s surface, and the clock correction accounts for the slight bias in the receiver’s timing.</p>
+</section>
+<section id="limitations" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="limitations"><span class="header-section-number">1.5</span> <strong>Limitations</strong></h2>
+<p>While the numerical root-finding approach proved effective, several limitations should be noted:</p>
+<ol type="1">
+<li><strong>Sensitivity to Ill-Conditioning:</strong> The system may become ill-conditioned when satellite positions are clustered, amplifying numerical errors and reducing accuracy.</li>
+<li><strong>Dependence on Initial Guesses:</strong> Poor initial guesses can lead to non-convergence or convergence to an incorrect solution.</li>
+<li><strong>Computational Cost:</strong> Iterative methods like <code>fsolve</code> require multiple evaluations of the residuals, making them computationally expensive for real-time applications.</li>
+<li><strong>Lack of Analytical Insights:</strong> The numerical solution provides no explicit relationships between the variables, limiting its use for sensitivity analysis or theoretical exploration.</li>
+</ol>
+</section>
+<section id="motivation-for-an-improved-approach" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="motivation-for-an-improved-approach"><span class="header-section-number">1.6</span> <strong>Motivation for an Improved Approach</strong></h2>
+<p>The limitations of the numerical root-finding method highlight the need for a more robust and efficient solution. Specifically:</p>
+<ul>
+<li>A method that avoids iterative guesswork.</li>
+<li>Improved handling of ill-conditioned systems.</li>
+<li>A more <strong>analytical approach</strong> that isolates variables and reduces the problem complexity.</li>
+</ul>
+<p>To address these concerns, the next section introduces a <strong>determinant-based analytical approach</strong>. This method linearizes the system of equations, isolates variables explicitly, and reduces the problem to solving a single quadratic equation for the clock correction <span class="math inline">d</span>. It offers both computational efficiency and greater stability, making it well-suited for real-time GPS positioning.</p>
+</section>
+<section id="conclusion" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">1.7</span> <strong>Conclusion</strong></h2>
+<p>The numerical root-finding approach provides an approximate solution to the GPS equations but is limited by its sensitivity, inefficiency, and lack of robustness. These shortcomings motivate the need for an improved analytical method, which will be explored in the following section.</p>
+</section>
+</section>
+<section id="determinant-based-analytical-approach-to-gps-positioning" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> <strong>Determinant-Based Analytical Approach to GPS Positioning</strong></h1>
+<section id="objective-1" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="objective-1"><span class="header-section-number">2.1</span> <strong>Objective</strong></h2>
+<p>The objective of this section is to solve the GPS equations <strong>analytically</strong> using a <strong>determinant-based approach</strong>. Unlike numerical root-finding methods, this analytical technique avoids iterative guesswork by isolating the variables <span class="math inline">(x, y, z, d)</span> explicitly. By systematically transforming the original nonlinear system into a more manageable linear form, this method ensures greater robustness, stability, and computational efficiency—critical for real-time or precision GPS applications.</p>
+<p>The approach has been implemented in Python using the <strong>SymPy</strong> library to symbolically manipulate the equations, solve the system, and isolate the unknowns step-by-step.</p>
+</section>
+<section id="problem-formulation" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="problem-formulation"><span class="header-section-number">2.2</span> <strong>Problem Formulation</strong></h2>
+<p>The GPS receiver’s position <span class="math inline">(x, y, z)</span> and clock offset <span class="math inline">d</span> are determined from four satellite equations of the form:</p>
+<p><span class="math display">
+\sqrt{(x - A_i)^2 + (y - B_i)^2 + (z - C_i)^2} = c(t_i - d), \quad i = 1, 2, 3, 4
+</span></p>
+<p>Here:</p>
+<ul>
+<li><span class="math inline">(A_i, B_i, C_i)</span> are known satellite coordinates.</li>
+<li><span class="math inline">t_i</span> are measured signal travel times.</li>
+<li><span class="math inline">c \approx 299792.458\,\text{km/s}</span> is the speed of light.</li>
+<li><span class="math inline">(x, y, z)</span> and <span class="math inline">d</span> are the unknown receiver coordinates and clock correction.</li>
+</ul>
+<p>Each equation represents a sphere with the satellite at its center. The receiver lies at the intersection of these four spheres. However, the presence of square roots and the unknown <span class="math inline">d</span> makes the system inherently nonlinear and challenging to solve directly.</p>
+</section>
+<section id="methodology-1" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="methodology-1"><span class="header-section-number">2.3</span> <strong>Methodology</strong></h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Code Implementation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The solution process involves three key stages, all of which are implemented in the accompanying <a href="#">Python code</a>.</p>
+</div>
+</div>
+<section id="reducing-the-nonlinear-system-to-a-linear-form" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="reducing-the-nonlinear-system-to-a-linear-form"><span class="header-section-number">2.3.1</span> <strong>Reducing the Nonlinear System to a Linear Form</strong></h3>
+<p>To eliminate the square roots, we square each equation. After doing so, we have:</p>
+<p><span class="math display">
+(x - A_i)^2 + (y - B_i)^2 + (z - C_i)^2 = c^2(t_i - d)^2
+</span></p>
+<p>We then <strong>subtract the equations for satellites <span class="math inline">i=2,3,4</span> from the equation for <span class="math inline">i=1</span></strong>. This subtraction removes the <span class="math inline">x^2 + y^2 + z^2</span> terms and results in three linear equations in the four unknowns <span class="math inline">x, y, z, d</span>:</p>
+<p><span class="math display">
+x u_{x}^{(j)} + y u_{y}^{(j)} + z u_{z}^{(j)} + d u_{d}^{(j)} + w^{(j)} = 0,\quad j=1,2,3
+</span></p>
+<p>where <span class="math inline">u_x^{(j)}, u_y^{(j)}, u_z^{(j)}, u_d^{(j)}, w^{(j)}</span> are constants determined by the satellite positions and travel times.</p>
+<p>At this point, we have <strong>three linear equations</strong> with <strong>four unknowns</strong>:</p>
+<p><span class="math display">
+x u_{x1} + y u_{y1} + z u_{z1} + d u_{d1} + w_1 = 0
+</span></p>
+<p><span class="math display">
+x u_{x2} + y u_{y2} + z u_{z2} + d u_{d2} + w_2 = 0
+</span></p>
+<p><span class="math display">
+x u_{x3} + y u_{y3} + z u_{z3} + d u_{d3} + w_3 = 0
+</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Accompanying Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the accompanying code, this system of equations is constructed symbolically using <strong>SymPy</strong>, with the <code>simplify()</code> function applied to ensure clarity and precision in the linearized expressions.</p>
+</div>
+</div>
+<section id="why-solve-for-the-variables-in-terms-of-d" class="level4">
+<h4 class="anchored" data-anchor-id="why-solve-for-the-variables-in-terms-of-d"><strong>Why Solve for the Variables in Terms of <span class="math inline">d</span>?</strong></h4>
+<hr>
+<p>With three linear equations and four unknowns, the system is underdetermined. We cannot directly solve for all four variables at once. To proceed, we:</p>
+<ul>
+<li><p>Treat <span class="math inline">d</span> as a parameter.</p></li>
+<li><p>Express <span class="math inline">x, y, z</span> as linear functions of <span class="math inline">d</span>:</p>
+<p><span class="math display">
+x = f_x(d), \quad y = f_y(d), \quad z = f_z(d)
+</span></p></li>
+</ul>
+<p>Once <span class="math inline">x, y, z</span> are known in terms of <span class="math inline">d</span>, we substitute these functions back into one of the original nonlinear equations. This will yield a <strong>single quadratic equation in <span class="math inline">d</span></strong>. Solving that quadratic equation gives us <span class="math inline">d</span>. With <span class="math inline">d</span> in hand, we easily find <span class="math inline">x, y, z</span>.</p>
+<p>This approach reduces the complexity: instead of trying to solve four nonlinear equations simultaneously, we simplify the problem to solving one quadratic equation after isolating variables in terms of <span class="math inline">d</span>.</p>
+</section>
+<section id="introducing-the-determinant-equation" class="level4">
+<h4 class="anchored" data-anchor-id="introducing-the-determinant-equation"><strong>Introducing the Determinant Equation</strong></h4>
+<hr>
+<p>To isolate <span class="math inline">x, y, z</span> in terms of <span class="math inline">d</span>, we use a <strong>determinant-based approach</strong>. Determinants are a powerful linear algebra tool. By arranging our linear equations in a matrix form and considering certain determinants, we can:</p>
+<ul>
+<li>Identify linear dependencies,</li>
+<li>Isolate one variable at a time,</li>
+<li>Avoid ambiguity and instability.</li>
+</ul>
+<p>The idea is to construct a determinant from the system of equations and carefully manipulate it so that one variable (e.g., <span class="math inline">x</span>) can be extracted in terms of <span class="math inline">y, z, d</span> and constants. We then repeat or apply a similar reasoning for <span class="math inline">y</span> and <span class="math inline">z</span>.</p>
+</section>
+</section>
+<section id="isolating-x-in-terms-of-d-using-the-determinant" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="isolating-x-in-terms-of-d-using-the-determinant"><span class="header-section-number">2.3.2</span> <strong>Isolating <span class="math inline">x</span> in Terms of <span class="math inline">d</span> Using the Determinant</strong></h3>
+<p><strong>Step-by-Step for <span class="math inline">x</span>:</strong></p>
+<ol type="1">
+<li><p><strong>Set Up the Determinant:</strong></p>
+<p>Consider a matrix formed from the coefficient vectors <span class="math inline">\mathbf{u_x}, \mathbf{u_y}, \mathbf{u_z}, \mathbf{u_d}, \mathbf{w}</span>. A key construction is:</p>
+<p><span class="math display">
+\det[\mathbf{u_y} \mid \mathbf{u_z} \mid x\mathbf{u_x} + y\mathbf{u_y} + z\mathbf{u_z} + d\mathbf{u_d} + \mathbf{w}] = 0
+</span></p>
+<p>This determinant equals zero because if <span class="math inline">-\mathbf{w}</span> lies in the span of the other vectors, the system is consistent. Expanding this determinant along the third column will separate terms involving <span class="math inline">x, y, z, d</span>.</p>
+<p><span class="math display">
+\text{det} \begin{bmatrix}
+u_{y1} &amp; u_{z1} &amp; x u_{x1} + y u_{y1} + z u_{z1} + d u_{d1} + w_1 \\
+u_{y2} &amp; u_{z2} &amp; x u_{x2} + y u_{y2} + z u_{z2} + d u_{d2} + w_2 \\
+u_{y3} &amp; u_{z3} &amp; x u_{x3} + y u_{y3} + z u_{z3} + d u_{d3} + w_3
+\end{bmatrix} = 0
+</span></p></li>
+<li><p><strong>Expand the Determinant</strong>:<br>
+Expanding along the third column gives:</p>
+<p><span class="math display">
+\text{det}[\dots] = (x u_{x1} + y u_{y1} + z u_{z1} + d u_{d1} + w_1) \cdot \text{det} \begin{bmatrix}
+u_{y2} &amp; u_{z2} \\
+u_{y3} &amp; u_{z3}
+\end{bmatrix}
+</span></p>
+<p><span class="math display">
+- (x u_{x2} + y u_{y2} + z u_{z2} + d u_{d2} + w_2) \cdot \text{det} \begin{bmatrix}
+u_{y1} &amp; u_{z1} \\
+u_{y3} &amp; u_{z3}
+\end{bmatrix}
+</span></p>
+<p><span class="math display">
++ (x u_{x3} + y u_{y3} + z u_{z3} + d u_{d3} + w_3) \cdot \text{det} \begin{bmatrix}
+u_{y1} &amp; u_{z1} \\
+u_{y2} &amp; u_{z2}
+\end{bmatrix}
+</span></p></li>
+<li><p><strong>Group Terms Involving <span class="math inline">x, y, z, d</span></strong>:<br>
+Collect coefficients for each variable. For example for <span class="math inline">x</span>, the coefficient <span class="math inline">C_x</span> is:</p>
+<p><span class="math display">
+C_x = u_{x1} \cdot \text{det} \begin{bmatrix}
+u_{y2} &amp; u_{z2} \\
+u_{y3} &amp; u_{z3}
+\end{bmatrix}
+- u_{x2} \cdot \text{det} \begin{bmatrix}
+u_{y1} &amp; u_{z1} \\
+u_{y3} &amp; u_{z3}
+\end{bmatrix}
++ u_{x3} \cdot \text{det} \begin{bmatrix}
+u_{y1} &amp; u_{z1} \\
+u_{y2} &amp; u_{z2}
+\end{bmatrix}
+</span></p>
+<p>On expansion, you get an equation of the form:</p>
+<p><span class="math display">
+C_x x + C_y y + C_z z + C_d d + T = 0
+</span></p>
+<p>where <span class="math inline">C_x, C_y, C_z, C_d, T</span> are combinations of determinants and known constants derived from the satellite data.</p></li>
+<li><p><strong>Isolate <span class="math inline">x</span>:</strong></p>
+<p>To solve for <span class="math inline">x</span>, rearrange the equation:</p>
+<p><span class="math display">
+x = -\frac{C_y y + C_z z + C_d d + T}{C_x}
+</span></p>
+<p>However, at this stage, <span class="math inline">x</span> is still expressed in terms of <span class="math inline">y, z, d</span>. To get <span class="math inline">x</span> purely in terms of <span class="math inline">d</span>, you must similarly isolate <span class="math inline">y</span> and <span class="math inline">z</span> in terms of <span class="math inline">d</span>.</p></li>
+<li><p><strong>Repeat for <span class="math inline">y</span> and <span class="math inline">z</span>:</strong></p>
+<p>By constructing similar determinant equations and performing analogous expansions, you isolate <span class="math inline">y</span> and <span class="math inline">z</span> as linear functions of <span class="math inline">d</span>:</p>
+<p><span class="math display">
+y = f_y(d), \quad z = f_z(d)
+</span></p>
+<p>Once <span class="math inline">y(d)</span> and <span class="math inline">z(d)</span> are known, substitute them back into the expression for <span class="math inline">x</span>:</p>
+<p><span class="math display">
+x = f_x(d)
+</span></p>
+<p>Now all three spatial variables are functions of <span class="math inline">d</span>:</p>
+<p><span class="math display">
+x = f_x(d), \quad y = f_y(d), \quad z = f_z(d)
+</span></p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Accompanying Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The accompanying code uses SymPy’s <code>linear_eq_to_matrix</code> to extract the coefficient matrix and split it into parts:</p>
+<ul>
+<li><span class="math inline">A_{xyz}</span>: Coefficients for <span class="math inline">x, y, z</span>,</li>
+<li><span class="math inline">A_d</span>: Coefficients for <span class="math inline">d</span>.</li>
+</ul>
+<p>The resulting system is:</p>
+<p><span class="math display">
+A\_{xyz} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = -A_d d - \mathbf{w}.
+</span></p>
+<p>Solving this system for <span class="math inline">x</span>, <span class="math inline">y</span>, and <span class="math inline">z</span> in terms of <span class="math inline">d</span> is achieved using the <code>LUsolve</code> function. The symbolic solutions <span class="math inline">x(d)</span>, <span class="math inline">y(d)</span>, and <span class="math inline">z(d)</span> are simplified and stored.</p>
+</div>
+</div>
+</section>
+<section id="forming-the-quadratic-equation-in-d" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="forming-the-quadratic-equation-in-d"><span class="header-section-number">2.3.3</span> <strong>Forming the Quadratic Equation in <span class="math inline">d</span></strong></h3>
+<p>With <span class="math inline">x(d), y(d), z(d)</span> established, we return to an original nonlinear equation. For example:</p>
+<p><span class="math display">
+\sqrt{(x - A_1)^2 + (y - B_1)^2 + (z - C_1)^2} = c(t_1 - d)
+</span></p>
+<ul>
+<li>Substitute <span class="math inline">x(d), y(d), z(d)</span> into the left-hand side.</li>
+<li>Square both sides to remove the square root.</li>
+</ul>
+<p>After simplification, you obtain a <strong>quadratic equation in <span class="math inline">d</span></strong>:</p>
+<p><span class="math display">
+a d^2 + b d + c = 0
+</span></p>
+<p>Solving this quadratic equation using the quadratic formula:</p>
+<p><span class="math display">
+d = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+</span></p>
+<p>Choose the physically meaningful solution for <span class="math inline">d</span> (the one placing the receiver near Earth’s surface), then substitute <span class="math inline">d</span> back into <span class="math inline">x(d), y(d), z(d)</span> to find the final coordinates <span class="math inline">(x, y, z)</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Accompanying Code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Once <span class="math inline">x(d)</span>, <span class="math inline">y(d)</span>, and <span class="math inline">z(d)</span> are known, they are substituted back into one of the original nonlinear equations (e.g., the first equation). This substitution is performed symbolically in the code using <code>subs()</code>.</p></li>
+<li><p>Simplifying the resulting equation produces a <strong>quadratic equation in <span class="math inline">d</span></strong>:</p></li>
+</ol>
+<p><span class="math display">
+a d^2 + b d + c = 0.
+</span></p>
+<ol start="3" type="1">
+<li><p>The coefficients of the quadratic equation are extracted using SymPy’s <code>Poly</code> and <code>all_coeffs</code> functions. The quadratic formula is then applied to solve for <span class="math inline">d</span>.</p></li>
+<li><p>Among the solutions for <span class="math inline">d</span>, the physically meaningful (real and close to zero) solution is selected. This step is automated in the code by evaluating the solutions and filtering for real roots.</p></li>
+<li><p>The final values of <span class="math inline">x</span>, <span class="math inline">y</span>, and <span class="math inline">z</span> are computed by substituting the selected <span class="math inline">d</span> back into <span class="math inline">x(d)</span>, <span class="math inline">y(d)</span>, and <span class="math inline">z(d)</span>.</p></li>
+</ol>
+<p><strong>Results</strong></p>
+<p>The determinant-based analytical approach produces the following results:</p>
+<ul>
+<li><strong>Receiver Position (in km):</strong> <span class="math display">
+(x, y, z) = (-41.77271, -16.78919, 6370.0596)
+</span></li>
+<li><strong>Clock Correction (in seconds):</strong> <span class="math display">
+d = -3.201566 \times 10^{-3}.
+</span></li>
+</ul>
+<p>These results are consistent with the numerical solutions obtained in <strong>numerical root-finding approach</strong>, confirming the correctness of the analytical method.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion-1" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="conclusion-1"><span class="header-section-number">2.4</span> <strong>Conclusion</strong></h2>
+<p>This determinant-based analytical approach transforms the original nonlinear GPS equations into a linearized problem, uses determinants to isolate <span class="math inline">x, y, z</span> in terms of <span class="math inline">d</span>, and ultimately reduces the entire system to solving a single quadratic equation in <span class="math inline">d</span>.</p>
+<p><strong>Key Advantages:</strong></p>
+<ul>
+<li>No iterative guesswork required, avoiding convergence issues.</li>
+<li>More stable and robust, especially when satellites are poorly distributed.</li>
+<li>Provides a closed-form, analytical solution, offering deeper insight and efficiency.</li>
+</ul>
+<p>By following these steps—reducing to a linear system, isolating variables in terms of <span class="math inline">d</span> using determinants, and forming a single quadratic in <span class="math inline">d</span>—we obtain a direct and reliable solution to the GPS positioning problem.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FALL 2024 - SCHEDULE – MATH411</title>
+<title>Interpolation Polynomial - Root Analysis – MATH411</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -1667,7 +1667,7 @@ async function fuseSearch(query, fuse, fuseOptions) {
   return results;
 }
 </script>
-<meta name="quarto:offset" content="./">
+<meta name="quarto:offset" content="../../">
 <script>const sectionChanged = new CustomEvent("quarto-sectionChanged", {
   detail: {},
   bubbles: true,
@@ -4707,6 +4707,65 @@ vertical-align: -.125em;
   }
 }</script>
 
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var head = document.getElementsByTagName("head")[0];
+      var link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css";
+      head.appendChild(link);
+
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js";
+      script.async = false;
+      script.addEventListener('load', function() {
+        var mathElements = document.getElementsByClassName("math");
+          var macros = [];
+          for (var i = 0; i < mathElements.length; i++) {
+            var texText = mathElements[i].firstChild;
+            if (mathElements[i].tagName == "SPAN") {
+              window.katex.render(texText.data, mathElements[i], {
+                displayMode: mathElements[i].classList.contains('display'),
+                throwOnError: false,
+                macros: macros,
+                fleqn: false
+              });
+            }
+          }
+      });
+      head.appendChild(script);
+    });
+  </script>
+  
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <style type="text/css">
 </style>
@@ -4719,7 +4778,7 @@ vertical-align: -.125em;
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">MATH411</span>
     </a>
   </div>
@@ -4730,23 +4789,23 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="././homework/index.html"> 
+    <a class="nav-link" href="../.././homework/index.html"> 
 <span class="menu-text">HOMEWORK</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././reality-checks/index.html"> 
+    <a class="nav-link" href="../.././reality-checks/index.html"> 
 <span class="menu-text">REALITY CHECKS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././worksheets/index.html"> 
+    <a class="nav-link" href="../.././worksheets/index.html"> 
 <span class="menu-text">WORKSHEETS</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././notes/index.html"> 
+    <a class="nav-link" href="../.././notes/index.html"> 
 <span class="menu-text">NOTES</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="././index.html"> 
+    <a class="nav-link" href="../.././index.html"> 
 <span class="menu-text">SCHEDULE</span></a>
   </li>  
 </ul>
@@ -4762,20 +4821,32 @@ vertical-align: -.125em;
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#problem-statement" id="toc-problem-statement" class="nav-link active" data-scroll-target="#problem-statement"><strong>Problem Statement</strong></a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution"><strong>Solution</strong></a>
+  <ul class="collapse">
+  <li><a href="#analyze-the-roots-of-ht" id="toc-analyze-the-roots-of-ht" class="nav-link" data-scroll-target="#analyze-the-roots-of-ht"><strong>1. Analyze the roots of <span class="math inline">h(t)</span></strong></a></li>
+  <li><a href="#polynomial-degree-and-root-count" id="toc-polynomial-degree-and-root-count" class="nav-link" data-scroll-target="#polynomial-degree-and-root-count"><strong>2. Polynomial degree and root count</strong></a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><strong>Conclusion</strong></a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">FALL 2024 - SCHEDULE</h1>
+<h1 class="title">Interpolation Polynomial - Root Analysis</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -4787,342 +4858,45 @@ vertical-align: -.125em;
 </header>
 
 
-<style>
-table {
-width: 100%;
-border-collapse: collapse;
-}
-th, td {
-border: 1px solid #ddd;
-text-align: center;
-vertical-align: top;
-font-family: Arial, sans-serif;
-position: relative;
-}
-th {
-padding: 5px;
-}
-td {
-height: 100px;
-}
-.week-col {
-width: 10%; 
-}
-.content-cell {
-width: 18%; 
-}
-.date {
-position: absolute;
-top: 5px;
-left: 5px;
-font-size: 0.8em;
-color: #666;
-}
-</style>
-<table>
-<tbody><tr>
-<th class="week-col">
-Week
-</th>
-<th class="content-cell">
-Monday
-</th>
-<th class="content-cell">
-Tuesday
-</th>
-<th class="content-cell">
-Wednesday
-</th>
-<th class="content-cell">
-Thursday
-</th>
-<th class="content-cell">
-Friday
-</th>
-</tr>
-<tr>
-<td class="week-col">
-1
-</td>
-<td>
-<span class="date">16</span><br>Chapter 1
-</td>
-<td>
-<span class="date">17</span>
-</td>
-<td>
-<span class="date">18</span><br>Chapter 1
-</td>
-<td>
-<span class="date">19</span>
-</td>
-<td>
-<span class="date">20</span><br>Chapter 1
-</td>
-</tr>
-<tr>
-<td class="week-col">
-2
-</td>
-<td>
-<span class="date">23</span><br>Add/Drop<br>Chapter 1
-</td>
-<td>
-<span class="date">24</span>
-</td>
-<td>
-<span class="date">25</span><br>Chapter 1<br><strong>Quiz 1</strong>
-</td>
-<td>
-<span class="date">26</span>
-</td>
-<td>
-<span class="date">27</span><br>Chapter 3
-</td>
-</tr>
-<tr>
-<td class="week-col">
-3
-</td>
-<td>
-<span class="date">30</span><br>Chapter 3
-</td>
-<td>
-<span class="date">1</span>
-</td>
-<td>
-<span class="date">2</span><br>Chapter 3<br><strong>Quiz 2</strong>
-</td>
-<td>
-<span class="date">3</span>
-</td>
-<td>
-<span class="date">4</span><br>Chapter 3
-</td>
-</tr>
-<tr>
-<td class="week-col">
-4
-</td>
-<td>
-<span class="date">7</span><br>Chapter 3<br><strong>Reality Check 1</strong>
-</td>
-<td>
-<span class="date">8</span><br>No W drop date
-</td>
-<td>
-<span class="date">9</span><br>Chapter 5<br><strong>Quiz 3</strong>
-</td>
-<td>
-<span class="date">10</span>
-</td>
-<td>
-<span class="date">11</span><br>Chapter 5
-</td>
-</tr>
-<tr>
-<td class="week-col">
-5
-</td>
-<td>
-<span class="date">14</span><br>Chapter 5
-</td>
-<td>
-<span class="date">15</span>
-</td>
-<td>
-<span class="date">16</span><br>Chapter 5<br><strong>Quiz 4</strong>
-</td>
-<td>
-<span class="date">17</span>
-</td>
-<td>
-<span class="date">18</span><br>Chapter 5
-</td>
-</tr>
-<tr>
-<td class="week-col">
-6
-</td>
-<td>
-<span class="date">21</span><br>Exam 1 Review<br><strong>Exam 1-2 Opens</strong>
-</td>
-<td>
-<span class="date">22</span>
-</td>
-<td>
-<span class="date">23</span><br><strong>Exam 1-1</strong><br><strong>In Class</strong>
-</td>
-<td>
-<span class="date">24</span><br><strong>Exam 1-2 Closes</strong>
-</td>
-<td>
-<span class="date">25</span><br>Chapter 2
-</td>
-</tr>
-<tr>
-<td class="week-col">
-7
-</td>
-<td>
-<span class="date">28</span><br>Chapter 2
-</td>
-<td>
-<span class="date">29</span>
-</td>
-<td>
-<span class="date">30</span><br>Chapter 2
-</td>
-<td>
-<span class="date">31</span>
-</td>
-<td>
-<span class="date">1</span><br>Chapter 2
-</td>
-</tr>
-<tr>
-<td class="week-col">
-8
-</td>
-<td>
-<span class="date">4</span><br>Chapter 2
-</td>
-<td>
-<span class="date">5</span>
-</td>
-<td>
-<span class="date">6</span><br>Chapter 4<br><strong>Quiz 5</strong>
-</td>
-<td>
-<span class="date">7</span>
-</td>
-<td>
-<span class="date">8</span><br>Chapter 4
-</td>
-</tr>
-<tr>
-<td class="week-col">
-9
-</td>
-<td>
-<span class="date">11</span><br>Drop w/W date<br>Chapter 4<br><strong>2nd Reality Check</strong>
-</td>
-<td>
-<span class="date">12</span>
-</td>
-<td>
-<span class="date">13</span><br>Chapter 4<br><strong>Quiz 6</strong>
-</td>
-<td>
-<span class="date">14</span>
-</td>
-<td>
-<span class="date">15</span><br>Chapter 4
-</td>
-</tr>
-<tr>
-<td class="week-col">
-10
-</td>
-<td>
-<span class="date">18</span><br>Chapter 4
-</td>
-<td>
-<span class="date">19</span>
-</td>
-<td>
-<span class="date">20</span><br>Chapter 4
-</td>
-<td>
-<span class="date">21</span>
-</td>
-<td>
-<span class="date">22</span><br>Exam 2 Review<br><strong>Exam 2-2 Opens</strong>
-</td>
-</tr>
-<tr>
-<td class="week-col">
-11
-</td>
-<td>
-<span class="date">25</span><br>Exam 2-1<br>In Class
-</td>
-<td>
-<span class="date">26</span><br><strong>Exam 2-2 Closes</strong>
-</td>
-<td>
-<span class="date">27</span><br>No Classes
-</td>
-<td>
-<span class="date">28</span><br>Holiday
-</td>
-<td>
-<span class="date">29</span><br>Holiday
-</td>
-</tr>
-<tr>
-<td class="week-col">
-12
-</td>
-<td>
-<span class="date">2</span><br>Chapter 10
-</td>
-<td>
-<span class="date">3</span><br>Discontinuance
-</td>
-<td>
-<span class="date">4</span><br>Chapter 10
-</td>
-<td>
-<span class="date">5</span>
-</td>
-<td>
-<span class="date">6</span><br>Chapter 10<br>Quiz 7 (?)
-</td>
-</tr>
-<tr>
-<td class="week-col">
-13
-</td>
-<td>
-<span class="date">9</span><br>Chapter 10
-</td>
-<td>
-<span class="date">10</span>
-</td>
-<td>
-<span class="date">11</span><br>Chapter 10
-</td>
-<td>
-<span class="date">12</span>
-</td>
-<td>
-<span class="date">13</span><br>Chapter 10<br><strong>Exam 3-2 Opens</strong>
-</td>
-</tr>
-<tr>
-<td class="week-col">
-14
-</td>
-<td>
-<span class="date">16</span><br>Last Day of Class
-</td>
-<td>
-<span class="date">17</span><br><strong>10:30 Exam 3-1</strong><br><strong>Exam 3-2 Closes</strong><br><strong>3rd Reality Check</strong>
-</td>
-<td>
-<span class="date">18</span>
-</td>
-<td>
-<span class="date">19</span><br>Commencement
-</td>
-<td>
-<span class="date">20</span>
-</td>
-</tr>
-</tbody></table>
+<section id="problem-statement" class="level2">
+<h2 class="anchored" data-anchor-id="problem-statement"><strong>Problem Statement</strong></h2>
+<p>Let <span class="math inline">p_{n-1}(x)</span> be the degree <span class="math inline">n-1</span> polynomial that interpolates the points <span class="math inline">(x_i, f(x_i))</span>, where <span class="math inline">i = 1, \dots, n</span>. Now, suppose we add a new point <span class="math inline">(x, f(x))</span> and assume that <span class="math inline">a</span> is chosen such that the polynomial</p>
+<p><span class="math display">
+p_n(t) = p_{n-1}(t) + a(t - x_1)(t - x_2)\dots(t - x_n)
+</span></p>
+<p>interpolates the point <span class="math inline">(x, f(x))</span> in addition to the original <span class="math inline">n</span> points <span class="math inline">(x_i, f(x_i))</span>, <span class="math inline">i = 1, \dots, n</span>.</p>
+<p>Then <span class="math inline">h(t) = f(t) - p_n(t)</span> must have at least <span class="math inline">n+1</span> roots. <strong>What are these roots?</strong></p>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution"><strong>Solution</strong></h2>
+<section id="analyze-the-roots-of-ht" class="level3">
+<h3 class="anchored" data-anchor-id="analyze-the-roots-of-ht"><strong>1. Analyze the roots of <span class="math inline">h(t)</span></strong></h3>
+<p>By definition:</p>
+<p><span class="math display">
+h(t) = f(t) - p_n(t)
+</span></p>
+<p>Since <span class="math inline">p_n(t)</span> interpolates <span class="math inline">f(x)</span> at <span class="math inline">n+1</span> points (the original <span class="math inline">n</span> points and the newly added point <span class="math inline">(x, f(x))</span>), <span class="math inline">h(t)</span> is zero at these <span class="math inline">n+1</span> points. Therefore, the roots of <span class="math inline">h(t)</span> include:</p>
+<ol type="1">
+<li>The original interpolation points: <span class="math inline">t = x_1, x_2, \dots, x_n</span></li>
+<li>The newly added point: <span class="math inline">t = x</span></li>
+</ol>
+<p>Thus, the roots of <span class="math inline">h(t)</span> are <span class="math inline">\{ x_1, x_2, \dots, x_n, x \}</span>.</p>
+</section>
+<section id="polynomial-degree-and-root-count" class="level3">
+<h3 class="anchored" data-anchor-id="polynomial-degree-and-root-count"><strong>2. Polynomial degree and root count</strong></h3>
+<p>The degree of <span class="math inline">p_n(t)</span> is <span class="math inline">n</span>, since <span class="math inline">p_n(t)</span> adds a single term of degree <span class="math inline">n</span> to <span class="math inline">p_{n-1}(t)</span>. Therefore, <span class="math inline">h(t) = f(t) - p_n(t)</span>, being the difference of two degree <span class="math inline">n</span> polynomials, is also a degree <span class="math inline">n</span> polynomial.</p>
+<p>However, since <span class="math inline">h(t)</span> is zero at <span class="math inline">n+1</span> distinct points, <span class="math inline">h(t)</span> must be identically zero if <span class="math inline">f(t)</span> is a polynomial of degree at most <span class="math inline">n</span>. Otherwise, <span class="math inline">f(t)</span> introduces higher-order terms that cancel the polynomial structure of <span class="math inline">p_n(t)</span>.</p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion"><strong>Conclusion</strong></h3>
+<p>The <span class="math inline">n+1</span> roots of <span class="math inline">h(t) = f(t) - p_n(t)</span> are precisely:</p>
+<p><span class="math display">
+x_1, x_2, \dots, x_n, x
+</span></p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
