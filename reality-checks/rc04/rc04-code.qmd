@@ -1,10 +1,38 @@
-#%% Import Libraries
-import numpy as np  
-from scipy.optimize import fsolve  
-import sympy as sp  
+---
+title: 'REALITY CHECK 04 - CODE'
+author: 'Nathan Lunceford'
+format:
+  html:
+    self-contained: true
+    page-layout: full
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    number-sections: false
+    html-math-method: katex
+    embed-resources: true
+    code-fold: true
+    code-summary: 'Show Code'
+    code-overflow: wrap
+    code-copy: hover
+    code-tools:
+      source: false
+      toggle: true
+      caption: See code
+engine: jupyter
+preview:
+  port: 3000
+  browser: true
+  watch-inputs: true
+  navigate: true
+---
 
+```python
+#Import Libraries
+import numpy as np
+from scipy.optimize import fsolve
+import sympy as sp
 
-#%%
 # -----------------------------------------------------
 # PROBLEM 1: Numerical Root-Finding for GPS Positioning
 # -----------------------------------------------------
@@ -43,7 +71,6 @@ print(f"z = {sol[2]:.6f} km")
 print(f"d = {sol[3]:.6e} seconds")
 print("-----------------------------------------\n")
 
-#%%
 # ------------------------------------------------------------
 # PROBLEM 2: Determinant-Based Analytical Approach for GPS
 # ------------------------------------------------------------
@@ -103,7 +130,6 @@ print(f"z = {z_final:.6f} km")
 print(f"d = {d_final:.6e} seconds")
 print("-----------------------------------------")
 
-#%%
 # ------------------------------------------------------------
 # PROBLEM 4 & 5: Conditioning Analysis of the GPS Problem
 # ------------------------------------------------------------
@@ -186,3 +212,4 @@ for i, emf in enumerate(emf_tight):
     print(f"EMF for perturbation in t_{i+1}: {emf:.6f}")
 print(f"Maximum EMF (Tight): {max(emf_tight):.6f}")
 print("--------------------------------------------")
+```

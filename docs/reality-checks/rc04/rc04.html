@@ -4854,6 +4854,27 @@ window.Quarto = {
   </ul></li>
   <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1"><span class="header-section-number">2.4</span> <strong>Conclusion</strong></a></li>
   </ul></li>
+  <li><a href="#conditioning-analysis-of-the-gps-system" id="toc-conditioning-analysis-of-the-gps-system" class="nav-link" data-scroll-target="#conditioning-analysis-of-the-gps-system"><span class="header-section-number">3</span> <strong>Conditioning Analysis of the GPS System</strong></a>
+  <ul class="collapse">
+  <li><a href="#objective-2" id="toc-objective-2" class="nav-link" data-scroll-target="#objective-2"><span class="header-section-number">3.1</span> <strong>Objective</strong></a></li>
+  <li><a href="#background-1" id="toc-background-1" class="nav-link" data-scroll-target="#background-1"><span class="header-section-number">3.2</span> <strong>Background</strong></a>
+  <ul class="collapse">
+  <li><a href="#gps-sensitivity-and-conditioning" id="toc-gps-sensitivity-and-conditioning" class="nav-link" data-scroll-target="#gps-sensitivity-and-conditioning"><span class="header-section-number">3.2.1</span> <strong>GPS Sensitivity and Conditioning</strong></a></li>
+  <li><a href="#satellite-geometry" id="toc-satellite-geometry" class="nav-link" data-scroll-target="#satellite-geometry"><span class="header-section-number">3.2.2</span> <strong>Satellite Geometry</strong></a></li>
+  </ul></li>
+  <li><a href="#methodology-2" id="toc-methodology-2" class="nav-link" data-scroll-target="#methodology-2"><span class="header-section-number">3.3</span> <strong>Methodology</strong></a>
+  <ul class="collapse">
+  <li><a href="#steps-to-solve" id="toc-steps-to-solve" class="nav-link" data-scroll-target="#steps-to-solve"><span class="header-section-number">3.3.1</span> <strong>Steps to Solve</strong></a></li>
+  </ul></li>
+  <li><a href="#results-1" id="toc-results-1" class="nav-link" data-scroll-target="#results-1"><span class="header-section-number">3.4</span> <strong>Results</strong></a>
+  <ul class="collapse">
+  <li><a href="#loose-satellites" id="toc-loose-satellites" class="nav-link" data-scroll-target="#loose-satellites"><span class="header-section-number">3.4.1</span> <strong>Loose Satellites</strong></a></li>
+  <li><a href="#tightly-grouped-satellites" id="toc-tightly-grouped-satellites" class="nav-link" data-scroll-target="#tightly-grouped-satellites"><span class="header-section-number">3.4.2</span> <strong>Tightly Grouped Satellites</strong></a></li>
+  <li><a href="#comparison" id="toc-comparison" class="nav-link" data-scroll-target="#comparison"><span class="header-section-number">3.4.3</span> <strong>Comparison</strong></a></li>
+  </ul></li>
+  <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">3.5</span> <strong>Interpretation</strong></a></li>
+  <li><a href="#conclusion-2" id="toc-conclusion-2" class="nav-link" data-scroll-target="#conclusion-2"><span class="header-section-number">3.6</span> <strong>Conclusion</strong></a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -4970,7 +4991,7 @@ Accompanying Code
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <a href="#"><strong>accompanying code implementation</strong></a> defines the residual function, applies the <code>fsolve</code> solver, and outputs the computed results.</p>
+<p>The <a href="./rc04-code.html"><strong>accompanying code implementation</strong></a> defines the residual function, applies the <code>fsolve</code> solver, and outputs the computed results.</p>
 </div>
 </div>
 </section>
@@ -5047,7 +5068,7 @@ Code Implementation
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The solution process involves three key stages, all of which are implemented in the accompanying <a href="#">Python code</a>.</p>
+<p>The solution process involves three key stages, all of which are implemented in the accompanying <a href="./rc04-code.html">Python code</a>.</p>
 </div>
 </div>
 <section id="reducing-the-nonlinear-system-to-a-linear-form" class="level3" data-number="2.3.1">
@@ -5277,6 +5298,224 @@ d = -3.201566 \times 10^{-3}.
 <li>Provides a closed-form, analytical solution, offering deeper insight and efficiency.</li>
 </ul>
 <p>By following these steps—reducing to a linear system, isolating variables in terms of <span class="math inline">d</span> using determinants, and forming a single quadratic in <span class="math inline">d</span>—we obtain a direct and reliable solution to the GPS positioning problem.</p>
+</section>
+</section>
+<section id="conditioning-analysis-of-the-gps-system" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> <strong>Conditioning Analysis of the GPS System</strong></h1>
+<section id="objective-2" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="objective-2"><span class="header-section-number">3.1</span> <strong>Objective</strong></h2>
+<p>The objective of this section is to evaluate how the <strong>conditioning</strong> of the GPS system changes when the satellite positions are either <strong>loosely distributed</strong> or <strong>tightly grouped</strong>. Sensitivity to small errors in signal travel times <span class="math inline">t_i</span> is analyzed using the <strong>Error Magnification Factor (EMF)</strong>. By comparing EMF values for both configurations, we identify how satellite geometry impacts the robustness and stability of the GPS positioning system.</p>
+</section>
+<section id="background-1" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="background-1"><span class="header-section-number">3.2</span> <strong>Background</strong></h2>
+<section id="gps-sensitivity-and-conditioning" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="gps-sensitivity-and-conditioning"><span class="header-section-number">3.2.1</span> <strong>GPS Sensitivity and Conditioning</strong></h3>
+<p>In GPS systems, small timing errors <span class="math inline">\Delta t_i</span> in the satellite signals can result in significant positional errors. These errors arise from the <strong>ill-conditioning</strong> of the system of equations, which occurs when satellite positions are geometrically clustered.</p>
+<p>The system is analyzed by:</p>
+<ol type="1">
+<li><strong>Introducing Perturbations</strong>: A small timing error <span class="math inline">\Delta t_i \approx 10^{-8} \, \text{s}</span> (equivalent to <span class="math inline">3 \, \text{meters}</span>) is applied to each signal.</li>
+<li><strong>Forward Error</strong>: The resulting change in the computed position is measured as: <span class="math display">
+\|\Delta x, \Delta y, \Delta z\|_2 = \sqrt{(\Delta x)^2 + (\Delta y)^2 + (\Delta z)^2}
+</span></li>
+<li><strong>Error Magnification Factor (EMF)</strong>: The EMF quantifies the sensitivity of the system to perturbations: <span class="math display">
+\text{EMF} = \frac{\|\Delta x, \Delta y, \Delta z\|_2}{c \, \|\Delta t_i\|_2}
+</span> A <strong>higher EMF</strong> indicates a poorly conditioned system.</li>
+</ol>
+</section>
+<section id="satellite-geometry" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="satellite-geometry"><span class="header-section-number">3.2.2</span> <strong>Satellite Geometry</strong></h3>
+<ul>
+<li><strong>Loosely Distributed Satellites</strong>: Satellites are widely spaced across the sky, providing better geometric diversity. This reduces ill-conditioning and improves robustness.</li>
+<li><strong>Tightly Grouped Satellites</strong>: Satellites are close together (within 5% of one another in spherical coordinates), leading to <strong>geometric correlation</strong> and increased sensitivity to timing errors.</li>
+</ul>
+</section>
+</section>
+<section id="methodology-2" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="methodology-2"><span class="header-section-number">3.3</span> <strong>Methodology</strong></h2>
+<section id="steps-to-solve" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="steps-to-solve"><span class="header-section-number">3.3.1</span> <strong>Steps to Solve</strong></h3>
+<p>The analysis was conducted as follows:</p>
+<ol type="1">
+<li><p><strong>Satellite Position Generation</strong>:</p>
+<ul>
+<li>Loosely distributed satellites were generated using diverse spherical coordinates (<span class="math inline">\phi</span> and <span class="math inline">\theta</span>).</li>
+<li>Tightly grouped satellites were generated by restricting both <span class="math inline">\phi_i</span> and <span class="math inline">\theta_i</span> within 5% of one another.</li>
+</ul></li>
+<li><p><strong>Nominal and Perturbed Signal Times</strong>:</p>
+<ul>
+<li>For both configurations, nominal signal travel times <span class="math inline">t_i</span> were calculated based on the range: <span class="math display">
+R_i = \sqrt{A_i^2 + B_i^2 + (C_i - 6370)^2}, \quad t_i = d + \frac{R_i}{c}
+</span></li>
+<li>Each <span class="math inline">t_i</span> was perturbed by <span class="math inline">10^{-8} \, \text{s}</span>, while other times were held constant.</li>
+</ul></li>
+<li><p><strong>Solve for Position</strong>:</p>
+<ul>
+<li>The GPS equations were solved numerically using <code>fsolve</code> for both nominal and perturbed travel times.</li>
+<li>The positional error <span class="math inline">\|\Delta x, \Delta y, \Delta z\|_2</span> was computed for each perturbation.</li>
+</ul></li>
+<li><p><strong>Calculate EMF</strong>:<br>
+The EMF was calculated using the formula:</p>
+<p><span class="math display">
+\text{EMF} = \frac{\|\Delta x, \Delta y, \Delta z\|_2}{c \, \|\Delta t_i\|_2}
+</span></p></li>
+<li><p><strong>Compare Results</strong>:<br>
+EMF values were compared for both the loosely distributed and tightly grouped satellite configurations.</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<strong>Accompanying Code</strong>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <a href="./rc04-code.html">accompanying code</a> performs the following steps:</p>
+<ol type="1">
+<li><p><strong>Generate Satellite Positions</strong>:</p>
+<ul>
+<li>Loosely spaced satellites use diverse <span class="math inline">\phi</span> and <span class="math inline">\theta</span> values.</li>
+<li>Tightly grouped satellites have <span class="math inline">\phi</span> and <span class="math inline">\theta</span> within 5% of each other.</li>
+</ul></li>
+<li><p><strong>Calculate Ranges and Times</strong>:<br>
+Nominal ranges <span class="math inline">R_i</span> and travel times <span class="math inline">t_i</span> are computed.</p></li>
+<li><p><strong>Introduce Perturbations</strong>:<br>
+Each signal time <span class="math inline">t_i</span> is perturbed by <span class="math inline">10^{-8} \, \text{s}</span>, and the GPS equations are solved numerically using <code>fsolve</code>.</p></li>
+<li><p><strong>Compute Forward Error and EMF</strong>:</p>
+<ul>
+<li>The positional error is computed as the Euclidean distance between the nominal and perturbed positions.</li>
+<li>EMF values are calculated for each perturbation.</li>
+</ul></li>
+<li><p><strong>Comparison of Configurations</strong>:<br>
+EMF values for loosely and tightly grouped satellites are compared, and the maximum EMF is identified.</p></li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="results-1" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="results-1"><span class="header-section-number">3.4</span> <strong>Results</strong></h2>
+<p>The results of the EMF analysis for both satellite configurations are as follows:</p>
+<section id="loose-satellites" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="loose-satellites"><span class="header-section-number">3.4.1</span> <strong>Loose Satellites</strong></h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Perturbation in <span class="math inline">t_i</span></th>
+<th>EMF Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">t_1</span></td>
+<td>2.207538</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">t_2</span></td>
+<td>2.828432</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">t_3</span></td>
+<td>2.856126</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">t_4</span></td>
+<td>2.203932</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Maximum EMF</strong>:</p>
+<p><span class="math display">
+\text{EMF}_{\text{max}} = 2.856126
+</span></p>
+</section>
+<section id="tightly-grouped-satellites" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="tightly-grouped-satellites"><span class="header-section-number">3.4.2</span> <strong>Tightly Grouped Satellites</strong></h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Perturbation in <span class="math inline">t_i</span></th>
+<th>EMF Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">t_1</span></td>
+<td>1553.480087</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">t_2</span></td>
+<td>2317.787515</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">t_3</span></td>
+<td>3402.498373</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">t_4</span></td>
+<td>466.068303</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Maximum EMF</strong>:</p>
+<p><span class="math display">
+\text{EMF}_{\text{max}} = 3402.498373
+</span></p>
+</section>
+<section id="comparison" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="comparison"><span class="header-section-number">3.4.3</span> <strong>Comparison</strong></h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Configuration</th>
+<th>EMF Range</th>
+<th>Maximum EMF</th>
+<th>Sensitivity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Loose Satellites</strong></td>
+<td>2.2 to 2.8</td>
+<td>2.856126</td>
+<td>Low</td>
+</tr>
+<tr class="even">
+<td><strong>Tightly Grouped</strong></td>
+<td>466 to 3402</td>
+<td>3402.498373</td>
+<td>Very High</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="interpretation" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">3.5</span> <strong>Interpretation</strong></h2>
+<p>The results demonstrate a clear relationship between satellite geometry and the conditioning of the GPS system:</p>
+<ol type="1">
+<li><p><strong>Loose Satellites</strong>:</p>
+<ul>
+<li>EMF values remain low (around 2–3), indicating that the system is <strong>well-conditioned</strong>.</li>
+<li>Perturbations in signal times result in small position errors due to the geometric diversity of the satellites.</li>
+</ul></li>
+<li><p><strong>Tightly Grouped Satellites</strong>:</p>
+<ul>
+<li>EMF values increase dramatically (up to 3402), showing that the system becomes <strong>ill-conditioned</strong>.</li>
+<li>Small input errors are significantly amplified, leading to large position errors.</li>
+<li>This sensitivity arises from the satellites’ correlated geometry, where their signals cannot provide sufficient independent information.</li>
+</ul></li>
+</ol>
+</section>
+<section id="conclusion-2" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="conclusion-2"><span class="header-section-number">3.6</span> <strong>Conclusion</strong></h2>
+<p>This analysis highlights the critical role of satellite geometry in the conditioning of the GPS system:</p>
+<ul>
+<li>Loosely distributed satellites provide better geometric diversity and robustness, resulting in lower EMF values and greater accuracy.</li>
+<li>Tightly grouped satellites lead to poor conditioning, amplifying errors and making the system highly sensitive to small perturbations in signal travel times.</li>
+</ul>
+<p>To ensure accurate and stable GPS positioning, it is essential to use satellites with diverse spatial distributions. This insight is particularly valuable for optimizing satellite selection algorithms in GPS receivers.</p>
 
 
 </section>
