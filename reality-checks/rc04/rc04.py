@@ -32,10 +32,10 @@ def residuals(vars):
 # Initial guess for (x, y, z, d)
 initial_guess = [0, 0, 6370.0, 0]  # Receiver near Earth's surface and d = 0
 
-# Solve the nonlinear system using fsolve
+# Solve
 sol = fsolve(residuals, initial_guess)
 
-# Print the solution for (x, y, z, d)
+# Print 
 print("----- PROBLEM 1: Numerical Solution -----")
 print(f"x = {sol[0]:.6f} km")
 print(f"y = {sol[1]:.6f} km")
@@ -48,7 +48,7 @@ print("-----------------------------------------\n")
 # PROBLEM 2: Determinant-Based Analytical Approach for GPS
 # ------------------------------------------------------------
 
-# Define symbolic variables
+# Define variables
 x, y, z, d = sp.symbols('x y z d', real=True)
 
 # Formulate the nonlinear equations
@@ -58,7 +58,7 @@ for i in range(4):
     eqs.append(eq)
 
 # Linearize the system
-# Subtract eqs[1], eqs[2], and eqs[3] from eqs[0] to eliminate x^2, y^2, z^2 terms
+# Eliminate x^2, y^2, z^2 terms
 lin_eqs = [sp.simplify(eqs[0] - eqs[i]) for i in range(1, 4)]
 
 # Extract the coefficients of the linear equations
@@ -95,7 +95,7 @@ x_final = x_d.subs(d, d_final).evalf()
 y_final = y_d.subs(d, d_final).evalf()
 z_final = z_d.subs(d, d_final).evalf()
 
-# Print the final analytical solution
+# Print
 print("----- PROBLEM 2: Analytical Solution -----")
 print(f"x = {x_final:.6f} km")
 print(f"y = {y_final:.6f} km")
@@ -115,7 +115,7 @@ receiver_pos = np.array([0, 0, 6370])  # Receiver fixed at Earth's surface
 d_initial = 0.0001  # Initial clock bias
 perturbation = 1e-8  # Perturbation in seconds
 
-# Function to compute satellite positions in Cartesian coordinates
+# Function to compute satellite positions 
 def compute_satellite_positions(phi, theta):
     A = [rho * np.cos(p) * np.cos(t) for p, t in zip(phi, theta)]
     B = [rho * np.cos(p) * np.sin(t) for p, t in zip(phi, theta)]
@@ -144,7 +144,7 @@ def compute_emf(t_perturbed, t_nominal, A, B, C):
     input_error = np.linalg.norm(np.array(t_perturbed) - np.array(t_nominal)) * c
     return position_error / input_error
 
-# Function to analyze EMF for given satellite configuration
+# Function to analyze EMF 
 def analyze_emf(phi, theta):
     A, B, C = compute_satellite_positions(phi, theta)
     _, t_nominal = compute_nominal_values(A, B, C)

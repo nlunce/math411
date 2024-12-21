@@ -84,6 +84,8 @@ The second difficulty is that the transmission speed of the signals is not preci
 
 Consider a three-dimensional coordinate system whose origin is the center of the earth (radius ≈ 6370 km). GPS receivers convert these coordinates into latitude, longitude, and elevation data for readout and more sophisticated mapping applications using global information systems (GIS), a process we will not consider here.
 
+## Instructions
+
 1. Solve the system (4.37) by using a multivariate root finder in Python. There are  
    multiple options in scipy optimize, including root, fsolve, and newton_krylov.  
    Find the receiver position $(x, y, z)$ near earth and time correction $d$ for known,  

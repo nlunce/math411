@@ -48,12 +48,12 @@ However, the system faces challenges due to:
 2. **Ill-Conditioning**: The system becomes sensitive to errors when satellites are clustered close together in the sky.
 3. **Environmental Factors**: Signal transmission speed is affected by atmospheric interference and obstacles, introducing further inaccuracies.
 
-To address these challenges:
+To address these challenges, we will implement the following strategies:
 
-- **Numerical Root-Finding Methods** (e.g., Newton-Krylov, Gauss-Newton) iteratively solve the equations but can struggle with sensitivity to initial guesses and ill-conditioning.
-- **Error Analysis** evaluates the system's sensitivity to input timing errors, quantified through the **Error Magnification Factor (EMF)**, which assesses the impact of small changes in signal timing on positional accuracy.
+- **Numerical Root-Finding Methods**: Techniques such as Newton-Krylov and Gauss-Newton will be employed to iteratively solve the system of equations. Special attention will be given to mitigating sensitivity to initial guesses and managing ill-conditioned scenarios.
+- **Error Analysis**: The system's sensitivity to input timing errors will be evaluated using the **Error Magnification Factor (EMF)**, which quantifies how small variations in signal timing propagate and impact positional accuracy.
 
-By leveraging precise satellite positions and signal timing data, this system provides accurate navigation but requires advanced mathematical techniques to manage inherent nonlinearities and ensure robustness. This report focuses on exploring and solving the GPS positioning problem through numerical and analytical approaches, providing insights into accuracy, stability, and efficiency.
+Using precise satellite positions and signal timing data, the system delivers accurate navigation but relies on advanced mathematical techniques to handle complex nonlinearities and maintain reliability. This report focuses on exploring and solving the GPS positioning problem through numerical and analytical approaches.
 
 \newpage
 
@@ -63,11 +63,11 @@ By leveraging precise satellite positions and signal timing data, this system pr
 
 ## **Objective**
 
-The objective of this study is to calculate the position of a GPS receiver $(x, y, z)$ and correct the receiver's clock bias $d$ by solving a system of nonlinear equations. These equations model the distance between the receiver and multiple satellites based on signal travel times. The numerical solution relies on iterative root-finding methods to achieve high accuracy.
+This study aims to determine the position of a GPS receiver $(x, y, z)$ and correct its clock bias $d$ by solving a system of nonlinear equations. These equations represent the distances between the receiver and multiple satellites using signal travel times. To achieve precise results, we use iterative root-finding methods to solve the system.
 
 ## **Background**
 
-In a GPS system, the position of a receiver is determined by measuring the time it takes for signals to travel from multiple satellites. The propagation time, when multiplied by the speed of light $c$, provides the distance between the satellite and the receiver. Mathematically, the relationship between the receiver's unknown position $(x, y, z)$ and the clock correction $d$ is expressed as a system of nonlinear equations:
+In a GPS system, the position of a receiver is determined by measuring the time it takes for signals to travel from multiple satellites. By multiplying the signal travel time by the speed of light $c$, the distance between each satellite and the receiver can be calculated. This relationship, which involves the receiver's unknown position $(x, y, z)$ and a clock correction $d$, is modeled as a system of nonlinear equations:
 
 $$
 \sqrt{(x - A_i)^2 + (y - B_i)^2 + (z - C_i)^2} = c(t_i - d), \quad i = 1, 2, 3, 4
@@ -75,17 +75,30 @@ $$
 
 Where:
 
-- $(A_i, B_i, C_i)$ are the known satellite positions.
+- $(A_i, B_i, C_i)$ are the known coordinates of the satellites.
 - $t_i$ are the measured signal travel times.
 - $c \approx 299,792.458 \, \text{km/s}$ is the speed of light.
-- $(x, y, z)$ are the unknown receiver coordinates.
-- $d$ is the receiver clock correction.
+- $(x, y, z)$ are the unknown coordinates of the receiver in the **Earth-Centered, Earth-Fixed (ECEF)** coordinate system.
+- $d$ is the receiver's clock bias, which accounts for inaccuracies in its internal clock.
 
-Each equation corresponds to a sphere centered at the satellite's position, with the radius equal to the computed distance. The receiver's position lies at the intersection of these spheres. The inclusion of $d$ accounts for the clock bias in the receiver, which is less precise than the atomic clocks onboard GPS satellites.
+### **Earth-Centered, Earth-Fixed (ECEF) Coordinates**
+
+The ECEF coordinate system is a global Cartesian coordinate system defined as follows:
+
+- The origin is located at the Earth's center of mass.
+- The $x$-axis points toward the intersection of the Equator and the Prime Meridian.
+- The $y$-axis lies in the equatorial plane, pointing 90° east of the $x$-axis.
+- The $z$-axis aligns with the Earth's rotational axis, pointing toward the North Pole.
+
+In this system, both the satellite positions $(A_i, B_i, C_i)$ and the receiver position $(x, y, z)$ are expressed relative to the Earth's center, making it possible to calculate precise distances between the receiver and satellites.
+
+Each equation represents a sphere centered at a satellite's position, with the radius equal to the calculated distance. The receiver's position is determined as the intersection point of these spheres. The inclusion of $d$ corrects for the receiver's clock bias, which is less accurate than the highly precise atomic clocks on board the satellites.
 
 ## **Methodology**
 
 A numerical root-finding approach is employed to solve this system of nonlinear equations. Specifically, Python's `fsolve` function from the `scipy.optimize` library is utilized. This method iteratively refines estimates for $(x, y, z, d)$ until the residuals—the differences between the measured and calculated distances—are minimized.
+
+\newpage
 
 ### **Formulation of the Problem**
 
@@ -96,8 +109,6 @@ f_i(x, y, z, d) = \sqrt{(x - A_i)^2 + (y - B_i)^2 + (z - C_i)^2} - c(t_i - d), \
 $$
 
 The root-finding process involves solving for $(x, y, z, d)$ such that all $f_i(x, y, z, d) = 0$.
-
-\newpage
 
 ### **Numerical Solution**
 
@@ -160,11 +171,13 @@ The limitations of the numerical root-finding method highlight the need for a mo
 - Improved handling of ill-conditioned systems.
 - A more **analytical approach** that isolates variables and reduces the problem complexity.
 
-To address these concerns, the next section introduces a **determinant-based analytical approach**. This method linearizes the system of equations, isolates variables explicitly, and reduces the problem to solving a single quadratic equation for the clock correction $d$. It offers both computational efficiency and greater stability, making it well-suited for real-time GPS positioning.
+To address these concerns, the next section introduces a **determinant-based analytical approach**. This method linearizes the system of equations, isolates variables explicitly, and reduces the problem to solving a single quadratic equation for the clock correction $d$.
 
 ## **Conclusion**
 
-The numerical root-finding approach provides an approximate solution to the GPS equations but is limited by its sensitivity, inefficiency, and lack of robustness. These shortcomings motivate the need for an improved analytical method, which will be explored in the following section.
+The numerical root-finding approach provides an approximate solution to the GPS equations but often struggles with sensitivity, inefficiency and a lack of robustness. These limitations highlight the need for a more reliable analytical method which will be discussed in the next section.
+
+\newpage
 
 # **Determinant-Based Analytical Approach to GPS Positioning**
 
@@ -172,9 +185,9 @@ The numerical root-finding approach provides an approximate solution to the GPS 
 
 ## **Objective**
 
-The objective of this section is to solve the GPS equations **analytically** using a **determinant-based approach**. Unlike numerical root-finding methods, this analytical technique avoids iterative guesswork by isolating the variables $(x, y, z, d)$ explicitly. By systematically transforming the original nonlinear system into a more manageable linear form, this method ensures greater robustness, stability, and computational efficiency—critical for real-time or precision GPS applications.
+The objective of this section is to solve the GPS equations **analytically** using a **determinant-based approach**, unlike numerical root-finding methods, this analytical technique avoids iterative guesswork by isolating the variables $(x, y, z, d)$ explicitly. By systematically transforming the original nonlinear system into a more manageable linear form, this method ensures greater stability and computational efficiency which is critical for real-time or precision GPS applications.
 
-The approach has been implemented in Python using the **SymPy** library to symbolically manipulate the equations, solve the system, and isolate the unknowns step-by-step.
+The approach has been implemented in Python using the **SymPy** library to symbolically manipulate the equations, solve the system and isolate the unknowns step-by-step.
 
 ## **Problem Formulation**
 
@@ -195,13 +208,6 @@ Each equation represents a sphere with the satellite at its center. The receiver
 
 ## **Methodology**
 
-::: {.callout-tip}
-
-### Code Implementation
-
-The solution process involves three key stages, all of which are implemented in the accompanying [Python code](./rc04-code.html).
-:::
-
 ### **Reducing the Nonlinear System to a Linear Form**
 
 To eliminate the square roots, we square each equation. After doing so, we have:
@@ -217,6 +223,8 @@ x u_{x}^{(j)} + y u_{y}^{(j)} + z u_{z}^{(j)} + d u_{d}^{(j)} + w^{(j)} = 0,\qua
 $$
 
 where $u_x^{(j)}, u_y^{(j)}, u_z^{(j)}, u_d^{(j)}, w^{(j)}$ are constants determined by the satellite positions and travel times.
+
+\newpage
 
 At this point, we have **three linear equations** with **four unknowns**:
 
@@ -250,13 +258,13 @@ With three linear equations and four unknowns, the system is underdetermined. We
   x = f_x(d), \quad y = f_y(d), \quad z = f_z(d)
   $$
 
-Once $x, y, z$ are known in terms of $d$, we substitute these functions back into one of the original nonlinear equations. This will yield a **single quadratic equation in $d$**. Solving that quadratic equation gives us $d$. With $d$ in hand, we easily find $x, y, z$.
+Once $x, y, z$ are known in terms of $d$, we substitute these functions back into one of the original nonlinear equations. This will yield a **single quadratic equation in $d$**. Solving that quadratic equation gives us $d$. With $d$ in hand, we can easily find $x, y, z$.
 
 This approach reduces the complexity: instead of trying to solve four nonlinear equations simultaneously, we simplify the problem to solving one quadratic equation after isolating variables in terms of $d$.
 
 #### **Introducing the Determinant Equation**
 
-To isolate $x, y, z$ in terms of $d$, we use a **determinant-based approach**. Determinants are a powerful linear algebra tool. By arranging our linear equations in a matrix form and considering certain determinants, we can:
+To isolate $x, y, z$ in terms of $d$, we use a **determinant-based approach**. By arranging our linear equations in a matrix form and considering certain determinants, we can:
 
 - Identify linear dependencies,
 - Isolate one variable at a time,
@@ -395,8 +403,6 @@ $$
 - Substitute $x(d), y(d), z(d)$ into the left-hand side.
 - Square both sides to remove the square root.
 
-\newpage
-
 After simplification, you obtain a **quadratic equation in $d$**:
 
 $$
@@ -410,6 +416,8 @@ d = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 $$
 
 Choose the physically meaningful solution for $d$ (the one placing the receiver near Earth’s surface), then substitute $d$ back into $x(d), y(d), z(d)$ to find the final coordinates $(x, y, z)$.
+
+\newpage
 
 ::: {.callout-tip}
 
@@ -427,11 +435,9 @@ $$
 
 4. Among the solutions for $d$, the physically meaningful (real and close to zero) solution is selected. This step is automated in the code by evaluating the solutions and filtering for real roots.
 
-5. The final values of $x$, $y$, and $z$ are computed by substituting the selected $d$ back into $x(d)$, $y(d)$, and $z(d)$.
+5. The final values of $x$, $y$, and $z$ are computed by substituting the selected $d$ back into $x(d)$, $y(d)$, and $z(d)$.\
 
-**Results**
-
-The determinant-based analytical approach produces the following results:
+The determinant-based analytical approach produces the following results:\
 
 - **Receiver Position (in km):**
   $$
@@ -447,15 +453,15 @@ These results are consistent with the numerical solutions obtained in **numerica
 
 ## **Conclusion**
 
-This determinant-based analytical approach transforms the original nonlinear GPS equations into a linearized problem, uses determinants to isolate $x, y, z$ in terms of $d$, and ultimately reduces the entire system to solving a single quadratic equation in $d$.
+This determinant-based analytical approach simplifies the original nonlinear GPS equations by transforming them into a linear form. It uses determinants to express $x, y, z$ in terms of $d$ and reduces the problem to solving a single quadratic equation for $d$.
 
 **Key Advantages:**
 
 - No iterative guesswork required, avoiding convergence issues.
-- More stable and robust, especially when satellites are poorly distributed.
-- Provides a closed-form, analytical solution, offering deeper insight and efficiency.
+- More stable, especially when satellites are poorly distributed.
+- Provides a closed-form, analytical solution which offers deeper insight and efficiency.
 
-By following these steps—reducing to a linear system, isolating variables in terms of $d$ using determinants, and forming a single quadratic in $d$—we obtain a direct and reliable solution to the GPS positioning problem.
+By reducing the system to a linear form, isolating the variables in terms of $d$ using determinants and solving a single quadratic equation for $d$, we achieve a more straightforward and reliable solution to the GPS positioning problem.
 
 \newpage
 
@@ -465,7 +471,7 @@ By following these steps—reducing to a linear system, isolating variables in t
 
 ## **Objective**
 
-The objective of this section is to evaluate how the **conditioning** of the GPS system changes when the satellite positions are either **loosely distributed** or **tightly grouped**. Sensitivity to small errors in signal travel times $t_i$ is analyzed using the **Error Magnification Factor (EMF)**. By comparing EMF values for both configurations, we identify how satellite geometry impacts the robustness and stability of the GPS positioning system.
+The objective of this section is to evaluate how the **conditioning** of the GPS system changes when the satellite positions are either **loosely distributed** or **tightly grouped**. Sensitivity to small errors in signal travel times $t_i$ is analyzed using the **Error Magnification Factor (EMF)**. By comparing EMF values for both configurations we can identify how satellite geometry impacts the stability of the GPS positioning system.
 
 ## **Background**
 
@@ -615,4 +621,4 @@ This analysis highlights the critical role of satellite geometry in the conditio
 - Loosely distributed satellites provide better geometric diversity and robustness, resulting in lower EMF values and greater accuracy.
 - Tightly grouped satellites lead to poor conditioning, amplifying errors and making the system highly sensitive to small perturbations in signal travel times.
 
-To ensure accurate and stable GPS positioning, it is essential to use satellites with diverse spatial distributions. This insight is particularly valuable for optimizing satellite selection algorithms in GPS receivers.
+To achieve accurate and stable GPS positioning, it is crucial to use satellites that are well-distributed across the sky. This insight is especially important for improving satellite selection algorithms in GPS receivers.
